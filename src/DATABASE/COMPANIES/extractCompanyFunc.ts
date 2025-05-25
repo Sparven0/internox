@@ -24,4 +24,6 @@ import { QueryResult } from 'pg';
         throw error;
     }}
 
+
+    extractCompany('NewCompany')
   

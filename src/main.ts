@@ -10,6 +10,8 @@ import userRouter from './routes/newUserRoute';
 import extractUserRouter from './routes/extractUsersRoute';
 // import companyRouter from './routes/newCompanyRoute';
 import extractCompany from './routes/CompanyRoute';
+import newToken from './routes/newCredentialsRoute';
+
 
 dotenv.config();
 
@@ -27,6 +29,8 @@ server.use('/users', extractUserRouter);
 // server.use('/new-company', companyRouter);
 server.use('/company', extractCompany);
 server.use('/onboarding', onboardRoute);
+server.use('/new-credentials', newToken);
+
 
 
 
