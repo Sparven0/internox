@@ -1,9 +1,9 @@
-import { getCompanyPoolByDomain } from '../COMPANIES/getCompanyPoolByDomain'; 
+import { hashPassword } from '../../utils/encryptPassword';
 import masterPool from '../masterpool';
 import { getCompanyPool } from '../connectionManager';
 
 
-export async function createUser(email: string, companyDomain: string) {
+export async function createUser(email: string, companyDomain: string, password:string) {
   // Step 1: Resolve company DB name from master DB
   const result = await masterPool.query(
     'SELECT id, db_name FROM companies WHERE domain = $1',
@@ -19,10 +19,11 @@ export async function createUser(email: string, companyDomain: string) {
     throw new Error('Company domain does not match email domain');
   }
   const companyPool = getCompanyPool(dbName);
-
+  const encryptedPassword =  await hashPassword(password);
+console.log(encryptedPassword)
 
   await companyPool.query(
-    `INSERT INTO users (email, company_id, role) VALUES ($1, $2, $3)`,
-    [email, companyId, 'employee']
+    `INSERT INTO users (email, company_id, password, role) VALUES ($1, $2, $3, $4)`,
+    [email, companyId, encryptedPassword, 'employee']
   );
 }

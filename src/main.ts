@@ -11,7 +11,7 @@ import extractUserRouter from './routes/extractUsersRoute';
 // import companyRouter from './routes/newCompanyRoute';
 import extractCompany from './routes/CompanyRoute';
 import newToken from './routes/newCredentialsRoute';
-
+import newImapCreds from './routes/newImapCredentialsRoute'
 
 dotenv.config();
 
@@ -30,6 +30,7 @@ server.use('/users', extractUserRouter);
 server.use('/company', extractCompany);
 server.use('/onboarding', onboardRoute);
 server.use('/new-credentials', newToken);
+server.use('/new-imap-credentials', newImapCreds);
 
 
 

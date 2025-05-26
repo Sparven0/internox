@@ -19,7 +19,7 @@ class CompanyData {
   }
   
 
-  import initProcess from "./process";
+  import initProcess from "./fortnoxExtract";
   
   export async function getFortnoxTokens(): Promise<any> {
     const integrationsList:CompanyData[] = [] 

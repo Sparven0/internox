@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
-import masterPool from '../masterpool';
-import { getCompanyPool } from '../connectionManager';
+import masterPool from '../../masterpool';
+import { getCompanyPool } from '../../connectionManager';
 
 async function initProcess() {
     console.log('Starting script...');
