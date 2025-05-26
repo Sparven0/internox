@@ -12,6 +12,8 @@ import extractUserRouter from './routes/extractUsersRoute';
 import extractCompany from './routes/CompanyRoute';
 import newToken from './routes/newCredentialsRoute';
 import newImapCreds from './routes/newImapCredentialsRoute'
+import authMiddleware from './MIDDLEWARES/authMiddleware';
+
 
 dotenv.config();
 
