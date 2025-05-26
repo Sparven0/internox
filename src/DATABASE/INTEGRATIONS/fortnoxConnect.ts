@@ -1,6 +1,28 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
+import { getFortnoxTokens } from './fortnoxHub';
 dotenv.config();
+
+
+
+// GETS TOKENS 
+
+async function getTokens(){
+    try{
+    const tokens = await getFortnoxTokens();
+    tokens.forEach((token: { accessToken: any; }) => {
+        const accessToken = token.accessToken;
+        console.log('Access Token:', accessToken);
+    })
+    }
+    catch (error) {
+        console.error('Error fetching Fortnox tokens:', error);
+        throw error;
+    }
+}
+
+//  
+
 
 const FORTNOX_TOKEN_URL = 'https://apps.fortnox.se/oauth-v1/token';
 const FORTNOX_API_BASE = 'https://api.fortnox.se/3';
@@ -69,6 +91,20 @@ async function refreshFortnoxToken(refreshToken: string): Promise<{ access_token
   };
 }
 
+export async function getFortnoxData() {
+    try{
+    const tokens = await getFortnoxTokens();
+    const accessToken = tokens[0].access_token; 
+    const refreshToken = tokens[0].refresh_token || '';
+    const endpoint = '/customers'; // Example endpoint, change as needed
+    const data = await connectFortnox(accessToken, refreshToken, endpoint);
+    return data;
+    }
+    catch (error) {
+        console.error('Error fetching Fortnox data:', error);
+        throw error;
+}
+}
 
 
 // example usage:
