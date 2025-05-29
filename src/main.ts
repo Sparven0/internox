@@ -48,21 +48,21 @@ server.use('/fortnox', fortnox);
 
 
 
-server.listen(process.env.PORT || 3000, () => {
-    console.log(`Server is running on port ${process.env.PORT || 3000}`);
-}
-)
-
-
-
-// https.createServer(sslOptions, server).listen(process.env.PORT || 3000, () => {
+// server.listen(process.env.PORT || 3000, () => {
 //     console.log(`Server is running on port ${process.env.PORT || 3000}`);
-// })
+// }
+// )
 
 
-// http.createServer((req, res) => {
-//     res.writeHead(301, { Location: `https://${req.headers.host}${req.url}` });
-//     res.end();
-//   }).listen(80, () => {
-//     console.log('HTTP Server is redirecting to HTTPS');
-//   });
+
+https.createServer(sslOptions, server).listen(process.env.PORT || 3000, () => {
+    console.log(`Server is running on port ${process.env.PORT || 3000}`);
+})
+
+
+http.createServer((req, res) => {
+    res.writeHead(301, { Location: `https://${req.headers.host}${req.url}` });
+    res.end();
+  }).listen(80, () => {
+    console.log('HTTP Server is redirecting to HTTPS');
+  });
