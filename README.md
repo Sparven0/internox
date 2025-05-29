@@ -1,7 +1,7 @@
 
 *** permission needed: companyAdmin ***
 /new-user  
-{name, companyDomain, password} 
+{email, companyDomain, password} 
 
 *** permission needed: superAdmin ***
 /onboarding 

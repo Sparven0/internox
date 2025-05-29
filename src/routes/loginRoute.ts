@@ -1,9 +1,10 @@
 import { login } from "../utils/login";
 import express from "express";
+import adminLogin from "../utils/adminLogin";
 
 const router = express.Router();
 
-router.post("/", async (req, res) => {
+router.post("/", adminLogin, async (req, res) => {
     try {
         await login(req, res);
     } catch (error) {

@@ -48,3 +48,5 @@ export async function login(req: Request, res: Response): Promise<any> {
     res.status(500).json({ error: 'Internal server error' });
   }
 }
+
+export default login;
