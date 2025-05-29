@@ -18,7 +18,7 @@ export async function addImapCredentials(
     const dbName = `company_${companyId.replace(/-/g, '_')}`;
   const pool = getCompanyPool(dbName);
 
-  const encryptedPassword = hashPassword(plainPassword);
+  const encryptedPassword = await hashPassword(plainPassword);
 
   const result = await pool.query(
     `INSERT INTO imap_credentials (user_id, imap_host, imap_port, email_address, encrypted_password)
