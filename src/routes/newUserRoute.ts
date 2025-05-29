@@ -1,8 +1,10 @@
 import express from "express";
+import { NextFunction } from "express";
+import { authCompanyAdmin } from "../MIDDLEWARES/authCompanyAdmin";
 const router = express.Router();
 import { createUser } from "../DATABASE/USERS/insertUserFunc";
 
-router.post("/", async (req, res) => {
+router.post("/", authCompanyAdmin, async (req, res, next: NextFunction) => {
     const { email, companyDomain, password } = req.body;
 
     try {

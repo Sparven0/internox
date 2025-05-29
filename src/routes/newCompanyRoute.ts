@@ -1,8 +1,10 @@
 import { insertCompany } from "../DATABASE/COMPANIES/insertCompanyFunc";
 import express from "express";
+import authMiddleware from "../MIDDLEWARES/authMiddleware";
+import { checkAdmin } from "../MIDDLEWARES/requireSuperAdmin";
 const router = express.Router();
 
-router.post("/", async (req, res) => {
+router.post("/", authMiddleware, checkAdmin, async (req, res) => {
     const { name, domain } = req.body;
     try {
         const companyId = await insertCompany(name, domain);

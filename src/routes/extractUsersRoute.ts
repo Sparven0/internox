@@ -1,8 +1,9 @@
 import express from "express";
+import { checkAdmin } from "../MIDDLEWARES/requireSuperAdmin";
 import { extractUser } from "../DATABASE/USERS/extractUserFunc";
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/", checkAdmin, async (req, res) => {
     const {company, email} = req.query;
     try {
         const userData = await extractUser(company as string, email as string);

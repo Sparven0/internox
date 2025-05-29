@@ -1,6 +1,8 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
+import nock from 'nock';
 import { getFortnoxTokens } from './fortnoxHub';
+
 dotenv.config();
 
 
@@ -9,7 +11,7 @@ dotenv.config();
 
 async function getTokens(){
     try{
-    const tokens = await getFortnoxTokens();
+      const tokens = await getFortnoxTokens(); 
     tokens.forEach((token: { accessToken: any; }) => {
         const accessToken = token.accessToken;
         console.log('Access Token:', accessToken);
@@ -86,8 +88,8 @@ async function refreshFortnoxToken(refreshToken: string): Promise<{ access_token
   );
 
   return {
-    access_token: response.data.access_token,
-    refresh_token: response.data.refresh_token,
+    access_token: (response.data as { access_token: string }).access_token,
+    refresh_token: (response.data as { refresh_token: string }).refresh_token,
   };
 }
 

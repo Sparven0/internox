@@ -1,40 +1,66 @@
-*** Endpoints ***
 
+*** permission needed: companyAdmin ***
+/new-user  
+{name, companyDomain, password} 
 
-***  onboarding companies ***
+*** permission needed: superAdmin ***
 /onboarding 
-(name, domain)
+{name, domain}
 
-*** extracting companies *** 
-/company?name=
-(the company name)
-
-
-*** new tokens ***
+*** permission needed: companyAdmin ***
 /new-credentials
+{companyName, tokens}
+tokens:{
+  service:
+  access_token:
+  refresh_token:
+  expires_at:
+}
 
+*** permission needed: companyAdmin ***
+/new-imap-credentials
+{company:
+user:
+imapHost:
+imapPort:
+emailAddress:
+plainPassword:
+}
 
+*** permission needed: none ***
+/login
 {
-    service: "Google",
-  access_token: "exampleAccessToken",
-  refresh_token: "exampleRefreshToken",
-  expires_at: "2023-12-31T23:59:59"
+  email:
+  password:
+  companyDomain:
 }
 
 
-*** new users *** 
-
-/new-user
-{email: "email",
-companyDomain: "cdomain",
-password: "password"} 
-
-!Domain och email domain måste matcha!
+*** permission needed: developer ***
+/create-admin
+{
+  userName:
+  password:
+}
 
 
+*** permission needed: superAdmin ***
+/create-company-admin
+{
+  company:
+  email:
+  password:
+}
 
-*** extract user *** 
-/users 
 
-req.query = users?company=COMPANY_NAME&email=USER_EMAIL
+
+
+
+
+## Creating super_admin ##
+run: ts-node src/utils/generateToken.ts
+copy the token from the console
+insert the token as bearer in postman
+use the "create-admin" endpoint
+
 

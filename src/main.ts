@@ -12,7 +12,10 @@ import extractUserRouter from './routes/extractUsersRoute';
 import extractCompany from './routes/CompanyRoute';
 import newToken from './routes/newCredentialsRoute';
 import newImapCreds from './routes/newImapCredentialsRoute'
-import authMiddleware from './MIDDLEWARES/authMiddleware';
+import createAdmin from './routes/createAdminRoute';
+import loginRoute from './routes/loginRoute';
+import createCompanyAdmin from './routes/createCompanyAdminRoute';
+import fortnox from './routes/fortnoxCallbackRoute';
 
 
 dotenv.config();
@@ -30,22 +33,36 @@ server.use('/new-user', userRouter);
 server.use('/users', extractUserRouter);
 // server.use('/new-company', companyRouter);
 server.use('/company', extractCompany);
-server.use('/onboarding', onboardRoute);
+server.use('/onboarding',onboardRoute);
 server.use('/new-credentials', newToken);
 server.use('/new-imap-credentials', newImapCreds);
+server.use('/login', loginRoute);
+server.use('/create-admin', createAdmin);
+server.use('/create-company-admin', createCompanyAdmin);
+server.use('/fortnox', fortnox);
 
 
 
 
 
-https.createServer(sslOptions, server).listen(process.env.PORT || 3000, () => {
+
+
+
+server.listen(process.env.PORT || 3000, () => {
     console.log(`Server is running on port ${process.env.PORT || 3000}`);
-})
+}
+)
 
 
-http.createServer((req, res) => {
-    res.writeHead(301, { Location: `https://${req.headers.host}${req.url}` });
-    res.end();
-  }).listen(80, () => {
-    console.log('HTTP Server is redirecting to HTTPS');
-  });
+
+// https.createServer(sslOptions, server).listen(process.env.PORT || 3000, () => {
+//     console.log(`Server is running on port ${process.env.PORT || 3000}`);
+// })
+
+
+// http.createServer((req, res) => {
+//     res.writeHead(301, { Location: `https://${req.headers.host}${req.url}` });
+//     res.end();
+//   }).listen(80, () => {
+//     console.log('HTTP Server is redirecting to HTTPS');
+//   });

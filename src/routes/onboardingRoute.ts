@@ -1,9 +1,12 @@
 import express from "express";
+import { NextFunction } from "express";
 import { onboardCompany } from '../DATABASE/onboard';
 import { Request, Response } from 'express';
+import authMiddleware from "../MIDDLEWARES/authMiddleware";
+import { checkAdmin } from "../MIDDLEWARES/requireSuperAdmin";
 const router = express.Router();
 
-router.post("/", async (req: Request, res: Response) => {
+router.post("/",  checkAdmin,  async (req: Request, res: Response, next: NextFunction) => {
     const { name, domain } = req.body;
     try {
         await onboardCompany(name, domain);

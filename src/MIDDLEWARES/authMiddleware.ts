@@ -5,7 +5,7 @@ dotenv.config();
 
 const JWT_SECRET = process.env.JWT_SECRET || '';
 
-function authMiddleware(req: Request, res: Response, next: NextFunction) {
+function authMiddleware(req: Request, res: Response, next: NextFunction):any{
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return res.status(401).json({ message: 'No token provided' });
@@ -13,7 +13,10 @@ function authMiddleware(req: Request, res: Response, next: NextFunction) {
 
   const token = authHeader.split(' ')[1];
   try {
-    const decoded = jwt.verify(token, JWT_SECRET);
+    const decoded = jwt.verify(token, JWT_SECRET) as { role: string }; // Type assertion to access 'role' property
+    if (decoded.role !== 'admin') { // Corrected comparison
+      return res.status(403).json({ message: 'Forbidden: Admin access required' });
+    }
     (req as any).user = decoded;
     next();
   } catch (err) {

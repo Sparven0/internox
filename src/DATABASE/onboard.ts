@@ -1,6 +1,6 @@
 import { Pool } from 'pg';
 import { v4 as uuidv4 } from 'uuid';
-import { getCompanyPool } from './connectionManager';
+
 import masterPool from './masterpool';
 import { setupCompanySchema } from './schemaSetup';  // your full schema setup
 

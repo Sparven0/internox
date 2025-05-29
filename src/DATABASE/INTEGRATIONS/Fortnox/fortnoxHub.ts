@@ -36,5 +36,8 @@ class CompanyData {
       }
      
     }
+    console.log('Fortnox tokens extracted:', integrationsList);
     return integrationsList
   }
+
+getFortnoxTokens()
