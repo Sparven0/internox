@@ -3,7 +3,8 @@
     "typeRoots": ["./node_modules/@types", "./src/types"],
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "outDir": "dist" // BEGIN: added outDir setting
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
