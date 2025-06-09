@@ -3,6 +3,10 @@
 /new-user  
 {email, companyDomain, password} 
 
+
+### Serious logic issues when creating users. Admins for all companies can create users for all companies 
+### just by inserting another domain. Needs validation in insertUserFunc.ts
+
 *** permission needed: superAdmin ***
 /onboarding 
 {name, domain}
