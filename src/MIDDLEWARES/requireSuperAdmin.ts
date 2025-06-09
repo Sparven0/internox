@@ -25,3 +25,4 @@ export function checkAdmin(req: Request, res: Response, next: NextFunction): any
         res.status(401).json({ message: "Unauthorized: Invalid token" });
     }
 }
+

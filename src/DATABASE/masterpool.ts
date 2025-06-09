@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const masterPool = new Pool({
-  host: process.env.POSTGRES_HOST || 'localhost',
+  host: process.env.POSTGRES_HOST,
   user: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB, // this should be in your .env

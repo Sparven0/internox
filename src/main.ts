@@ -1,10 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import https from 'https';
-import http from 'http';
-import fs from 'fs';
-import path from 'path';
+import masterPool from './DATABASE/masterpool';
 import onboardRoute from './routes/onboardingRoute';
 import userRouter from './routes/newUserRoute';
 import extractUserRouter from './routes/extractUsersRoute';
@@ -16,14 +13,26 @@ import createAdmin from './routes/createAdminRoute';
 import loginRoute from './routes/loginRoute';
 import createCompanyAdmin from './routes/createCompanyAdminRoute';
 import fortnox from './routes/fortnoxCallbackRoute';
+import getAllUsers from './routes/getAllUsersRoute';
 
 
 dotenv.config();
 
-const sslOptions = {
-    key: fs.readFileSync(path.join(__dirname, 'key.pem')), 
-    cert: fs.readFileSync(path.join(__dirname, 'cert.pem')), 
+async function waitForDb(retries = 5) {
+  while (retries) {
+    try {
+      await masterPool.query('SELECT 1');
+      console.log('Connected to database.');
+      return;
+    } catch (err) {
+      console.log('Database not ready yet, retrying in 2 seconds...');
+      retries--;
+      await new Promise(res => setTimeout(res, 2000));
+    }
+  }
+  throw new Error('Could not connect to the database.');
 }
+
 
 
 const server = express();
@@ -40,29 +49,24 @@ server.use('/login', loginRoute);
 server.use('/create-admin', createAdmin);
 server.use('/create-company-admin', createCompanyAdmin);
 server.use('/fortnox', fortnox);
+server.use('/get-all-users', getAllUsers);
 
 
 
+async function startServer() {
+  try {
+    await waitForDb();
+
+    const port = process.env.PORT || 1222;
+    server.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+    });
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+}
+
+startServer();
 
 
-
-
-
-// server.listen(process.env.PORT || 3000, () => {
-//     console.log(`Server is running on port ${process.env.PORT || 3000}`);
-// }
-// )
-
-
-
-https.createServer(sslOptions, server).listen(process.env.PORT || 3000, () => {
-    console.log(`Server is running on port ${process.env.PORT || 3000}`);
-})
-
-
-http.createServer((req, res) => {
-    res.writeHead(301, { Location: `https://${req.headers.host}${req.url}` });
-    res.end();
-  }).listen(80, () => {
-    console.log('HTTP Server is redirecting to HTTPS');
-  });

@@ -1,10 +1,9 @@
 import { login } from "../utils/login";
 import express from "express";
-import adminLogin from "../utils/adminLogin";
-
+import { authCompanyAdmin } from "../MIDDLEWARES/authCompanyAdmin";
 const router = express.Router();
 
-router.post("/", adminLogin, async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         await login(req, res);
     } catch (error) {

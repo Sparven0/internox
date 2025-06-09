@@ -6,6 +6,6 @@
     "skipLibCheck": true,
     "outDir": "dist" // BEGIN: added outDir setting
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "migrate.ts"],
   "exclude": ["node_modules"]
 }

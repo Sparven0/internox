@@ -4,9 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm install && npm run compile",
-    "compile": "tsc"
-    
+    "build": "tsc",
+  "start": "node dist/main.js",
+    "clean": "rimraf dist/**/*.js dist/**/*.js.map"
   },
   "keywords": [],
   "author": "",
@@ -39,5 +39,8 @@
     "pg": "^8.16.0",
     "typescript": "^5.8.3",
     "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "rimraf": "^6.0.1"
   }
 }

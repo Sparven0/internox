@@ -11,7 +11,9 @@ const generateToken = () => {
     { expiresIn: '1h' } // Token expiration
   );
 
-  console.log('Generated Token:', token);
+  console.log('GENERATED TOKEN:',(token)); // Decode and log the token
 };
+
+
 
 generateToken();

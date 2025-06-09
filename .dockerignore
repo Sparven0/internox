@@ -1,0 +1,33 @@
+# Ignore node_modules (will be installed in the container)
+node_modules
+
+# Ignore logs
+logs
+*.log
+
+# Ignore temporary files
+tmp
+*.tmp
+
+# Ignore test files and coverage reports
+test
+coverage
+
+# Ignore local environment files
+.env
+.env.local
+
+# Ignore IDE/editor config files
+.vscode
+*.swp
+*.swo
+*.idea
+
+# Ignore Docker-related files (if not needed inside the container)
+Dockerfile
+.dockerignore
+
+# Ignore Git files
+.git
+.gitignore
+

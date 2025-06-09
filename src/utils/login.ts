@@ -12,7 +12,6 @@ export async function login(req: Request, res: Response): Promise<any> {
     if (!email || !password || !companyDomain) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
-
     // Query the master database for the company
     const result = await masterPool.query(
       `SELECT db_name FROM companies WHERE domain = $1`,
@@ -41,6 +40,9 @@ export async function login(req: Request, res: Response): Promise<any> {
     if (!passwordMatch) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
+    if (user.role !== 'admin') {
+      return res.status(403).json({ error: 'Access denied: Admins only' });
+    }
 
     // Generate JWT token
     const token = jwt.sign(
@@ -56,7 +58,7 @@ export async function login(req: Request, res: Response): Promise<any> {
     );
 
 
-    res.json({ token });
+    res.json({ token, user: { id: user.id, email: user.email, role: user.role, companyId: user.company_id } });
   } catch (error) {
     console.error('Error during login:', error);
     res.status(500).json({ error: 'Internal server error' });
