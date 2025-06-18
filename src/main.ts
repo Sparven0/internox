@@ -41,7 +41,7 @@ server.use(express.json());
 server.use('/new-user', userRouter);
 server.use('/users', extractUserRouter);
 // server.use('/new-company', companyRouter);
-server.use('/company', extractCompany);
+server.use('/company', extractCompany); 
 server.use('/onboarding',onboardRoute);
 server.use('/new-credentials', newToken);
 server.use('/new-imap-credentials', newImapCreds);
