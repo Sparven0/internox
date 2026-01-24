@@ -41,25 +41,29 @@ server.use(express.json());
 server.use('/new-user', userRouter);
 server.use('/users', extractUserRouter);
 // server.use('/new-company', companyRouter);
-server.use('/company', extractCompany);
+server.use('/company', extractCompany); 
 server.use('/onboarding',onboardRoute);
 server.use('/new-credentials', newToken);
 server.use('/new-imap-credentials', newImapCreds);
 server.use('/login', loginRoute);
 server.use('/create-admin', createAdmin);
 server.use('/create-company-admin', createCompanyAdmin);
-server.use('/fortnox', fortnox);
+server.use('/', fortnox);
 server.use('/get-all-users', getAllUsers);
 
+server.get('/fortnox-callback', async (req, res) => {
+res.json('Success')
+})
 
 
 async function startServer() {
   try {
     await waitForDb();
 
-    const port = process.env.PORT || 1222;
-    server.listen(port, () => {
-      console.log(`Server is running on port ${port}`);
+    const port =  1222;
+const host = '0.0.0.0';
+    server.listen(port, host, () => {
+      console.log(`Server is running on ${host}, port ${port}`);
     });
   } catch (err) {
     console.error(err);
