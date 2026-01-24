@@ -4,7 +4,7 @@ import { extractImapCredentials } from "../DATABASE/INTEGRATIONS/Email/extractIm
 
 const router = express.Router();
 
-router.get("/imap-credentials", authCompanyAdmin, async (req, res): Promise<void> => {
+router.get("/", authCompanyAdmin, async (req, res): Promise<void> => {
     const { company } = req.query;
 
     if (!company) {
