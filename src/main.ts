@@ -36,7 +36,19 @@ async function waitForDb(retries = 5) {
 
 
 const server = express();
-server.use(cors());
+
+server.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://internox.duckdns.org"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));
+
+
+
 server.use(express.json());
 server.use('/new-user', userRouter);
 server.use('/users', extractUserRouter);
