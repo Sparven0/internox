@@ -10,14 +10,15 @@ router.use(cookieParser());
 
 
 router.get('/auth', (req: Request, res: Response) => {
-  const state = crypto.randomBytes(16).toString('hex');
-  res.cookie('oauthState', state, { httpOnly: true, secure: true, sameSite: 'strict' });
-  res.redirect(`https://apps.fortnox.se/oauth-v1/auth?state=${state}&redirect_uri=http://localhost:1222/fortnox-callback`);
+ const state = crypto.randomBytes(16).toString('hex');
+
+  res.cookie('oauthState', state, { httpOnly: true, secure: true, sameSite: 'none', domain: '.duckdns.org' });
+  res.redirect(`https://apps.fortnox.se/oauth-v1/auth?client_id=UZNsMVYcAGyy&state=${state}&redirect_uri=https://internox.duckdns.org/fortnox-callback&response_type=code&scope=customer%20invoice`);
 });
-router.get('/callback', async (req: Request, res: Response): Promise<any> => {
+router.get('/fortnox-callback', async (req: Request, res: Response): Promise<any> => {
   const { state, code } = req.query;
   const cookieState = req.cookies.oauthState; 
-
+console.log(cookieState, state)
   if (!state || state !== cookieState) {
     return res.status(400).send('Invalid state');
   }
@@ -32,7 +33,7 @@ router.get('/callback', async (req: Request, res: Response): Promise<any> => {
       new URLSearchParams({
         grant_type: 'authorization_code',
         code: code as string,
-        redirect_uri: 'http://localhost:1222/fortnox-callback',
+        redirect_uri: 'https://internox.duckdns.org/fortnox-callback',
       }),
       {
         headers: {
@@ -49,7 +50,7 @@ router.get('/callback', async (req: Request, res: Response): Promise<any> => {
     };
 
     const expires_at = new Date(Date.now() + expires_in * 1000);
-    await axios.post('http://localhost:1222/new-credentials', {
+    await axios.post('https://internox.duckdns.org/new-credentials', {
       service: 'Fortnox',
       tokens: {
         access_token,
@@ -61,9 +62,17 @@ router.get('/callback', async (req: Request, res: Response): Promise<any> => {
 
     res.send('Fortnox successfully connected.');
   } catch (err: any) {
-    console.error(err.response?.data || err.message || err);
-    res.status(500).send('OAuth failed');
-  }
+  console.error('Fortnox token error:', {
+    message: err.message,
+    stack: err.stack,
+    responseData: err.response?.data,
+    responseStatus: err.response?.status,
+    requestData: err.config?.data,
+    requestHeaders: err.config?.headers,
+  });
+  res.status(500).send('OAuth failed');
+}
+
 });
 
 export default router;

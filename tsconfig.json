@@ -4,8 +4,9 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "outDir": "dist" // BEGIN: added outDir setting
+    "outDir": "dist", // BEGIN: added outDir setting,
+    "rootDir":"."
   },
-  "include": ["src/**/*", "migrate.ts"],
+  "include": ["src/**/*", "migrations/migrate.ts"],
   "exclude": ["node_modules"]
 }

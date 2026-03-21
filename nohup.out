@@ -1,0 +1,118 @@
+time="2025-07-22T08:55:53Z" level=warning msg="/home/ubuntu/internox/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+time="2025-07-22T08:55:53Z" level=warning msg="Docker Compose is configured to build using Bake, but buildx isn't installed"
+#0 building with "default" instance using docker driver
+
+#1 [app internal] load build definition from Dockerfile
+#1 transferring dockerfile: 375B done
+#1 DONE 0.0s
+
+#2 [app internal] load metadata for docker.io/library/node:18-alpine
+#2 DONE 0.0s
+
+#3 [app internal] load .dockerignore
+#3 transferring context: 473B done
+#3 DONE 0.0s
+
+#4 [app 1/7] FROM docker.io/library/node:18-alpine
+#4 DONE 0.0s
+
+#5 [app internal] load build context
+#5 transferring context: 3.02kB done
+#5 DONE 0.0s
+
+#6 [app 2/7] WORKDIR /usr/src
+#6 CACHED
+
+#7 [app 4/7] RUN npm install -g ts-node typescript
+#7 CACHED
+
+#8 [app 3/7] COPY package*.json ./
+#8 CACHED
+
+#9 [app 5/7] RUN npm install
+#9 CACHED
+
+#10 [app 6/7] COPY . .
+#10 DONE 0.1s
+
+#11 [app 7/7] RUN npm run build
+#11 1.343 
+#11 1.343 > internox@1.0.0 build
+#11 1.343 > tsc
+#11 1.343 
+#11 4.918 npm notice
+#11 4.918 npm notice New major version of npm available! 10.8.2 -> 11.4.2
+#11 4.918 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.4.2
+#11 4.918 npm notice To update run: npm install -g npm@11.4.2
+#11 4.918 npm notice
+#11 DONE 5.0s
+
+#12 [app] exporting to image
+#12 exporting layers 0.1s done
+#12 writing image sha256:e17ab7fe6a1fe37de1154e47937bcfcece326a051337a7a746e8c57e04420354
+#12 writing image sha256:e17ab7fe6a1fe37de1154e47937bcfcece326a051337a7a746e8c57e04420354 done
+#12 naming to docker.io/library/internox-app done
+#12 DONE 0.1s
+
+#13 [app] resolving provenance for metadata file
+#13 DONE 0.0s
+ app  Built
+ Container internox-app-1  Recreate
+ Container internox-app-1  Recreated
+Attaching to app-1, db-1
+db-1   | 
+db-1   | PostgreSQL Database directory appears to contain a database; Skipping initialization
+db-1   | 
+db-1   | 2025-07-22 08:55:59.114 UTC [1] LOG:  starting PostgreSQL 15.13 (Debian 15.13-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+db-1   | 2025-07-22 08:55:59.115 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1   | 2025-07-22 08:55:59.115 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1   | 2025-07-22 08:55:59.121 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1   | 2025-07-22 08:55:59.131 UTC [28] LOG:  database system was shut down at 2025-07-22 08:55:43 UTC
+db-1   | 2025-07-22 08:55:59.145 UTC [1] LOG:  database system is ready to accept connections
+db-1   | 2025-07-22 08:56:02.185 UTC [32] ERROR:  relation "companies" already exists
+db-1   | 2025-07-22 08:56:02.185 UTC [32] STATEMENT:  CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+db-1   | 	
+db-1   | 	CREATE TABLE companies (
+db-1   | 	  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+db-1   | 	  name TEXT NOT NULL,
+db-1   | 	  domain TEXT NOT NULL UNIQUE,
+db-1   | 	  db_name TEXT NOT NULL UNIQUE,
+db-1   | 	  created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT now()
+db-1   | 	);
+db-1   | 	
+db-1   | 	CREATE TABLE users (
+db-1   | 	  id SERIAL PRIMARY KEY,
+db-1   | 	  user_name TEXT NOT NULL,
+db-1   | 	  role TEXT NOT NULL,
+db-1   | 	  password TEXT NOT NULL
+db-1   | 	);
+db-1   | 	
+app-1  | Migration failed: error: relation "companies" already exists
+app-1  |     at /usr/src/node_modules/pg-pool/index.js:45:11
+app-1  |     at processTicksAndRejections (node:internal/process/task_queues:95:5) {
+app-1  |   length: 103,
+app-1  |   severity: 'ERROR',
+app-1  |   code: '42P07',
+app-1  |   detail: undefined,
+app-1  |   hint: undefined,
+app-1  |   position: undefined,
+app-1  |   internalPosition: undefined,
+app-1  |   internalQuery: undefined,
+app-1  |   where: undefined,
+app-1  |   schema: undefined,
+app-1  |   table: undefined,
+app-1  |   column: undefined,
+app-1  |   dataType: undefined,
+app-1  |   constraint: undefined,
+app-1  |   file: 'heap.c',
+app-1  |   line: '1150',
+app-1  |   routine: 'heap_create_with_catalog'
+app-1  | }
+app-1  | Connected to database.
+app-1  | Server is running on 0.0.0.0, port 1222
+Gracefully stopping... (press Ctrl+C again to force)
+ Container internox-app-1  Stopping
+ Container internox-app-1  Stopped
+ Container internox-db-1  Stopping
+ Container internox-db-1  Stopped
+
