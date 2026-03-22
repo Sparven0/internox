@@ -1,78 +1,159 @@
 import express, { Request, Response } from 'express';
 import axios from 'axios';
-import cookieParser from 'cookie-parser';
 import crypto from 'crypto';
+import cookieParser from 'cookie-parser';
 
 const router = express.Router();
-
-// Middleware to parse cookies
 router.use(cookieParser());
 
+// ENV
+const CLIENT_ID = process.env.FORTNOX_CLIENT_ID!;
+const CLIENT_SECRET = process.env.FORTNOX_CLIENT_SECRET!;
+const REDIRECT_URI = process.env.FORTNOX_REDIRECT_URI!;
 
+// ---------------- UTIL ----------------
+function base64(str: string) {
+  return Buffer.from(str).toString('base64');
+}
+
+function generateState() {
+  return crypto.randomBytes(16).toString('hex');
+}
+
+// ---------------- STEP 1: CONNECT ----------------
 router.get('/auth', (req: Request, res: Response) => {
- const state = crypto.randomBytes(16).toString('hex');
+  const state = generateState();
 
-  res.cookie('oauthState', state, { httpOnly: true, secure: true, sameSite: 'none', domain: '.duckdns.org' });
-  res.redirect(`https://apps.fortnox.se/oauth-v1/auth?client_id=UZNsMVYcAGyy&state=${state}&redirect_uri=https://internox.duckdns.org/fortnox-callback&response_type=code&scope=customer%20invoice`);
+  // Store state in secure cookie (production-safe)
+  res.cookie('oauth_state', state, {
+    httpOnly: true,
+    secure: true,        // MUST be HTTPS in production
+    sameSite: 'none',    // required for cross-site OAuth
+    domain: '.duckdns.org',
+    maxAge: 10 * 60 * 1000 // 10 min
+  });
+
+  const params = new URLSearchParams({
+    client_id: CLIENT_ID,
+    redirect_uri: REDIRECT_URI,
+    response_type: 'code',
+    scope: 'companyinformation invoices customers',
+    state,
+    access_type: 'offline'
+  });
+
+  res.redirect(`https://apps.fortnox.se/oauth-v1/auth?${params}`);
 });
-router.get('/fortnox-callback', async (req: Request, res: Response): Promise<any> => {
-  const { state, code } = req.query;
-  const cookieState = req.cookies.oauthState; 
-console.log(cookieState, state)
-  if (!state || state !== cookieState) {
-    return res.status(400).send('Invalid state');
+
+// ---------------- STEP 2: CALLBACK ----------------
+router.get('/callback', async (req: Request, res: Response): Promise<void> => {
+  const { code, state, error, error_description } = req.query;
+  const cookieState = req.cookies.oauth_state;
+
+  // Handle OAuth error
+  if (error) {
+    console.error('OAuth error:', error, error_description);
+     res.status(400).send(`OAuth error: ${error}`);
   }
-  res.clearCookie('oauthState');
+
+  // Validate state
+  if (!state || state !== cookieState) {
+    console.error('Invalid state:', { state, cookieState });
+     res.status(400).send('Invalid state');
+  }
+
+  res.clearCookie('oauth_state');
+
   if (!code) {
-    return res.status(400).send('Missing authorization code');
+     res.status(400).send('Missing authorization code');
   }
 
   try {
-    const tokenRes = await axios.post(
+    // 🔥 Exchange code → tokens
+    const tokenResponse = await axios.post(
       'https://apps.fortnox.se/oauth-v1/token',
       new URLSearchParams({
         grant_type: 'authorization_code',
         code: code as string,
-        redirect_uri: 'https://internox.duckdns.org/fortnox-callback',
-      }),
+        redirect_uri: REDIRECT_URI
+      }).toString(),
       {
         headers: {
-          Authorization: `Basic ${Buffer.from(`${process.env.FORTNOX_CLIENT_ID}:${process.env.FORTNOX_CLIENT_SECRET}`).toString('base64')}`,
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
+          Authorization: `Basic ${base64(`${CLIENT_ID}:${CLIENT_SECRET}`)}`,
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
       }
     );
 
-    const { access_token, refresh_token, expires_in } = tokenRes.data as {
-      access_token: string;
-      refresh_token: string;
-      expires_in: number;
+    const tokens = tokenResponse.data as { access_token: string; refresh_token: string; expires_in: number };
+
+    const enrichedTokens = {
+      access_token: tokens.access_token,
+      refresh_token: tokens.refresh_token,
+      expires_at: Date.now() + tokens.expires_in * 1000
     };
 
-    const expires_at = new Date(Date.now() + expires_in * 1000);
+    // ✅ Store tokens in your backend (DB or API)
     await axios.post('https://internox.duckdns.org/new-credentials', {
       service: 'Fortnox',
-      tokens: {
-        access_token,
-        refresh_token,
-        expires_at,
-      },
-      customerId: 12345,
+      tokens: enrichedTokens,
+      customerId: 12345 // TODO: replace with real user ID
     });
 
-    res.send('Fortnox successfully connected.');
+    res.send('Fortnox connected successfully 🎉');
+
   } catch (err: any) {
-  console.error('Fortnox token error:', {
-    message: err.message,
-    stack: err.stack,
-    responseData: err.response?.data,
-    responseStatus: err.response?.status,
-    requestData: err.config?.data,
-    requestHeaders: err.config?.headers,
-  });
-  res.status(500).send('OAuth failed');
+    console.error('Token exchange failed:', {
+      message: err.message,
+      response: err.response?.data
+    });
+
+    res.status(500).send(
+      'Token exchange failed: ' +
+      (err.response?.data?.error_description || err.message)
+    );
+  }
+});
+
+// ---------------- TOKEN REFRESH ----------------
+export async function refreshFortnoxToken(refresh_token: string) {
+  const response = await axios.post(
+    'https://apps.fortnox.se/oauth-v1/token',
+    new URLSearchParams({
+      grant_type: 'refresh_token',
+      refresh_token
+    }).toString(),
+    {
+      headers: {
+        Authorization: `Basic ${base64(`${CLIENT_ID}:${CLIENT_SECRET}`)}`,
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }
+  );
+
+  const tokens = response.data as { access_token: string; refresh_token: string; expires_in: number };
+
+  return {
+    access_token: tokens.access_token,
+    refresh_token: tokens.refresh_token,
+    expires_at: Date.now() + tokens.expires_in * 1000
+  };
 }
 
-});
+// ---------------- API HELPER ----------------
+export async function callFortnoxAPI(accessToken: string, endpoint: string) {
+  const response = await axios.get(
+    `https://api.fortnox.se/3/${endpoint}`,
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Client-Secret': CLIENT_SECRET,
+        Accept: 'application/json'
+      }
+    }
+  );
+
+  return response.data;
+}
 
 export default router;

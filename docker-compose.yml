@@ -32,7 +32,7 @@ services:
     image: dpage/pgadmin4
     container_name: internox-pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@internox.local
+      PGADMIN_DEFAULT_EMAIL: gustafwingren@hotmail.se
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
       - "5050:80"
