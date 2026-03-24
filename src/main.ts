@@ -15,6 +15,7 @@ import createCompanyAdmin from './routes/createCompanyAdminRoute';
 import fortnox from './routes/fortnoxCallbackRoute';
 import getAllUsers from './routes/getAllUsersRoute';
 import getImapRoute from './routes/getImapRoute';
+import fortnoxData from './routes/fortnoxDataRoute';
 import cookieParser from 'cookie-parser';
 
 
@@ -66,10 +67,8 @@ server.use('/create-company-admin', createCompanyAdmin);
 server.use('/', fortnox);
 server.use('/get-all-users', getAllUsers);
 server.use('/get-imap', getImapRoute);
+server.use('/fortnox-data', fortnoxData);
 
-server.get('/fortnox-callback', async (req, res) => {
-res.json('Success')
-})
 
 
 async function startServer() {

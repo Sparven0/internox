@@ -10,25 +10,20 @@ import { QueryResult } from 'pg';
  * @returns A promise that resolves to a QueryResult containing user information
  */
 
-export async function extractUser(company: string, email: string): Promise<QueryResult> {
+
+
+export async function extractUser(company: string): Promise<any[]> {
     const companyId = (await extractCompany(company)).rows[0].id;
     const dbName = `company_${companyId.replace(/-/g, '_')}`;
-
     const companyPool = getCompanyPool(dbName);
 
-    const query = `
-        SELECT id, email, company_id, role, created_at
-        FROM users
-        WHERE email = $1
-    `;
-
-    const values = [email]; // Corrected values array
-
     try {
-        const result = await companyPool.query(query, values);
-        return result;
+        const result = await companyPool.query(
+            `SELECT id, email, role FROM users`
+        );
+        return result.rows;
     } catch (error) {
-        console.error('Error extracting user:', error);
+        console.error('Error extracting users:', error);
         throw error;
     }
 }

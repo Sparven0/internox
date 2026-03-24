@@ -1,7 +1,7 @@
 import { getCompanyPool } from '../connectionManager';
 import { extractCompany } from '../COMPANIES/extractCompanyFunc';
-import { hashPassword, comparePassword } from '../../utils/encryptPassword';
-import { extractUser } from '../USERS/extractUserFunc';
+import { hashPassword } from '../../utils/encryptPassword';
+import { extractUserByEmail } from '../USERS/extractUserByEmailFunc';
 
 export async function addImapCredentials(
   company: string,
@@ -11,24 +11,21 @@ export async function addImapCredentials(
   emailAddress: string,
   plainPassword: string
 ) {
-    const userData = await extractUser(company, user);
-    const userId = userData.rows[0].id;
+    const userData = await extractUserByEmail(company, user);
+    const userId = userData.id;  // ← was userData.rows[0].id
     const companyInfo = await extractCompany(company);
     const companyId = companyInfo.rows[0].id;
     const dbName = `company_${companyId.replace(/-/g, '_')}`;
-  const pool = getCompanyPool(dbName);
+    const pool = getCompanyPool(dbName);
 
-  const encryptedPassword = await hashPassword(plainPassword);
+    const encryptedPassword = await hashPassword(plainPassword);
 
-  const result = await pool.query(
-    `INSERT INTO imap_credentials (user_id, imap_host, imap_port, email_address, encrypted_password)
-     VALUES ($1, $2, $3, $4, $5)
-     RETURNING id`,
-    [userId, imapHost, imapPort, emailAddress, encryptedPassword]
-  );
+    const result = await pool.query(
+        `INSERT INTO imap_credentials (user_id, imap_host, imap_port, email_address, encrypted_password)
+         VALUES ($1, $2, $3, $4, $5)
+         RETURNING id`,
+        [userId, imapHost, imapPort, emailAddress, encryptedPassword]
+    );
 
-  return result.rows[0];
+    return result.rows[0];
 }
-
-
-
