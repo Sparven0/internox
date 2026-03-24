@@ -8,7 +8,7 @@ const router = express.Router();
  * Expects a POST request with company name and token details.
  */
 
-router.post("/", authCompanyAdmin, async (req, res) => {
+router.post("/", async (req, res) => {
 const { companyName, tokens } = req.body;
     try{
         await insertToken(companyName, tokens);

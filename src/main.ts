@@ -15,6 +15,8 @@ import createCompanyAdmin from './routes/createCompanyAdminRoute';
 import fortnox from './routes/fortnoxCallbackRoute';
 import getAllUsers from './routes/getAllUsersRoute';
 import getImapRoute from './routes/getImapRoute';
+import cookieParser from 'cookie-parser';
+
 
 dotenv.config();
 
@@ -50,6 +52,7 @@ server.use(cors({
 
 
 server.use(express.json());
+server.use(cookieParser());
 server.use('/new-user', userRouter);
 server.use('/users', extractUserRouter);
 // server.use('/new-company', companyRouter);
