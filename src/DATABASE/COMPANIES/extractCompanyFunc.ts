@@ -25,5 +25,5 @@ import { QueryResult } from 'pg';
     }}
 
 
-    extractCompany('NewCompany')
+    // extractCompany('NewCompany')
   

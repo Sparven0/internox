@@ -13,6 +13,7 @@ import createAdmin from './routes/createAdminRoute';
 import loginRoute from './routes/loginRoute';
 import createCompanyAdmin from './routes/createCompanyAdminRoute';
 import fortnox from './routes/fortnoxCallbackRoute';
+import fortnoxDataRoute from './routes/fortnoxDataRoute';
 import getAllUsers from './routes/getAllUsersRoute';
 import getImapRoute from './routes/getImapRoute';
 
@@ -61,6 +62,7 @@ server.use('/login', loginRoute);
 server.use('/create-admin', createAdmin);
 server.use('/create-company-admin', createCompanyAdmin);
 server.use('/', fortnox);
+server.use('/fortnox-data', fortnoxDataRoute);
 server.use('/get-all-users', getAllUsers);
 server.use('/get-imap', getImapRoute);
 

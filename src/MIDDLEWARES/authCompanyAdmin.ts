@@ -12,7 +12,7 @@ try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
 
     // Check if the user has the required role
-    if (decoded.role !== 'admin') {
+    if (decoded.role !== 'admin' && decoded.role !== 'super_admin') {
         return res.status(403).json({ message: 'Forbidden' });
     }
 

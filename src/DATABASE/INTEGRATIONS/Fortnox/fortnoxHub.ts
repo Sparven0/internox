@@ -40,4 +40,4 @@ class CompanyData {
     return integrationsList
   }
 
-getFortnoxTokens()
+// Do not call getFortnoxTokens at module load; export the function and call it from a worker/route when needed.

@@ -18,6 +18,8 @@ services:
       PORT: 1222
     depends_on:
       - db
+    profiles:
+      - with-app
 
   db:
     image: postgres:15
@@ -27,14 +29,3 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5432:5432"
-
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: internox-pgadmin
-    environment:
-      PGADMIN_DEFAULT_EMAIL: gustafwingren@hotmail.se
-      PGADMIN_DEFAULT_PASSWORD: admin
-    ports:
-      - "5050:80"
-    depends_on:
-      - db

@@ -16,7 +16,6 @@ export async function insertToken(
   const dbName = `company_${companyId.replace(/-/g, '_')}`;
   const pool = getCompanyPool(dbName);
   const client = await pool.connect();
-
   const { service, access_token, refresh_token, expires_at } = tokens;
 
   const query = `
