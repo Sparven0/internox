@@ -17,4 +17,4 @@ EXPOSE 1222
 COPY wait-for-postgres.sh /usr/src/app/
 RUN chmod +x /usr/src/app/wait-for-postgres.sh
 
-CMD ["sh", "-c", "./wait-for-postgres.sh db && node dist/migrations/migrate.js && node dist/main.js"]
+CMD ["sh", "-c", "./wait-for-postgres.sh db && node dist/migrations/migrate.js && node dist/src/main.js"]

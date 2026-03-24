@@ -1,6 +1,6 @@
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
-CREATE TABLE companies (
+CREATE TABLE IF NOT EXISTS companies (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name TEXT NOT NULL,
   domain TEXT NOT NULL UNIQUE,
@@ -8,7 +8,7 @@ CREATE TABLE companies (
   created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT now()
 );
 
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
   id SERIAL PRIMARY KEY,
   user_name TEXT NOT NULL,
   role TEXT NOT NULL,

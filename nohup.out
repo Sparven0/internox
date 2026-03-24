@@ -72,7 +72,7 @@ db-1   | 2025-07-22 08:55:59.145 UTC [1] LOG:  database system is ready to accep
 db-1   | 2025-07-22 08:56:02.185 UTC [32] ERROR:  relation "companies" already exists
 db-1   | 2025-07-22 08:56:02.185 UTC [32] STATEMENT:  CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 db-1   | 	
-db-1   | 	CREATE TABLE companies (
+db-1   | 	CREATE TABLE IF NOT EXISTS companies (
 db-1   | 	  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 db-1   | 	  name TEXT NOT NULL,
 db-1   | 	  domain TEXT NOT NULL UNIQUE,
