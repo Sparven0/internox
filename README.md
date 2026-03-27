@@ -68,3 +68,19 @@ insert the token as bearer in postman
 use the "create-admin" endpoint
 
 
+
+
+
+** update **
+
+Nu fungerar den endpointen för att hämta data från fortnox efter att man gjort OAuth flödet, ska kolla så att det bara går när man är inloggad på rätt företag.
+
+http://localhost:1222/fortnox-data?companyId=<companyId>&endpoint=/<endpoint>
+
+*/LÅT OSS FIXA SWAGGER MANNINNNNNNN*
+
+
+## Fortnox Autt ##
+http://localhost:1222/auth?token=<JWT from login>
+
+Måste logga in och hämta token för där storas companyName
