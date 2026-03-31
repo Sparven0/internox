@@ -37,12 +37,18 @@
     "jsonwebtoken": "^9.0.2",
     "nock": "^14.0.4",
     "pg": "^8.16.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-dist": "^5.32.1",
+    "swagger-ui-express": "^5.0.1",
     "typescript": "^5.8.3",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.10",
     "@types/node": "^25.5.0",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-dist": "^3.30.6",
+    "@types/swagger-ui-express": "^4.1.8",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2"
   }

@@ -8,6 +8,33 @@ const router = express.Router();
  * GET /fortnox-data?companyId=<id>&endpoint=<endpoint>
  * Protected by authCompanyAdmin middleware (expects Bearer token with role 'admin')
  */
+/**
+ * @openapi
+ * /fortnox-data:
+ *   get:
+ *     summary: Fetch Fortnox data
+ *     description: Fetches data from Fortnox for a specific company and endpoint.
+ *     parameters:
+ *       - in: query
+ *         name: companyId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID of the company.
+ *       - in: query
+ *         name: endpoint
+ *         schema:
+ *           type: string
+ *         required: false
+ *         description: Fortnox API endpoint to fetch data from.
+ *     responses:
+ *       200:
+ *         description: Data fetched successfully.
+ *       400:
+ *         description: Missing companyId parameter.
+ *       500:
+ *         description: Failed to fetch Fortnox data.
+ */
 router.get('/', authCompanyAdmin, async (req: Request, res: Response) => {
   const companyId = (req.query.companyId as string) || (req.query.id as string);
   const endpoint = (req.query.endpoint as string) || '/customers';

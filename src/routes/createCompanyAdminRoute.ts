@@ -5,6 +5,32 @@ import { checkAdmin } from "../MIDDLEWARES/requireSuperAdmin";
 
 const router = express.Router();
 
+/**
+ * @openapi
+ * /create-company-admin:
+ *   post:
+ *     summary: Create a company admin
+ *     description: Allows super admins to create a company admin for a specific company.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               company:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Company admin created successfully.
+ *       400:
+ *         description: Error creating company admin.
+ */
+
 router.post('/', checkAdmin, async (req, res: express.Response, next: NextFunction) => {
     const {company, email, password} = req.body;
     try {

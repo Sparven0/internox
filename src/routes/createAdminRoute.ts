@@ -4,6 +4,30 @@ import { checkAdmin } from '../MIDDLEWARES/requireSuperAdmin';
 
 const router = express.Router();
 
+/**
+ * @openapi
+ * /create-admin:
+ *   post:
+ *     summary: Create a new admin user
+ *     description: Allows super admins to create a new admin user.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               userName:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Admin user created successfully.
+ *       400:
+ *         description: Error creating admin user.
+ */
+
 router.post('/', checkAdmin, async (req, res) => {
   const { userName, password } = req.body;
 

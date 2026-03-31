@@ -3,6 +3,32 @@ import express from "express";
 import { authCompanyAdmin } from "../MIDDLEWARES/authCompanyAdmin";
 const router = express.Router();
 
+/**
+ * @openapi
+ * /login:
+ *   post:
+ *     summary: User login
+ *     description: Authenticates a user and returns a token.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               companyDomain:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Login successful.
+ *       500:
+ *         description: Internal server error.
+ */
+
 router.post("/", async (req, res) => {
     try {
         await login(req, res);
@@ -12,4 +38,4 @@ router.post("/", async (req, res) => {
     }
 })
 
-export default router;  
+export default router;
