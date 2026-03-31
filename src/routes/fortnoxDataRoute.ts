@@ -13,7 +13,7 @@ const router = express.Router();
  * /fortnox-data:
  *   get:
  *     summary: Fetch Fortnox data
- *     description: Fetches data from Fortnox for a specific company and endpoint.
+ *     description: Fetches data from Fortnox for a specific company and endpoint.**TODO** Need to set up logic for the refreshtoken to automatically refresh the auth, as of now, it expires and requires user to execute OAuth flow again.
  *     parameters:
  *       - in: query
  *         name: companyId

@@ -73,7 +73,43 @@ const swaggerOptions = {
     info: {
       title: "Internox API",
       version: "1.0.0",
-      description: "API documentation for Internox",
+      description: `
+## Internox API
+
+This API handles:
+
+- User authentication
+- Company onboarding
+- Fortnox integration with OAuth
+- Data extraction
+
+---
+
+## Flow
+
+1. Create superAdmin by running \`ts-node src/utils/generateToken.ts\` from root 
+2. Use superAdmin bearer token in \`/onboarding\`to create a company
+3. Use superAdmin bearer token in \`/create-company-admin\` to create a company admin for the company
+4. Login as company admin \`/login\`
+5. Use URL \`http://localhost:1222/auth?token=<JWT from login>\` with your token to connect your fortnox
+6. Use company admin bearer token in \`/new-user\` to create a new user for the company (role == employee by default)
+7. Use company admin bearer token in \`/fortnox-data\` to fetch fortnox data for the company, see documentation for endpoints.
+
+---
+
+## Features
+
+- JWT-based authentication
+- Bcrypt password hashing
+- Multi-company support (multi-tenancy)
+- External API integrations
+- Role-based access control
+- Swagger documentation
+- Postgres multi-tenancy DB logic
+
+---
+
+`,
     },
   },
   apis: ["./src/routes/*.ts"],

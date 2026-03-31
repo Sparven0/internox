@@ -24,7 +24,14 @@ router.get('/auth', (req: Request, res: Response) => {
  * /fortnox-callback:
  *   get:
  *     summary: Fortnox OAuth callback
- *     description: Handles the callback from Fortnox OAuth flow.
+ *     description: |
+ *       ## Endpoint details
+ *
+ *       This endpoint works as following:
+ *       - User signs in and retrieves their JWT
+ *       - User passes their JWT in the OAuth URL as shown below
+ *       - http://localhost:1222/auth?token=<JWT from login>
+ *
  *     parameters:
  *       - in: query
  *         name: state
