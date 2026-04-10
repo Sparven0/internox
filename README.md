@@ -84,3 +84,15 @@ http://localhost:1222/fortnox-data?companyId=<companyId>&endpoint=/<endpoint>
 http://localhost:1222/auth?token=<JWT from login>
 
 Måste logga in och hämta token för där storas companyName
+
+
+### Frontend logik ###
+
+*/login* 
+email: 
+password:
+companyDomain: 
+
+RETURNERAR: 
+
+JWT som innehåller: 

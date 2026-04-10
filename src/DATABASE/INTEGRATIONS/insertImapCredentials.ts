@@ -1,6 +1,6 @@
 import { getCompanyPool } from '../connectionManager';
 import { extractCompany } from '../COMPANIES/extractCompanyFunc';
-import { hashPassword } from '../../utils/encryptPassword';
+import { hashPassword, encryptPassword } from '../../utils/encryptPassword';
 import { extractUserByEmail } from '../USERS/extractUserByEmailFunc';
 
 export async function addImapCredentials(
@@ -11,14 +11,35 @@ export async function addImapCredentials(
   emailAddress: string,
   plainPassword: string
 ) {
+    // resolve user
     const userData = await extractUserByEmail(company, user);
-    const userId = userData.id;  // ← was userData.rows[0].id
+    let userId: string | undefined;
+    if (userData && (userData as any).rows && (userData as any).rows.length) {
+      userId = (userData as any).rows[0].id;
+    } else if ((userData as any).id) {
+      userId = (userData as any).id;
+    }
+    if (!userId) throw new Error(`User not found: ${user}`);
+
+    // resolve company and db name
     const companyInfo = await extractCompany(company);
-    const companyId = companyInfo.rows[0].id;
-    const dbName = `company_${companyId.replace(/-/g, '_')}`;
+    let companyId: string | undefined;
+    let dbName: string | undefined;
+    if (companyInfo && (companyInfo as any).rows && (companyInfo as any).rows.length) {
+      const row = (companyInfo as any).rows[0];
+      companyId = row.id;
+      dbName = row.db_name || `company_${String(row.id).replace(/-/g, '_')}`;
+    } else if ((companyInfo as any).id) {
+      const info = (companyInfo as any);
+      companyId = info.id;
+      dbName = info.db_name || `company_${String(info.id).replace(/-/g, '_')}`;
+    }
+    if (!companyId || !dbName) throw new Error(`Company not found: ${company}`);
+
     const pool = getCompanyPool(dbName);
 
-    const encryptedPassword = await hashPassword(plainPassword);
+    // store an encrypted IMAP password (symmetric)
+    const encryptedPassword = encryptPassword(plainPassword);
 
     const result = await pool.query(
         `INSERT INTO imap_credentials (user_id, imap_host, imap_port, email_address, encrypted_password)

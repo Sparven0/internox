@@ -41,6 +41,7 @@ export async function setupCompanySchema(dbName: string, companyId: string, name
       imap_port INTEGER NOT NULL DEFAULT 993,
       email_address TEXT NOT NULL,
       encrypted_password TEXT NOT NULL,
+      use_tls BOOLEAN NOT NULL DEFAULT true,
       created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT now(),
       CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     );

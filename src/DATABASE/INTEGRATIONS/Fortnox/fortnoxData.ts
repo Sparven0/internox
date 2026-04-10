@@ -3,6 +3,8 @@ dotenv.config();
 import axios from 'axios';
 import masterPool from '../../masterpool';
 import { getCompanyPool } from '../../connectionManager';
+import { connectFortnox } from './fortnoxConnect';
+import { updateTokens } from '../insertTokensFunc';
 
 async function fetchFortnoxForCompany(companyId: string, endpoint: string): Promise<any> {
     // Get company db_name from master
@@ -31,20 +33,18 @@ async function fetchFortnoxForCompany(companyId: string, endpoint: string): Prom
     }
 
     const accessToken = tokenResult.rows[0].access_token;
+    const refreshToken = tokenResult.rows[0].refresh_token || '';
 
-    // Call Fortnox API
-    const response = await axios.get(
-        `https://api.fortnox.se/3${endpoint}`,
-        {
-            headers: {
-                'Authorization': `Bearer ${accessToken}`,
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
+    // Call Fortnox API via shared connector; persist refreshed tokens when returned
+    const data = await connectFortnox(accessToken, refreshToken, endpoint, async (newTokens) => {
+        try {
+            await updateTokens(companyId, 'Fortnox', { access_token: newTokens.access_token, refresh_token: newTokens.refresh_token });
+        } catch (err) {
+            console.warn('Failed to persist refreshed tokens for company', companyId, err);
         }
-    );
+    });
 
-    return response.data;
+    return data;
 }
 
 export default fetchFortnoxForCompany;

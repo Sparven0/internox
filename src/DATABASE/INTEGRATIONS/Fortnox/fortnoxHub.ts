@@ -40,4 +40,7 @@ class CompanyData {
     return integrationsList
   }
 
-getFortnoxTokens()
+  // Note: do NOT call getFortnoxTokens() at module load time. Importers should
+  // call it explicitly when they want to run the extraction (e.g. on a schedule
+  // or in response to a request). Calling it here caused the app to fetch Fortnox
+  // data for every company during startup.

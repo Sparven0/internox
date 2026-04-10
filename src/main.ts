@@ -17,6 +17,7 @@ import getAllUsers from "./routes/getAllUsersRoute";
 import getImapRoute from "./routes/getImapRoute";
 import fortnoxData from "./routes/fortnoxDataRoute";
 import cookieParser from "cookie-parser";
+import getEmails from "./routes/getSentEmailsRoute";
 import swaggerUI from "swagger-ui-dist";
 import swaggerUi from "swagger-ui-express";
 import swaggerJSDoc from "swagger-jsdoc";
@@ -66,6 +67,7 @@ server.use("/", fortnox);
 server.use("/get-all-users", getAllUsers);
 server.use("/get-imap", getImapRoute);
 server.use("/fortnox-data", fortnoxData);
+server.use("/get-sent-emails", getEmails);
 
 const swaggerOptions = {
   definition: {
