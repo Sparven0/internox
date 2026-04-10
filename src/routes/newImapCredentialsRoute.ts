@@ -1,5 +1,6 @@
 import express from "express";
 import { addImapCredentials } from "../DATABASE/INTEGRATIONS/insertImapCredentials";
+import { authCompanyAdmin } from '../MIDDLEWARES/authCompanyAdmin';
 const router = express.Router();
 
 
@@ -48,5 +49,21 @@ catch (error) {
         res.status(500).json({ error: "Internal server error" });
     }
 }) 
+
+// POST / - body: { companyId, userId, imap_host, imap_port, email_address, password, use_tls }
+router.post('/', authCompanyAdmin, async (req, res) => {
+  const { companyId, userId, imap_host, imap_port, email_address, password, use_tls } = req.body;
+  if (!companyId || !userId || !imap_host || !email_address || !password) {
+    return res.status(400).json({ error: 'companyId, userId, imap_host, email_address and password are required' });
+  }
+
+  try {
+    const result = await addImapCredentials(companyId, userId, imap_host, imap_port || 993, email_address, password);
+    return res.status(201).json({ id: result.id });
+  } catch (err: any) {
+    console.error('Error adding IMAP credentials:', err);
+    return res.status(500).json({ error: err.message || 'Failed to add IMAP credentials' });
+  }
+});
 
 export default router;

@@ -93,6 +93,10 @@ email:
 password:
 companyDomain: 
 
-RETURNERAR: 
 
-JWT som innehåller: 
+
+
+  "http://localhost:1222/get-imap?companyId=REPLACE_WITH_COMPANY_ID"
+
+ "http://localhost:1222/get-sent-emails?companyId=company_38b0bc5d_b63d_4d73_b122_4fd32212dfa8&credentialId=fd9d5ef1-064c-4e6b-a774-93910a2723b8&password=APP_PASSWORD"
+
