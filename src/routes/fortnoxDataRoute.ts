@@ -1,6 +1,8 @@
 import express, { Request, Response } from 'express';
 import { authCompanyAdmin } from '../MIDDLEWARES/authCompanyAdmin';
 import fetchFortnoxForCompany from '../DATABASE/INTEGRATIONS/Fortnox/fortnoxData';
+import masterPool from '../DATABASE/masterpool';
+import { getCompanyPool } from '../DATABASE/connectionManager';
 
 const router = express.Router();
 
@@ -45,6 +47,47 @@ router.get('/', authCompanyAdmin, async (req: Request, res: Response) => {
 
   try {
     const data = await fetchFortnoxForCompany(companyId, endpoint);
+    if (endpoint === '/customers') {
+      const result = data.Customers.map((c: any) => ({
+        name: c.Name,
+        email: c.Email
+      }));
+
+      // Insert each customer, skip if email already exists
+      for (const customer of result) {
+        if (!customer.email) continue; // skip if no email from Fortnox
+
+        // Resolve company DB and use its pool
+        const masterRes = await masterPool.query('SELECT db_name, name FROM companies WHERE id = $1', [companyId]);
+        if (masterRes.rows.length === 0) continue; // skip if company missing
+        const companyDb = String(masterRes.rows[0].db_name).replace(/-/g, '_');
+        const companyName = masterRes.rows[0].name;
+        const pool = getCompanyPool(companyDb);
+
+        // 1. Upsert customer into customers table (do nothing if email exists)
+        const insertCustomer = await pool.query(
+          `INSERT INTO customers (name, email, company_id)
+           VALUES ($1, $2, $3)
+           ON CONFLICT (email) DO NOTHING
+           RETURNING id`,
+          [customer.name, customer.email, companyId]
+        );
+
+        // If DO NOTHING triggered, fetch the existing customer id
+        const customerId = insertCustomer.rows[0]?.id
+          ?? (await pool.query('SELECT id FROM customers WHERE email = $1', [customer.email])).rows[0]?.id;
+
+        // 2. Link customer to company in junction table (skip if already linked)
+        await pool.query(
+          `INSERT INTO employee_customer (customer_id, company_id)
+           VALUES ($1, $2)
+           ON CONFLICT DO NOTHING`,
+          [customerId, companyId]
+        );
+      }
+
+      return res.status(200).json({ customers: result });
+    }
     return res.status(200).json({ data });
   } catch (err: any) {
     console.error('fortnoxDataRoute error:', err?.response?.data || err.message || err);

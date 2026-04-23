@@ -45,6 +45,26 @@ export async function setupCompanySchema(dbName: string, companyId: string, name
       created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT now(),
       CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     );
+
+    CREATE TABLE employee_customer (
+      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+      user_id UUID,
+      company_id UUID,
+      CONSTRAINT fk_user_employee FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+      CONSTRAINT fk_company_employee FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE CASCADE
+    );
+    CREATE TABLE customers (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email TEXT UNIQUE NOT NULL,
+  name TEXT,
+  company_id UUID,
+  company_name TEXT,
+  CONSTRAINT fk_company_customer FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE CASCADE
+);
+
+ALTER TABLE employee_customer
+  ADD COLUMN customer_id UUID,
+  ADD CONSTRAINT fk_customer FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE;
   `;
 
   await pool.query(schemaSQL);
