@@ -1,6 +1,12 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import jwt, { JwtPayload } from "jsonwebtoken";
+import { ApolloServer } from "@apollo/server";
+import { expressMiddleware } from "@as-integrations/express5";
+import bodyParser from "body-parser";
+import typeDefs from "./graphql/typeDefs";
+import resolvers from "./graphql/resolvers";
 import masterPool from "./DATABASE/masterpool";
 import onboardRoute from "./routes/onboardingRoute";
 import userRouter from "./routes/newUserRoute";
@@ -39,9 +45,14 @@ async function waitForDb(retries = 5) {
   throw new Error("Could not connect to the database.");
 }
 
-const server = express();
+const app = express();
 
-server.use(
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
+
+app.use(
   cors({
     origin: ["http://localhost:3000", "https://internox.duckdns.org"],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -50,24 +61,24 @@ server.use(
   }),
 );
 
-server.use(express.json());
-server.use(cookieParser());
-// server.use(express.static(swaggerUI.getAbsoluteFSPath()));
-server.use("/new-user", userRouter);
-server.use("/users", extractUserRouter);
-// server.use('/new-company', companyRouter);
-server.use("/company", extractCompany);
-server.use("/onboarding", onboardRoute);
-server.use("/new-credentials", newToken);
-server.use("/new-imap-credentials", newImapCreds);
-server.use("/login", loginRoute);
-server.use("/create-admin", createAdmin);
-server.use("/create-company-admin", createCompanyAdmin);
-server.use("/", fortnox);
-server.use("/get-all-users", getAllUsers);
-server.use("/get-imap", getImapRoute);
-server.use("/fortnox-data", fortnoxData);
-server.use("/get-sent-emails", getEmails);
+app.use(express.json());
+app.use(cookieParser());
+// app.use(express.static(swaggerUI.getAbsoluteFSPath()));
+app.use("/new-user", userRouter);
+app.use("/users", extractUserRouter);
+// app.use('/new-company', companyRouter);
+app.use("/company", extractCompany);
+app.use("/onboarding", onboardRoute);
+app.use("/new-credentials", newToken);
+app.use("/new-imap-credentials", newImapCreds);
+app.use("/login", loginRoute);
+app.use("/create-admin", createAdmin);
+app.use("/create-company-admin", createCompanyAdmin);
+app.use("/", fortnox);
+app.use("/get-all-users", getAllUsers);
+app.use("/get-imap", getImapRoute);
+app.use("/fortnox-data", fortnoxData);
+app.use("/get-sent-emails", getEmails);
 
 const swaggerOptions = {
   definition: {
@@ -119,15 +130,34 @@ This API handles:
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
 
-server.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 async function startServer() {
   try {
     await waitForDb();
+    await server.start();
+
+    app.use(
+      "/graphql",
+      cors<cors.CorsRequest>(),
+      bodyParser.json(),
+      expressMiddleware(server, {
+        context: async ({ req, res }) => {
+          const token = req.headers.authorization?.split(" ")[1];
+          let user: JwtPayload | undefined;
+          if (token) {
+            try {
+              user = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
+            } catch {}
+          }
+          return { req, res, db: masterPool, user };
+        },
+      }),
+    );
 
     const port = 1222;
     const host = "0.0.0.0";
-    server.listen(port, host, () => {
+    app.listen(port, host, () => {
       console.log(`Server is running on ${host}, port ${port}`);
     });
   } catch (err) {

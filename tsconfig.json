@@ -4,8 +4,11 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "outDir": "dist", // BEGIN: added outDir setting,
-    "rootDir":"."
+    "outDir": "dist",
+    "rootDir": ".",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ES2022"
   },
   "include": ["src/**/*", "migrations/migrate.ts"],
   "exclude": ["node_modules"]
