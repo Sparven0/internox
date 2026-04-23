@@ -27,6 +27,9 @@ import getEmails from "./routes/getSentEmailsRoute";
 import swaggerUI from "swagger-ui-dist";
 import swaggerUi from "swagger-ui-express";
 import swaggerJSDoc from "swagger-jsdoc";
+import { getCompanyPool } from './DATABASE/connectionManager';
+import fetchFortnoxForCompany from './DATABASE/INTEGRATIONS/Fortnox/fortnoxData';
+import fetchSentEmailsFromYesterday from './DATABASE/INTEGRATIONS/Email/imapConnect';
 
 dotenv.config();
 
@@ -140,6 +143,10 @@ app.get("/swagger.json", (_req, res) => {
   res.send(swaggerSpec);
 });
 
+
+// Big init function to fetch everything 
+
+
 async function startServer() {
   try {
     await waitForDb();
@@ -173,5 +180,77 @@ async function startServer() {
     process.exit(1);
   }
 }
+
+app.get('/init-page', async (req, res) => {
+  try {
+    const auth = req.headers.authorization;
+    if (!auth) return res.status(401).json({ error: 'missing auth' });
+    const token = String(auth).split(' ')[1];
+    if (!token) return res.status(401).json({ error: 'missing token' });
+
+    let payload: any;
+    try {
+      payload = jwt.verify(token, process.env.JWT_SECRET || '') as any;
+    } catch (e) {
+      return res.status(401).json({ error: 'invalid token' });
+    }
+
+    const companyId = payload?.tenantId || payload?.companyId || payload?.tenant || payload?.company;
+    if (!companyId) return res.status(400).json({ error: 'company id not in token' });
+
+    // resolve company DB
+    const masterRes = await masterPool.query('SELECT db_name, name FROM companies WHERE id = $1', [companyId]);
+    if (masterRes.rows.length === 0) return res.status(404).json({ error: 'company not found' });
+    const companyDb = String(masterRes.rows[0].db_name).replace(/-/g, '_');
+    const companyName = masterRes.rows[0].name;
+    const pool = getCompanyPool(companyDb);
+
+    // 1) users
+    const usersRes = await pool.query('SELECT id, email, role FROM users');
+    const users = usersRes.rows;
+
+    // 2) fortnox customers
+    let customers: any = 'not configured yet';
+    try {
+      const fdata = await fetchFortnoxForCompany(companyId, '/customers');
+      customers = (fdata?.Customers || []).map((c: any) => ({ name: c.Name, email: c.Email }));
+    } catch (e) {
+      customers = 'not configured yet';
+    }
+
+// 3) emails — fetch for every user that has imap credentials
+let emails: any = [];
+try {
+  const credRes = await pool.query(
+    `SELECT id, user_id FROM imap_credentials`
+  );
+
+  if (credRes.rows.length === 0) {
+    emails = 'not configured yet';
+  } else {
+    const results = await Promise.allSettled(
+      credRes.rows.map((row) =>
+        fetchSentEmailsFromYesterday(companyId, row.id)
+        // credential id is passed — decryptPassword() handles the rest internally
+      )
+    );
+
+    emails = results.map((r, i) => ({
+      userId: credRes.rows[i].user_id,
+      credentialId: credRes.rows[i].id,
+      emails: r.status === 'fulfilled' ? r.value : [],
+      error: r.status === 'rejected' ? r.reason?.message : null
+    }));
+  }
+} catch (e) {
+  emails = 'not configured yet';
+}
+
+    return res.json({ company: { id: companyId, name: companyName }, users, customers, emails });
+  } catch (err) {
+    console.error('init-page error:', err);
+    return res.status(500).json({ error: 'failed to initialize' });
+  }
+});
 
 startServer();
