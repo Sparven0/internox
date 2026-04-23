@@ -22,6 +22,24 @@ const typeDefs = `
     email_address: String!
   }
 
+  type InitPageCompany {
+    id: ID!
+    name: String!
+  }
+
+  type InitUser {
+    id: ID!
+    email: String!
+    role: String!
+  }
+
+  type InitPageData {
+    company: InitPageCompany!
+    users: [InitUser!]!
+    customers: JSON
+    emails: JSON
+  }
+
   type Query {
     getAllCompanies: [Company]
     getCompanyById(id: ID!): Company
@@ -30,6 +48,7 @@ const typeDefs = `
     getUsersByCompanyId(companyId: String!): [User]
     getImapCredentials(company: String!): [ImapCredential]
     getFortnoxData(companyId: String!, endpoint: String): JSON
+    getInitPageData: InitPageData!
   }
 
   type AuthPayload {

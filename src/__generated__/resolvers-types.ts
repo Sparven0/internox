@@ -43,6 +43,27 @@ export type ImapCredential = {
   user_id: Scalars['String']['output'];
 };
 
+export type InitPageCompany = {
+  __typename?: 'InitPageCompany';
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+};
+
+export type InitPageData = {
+  __typename?: 'InitPageData';
+  company: InitPageCompany;
+  customers?: Maybe<Scalars['JSON']['output']>;
+  emails?: Maybe<Scalars['JSON']['output']>;
+  users: Array<InitUser>;
+};
+
+export type InitUser = {
+  __typename?: 'InitUser';
+  email: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  role: Scalars['String']['output'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createCompany?: Maybe<Company>;
@@ -90,6 +111,7 @@ export type Query = {
   getCompanyByName?: Maybe<Company>;
   getFortnoxData?: Maybe<Scalars['JSON']['output']>;
   getImapCredentials?: Maybe<Array<Maybe<ImapCredential>>>;
+  getInitPageData: InitPageData;
   getUsers?: Maybe<Array<Maybe<User>>>;
   getUsersByCompanyId?: Maybe<Array<Maybe<User>>>;
 };
@@ -211,6 +233,9 @@ export type ResolversTypes = {
   Company: ResolverTypeWrapper<Company>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   ImapCredential: ResolverTypeWrapper<ImapCredential>;
+  InitPageCompany: ResolverTypeWrapper<InitPageCompany>;
+  InitPageData: ResolverTypeWrapper<InitPageData>;
+  InitUser: ResolverTypeWrapper<InitUser>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   JSON: ResolverTypeWrapper<Scalars['JSON']['output']>;
   Mutation: ResolverTypeWrapper<Record<PropertyKey, never>>;
@@ -227,6 +252,9 @@ export type ResolversParentTypes = {
   Company: Company;
   ID: Scalars['ID']['output'];
   ImapCredential: ImapCredential;
+  InitPageCompany: InitPageCompany;
+  InitPageData: InitPageData;
+  InitUser: InitUser;
   Int: Scalars['Int']['output'];
   JSON: Scalars['JSON']['output'];
   Mutation: Record<PropertyKey, never>;
@@ -258,6 +286,24 @@ export type ImapCredentialResolvers<ContextType = GraphQLContext, ParentType ext
   user_id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
 };
 
+export type InitPageCompanyResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['InitPageCompany'] = ResolversParentTypes['InitPageCompany']> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+};
+
+export type InitPageDataResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['InitPageData'] = ResolversParentTypes['InitPageData']> = {
+  company?: Resolver<ResolversTypes['InitPageCompany'], ParentType, ContextType>;
+  customers?: Resolver<Maybe<ResolversTypes['JSON']>, ParentType, ContextType>;
+  emails?: Resolver<Maybe<ResolversTypes['JSON']>, ParentType, ContextType>;
+  users?: Resolver<Array<ResolversTypes['InitUser']>, ParentType, ContextType>;
+};
+
+export type InitUserResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['InitUser'] = ResolversParentTypes['InitUser']> = {
+  email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  role?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+};
+
 export interface JsonScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['JSON'], any> {
   name: 'JSON';
 }
@@ -280,6 +326,7 @@ export type QueryResolvers<ContextType = GraphQLContext, ParentType extends Reso
   getCompanyByName?: Resolver<Maybe<ResolversTypes['Company']>, ParentType, ContextType, RequireFields<QueryGetCompanyByNameArgs, 'name'>>;
   getFortnoxData?: Resolver<Maybe<ResolversTypes['JSON']>, ParentType, ContextType, RequireFields<QueryGetFortnoxDataArgs, 'companyId'>>;
   getImapCredentials?: Resolver<Maybe<Array<Maybe<ResolversTypes['ImapCredential']>>>, ParentType, ContextType, RequireFields<QueryGetImapCredentialsArgs, 'company'>>;
+  getInitPageData?: Resolver<ResolversTypes['InitPageData'], ParentType, ContextType>;
   getUsers?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType, RequireFields<QueryGetUsersArgs, 'company'>>;
   getUsersByCompanyId?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType, RequireFields<QueryGetUsersByCompanyIdArgs, 'companyId'>>;
 };
@@ -295,6 +342,9 @@ export type Resolvers<ContextType = GraphQLContext> = {
   AuthPayload?: AuthPayloadResolvers<ContextType>;
   Company?: CompanyResolvers<ContextType>;
   ImapCredential?: ImapCredentialResolvers<ContextType>;
+  InitPageCompany?: InitPageCompanyResolvers<ContextType>;
+  InitPageData?: InitPageDataResolvers<ContextType>;
+  InitUser?: InitUserResolvers<ContextType>;
   JSON?: GraphQLScalarType;
   Mutation?: MutationResolvers<ContextType>;
   OnboardResult?: OnboardResultResolvers<ContextType>;

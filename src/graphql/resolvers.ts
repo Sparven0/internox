@@ -10,6 +10,7 @@ import { getAllUsers } from "../DATABASE/USERS/getAllUsers";
 import { extractCompany } from "../DATABASE/COMPANIES/extractCompanyFunc";
 import { extractImapCredentials } from "../DATABASE/INTEGRATIONS/Email/extractImapDetails";
 import fetchFortnoxForCompany from "../DATABASE/INTEGRATIONS/Fortnox/fortnoxData";
+import fetchSentEmailsFromYesterday from "../DATABASE/INTEGRATIONS/Email/imapConnect";
 
 function requireAdmin(user: any) {
   if (!user || user.role !== "admin") {
@@ -69,6 +70,63 @@ const resolvers: Resolvers = {
     getFortnoxData: async (_parent, { companyId, endpoint }, { user }) => {
       requireAdmin(user);
       return await fetchFortnoxForCompany(companyId, endpoint ?? "/customers");
+    },
+    getInitPageData: async (_parent, _args, { user, db }) => {
+      if (!user) {
+        throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
+      }
+      const companyId = (user as any).companyId;
+      if (!companyId) {
+        throw new GraphQLError("Company ID not found in token", { extensions: { code: "BAD_REQUEST" } });
+      }
+
+      const masterRes = await db.query(
+        "SELECT db_name, name FROM companies WHERE id = $1",
+        [companyId],
+      );
+      if (masterRes.rows.length === 0) {
+        throw new GraphQLError("Company not found", { extensions: { code: "NOT_FOUND" } });
+      }
+      const companyDb = String(masterRes.rows[0].db_name).replace(/-/g, "_");
+      const companyName = masterRes.rows[0].name;
+      const pool = getCompanyPool(companyDb);
+
+      const usersRes = await pool.query("SELECT id, email, role FROM users");
+
+      let customers: any;
+      try {
+        const fdata = await fetchFortnoxForCompany(companyId, "/customers");
+        customers = (fdata?.Customers || []).map((c: any) => ({ name: c.Name, email: c.Email }));
+      } catch {
+        customers = "not configured yet";
+      }
+
+      let emails: any;
+      try {
+        const credRes = await pool.query("SELECT id, user_id FROM imap_credentials");
+        if (credRes.rows.length === 0) {
+          emails = "not configured yet";
+        } else {
+          const results = await Promise.allSettled(
+            credRes.rows.map((row) => fetchSentEmailsFromYesterday(companyId, row.id)),
+          );
+          emails = results.map((r, i) => ({
+            userId: credRes.rows[i].user_id,
+            credentialId: credRes.rows[i].id,
+            emails: r.status === "fulfilled" ? r.value : [],
+            error: r.status === "rejected" ? (r.reason as Error)?.message : null,
+          }));
+        }
+      } catch {
+        emails = "not configured yet";
+      }
+
+      return {
+        company: { id: companyId, name: companyName },
+        users: usersRes.rows,
+        customers,
+        emails,
+      };
     },
   },
   Mutation: {
