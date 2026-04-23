@@ -1,6 +1,11 @@
 import { GraphQLError, GraphQLScalarType, Kind } from "graphql";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 import { Resolvers } from "../__generated__/resolvers-types";
 import { extractUser } from "../DATABASE/USERS/extractUserFunc";
+import { getCompanyPool } from "../DATABASE/connectionManager";
+import { onboardCompany } from "../DATABASE/onboard";
+import { createCompanyAdmin as createCompanyAdminUtil } from "../utils/createCompanyAdmin";
 import { getAllUsers } from "../DATABASE/USERS/getAllUsers";
 import { extractCompany } from "../DATABASE/COMPANIES/extractCompanyFunc";
 import { extractImapCredentials } from "../DATABASE/INTEGRATIONS/Email/extractImapDetails";
@@ -9,6 +14,14 @@ import fetchFortnoxForCompany from "../DATABASE/INTEGRATIONS/Fortnox/fortnoxData
 function requireAdmin(user: any) {
   if (!user || user.role !== "admin") {
     throw new GraphQLError("Forbidden", {
+      extensions: { code: "FORBIDDEN" },
+    });
+  }
+}
+
+function requireSuperAdmin(user: any) {
+  if (!user || user.role !== "super_admin") {
+    throw new GraphQLError("Forbidden: Super admin access required", {
       extensions: { code: "FORBIDDEN" },
     });
   }
@@ -65,6 +78,48 @@ const resolvers: Resolvers = {
         [name, domain],
       );
       return result.rows[0];
+    },
+    onboardCompany: async (_parent, { name, domain }, { user }) => {
+      requireSuperAdmin(user);
+      const companyId = await onboardCompany(name, domain);
+      return { companyId, message: "Company created successfully!" };
+    },
+    createCompanyAdmin: async (_parent, { company, email, password }, { user }) => {
+      requireSuperAdmin(user);
+      await createCompanyAdminUtil(company, email, password);
+      return "Company admin created successfully";
+    },
+    login: async (_parent, { email, password, companyDomain }, { db }) => {
+      const companyResult = await db.query(
+        "SELECT db_name, name FROM companies WHERE domain = $1",
+        [companyDomain],
+      );
+      if (companyResult.rowCount === 0) {
+        throw new GraphQLError("Company not found", { extensions: { code: "NOT_FOUND" } });
+      }
+      const { db_name: dbName, name: companyName } = companyResult.rows[0];
+      const companyPool = getCompanyPool(dbName);
+      const userResult = await companyPool.query(
+        "SELECT * FROM users WHERE email = $1",
+        [email],
+      );
+      if (userResult.rowCount === 0) {
+        throw new GraphQLError("Invalid credentials", { extensions: { code: "UNAUTHORIZED" } });
+      }
+      const user = userResult.rows[0];
+      const passwordMatch = await bcrypt.compare(password, user.password);
+      if (!passwordMatch) {
+        throw new GraphQLError("Invalid credentials", { extensions: { code: "UNAUTHORIZED" } });
+      }
+      if (user.role !== "admin") {
+        throw new GraphQLError("Access denied: Admins only", { extensions: { code: "FORBIDDEN" } });
+      }
+      const token = jwt.sign(
+        { id: user.id, email: user.email, role: user.role, companyId: user.company_id, dbName, companyName },
+        process.env.JWT_SECRET!,
+        { expiresIn: "1h" },
+      );
+      return { token, id: user.id, email: user.email, role: user.role, companyId: user.company_id };
     },
   },
 };

@@ -32,8 +32,24 @@ const typeDefs = `
     getFortnoxData(companyId: String!, endpoint: String): JSON
   }
 
+  type AuthPayload {
+    token: String!
+    id: ID!
+    email: String!
+    role: String!
+    companyId: String!
+  }
+
+  type OnboardResult {
+    companyId: ID!
+    message: String!
+  }
+
   type Mutation {
     createCompany(name: String!, domain: String!): Company
+    login(email: String!, password: String!, companyDomain: String!): AuthPayload!
+    onboardCompany(name: String!, domain: String!): OnboardResult!
+    createCompanyAdmin(company: String!, email: String!, password: String!): String!
   }
 `;
 
