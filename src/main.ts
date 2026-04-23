@@ -54,7 +54,11 @@ const server = new ApolloServer({
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://internox.duckdns.org"],
+    origin: [
+      "http://localhost:3000",
+      "https://internox.duckdns.org",
+      "http://localhost:5173",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
