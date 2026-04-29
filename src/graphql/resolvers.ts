@@ -11,6 +11,10 @@ import { extractCompany } from "../DATABASE/COMPANIES/extractCompanyFunc";
 import { extractImapCredentials } from "../DATABASE/INTEGRATIONS/Email/extractImapDetails";
 import fetchFortnoxForCompany from "../DATABASE/INTEGRATIONS/Fortnox/fortnoxData";
 import fetchSentEmailsFromYesterday from "../DATABASE/INTEGRATIONS/Email/imapConnect";
+import { createUser } from "../DATABASE/USERS/insertUserFunc";
+import { createAdmin } from "../DATABASE/USERS/insertAdminFunc";
+import { addImapCredentials } from "../DATABASE/INTEGRATIONS/insertImapCredentials";
+import { insertToken } from "../DATABASE/INTEGRATIONS/insertTokensFunc";
 
 function requireAdmin(user: any) {
   if (!user || user.role !== "admin") {
@@ -71,6 +75,11 @@ const resolvers: Resolvers = {
       requireAdmin(user);
       return await fetchFortnoxForCompany(companyId, endpoint ?? "/customers");
     },
+    getSentEmails: async (_parent, { companyId, credentialId, password }, { user }) => {
+      requireAdmin(user);
+      const emails = await fetchSentEmailsFromYesterday(companyId, credentialId, password ?? undefined);
+      return emails as any[];
+    },
     getInitPageData: async (_parent, _args, { user, db }) => {
       if (!user) {
         throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
@@ -92,6 +101,30 @@ const resolvers: Resolvers = {
       const pool = getCompanyPool(companyDb);
 
       const usersRes = await pool.query("SELECT id, email, role FROM users");
+
+      return {
+        company: { id: companyId, name: companyName },
+        users: usersRes.rows,
+      };
+    },
+    getInitPageIntegrationData: async (_parent, _args, { user, db }) => {
+      if (!user) {
+        throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
+      }
+      const companyId = (user as any).companyId;
+      if (!companyId) {
+        throw new GraphQLError("Company ID not found in token", { extensions: { code: "BAD_REQUEST" } });
+      }
+
+      const masterRes = await db.query(
+        "SELECT db_name FROM companies WHERE id = $1",
+        [companyId],
+      );
+      if (masterRes.rows.length === 0) {
+        throw new GraphQLError("Company not found", { extensions: { code: "NOT_FOUND" } });
+      }
+      const companyDb = String(masterRes.rows[0].db_name).replace(/-/g, "_");
+      const pool = getCompanyPool(companyDb);
 
       let customers: any;
       try {
@@ -121,12 +154,7 @@ const resolvers: Resolvers = {
         emails = "not configured yet";
       }
 
-      return {
-        company: { id: companyId, name: companyName },
-        users: usersRes.rows,
-        customers,
-        emails,
-      };
+      return { customers, emails };
     },
   },
   Mutation: {
@@ -178,6 +206,34 @@ const resolvers: Resolvers = {
         { expiresIn: "1h" },
       );
       return { token, id: user.id, email: user.email, role: user.role, companyId: user.company_id };
+    },
+    createUser: async (_parent, { email, companyDomain, password }, { user }) => {
+      requireAdmin(user);
+      await createUser(email, companyDomain, password);
+      return "User created successfully";
+    },
+    createAdmin: async (_parent, { userName, password }, { user, req }) => {
+      requireSuperAdmin(user);
+      const token = req.headers.authorization?.split(" ")[1]!;
+      await createAdmin(userName, password, token);
+      return "Admin created successfully";
+    },
+    addImapCredentials: async (_parent, { companyDomain, userEmail, imapHost, imapPort, emailAddress, password }, { user }) => {
+      requireAdmin(user);
+      const result = await addImapCredentials(
+        companyDomain, userEmail, imapHost, imapPort ?? 993, emailAddress, password,
+      );
+      return { id: result.id };
+    },
+    saveFortnoxTokens: async (_parent, { companyName, service, accessToken, refreshToken, expiresAt }, { user }) => {
+      requireAdmin(user);
+      await insertToken(companyName, {
+        service,
+        access_token: accessToken,
+        refresh_token: refreshToken ?? undefined,
+        expires_at: expiresAt ?? undefined,
+      });
+      return "Tokens saved successfully";
     },
   },
 };

@@ -36,8 +36,25 @@ const typeDefs = `
   type InitPageData {
     company: InitPageCompany!
     users: [InitUser!]!
+  }
+
+  type InitPageIntegrationData {
     customers: JSON
     emails: JSON
+  }
+
+  type SentEmail {
+    uid: Int!
+    subject: String
+    from: String
+    to: String
+    date: String
+    text: String
+    html: String
+  }
+
+  type ImapCredentialResult {
+    id: ID!
   }
 
   type Query {
@@ -49,6 +66,8 @@ const typeDefs = `
     getImapCredentials(company: String!): [ImapCredential]
     getFortnoxData(companyId: String!, endpoint: String): JSON
     getInitPageData: InitPageData!
+    getInitPageIntegrationData: InitPageIntegrationData!
+    getSentEmails(companyId: String!, credentialId: String!, password: String): [SentEmail]
   }
 
   type AuthPayload {
@@ -69,6 +88,10 @@ const typeDefs = `
     login(email: String!, password: String!, companyDomain: String!): AuthPayload!
     onboardCompany(name: String!, domain: String!): OnboardResult!
     createCompanyAdmin(company: String!, email: String!, password: String!): String!
+    createUser(email: String!, companyDomain: String!, password: String!): String!
+    createAdmin(userName: String!, password: String!): String!
+    addImapCredentials(companyDomain: String!, userEmail: String!, imapHost: String!, imapPort: Int, emailAddress: String!, password: String!): ImapCredentialResult!
+    saveFortnoxTokens(companyName: String!, service: String!, accessToken: String!, refreshToken: String, expiresAt: String): String!
   }
 `;
 

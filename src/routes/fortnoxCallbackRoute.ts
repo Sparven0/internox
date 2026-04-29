@@ -2,6 +2,7 @@ import { Request, Response, Router } from 'express';
 import axios from 'axios';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
+import { insertToken } from '../DATABASE/INTEGRATIONS/insertTokensFunc';
 
 const router = Router();
 
@@ -93,14 +94,11 @@ const decoded = jwt.verify(oauthToken, process.env.JWT_SECRET!) as any;
 
     const expires_at = new Date(Date.now() + expires_in * 1000);
 
-    await axios.post('http://localhost:1222/new-credentials', {
-      companyName,
-      tokens: {
-        service: 'Fortnox',
-        access_token,
-        refresh_token,
-        expires_at,
-      },
+    await insertToken(companyName, {
+      service: 'Fortnox',
+      access_token,
+      refresh_token,
+      expires_at: expires_at.toISOString(),
     });
 
     res.send(`<!DOCTYPE html>
