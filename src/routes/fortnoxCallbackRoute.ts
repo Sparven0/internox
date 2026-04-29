@@ -20,38 +20,6 @@ router.get('/auth', (req: Request, res: Response) => {
   );
 });
 
-/**
- * @openapi
- * /fortnox-callback:
- *   get:
- *     summary: Fortnox OAuth callback
- *     description: |
- *       ## Endpoint details
- *
- *       This endpoint works as following:
- *       - User signs in and retrieves their JWT
- *       - User passes their JWT in the OAuth URL as shown below
- *       - http://localhost:1222/auth?token=<JWT from login>
- *
- *     parameters:
- *       - in: query
- *         name: state
- *         schema:
- *           type: string
- *         required: true
- *         description: OAuth state parameter.
- *       - in: query
- *         name: code
- *         schema:
- *           type: string
- *         required: true
- *         description: Authorization code from Fortnox.
- *     responses:
- *       200:
- *         description: Callback handled successfully.
- *       400:
- *         description: Invalid state or missing authorization code.
- */
 
 router.get('/fortnox-callback', async (req: Request, res: Response): Promise<any> => {
   const { state, code } = req.query;
