@@ -1,23 +1,29 @@
 import { Pool } from 'pg';
+import { PrismaPg } from '@prisma/adapter-pg';
+import { PrismaClient } from '../__generated__/company';
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 const pools: Record<string, Pool> = {};
+const clients: Record<string, PrismaClient> = {};
 
-/**
- * Retrieves or creates a connection pool for the given company database name.
- * @param dbName - The name of the company's database
- * @returns A Pool connected to the company's database
- */
-export  function getCompanyPool(dbName: string): Pool {
+export function getCompanyPool(dbName: string): Pool {
   if (!pools[dbName]) {
     pools[dbName] = new Pool({
       host: process.env.POSTGRES_HOST || 'localhost',
       user: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
-      database: dbName, // Dynamic database name per company
+      database: dbName,
       port: process.env.POSTGRES_PORT ? parseInt(process.env.POSTGRES_PORT) : 5432,
     });
   }
   return pools[dbName];
+}
+
+export function getCompanyClient(dbName: string): PrismaClient {
+  if (!clients[dbName]) {
+    clients[dbName] = new PrismaClient({ adapter: new PrismaPg(getCompanyPool(dbName)) });
+  }
+  return clients[dbName];
 }

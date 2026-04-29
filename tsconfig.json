@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "typeRoots": ["./node_modules/@types", "./src/types"],
+    "types": ["node"],
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -10,6 +11,6 @@
     "moduleResolution": "NodeNext",
     "target": "ES2022"
   },
-  "include": ["src/**/*", "migrations/migrate.ts"],
+  "include": ["src/**/*", "migrations/migrate.ts", "prisma/**/*.ts"],
   "exclude": ["node_modules"]
 }

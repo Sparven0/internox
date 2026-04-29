@@ -1,0 +1,32 @@
+// Master database — stores company registry and super_admin/admin accounts.
+// One PrismaClient instance is used for this DB throughout the app.
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../src/__generated__/master"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Company {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name      String
+  domain    String   @unique
+  dbName    String   @unique @map("db_name")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+
+  @@map("companies")
+}
+
+// Super-admin and admin accounts live in the master DB.
+// id is SERIAL (Int) to match the existing table definition.
+model User {
+  id       Int    @id @default(autoincrement())
+  userName String @map("user_name")
+  role     String
+  password String
+
+  @@map("users")
+}

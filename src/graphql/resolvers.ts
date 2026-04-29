@@ -3,11 +3,11 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { Resolvers } from "../__generated__/resolvers-types";
 import { extractUser } from "../DATABASE/USERS/extractUserFunc";
-import { getCompanyPool } from "../DATABASE/connectionManager";
+import { getCompanyClient } from "../DATABASE/connectionManager";
 import { onboardCompany } from "../DATABASE/onboard";
 import { createCompanyAdmin as createCompanyAdminUtil } from "../utils/createCompanyAdmin";
 import { getAllUsers } from "../DATABASE/USERS/getAllUsers";
-import { extractCompany } from "../DATABASE/COMPANIES/extractCompanyFunc";
+import { masterClient } from "../DATABASE/masterpool";
 import { extractImapCredentials } from "../DATABASE/INTEGRATIONS/Email/extractImapDetails";
 import fetchFortnoxForCompany from "../DATABASE/INTEGRATIONS/Fortnox/fortnoxData";
 import fetchSentEmailsFromYesterday from "../DATABASE/INTEGRATIONS/Email/imapConnect";
@@ -17,7 +17,7 @@ import { addImapCredentials } from "../DATABASE/INTEGRATIONS/insertImapCredentia
 import { insertToken } from "../DATABASE/INTEGRATIONS/insertTokensFunc";
 
 function requireAdmin(user: any) {
-  if (!user || user.role !== "admin") {
+  if (!user || (user.role !== "admin" && user.role !== "super_admin")) {
     throw new GraphQLError("Forbidden", {
       extensions: { code: "FORBIDDEN" },
     });
@@ -46,17 +46,14 @@ const JSONScalar = new GraphQLScalarType({
 const resolvers: Resolvers = {
   JSON: JSONScalar,
   Query: {
-    getCompanyById: async (_parent, { id }, { db }) => {
-      const result = await db.query("SELECT * FROM companies WHERE id = $1", [id]);
-      return result.rows[0];
+    getCompanyById: async (_parent, { id }) => {
+      return masterClient.company.findUnique({ where: { id } }) ?? null;
     },
-    getAllCompanies: async (_parent, _args, { db }) => {
-      const result = await db.query("SELECT * FROM companies");
-      return result.rows;
+    getAllCompanies: async () => {
+      return masterClient.company.findMany();
     },
     getCompanyByName: async (_parent, { name }) => {
-      const result = await extractCompany(name);
-      return result.rows[0] ?? null;
+      return masterClient.company.findFirst({ where: { name } }) ?? null;
     },
     getUsers: async (_parent, { company }, { user }) => {
       requireAdmin(user);
@@ -68,8 +65,7 @@ const resolvers: Resolvers = {
     },
     getImapCredentials: async (_parent, { company }, { user }) => {
       requireAdmin(user);
-      const result = await extractImapCredentials(company);
-      return result.rows;
+      return extractImapCredentials(company);
     },
     getFortnoxData: async (_parent, { companyId, endpoint }, { user }) => {
       requireAdmin(user);
@@ -80,7 +76,7 @@ const resolvers: Resolvers = {
       const emails = await fetchSentEmailsFromYesterday(companyId, credentialId, password ?? undefined);
       return emails as any[];
     },
-    getInitPageData: async (_parent, _args, { user, db }) => {
+    getInitPageData: async (_parent, _args, { user }) => {
       if (!user) {
         throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
       }
@@ -89,25 +85,20 @@ const resolvers: Resolvers = {
         throw new GraphQLError("Company ID not found in token", { extensions: { code: "BAD_REQUEST" } });
       }
 
-      const masterRes = await db.query(
-        "SELECT db_name, name FROM companies WHERE id = $1",
-        [companyId],
-      );
-      if (masterRes.rows.length === 0) {
+      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      if (!company) {
         throw new GraphQLError("Company not found", { extensions: { code: "NOT_FOUND" } });
       }
-      const companyDb = String(masterRes.rows[0].db_name).replace(/-/g, "_");
-      const companyName = masterRes.rows[0].name;
-      const pool = getCompanyPool(companyDb);
-
-      const usersRes = await pool.query("SELECT id, email, role FROM users");
+      const users = await getCompanyClient(company.dbName).user.findMany({
+        select: { id: true, email: true, role: true },
+      });
 
       return {
-        company: { id: companyId, name: companyName },
-        users: usersRes.rows,
+        company: { id: companyId, name: company.name },
+        users,
       };
     },
-    getInitPageIntegrationData: async (_parent, _args, { user, db }) => {
+    getInitPageIntegrationData: async (_parent, _args, { user }) => {
       if (!user) {
         throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
       }
@@ -116,15 +107,11 @@ const resolvers: Resolvers = {
         throw new GraphQLError("Company ID not found in token", { extensions: { code: "BAD_REQUEST" } });
       }
 
-      const masterRes = await db.query(
-        "SELECT db_name FROM companies WHERE id = $1",
-        [companyId],
-      );
-      if (masterRes.rows.length === 0) {
+      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      if (!company) {
         throw new GraphQLError("Company not found", { extensions: { code: "NOT_FOUND" } });
       }
-      const companyDb = String(masterRes.rows[0].db_name).replace(/-/g, "_");
-      const pool = getCompanyPool(companyDb);
+      const companyClient = getCompanyClient(company.dbName);
 
       let customers: any;
       try {
@@ -136,16 +123,16 @@ const resolvers: Resolvers = {
 
       let emails: any;
       try {
-        const credRes = await pool.query("SELECT id, user_id FROM imap_credentials");
-        if (credRes.rows.length === 0) {
+        const creds = await companyClient.imapCredential.findMany({ select: { id: true, userId: true } });
+        if (creds.length === 0) {
           emails = "not configured yet";
         } else {
           const results = await Promise.allSettled(
-            credRes.rows.map((row) => fetchSentEmailsFromYesterday(companyId, row.id)),
+            creds.map((row) => fetchSentEmailsFromYesterday(companyId, row.id)),
           );
           emails = results.map((r, i) => ({
-            userId: credRes.rows[i].user_id,
-            credentialId: credRes.rows[i].id,
+            userId: creds[i].userId,
+            credentialId: creds[i].id,
             emails: r.status === "fulfilled" ? r.value : [],
             error: r.status === "rejected" ? (r.reason as Error)?.message : null,
           }));
@@ -158,12 +145,10 @@ const resolvers: Resolvers = {
     },
   },
   Mutation: {
-    createCompany: async (_parent, { name, domain }, { db }) => {
-      const result = await db.query(
-        "INSERT INTO companies (name, domain) VALUES ($1, $2) RETURNING *",
-        [name, domain],
-      );
-      return result.rows[0];
+    createCompany: async (_parent, { name, domain }, { user }) => {
+      requireSuperAdmin(user);
+      const companyId = await onboardCompany(name, domain);
+      return masterClient.company.findUnique({ where: { id: companyId } });
     },
     onboardCompany: async (_parent, { name, domain }, { user }) => {
       requireSuperAdmin(user);
@@ -175,37 +160,28 @@ const resolvers: Resolvers = {
       await createCompanyAdminUtil(company, email, password);
       return "Company admin created successfully";
     },
-    login: async (_parent, { email, password, companyDomain }, { db }) => {
-      const companyResult = await db.query(
-        "SELECT db_name, name FROM companies WHERE domain = $1",
-        [companyDomain],
-      );
-      if (companyResult.rowCount === 0) {
+    login: async (_parent, { email, password, companyDomain }) => {
+      const company = await masterClient.company.findUnique({ where: { domain: companyDomain } });
+      if (!company) {
         throw new GraphQLError("Company not found", { extensions: { code: "NOT_FOUND" } });
       }
-      const { db_name: dbName, name: companyName } = companyResult.rows[0];
-      const companyPool = getCompanyPool(dbName);
-      const userResult = await companyPool.query(
-        "SELECT * FROM users WHERE email = $1",
-        [email],
-      );
-      if (userResult.rowCount === 0) {
+      const companyUser = await getCompanyClient(company.dbName).user.findUnique({ where: { email } });
+      if (!companyUser) {
         throw new GraphQLError("Invalid credentials", { extensions: { code: "UNAUTHORIZED" } });
       }
-      const user = userResult.rows[0];
-      const passwordMatch = await bcrypt.compare(password, user.password);
+      const passwordMatch = await bcrypt.compare(password, companyUser.password);
       if (!passwordMatch) {
         throw new GraphQLError("Invalid credentials", { extensions: { code: "UNAUTHORIZED" } });
       }
-      if (user.role !== "admin") {
+      if (companyUser.role !== "admin") {
         throw new GraphQLError("Access denied: Admins only", { extensions: { code: "FORBIDDEN" } });
       }
       const token = jwt.sign(
-        { id: user.id, email: user.email, role: user.role, companyId: user.company_id, dbName, companyName },
+        { id: companyUser.id, email: companyUser.email, role: companyUser.role, companyId: companyUser.companyId, dbName: company.dbName, companyName: company.name },
         process.env.JWT_SECRET!,
         { expiresIn: "1h" },
       );
-      return { token, id: user.id, email: user.email, role: user.role, companyId: user.company_id };
+      return { token, id: companyUser.id, email: companyUser.email, role: companyUser.role, companyId: companyUser.companyId };
     },
     createUser: async (_parent, { email, companyDomain, password }, { user }) => {
       requireAdmin(user);

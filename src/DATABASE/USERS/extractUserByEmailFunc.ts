@@ -1,19 +1,11 @@
-import { getCompanyPool } from '../connectionManager';
-import { extractCompany } from '../COMPANIES/extractCompanyFunc';
+import { masterClient } from '../masterpool';
+import { getCompanyClient } from '../connectionManager';
 
-export async function extractUserByEmail(company: string, email: string): Promise<any> {
-    const companyId = (await extractCompany(company)).rows[0].id;
-    const dbName = `company_${companyId.replace(/-/g, '_')}`;
-    const companyPool = getCompanyPool(dbName);
-
-    try {
-        const result = await companyPool.query(
-            `SELECT id, email, role FROM users WHERE email = $1`,
-            [email]
-        );
-        return result.rows[0];
-    } catch (error) {
-        console.error('Error extracting user by email:', error);
-        throw error;
-    }
+export async function extractUserByEmail(companyName: string, email: string) {
+  const company = await masterClient.company.findFirst({ where: { name: companyName } });
+  if (!company) throw new Error('Company not found');
+  return getCompanyClient(company.dbName).user.findUnique({
+    where: { email },
+    select: { id: true, email: true, role: true },
+  });
 }

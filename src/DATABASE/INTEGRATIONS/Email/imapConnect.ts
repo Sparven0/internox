@@ -5,8 +5,8 @@ dotenv.config();
 const { ImapFlow } = require('imapflow');
 const { simpleParser }: any = require('mailparser');
 
-import { getCompanyPool } from '../../connectionManager';
-import masterPool from '../../masterpool';
+import { getCompanyPool, getCompanyClient } from '../../connectionManager';
+import { masterClient } from '../../masterpool';
 import { decryptPassword } from '../../../utils/encryptPassword';
 
 type ParsedEmail = {
@@ -43,14 +43,10 @@ export async function fetchSentEmailsFromYesterday(companyId: string, imapCreden
     companyDb = cleaned.replace(/-/g, '_');
   } else if (UUID_RE.test(cleaned)) {
     try {
-      const masterRes = await masterPool.query('SELECT db_name FROM companies WHERE id = $1', [cleaned]);
-      if (masterRes.rows.length > 0) {
-        companyDb = String(masterRes.rows[0].db_name).replace(/-/g, '_');
-      } else {
-        companyDb = `company_${String(cleaned).replace(/-/g, '_')}`;
-      }
+      const company = await masterClient.company.findUnique({ where: { id: cleaned }, select: { dbName: true } });
+      companyDb = company ? company.dbName : `company_${cleaned.replace(/-/g, '_')}`;
     } catch (e) {
-      companyDb = `company_${String(cleaned).replace(/-/g, '_')}`;
+      companyDb = `company_${cleaned.replace(/-/g, '_')}`;
     }
   } else {
     // try to treat the input as a db-name-ish string by normalizing
@@ -66,28 +62,23 @@ export async function fetchSentEmailsFromYesterday(companyId: string, imapCreden
 
   // use the resolved companyDb and cleaned credential id
   imapCredentialsId = credentialIdRaw;
-  const pool = getCompanyPool(companyDb);
+  const cred = await getCompanyClient(companyDb).imapCredential.findFirst({
+    where: { id: imapCredentialsId },
+  });
 
-  const res = await pool.query(
-    `SELECT id, user_id, imap_host, email_address, encrypted_password, imap_port, use_tls
-     FROM imap_credentials WHERE id = $1`,
-    [imapCredentialsId]
-  );
+  if (!cred) throw new Error('imap_credentials not found');
 
-  if (res.rows.length === 0) throw new Error('imap_credentials not found');
-
-  const cred = res.rows[0];
   // use provided plainPassword if given, otherwise decrypt stored value
   let password: string;
   if (plainPassword && String(plainPassword).length > 0) {
     password = String(plainPassword);
   } else {
-    password = decryptPassword(cred.encrypted_password);
+    password = decryptPassword(cred.encryptedPassword);
   }
-  const user = cred.email_address;
-  const host = cred.imap_host;
-  const port = cred.imap_port || 993;
-  const tls = cred.use_tls === undefined ? true : !!cred.use_tls;
+  const user = cred.emailAddress;
+  const host = cred.imapHost;
+  const port = cred.imapPort || 993;
+  const tls = cred.useTls === undefined ? true : !!cred.useTls;
 
   const client = new ImapFlow({
     host,

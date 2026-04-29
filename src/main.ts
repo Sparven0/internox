@@ -73,7 +73,7 @@ async function startServer() {
               user = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
             } catch {}
           }
-          return { req, res, db: masterPool, user };
+          return { req, res, user };
         },
       }),
     );

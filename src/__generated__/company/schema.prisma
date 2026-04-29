@@ -1,0 +1,92 @@
+// Per-company database — one identical schema is provisioned per onboarded company.
+// A PrismaClient is created per company at runtime using the PrismaPg adapter,
+// pointed at the company's dedicated pool (see src/DATABASE/connectionManager.ts).
+// Do NOT set DATABASE_URL here for runtime use — it is only needed for
+// `prisma generate` and `prisma migrate` (point it at any company DB or a dev clone).
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../src/__generated__/company"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Company {
+  id                String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name              String
+  domain            String               @unique
+  createdAt         DateTime             @default(now()) @map("created_at") @db.Timestamp(6)
+  users             User[]
+  integrations      CompanyIntegration[]
+  customers         Customer[]
+  employeeCustomers EmployeeCustomer[]
+
+  @@map("companies")
+}
+
+model User {
+  id                String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email             String             @unique
+  password          String
+  companyId         String             @map("company_id") @db.Uuid
+  role              String             @default("employee")
+  createdAt         DateTime           @default(now()) @map("created_at") @db.Timestamp(6)
+  company           Company            @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  imapCredentials   ImapCredential[]
+  employeeCustomers EmployeeCustomer[]
+
+  @@map("users")
+}
+
+model CompanyIntegration {
+  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId    String    @map("company_id") @db.Uuid
+  service      String?
+  accessToken  String    @map("access_token")
+  refreshToken String?   @map("refresh_token")
+  expiresAt    DateTime? @map("expires_at") @db.Timestamp(6)
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamp(6)
+  company      Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@map("company_integrations")
+}
+
+model ImapCredential {
+  id                String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId            String?  @map("user_id") @db.Uuid
+  imapHost          String   @map("imap_host")
+  imapPort          Int      @default(993) @map("imap_port")
+  emailAddress      String   @map("email_address")
+  encryptedPassword String   @map("encrypted_password")
+  useTls            Boolean  @default(true) @map("use_tls")
+  createdAt         DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  user              User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("imap_credentials")
+}
+
+model Customer {
+  id                String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email             String             @unique
+  name              String?
+  companyId         String?            @map("company_id") @db.Uuid
+  companyName       String?            @map("company_name")
+  company           Company?           @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  employeeCustomers EmployeeCustomer[]
+
+  @@map("customers")
+}
+
+model EmployeeCustomer {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId     String?   @map("user_id") @db.Uuid
+  companyId  String?   @map("company_id") @db.Uuid
+  customerId String?   @map("customer_id") @db.Uuid
+  user       User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  company    Company?  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  customer   Customer? @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@map("employee_customer")
+}
