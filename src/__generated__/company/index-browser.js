@@ -198,6 +198,80 @@ exports.Prisma.EmailActivityScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.EmailScalarFieldEnum = {
+  id: 'id',
+  messageId: 'messageId',
+  source: 'source',
+  imapCredentialId: 'imapCredentialId',
+  userId: 'userId',
+  customerId: 'customerId',
+  direction: 'direction',
+  subject: 'subject',
+  fromAddress: 'fromAddress',
+  fromName: 'fromName',
+  toAddresses: 'toAddresses',
+  ccAddresses: 'ccAddresses',
+  bccAddresses: 'bccAddresses',
+  replyTo: 'replyTo',
+  sentAt: 'sentAt',
+  bodyText: 'bodyText',
+  bodyHtml: 'bodyHtml',
+  inReplyTo: 'inReplyTo',
+  threadId: 'threadId',
+  mailbox: 'mailbox',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.FortnoxCustomerScalarFieldEnum = {
+  id: 'id',
+  customerNumber: 'customerNumber',
+  customerId: 'customerId',
+  name: 'name',
+  organisationNumber: 'organisationNumber',
+  email: 'email',
+  phone: 'phone',
+  address: 'address',
+  zipCode: 'zipCode',
+  city: 'city',
+  country: 'country',
+  currency: 'currency',
+  active: 'active',
+  rawData: 'rawData',
+  syncedAt: 'syncedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.FortnoxInvoiceScalarFieldEnum = {
+  id: 'id',
+  invoiceNumber: 'invoiceNumber',
+  customerNumber: 'customerNumber',
+  customerId: 'customerId',
+  invoiceDate: 'invoiceDate',
+  dueDate: 'dueDate',
+  totalExclVat: 'totalExclVat',
+  totalInclVat: 'totalInclVat',
+  vat: 'vat',
+  currency: 'currency',
+  status: 'status',
+  ourReference: 'ourReference',
+  yourReference: 'yourReference',
+  rawData: 'rawData',
+  syncedAt: 'syncedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.FortnoxInvoiceRowScalarFieldEnum = {
+  id: 'id',
+  invoiceNumber: 'invoiceNumber',
+  rowNumber: 'rowNumber',
+  articleNumber: 'articleNumber',
+  description: 'description',
+  quantity: 'quantity',
+  price: 'price',
+  vatPercent: 'vatPercent',
+  total: 'total'
+};
+
 exports.Prisma.FortnoxSyncLogScalarFieldEnum = {
   id: 'id',
   companyId: 'companyId',
@@ -210,6 +284,15 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -218,6 +301,12 @@ exports.Prisma.QueryMode = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 
 
@@ -230,6 +319,10 @@ exports.Prisma.ModelName = {
   EmployeeCustomer: 'EmployeeCustomer',
   TimeEntry: 'TimeEntry',
   EmailActivity: 'EmailActivity',
+  Email: 'Email',
+  FortnoxCustomer: 'FortnoxCustomer',
+  FortnoxInvoice: 'FortnoxInvoice',
+  FortnoxInvoiceRow: 'FortnoxInvoiceRow',
   FortnoxSyncLog: 'FortnoxSyncLog'
 };
 

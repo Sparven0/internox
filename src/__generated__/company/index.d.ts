@@ -54,6 +54,26 @@ export type TimeEntry = $Result.DefaultSelection<Prisma.$TimeEntryPayload>
  */
 export type EmailActivity = $Result.DefaultSelection<Prisma.$EmailActivityPayload>
 /**
+ * Model Email
+ * 
+ */
+export type Email = $Result.DefaultSelection<Prisma.$EmailPayload>
+/**
+ * Model FortnoxCustomer
+ * 
+ */
+export type FortnoxCustomer = $Result.DefaultSelection<Prisma.$FortnoxCustomerPayload>
+/**
+ * Model FortnoxInvoice
+ * 
+ */
+export type FortnoxInvoice = $Result.DefaultSelection<Prisma.$FortnoxInvoicePayload>
+/**
+ * Model FortnoxInvoiceRow
+ * 
+ */
+export type FortnoxInvoiceRow = $Result.DefaultSelection<Prisma.$FortnoxInvoiceRowPayload>
+/**
  * Model FortnoxSyncLog
  * 
  */
@@ -259,6 +279,46 @@ export class PrismaClient<
     * ```
     */
   get emailActivity(): Prisma.EmailActivityDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.email`: Exposes CRUD operations for the **Email** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Emails
+    * const emails = await prisma.email.findMany()
+    * ```
+    */
+  get email(): Prisma.EmailDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.fortnoxCustomer`: Exposes CRUD operations for the **FortnoxCustomer** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FortnoxCustomers
+    * const fortnoxCustomers = await prisma.fortnoxCustomer.findMany()
+    * ```
+    */
+  get fortnoxCustomer(): Prisma.FortnoxCustomerDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.fortnoxInvoice`: Exposes CRUD operations for the **FortnoxInvoice** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FortnoxInvoices
+    * const fortnoxInvoices = await prisma.fortnoxInvoice.findMany()
+    * ```
+    */
+  get fortnoxInvoice(): Prisma.FortnoxInvoiceDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.fortnoxInvoiceRow`: Exposes CRUD operations for the **FortnoxInvoiceRow** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FortnoxInvoiceRows
+    * const fortnoxInvoiceRows = await prisma.fortnoxInvoiceRow.findMany()
+    * ```
+    */
+  get fortnoxInvoiceRow(): Prisma.FortnoxInvoiceRowDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.fortnoxSyncLog`: Exposes CRUD operations for the **FortnoxSyncLog** model.
@@ -711,6 +771,10 @@ export namespace Prisma {
     EmployeeCustomer: 'EmployeeCustomer',
     TimeEntry: 'TimeEntry',
     EmailActivity: 'EmailActivity',
+    Email: 'Email',
+    FortnoxCustomer: 'FortnoxCustomer',
+    FortnoxInvoice: 'FortnoxInvoice',
+    FortnoxInvoiceRow: 'FortnoxInvoiceRow',
     FortnoxSyncLog: 'FortnoxSyncLog'
   };
 
@@ -727,7 +791,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "company" | "user" | "companyIntegration" | "imapCredential" | "customer" | "employeeCustomer" | "timeEntry" | "emailActivity" | "fortnoxSyncLog"
+      modelProps: "company" | "user" | "companyIntegration" | "imapCredential" | "customer" | "employeeCustomer" | "timeEntry" | "emailActivity" | "email" | "fortnoxCustomer" | "fortnoxInvoice" | "fortnoxInvoiceRow" | "fortnoxSyncLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1323,6 +1387,302 @@ export namespace Prisma {
           }
         }
       }
+      Email: {
+        payload: Prisma.$EmailPayload<ExtArgs>
+        fields: Prisma.EmailFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EmailFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EmailFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailPayload>
+          }
+          findFirst: {
+            args: Prisma.EmailFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EmailFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailPayload>
+          }
+          findMany: {
+            args: Prisma.EmailFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailPayload>[]
+          }
+          create: {
+            args: Prisma.EmailCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailPayload>
+          }
+          createMany: {
+            args: Prisma.EmailCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EmailCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailPayload>[]
+          }
+          delete: {
+            args: Prisma.EmailDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailPayload>
+          }
+          update: {
+            args: Prisma.EmailUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailPayload>
+          }
+          deleteMany: {
+            args: Prisma.EmailDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EmailUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EmailUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailPayload>[]
+          }
+          upsert: {
+            args: Prisma.EmailUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailPayload>
+          }
+          aggregate: {
+            args: Prisma.EmailAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEmail>
+          }
+          groupBy: {
+            args: Prisma.EmailGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EmailGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EmailCountArgs<ExtArgs>
+            result: $Utils.Optional<EmailCountAggregateOutputType> | number
+          }
+        }
+      }
+      FortnoxCustomer: {
+        payload: Prisma.$FortnoxCustomerPayload<ExtArgs>
+        fields: Prisma.FortnoxCustomerFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FortnoxCustomerFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxCustomerPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FortnoxCustomerFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxCustomerPayload>
+          }
+          findFirst: {
+            args: Prisma.FortnoxCustomerFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxCustomerPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FortnoxCustomerFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxCustomerPayload>
+          }
+          findMany: {
+            args: Prisma.FortnoxCustomerFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxCustomerPayload>[]
+          }
+          create: {
+            args: Prisma.FortnoxCustomerCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxCustomerPayload>
+          }
+          createMany: {
+            args: Prisma.FortnoxCustomerCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FortnoxCustomerCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxCustomerPayload>[]
+          }
+          delete: {
+            args: Prisma.FortnoxCustomerDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxCustomerPayload>
+          }
+          update: {
+            args: Prisma.FortnoxCustomerUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxCustomerPayload>
+          }
+          deleteMany: {
+            args: Prisma.FortnoxCustomerDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FortnoxCustomerUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FortnoxCustomerUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxCustomerPayload>[]
+          }
+          upsert: {
+            args: Prisma.FortnoxCustomerUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxCustomerPayload>
+          }
+          aggregate: {
+            args: Prisma.FortnoxCustomerAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFortnoxCustomer>
+          }
+          groupBy: {
+            args: Prisma.FortnoxCustomerGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FortnoxCustomerGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FortnoxCustomerCountArgs<ExtArgs>
+            result: $Utils.Optional<FortnoxCustomerCountAggregateOutputType> | number
+          }
+        }
+      }
+      FortnoxInvoice: {
+        payload: Prisma.$FortnoxInvoicePayload<ExtArgs>
+        fields: Prisma.FortnoxInvoiceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FortnoxInvoiceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoicePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FortnoxInvoiceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoicePayload>
+          }
+          findFirst: {
+            args: Prisma.FortnoxInvoiceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoicePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FortnoxInvoiceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoicePayload>
+          }
+          findMany: {
+            args: Prisma.FortnoxInvoiceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoicePayload>[]
+          }
+          create: {
+            args: Prisma.FortnoxInvoiceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoicePayload>
+          }
+          createMany: {
+            args: Prisma.FortnoxInvoiceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FortnoxInvoiceCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoicePayload>[]
+          }
+          delete: {
+            args: Prisma.FortnoxInvoiceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoicePayload>
+          }
+          update: {
+            args: Prisma.FortnoxInvoiceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoicePayload>
+          }
+          deleteMany: {
+            args: Prisma.FortnoxInvoiceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FortnoxInvoiceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FortnoxInvoiceUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoicePayload>[]
+          }
+          upsert: {
+            args: Prisma.FortnoxInvoiceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoicePayload>
+          }
+          aggregate: {
+            args: Prisma.FortnoxInvoiceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFortnoxInvoice>
+          }
+          groupBy: {
+            args: Prisma.FortnoxInvoiceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FortnoxInvoiceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FortnoxInvoiceCountArgs<ExtArgs>
+            result: $Utils.Optional<FortnoxInvoiceCountAggregateOutputType> | number
+          }
+        }
+      }
+      FortnoxInvoiceRow: {
+        payload: Prisma.$FortnoxInvoiceRowPayload<ExtArgs>
+        fields: Prisma.FortnoxInvoiceRowFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FortnoxInvoiceRowFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoiceRowPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FortnoxInvoiceRowFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoiceRowPayload>
+          }
+          findFirst: {
+            args: Prisma.FortnoxInvoiceRowFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoiceRowPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FortnoxInvoiceRowFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoiceRowPayload>
+          }
+          findMany: {
+            args: Prisma.FortnoxInvoiceRowFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoiceRowPayload>[]
+          }
+          create: {
+            args: Prisma.FortnoxInvoiceRowCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoiceRowPayload>
+          }
+          createMany: {
+            args: Prisma.FortnoxInvoiceRowCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FortnoxInvoiceRowCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoiceRowPayload>[]
+          }
+          delete: {
+            args: Prisma.FortnoxInvoiceRowDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoiceRowPayload>
+          }
+          update: {
+            args: Prisma.FortnoxInvoiceRowUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoiceRowPayload>
+          }
+          deleteMany: {
+            args: Prisma.FortnoxInvoiceRowDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FortnoxInvoiceRowUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FortnoxInvoiceRowUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoiceRowPayload>[]
+          }
+          upsert: {
+            args: Prisma.FortnoxInvoiceRowUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxInvoiceRowPayload>
+          }
+          aggregate: {
+            args: Prisma.FortnoxInvoiceRowAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFortnoxInvoiceRow>
+          }
+          groupBy: {
+            args: Prisma.FortnoxInvoiceRowGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FortnoxInvoiceRowGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FortnoxInvoiceRowCountArgs<ExtArgs>
+            result: $Utils.Optional<FortnoxInvoiceRowCountAggregateOutputType> | number
+          }
+        }
+      }
       FortnoxSyncLog: {
         payload: Prisma.$FortnoxSyncLogPayload<ExtArgs>
         fields: Prisma.FortnoxSyncLogFieldRefs
@@ -1513,6 +1873,10 @@ export namespace Prisma {
     employeeCustomer?: EmployeeCustomerOmit
     timeEntry?: TimeEntryOmit
     emailActivity?: EmailActivityOmit
+    email?: EmailOmit
+    fortnoxCustomer?: FortnoxCustomerOmit
+    fortnoxInvoice?: FortnoxInvoiceOmit
+    fortnoxInvoiceRow?: FortnoxInvoiceRowOmit
     fortnoxSyncLog?: FortnoxSyncLogOmit
   }
 
@@ -1656,6 +2020,7 @@ export namespace Prisma {
     employeeCustomers: number
     timeEntries: number
     emailActivities: number
+    emails: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1663,6 +2028,7 @@ export namespace Prisma {
     employeeCustomers?: boolean | UserCountOutputTypeCountEmployeeCustomersArgs
     timeEntries?: boolean | UserCountOutputTypeCountTimeEntriesArgs
     emailActivities?: boolean | UserCountOutputTypeCountEmailActivitiesArgs
+    emails?: boolean | UserCountOutputTypeCountEmailsArgs
   }
 
   // Custom InputTypes
@@ -1704,6 +2070,44 @@ export namespace Prisma {
     where?: EmailActivityWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountEmailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmailWhereInput
+  }
+
+
+  /**
+   * Count Type ImapCredentialCountOutputType
+   */
+
+  export type ImapCredentialCountOutputType = {
+    emails: number
+  }
+
+  export type ImapCredentialCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    emails?: boolean | ImapCredentialCountOutputTypeCountEmailsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ImapCredentialCountOutputType without action
+   */
+  export type ImapCredentialCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ImapCredentialCountOutputType
+     */
+    select?: ImapCredentialCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ImapCredentialCountOutputType without action
+   */
+  export type ImapCredentialCountOutputTypeCountEmailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmailWhereInput
+  }
+
 
   /**
    * Count Type CustomerCountOutputType
@@ -1713,12 +2117,16 @@ export namespace Prisma {
     employeeCustomers: number
     timeEntries: number
     emailActivities: number
+    emails: number
+    fortnoxInvoices: number
   }
 
   export type CustomerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employeeCustomers?: boolean | CustomerCountOutputTypeCountEmployeeCustomersArgs
     timeEntries?: boolean | CustomerCountOutputTypeCountTimeEntriesArgs
     emailActivities?: boolean | CustomerCountOutputTypeCountEmailActivitiesArgs
+    emails?: boolean | CustomerCountOutputTypeCountEmailsArgs
+    fortnoxInvoices?: boolean | CustomerCountOutputTypeCountFortnoxInvoicesArgs
   }
 
   // Custom InputTypes
@@ -1751,6 +2159,82 @@ export namespace Prisma {
    */
   export type CustomerCountOutputTypeCountEmailActivitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: EmailActivityWhereInput
+  }
+
+  /**
+   * CustomerCountOutputType without action
+   */
+  export type CustomerCountOutputTypeCountEmailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmailWhereInput
+  }
+
+  /**
+   * CustomerCountOutputType without action
+   */
+  export type CustomerCountOutputTypeCountFortnoxInvoicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FortnoxInvoiceWhereInput
+  }
+
+
+  /**
+   * Count Type FortnoxCustomerCountOutputType
+   */
+
+  export type FortnoxCustomerCountOutputType = {
+    invoices: number
+  }
+
+  export type FortnoxCustomerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    invoices?: boolean | FortnoxCustomerCountOutputTypeCountInvoicesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FortnoxCustomerCountOutputType without action
+   */
+  export type FortnoxCustomerCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxCustomerCountOutputType
+     */
+    select?: FortnoxCustomerCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FortnoxCustomerCountOutputType without action
+   */
+  export type FortnoxCustomerCountOutputTypeCountInvoicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FortnoxInvoiceWhereInput
+  }
+
+
+  /**
+   * Count Type FortnoxInvoiceCountOutputType
+   */
+
+  export type FortnoxInvoiceCountOutputType = {
+    rows: number
+  }
+
+  export type FortnoxInvoiceCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    rows?: boolean | FortnoxInvoiceCountOutputTypeCountRowsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FortnoxInvoiceCountOutputType without action
+   */
+  export type FortnoxInvoiceCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoiceCountOutputType
+     */
+    select?: FortnoxInvoiceCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FortnoxInvoiceCountOutputType without action
+   */
+  export type FortnoxInvoiceCountOutputTypeCountRowsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FortnoxInvoiceRowWhereInput
   }
 
 
@@ -3081,6 +3565,7 @@ export namespace Prisma {
     employeeCustomers?: boolean | User$employeeCustomersArgs<ExtArgs>
     timeEntries?: boolean | User$timeEntriesArgs<ExtArgs>
     emailActivities?: boolean | User$emailActivitiesArgs<ExtArgs>
+    emails?: boolean | User$emailsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3120,6 +3605,7 @@ export namespace Prisma {
     employeeCustomers?: boolean | User$employeeCustomersArgs<ExtArgs>
     timeEntries?: boolean | User$timeEntriesArgs<ExtArgs>
     emailActivities?: boolean | User$emailActivitiesArgs<ExtArgs>
+    emails?: boolean | User$emailsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3137,6 +3623,7 @@ export namespace Prisma {
       employeeCustomers: Prisma.$EmployeeCustomerPayload<ExtArgs>[]
       timeEntries: Prisma.$TimeEntryPayload<ExtArgs>[]
       emailActivities: Prisma.$EmailActivityPayload<ExtArgs>[]
+      emails: Prisma.$EmailPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3544,6 +4031,7 @@ export namespace Prisma {
     employeeCustomers<T extends User$employeeCustomersArgs<ExtArgs> = {}>(args?: Subset<T, User$employeeCustomersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeCustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     timeEntries<T extends User$timeEntriesArgs<ExtArgs> = {}>(args?: Subset<T, User$timeEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     emailActivities<T extends User$emailActivitiesArgs<ExtArgs> = {}>(args?: Subset<T, User$emailActivitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    emails<T extends User$emailsArgs<ExtArgs> = {}>(args?: Subset<T, User$emailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4073,6 +4561,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: EmailActivityScalarFieldEnum | EmailActivityScalarFieldEnum[]
+  }
+
+  /**
+   * User.emails
+   */
+  export type User$emailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Email
+     */
+    select?: EmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Email
+     */
+    omit?: EmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailInclude<ExtArgs> | null
+    where?: EmailWhereInput
+    orderBy?: EmailOrderByWithRelationInput | EmailOrderByWithRelationInput[]
+    cursor?: EmailWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmailScalarFieldEnum | EmailScalarFieldEnum[]
   }
 
   /**
@@ -5406,6 +5918,8 @@ export namespace Prisma {
     useTls?: boolean
     createdAt?: boolean
     user?: boolean | ImapCredential$userArgs<ExtArgs>
+    emails?: boolean | ImapCredential$emailsArgs<ExtArgs>
+    _count?: boolean | ImapCredentialCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["imapCredential"]>
 
   export type ImapCredentialSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5446,6 +5960,8 @@ export namespace Prisma {
   export type ImapCredentialOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "imapHost" | "imapPort" | "emailAddress" | "encryptedPassword" | "useTls" | "createdAt", ExtArgs["result"]["imapCredential"]>
   export type ImapCredentialInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | ImapCredential$userArgs<ExtArgs>
+    emails?: boolean | ImapCredential$emailsArgs<ExtArgs>
+    _count?: boolean | ImapCredentialCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ImapCredentialIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | ImapCredential$userArgs<ExtArgs>
@@ -5458,6 +5974,7 @@ export namespace Prisma {
     name: "ImapCredential"
     objects: {
       user: Prisma.$UserPayload<ExtArgs> | null
+      emails: Prisma.$EmailPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5863,6 +6380,7 @@ export namespace Prisma {
   export interface Prisma__ImapCredentialClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends ImapCredential$userArgs<ExtArgs> = {}>(args?: Subset<T, ImapCredential$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    emails<T extends ImapCredential$emailsArgs<ExtArgs> = {}>(args?: Subset<T, ImapCredential$emailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6320,6 +6838,30 @@ export namespace Prisma {
   }
 
   /**
+   * ImapCredential.emails
+   */
+  export type ImapCredential$emailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Email
+     */
+    select?: EmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Email
+     */
+    omit?: EmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailInclude<ExtArgs> | null
+    where?: EmailWhereInput
+    orderBy?: EmailOrderByWithRelationInput | EmailOrderByWithRelationInput[]
+    cursor?: EmailWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmailScalarFieldEnum | EmailScalarFieldEnum[]
+  }
+
+  /**
    * ImapCredential without action
    */
   export type ImapCredentialDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6514,6 +7056,9 @@ export namespace Prisma {
     employeeCustomers?: boolean | Customer$employeeCustomersArgs<ExtArgs>
     timeEntries?: boolean | Customer$timeEntriesArgs<ExtArgs>
     emailActivities?: boolean | Customer$emailActivitiesArgs<ExtArgs>
+    emails?: boolean | Customer$emailsArgs<ExtArgs>
+    fortnoxCustomer?: boolean | Customer$fortnoxCustomerArgs<ExtArgs>
+    fortnoxInvoices?: boolean | Customer$fortnoxInvoicesArgs<ExtArgs>
     _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["customer"]>
 
@@ -6552,6 +7097,9 @@ export namespace Prisma {
     employeeCustomers?: boolean | Customer$employeeCustomersArgs<ExtArgs>
     timeEntries?: boolean | Customer$timeEntriesArgs<ExtArgs>
     emailActivities?: boolean | Customer$emailActivitiesArgs<ExtArgs>
+    emails?: boolean | Customer$emailsArgs<ExtArgs>
+    fortnoxCustomer?: boolean | Customer$fortnoxCustomerArgs<ExtArgs>
+    fortnoxInvoices?: boolean | Customer$fortnoxInvoicesArgs<ExtArgs>
     _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CustomerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6568,6 +7116,9 @@ export namespace Prisma {
       employeeCustomers: Prisma.$EmployeeCustomerPayload<ExtArgs>[]
       timeEntries: Prisma.$TimeEntryPayload<ExtArgs>[]
       emailActivities: Prisma.$EmailActivityPayload<ExtArgs>[]
+      emails: Prisma.$EmailPayload<ExtArgs>[]
+      fortnoxCustomer: Prisma.$FortnoxCustomerPayload<ExtArgs> | null
+      fortnoxInvoices: Prisma.$FortnoxInvoicePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6974,6 +7525,9 @@ export namespace Prisma {
     employeeCustomers<T extends Customer$employeeCustomersArgs<ExtArgs> = {}>(args?: Subset<T, Customer$employeeCustomersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeCustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     timeEntries<T extends Customer$timeEntriesArgs<ExtArgs> = {}>(args?: Subset<T, Customer$timeEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     emailActivities<T extends Customer$emailActivitiesArgs<ExtArgs> = {}>(args?: Subset<T, Customer$emailActivitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    emails<T extends Customer$emailsArgs<ExtArgs> = {}>(args?: Subset<T, Customer$emailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    fortnoxCustomer<T extends Customer$fortnoxCustomerArgs<ExtArgs> = {}>(args?: Subset<T, Customer$fortnoxCustomerArgs<ExtArgs>>): Prisma__FortnoxCustomerClient<$Result.GetResult<Prisma.$FortnoxCustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    fortnoxInvoices<T extends Customer$fortnoxInvoicesArgs<ExtArgs> = {}>(args?: Subset<T, Customer$fortnoxInvoicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxInvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7479,6 +8033,73 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: EmailActivityScalarFieldEnum | EmailActivityScalarFieldEnum[]
+  }
+
+  /**
+   * Customer.emails
+   */
+  export type Customer$emailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Email
+     */
+    select?: EmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Email
+     */
+    omit?: EmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailInclude<ExtArgs> | null
+    where?: EmailWhereInput
+    orderBy?: EmailOrderByWithRelationInput | EmailOrderByWithRelationInput[]
+    cursor?: EmailWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmailScalarFieldEnum | EmailScalarFieldEnum[]
+  }
+
+  /**
+   * Customer.fortnoxCustomer
+   */
+  export type Customer$fortnoxCustomerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxCustomer
+     */
+    select?: FortnoxCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxCustomer
+     */
+    omit?: FortnoxCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxCustomerInclude<ExtArgs> | null
+    where?: FortnoxCustomerWhereInput
+  }
+
+  /**
+   * Customer.fortnoxInvoices
+   */
+  export type Customer$fortnoxInvoicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoice
+     */
+    select?: FortnoxInvoiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoice
+     */
+    omit?: FortnoxInvoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceInclude<ExtArgs> | null
+    where?: FortnoxInvoiceWhereInput
+    orderBy?: FortnoxInvoiceOrderByWithRelationInput | FortnoxInvoiceOrderByWithRelationInput[]
+    cursor?: FortnoxInvoiceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FortnoxInvoiceScalarFieldEnum | FortnoxInvoiceScalarFieldEnum[]
   }
 
   /**
@@ -10890,6 +11511,5088 @@ export namespace Prisma {
 
 
   /**
+   * Model Email
+   */
+
+  export type AggregateEmail = {
+    _count: EmailCountAggregateOutputType | null
+    _min: EmailMinAggregateOutputType | null
+    _max: EmailMaxAggregateOutputType | null
+  }
+
+  export type EmailMinAggregateOutputType = {
+    id: string | null
+    messageId: string | null
+    source: string | null
+    imapCredentialId: string | null
+    userId: string | null
+    customerId: string | null
+    direction: string | null
+    subject: string | null
+    fromAddress: string | null
+    fromName: string | null
+    replyTo: string | null
+    sentAt: Date | null
+    bodyText: string | null
+    bodyHtml: string | null
+    inReplyTo: string | null
+    threadId: string | null
+    mailbox: string | null
+    createdAt: Date | null
+  }
+
+  export type EmailMaxAggregateOutputType = {
+    id: string | null
+    messageId: string | null
+    source: string | null
+    imapCredentialId: string | null
+    userId: string | null
+    customerId: string | null
+    direction: string | null
+    subject: string | null
+    fromAddress: string | null
+    fromName: string | null
+    replyTo: string | null
+    sentAt: Date | null
+    bodyText: string | null
+    bodyHtml: string | null
+    inReplyTo: string | null
+    threadId: string | null
+    mailbox: string | null
+    createdAt: Date | null
+  }
+
+  export type EmailCountAggregateOutputType = {
+    id: number
+    messageId: number
+    source: number
+    imapCredentialId: number
+    userId: number
+    customerId: number
+    direction: number
+    subject: number
+    fromAddress: number
+    fromName: number
+    toAddresses: number
+    ccAddresses: number
+    bccAddresses: number
+    replyTo: number
+    sentAt: number
+    bodyText: number
+    bodyHtml: number
+    inReplyTo: number
+    threadId: number
+    mailbox: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type EmailMinAggregateInputType = {
+    id?: true
+    messageId?: true
+    source?: true
+    imapCredentialId?: true
+    userId?: true
+    customerId?: true
+    direction?: true
+    subject?: true
+    fromAddress?: true
+    fromName?: true
+    replyTo?: true
+    sentAt?: true
+    bodyText?: true
+    bodyHtml?: true
+    inReplyTo?: true
+    threadId?: true
+    mailbox?: true
+    createdAt?: true
+  }
+
+  export type EmailMaxAggregateInputType = {
+    id?: true
+    messageId?: true
+    source?: true
+    imapCredentialId?: true
+    userId?: true
+    customerId?: true
+    direction?: true
+    subject?: true
+    fromAddress?: true
+    fromName?: true
+    replyTo?: true
+    sentAt?: true
+    bodyText?: true
+    bodyHtml?: true
+    inReplyTo?: true
+    threadId?: true
+    mailbox?: true
+    createdAt?: true
+  }
+
+  export type EmailCountAggregateInputType = {
+    id?: true
+    messageId?: true
+    source?: true
+    imapCredentialId?: true
+    userId?: true
+    customerId?: true
+    direction?: true
+    subject?: true
+    fromAddress?: true
+    fromName?: true
+    toAddresses?: true
+    ccAddresses?: true
+    bccAddresses?: true
+    replyTo?: true
+    sentAt?: true
+    bodyText?: true
+    bodyHtml?: true
+    inReplyTo?: true
+    threadId?: true
+    mailbox?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type EmailAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Email to aggregate.
+     */
+    where?: EmailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Emails to fetch.
+     */
+    orderBy?: EmailOrderByWithRelationInput | EmailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EmailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Emails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Emails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Emails
+    **/
+    _count?: true | EmailCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EmailMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EmailMaxAggregateInputType
+  }
+
+  export type GetEmailAggregateType<T extends EmailAggregateArgs> = {
+        [P in keyof T & keyof AggregateEmail]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEmail[P]>
+      : GetScalarType<T[P], AggregateEmail[P]>
+  }
+
+
+
+
+  export type EmailGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmailWhereInput
+    orderBy?: EmailOrderByWithAggregationInput | EmailOrderByWithAggregationInput[]
+    by: EmailScalarFieldEnum[] | EmailScalarFieldEnum
+    having?: EmailScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EmailCountAggregateInputType | true
+    _min?: EmailMinAggregateInputType
+    _max?: EmailMaxAggregateInputType
+  }
+
+  export type EmailGroupByOutputType = {
+    id: string
+    messageId: string
+    source: string
+    imapCredentialId: string | null
+    userId: string | null
+    customerId: string | null
+    direction: string
+    subject: string | null
+    fromAddress: string
+    fromName: string | null
+    toAddresses: JsonValue
+    ccAddresses: JsonValue
+    bccAddresses: JsonValue
+    replyTo: string | null
+    sentAt: Date | null
+    bodyText: string | null
+    bodyHtml: string | null
+    inReplyTo: string | null
+    threadId: string | null
+    mailbox: string | null
+    createdAt: Date
+    _count: EmailCountAggregateOutputType | null
+    _min: EmailMinAggregateOutputType | null
+    _max: EmailMaxAggregateOutputType | null
+  }
+
+  type GetEmailGroupByPayload<T extends EmailGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EmailGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EmailGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EmailGroupByOutputType[P]>
+            : GetScalarType<T[P], EmailGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EmailSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    messageId?: boolean
+    source?: boolean
+    imapCredentialId?: boolean
+    userId?: boolean
+    customerId?: boolean
+    direction?: boolean
+    subject?: boolean
+    fromAddress?: boolean
+    fromName?: boolean
+    toAddresses?: boolean
+    ccAddresses?: boolean
+    bccAddresses?: boolean
+    replyTo?: boolean
+    sentAt?: boolean
+    bodyText?: boolean
+    bodyHtml?: boolean
+    inReplyTo?: boolean
+    threadId?: boolean
+    mailbox?: boolean
+    createdAt?: boolean
+    imapCredential?: boolean | Email$imapCredentialArgs<ExtArgs>
+    user?: boolean | Email$userArgs<ExtArgs>
+    customer?: boolean | Email$customerArgs<ExtArgs>
+  }, ExtArgs["result"]["email"]>
+
+  export type EmailSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    messageId?: boolean
+    source?: boolean
+    imapCredentialId?: boolean
+    userId?: boolean
+    customerId?: boolean
+    direction?: boolean
+    subject?: boolean
+    fromAddress?: boolean
+    fromName?: boolean
+    toAddresses?: boolean
+    ccAddresses?: boolean
+    bccAddresses?: boolean
+    replyTo?: boolean
+    sentAt?: boolean
+    bodyText?: boolean
+    bodyHtml?: boolean
+    inReplyTo?: boolean
+    threadId?: boolean
+    mailbox?: boolean
+    createdAt?: boolean
+    imapCredential?: boolean | Email$imapCredentialArgs<ExtArgs>
+    user?: boolean | Email$userArgs<ExtArgs>
+    customer?: boolean | Email$customerArgs<ExtArgs>
+  }, ExtArgs["result"]["email"]>
+
+  export type EmailSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    messageId?: boolean
+    source?: boolean
+    imapCredentialId?: boolean
+    userId?: boolean
+    customerId?: boolean
+    direction?: boolean
+    subject?: boolean
+    fromAddress?: boolean
+    fromName?: boolean
+    toAddresses?: boolean
+    ccAddresses?: boolean
+    bccAddresses?: boolean
+    replyTo?: boolean
+    sentAt?: boolean
+    bodyText?: boolean
+    bodyHtml?: boolean
+    inReplyTo?: boolean
+    threadId?: boolean
+    mailbox?: boolean
+    createdAt?: boolean
+    imapCredential?: boolean | Email$imapCredentialArgs<ExtArgs>
+    user?: boolean | Email$userArgs<ExtArgs>
+    customer?: boolean | Email$customerArgs<ExtArgs>
+  }, ExtArgs["result"]["email"]>
+
+  export type EmailSelectScalar = {
+    id?: boolean
+    messageId?: boolean
+    source?: boolean
+    imapCredentialId?: boolean
+    userId?: boolean
+    customerId?: boolean
+    direction?: boolean
+    subject?: boolean
+    fromAddress?: boolean
+    fromName?: boolean
+    toAddresses?: boolean
+    ccAddresses?: boolean
+    bccAddresses?: boolean
+    replyTo?: boolean
+    sentAt?: boolean
+    bodyText?: boolean
+    bodyHtml?: boolean
+    inReplyTo?: boolean
+    threadId?: boolean
+    mailbox?: boolean
+    createdAt?: boolean
+  }
+
+  export type EmailOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "messageId" | "source" | "imapCredentialId" | "userId" | "customerId" | "direction" | "subject" | "fromAddress" | "fromName" | "toAddresses" | "ccAddresses" | "bccAddresses" | "replyTo" | "sentAt" | "bodyText" | "bodyHtml" | "inReplyTo" | "threadId" | "mailbox" | "createdAt", ExtArgs["result"]["email"]>
+  export type EmailInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    imapCredential?: boolean | Email$imapCredentialArgs<ExtArgs>
+    user?: boolean | Email$userArgs<ExtArgs>
+    customer?: boolean | Email$customerArgs<ExtArgs>
+  }
+  export type EmailIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    imapCredential?: boolean | Email$imapCredentialArgs<ExtArgs>
+    user?: boolean | Email$userArgs<ExtArgs>
+    customer?: boolean | Email$customerArgs<ExtArgs>
+  }
+  export type EmailIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    imapCredential?: boolean | Email$imapCredentialArgs<ExtArgs>
+    user?: boolean | Email$userArgs<ExtArgs>
+    customer?: boolean | Email$customerArgs<ExtArgs>
+  }
+
+  export type $EmailPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Email"
+    objects: {
+      imapCredential: Prisma.$ImapCredentialPayload<ExtArgs> | null
+      user: Prisma.$UserPayload<ExtArgs> | null
+      customer: Prisma.$CustomerPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      /**
+       * RFC 2822 Message-ID header – globally unique, used to prevent duplicates
+       */
+      messageId: string
+      /**
+       * Source provider: 'imap' | 'gmail' | 'outlook' | 'exchange' | …
+       */
+      source: string
+      imapCredentialId: string | null
+      /**
+       * Auto-populated by DB trigger matching from_address → users.email
+       */
+      userId: string | null
+      customerId: string | null
+      /**
+       * 'sent' | 'received'
+       */
+      direction: string
+      subject: string | null
+      fromAddress: string
+      fromName: string | null
+      /**
+       * JSONB arrays of {address: string, name?: string}
+       */
+      toAddresses: Prisma.JsonValue
+      ccAddresses: Prisma.JsonValue
+      bccAddresses: Prisma.JsonValue
+      replyTo: string | null
+      sentAt: Date | null
+      bodyText: string | null
+      bodyHtml: string | null
+      inReplyTo: string | null
+      threadId: string | null
+      /**
+       * Mailbox name where it was found, e.g. 'INBOX', '[Gmail]/Sent Mail'
+       */
+      mailbox: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["email"]>
+    composites: {}
+  }
+
+  type EmailGetPayload<S extends boolean | null | undefined | EmailDefaultArgs> = $Result.GetResult<Prisma.$EmailPayload, S>
+
+  type EmailCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EmailFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EmailCountAggregateInputType | true
+    }
+
+  export interface EmailDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Email'], meta: { name: 'Email' } }
+    /**
+     * Find zero or one Email that matches the filter.
+     * @param {EmailFindUniqueArgs} args - Arguments to find a Email
+     * @example
+     * // Get one Email
+     * const email = await prisma.email.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EmailFindUniqueArgs>(args: SelectSubset<T, EmailFindUniqueArgs<ExtArgs>>): Prisma__EmailClient<$Result.GetResult<Prisma.$EmailPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Email that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EmailFindUniqueOrThrowArgs} args - Arguments to find a Email
+     * @example
+     * // Get one Email
+     * const email = await prisma.email.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EmailFindUniqueOrThrowArgs>(args: SelectSubset<T, EmailFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmailClient<$Result.GetResult<Prisma.$EmailPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Email that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailFindFirstArgs} args - Arguments to find a Email
+     * @example
+     * // Get one Email
+     * const email = await prisma.email.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EmailFindFirstArgs>(args?: SelectSubset<T, EmailFindFirstArgs<ExtArgs>>): Prisma__EmailClient<$Result.GetResult<Prisma.$EmailPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Email that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailFindFirstOrThrowArgs} args - Arguments to find a Email
+     * @example
+     * // Get one Email
+     * const email = await prisma.email.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EmailFindFirstOrThrowArgs>(args?: SelectSubset<T, EmailFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmailClient<$Result.GetResult<Prisma.$EmailPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Emails that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Emails
+     * const emails = await prisma.email.findMany()
+     * 
+     * // Get first 10 Emails
+     * const emails = await prisma.email.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const emailWithIdOnly = await prisma.email.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EmailFindManyArgs>(args?: SelectSubset<T, EmailFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Email.
+     * @param {EmailCreateArgs} args - Arguments to create a Email.
+     * @example
+     * // Create one Email
+     * const Email = await prisma.email.create({
+     *   data: {
+     *     // ... data to create a Email
+     *   }
+     * })
+     * 
+     */
+    create<T extends EmailCreateArgs>(args: SelectSubset<T, EmailCreateArgs<ExtArgs>>): Prisma__EmailClient<$Result.GetResult<Prisma.$EmailPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Emails.
+     * @param {EmailCreateManyArgs} args - Arguments to create many Emails.
+     * @example
+     * // Create many Emails
+     * const email = await prisma.email.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EmailCreateManyArgs>(args?: SelectSubset<T, EmailCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Emails and returns the data saved in the database.
+     * @param {EmailCreateManyAndReturnArgs} args - Arguments to create many Emails.
+     * @example
+     * // Create many Emails
+     * const email = await prisma.email.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Emails and only return the `id`
+     * const emailWithIdOnly = await prisma.email.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EmailCreateManyAndReturnArgs>(args?: SelectSubset<T, EmailCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Email.
+     * @param {EmailDeleteArgs} args - Arguments to delete one Email.
+     * @example
+     * // Delete one Email
+     * const Email = await prisma.email.delete({
+     *   where: {
+     *     // ... filter to delete one Email
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EmailDeleteArgs>(args: SelectSubset<T, EmailDeleteArgs<ExtArgs>>): Prisma__EmailClient<$Result.GetResult<Prisma.$EmailPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Email.
+     * @param {EmailUpdateArgs} args - Arguments to update one Email.
+     * @example
+     * // Update one Email
+     * const email = await prisma.email.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EmailUpdateArgs>(args: SelectSubset<T, EmailUpdateArgs<ExtArgs>>): Prisma__EmailClient<$Result.GetResult<Prisma.$EmailPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Emails.
+     * @param {EmailDeleteManyArgs} args - Arguments to filter Emails to delete.
+     * @example
+     * // Delete a few Emails
+     * const { count } = await prisma.email.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EmailDeleteManyArgs>(args?: SelectSubset<T, EmailDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Emails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Emails
+     * const email = await prisma.email.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EmailUpdateManyArgs>(args: SelectSubset<T, EmailUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Emails and returns the data updated in the database.
+     * @param {EmailUpdateManyAndReturnArgs} args - Arguments to update many Emails.
+     * @example
+     * // Update many Emails
+     * const email = await prisma.email.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Emails and only return the `id`
+     * const emailWithIdOnly = await prisma.email.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EmailUpdateManyAndReturnArgs>(args: SelectSubset<T, EmailUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Email.
+     * @param {EmailUpsertArgs} args - Arguments to update or create a Email.
+     * @example
+     * // Update or create a Email
+     * const email = await prisma.email.upsert({
+     *   create: {
+     *     // ... data to create a Email
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Email we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EmailUpsertArgs>(args: SelectSubset<T, EmailUpsertArgs<ExtArgs>>): Prisma__EmailClient<$Result.GetResult<Prisma.$EmailPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Emails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailCountArgs} args - Arguments to filter Emails to count.
+     * @example
+     * // Count the number of Emails
+     * const count = await prisma.email.count({
+     *   where: {
+     *     // ... the filter for the Emails we want to count
+     *   }
+     * })
+    **/
+    count<T extends EmailCountArgs>(
+      args?: Subset<T, EmailCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EmailCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Email.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EmailAggregateArgs>(args: Subset<T, EmailAggregateArgs>): Prisma.PrismaPromise<GetEmailAggregateType<T>>
+
+    /**
+     * Group by Email.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EmailGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EmailGroupByArgs['orderBy'] }
+        : { orderBy?: EmailGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EmailGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmailGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Email model
+   */
+  readonly fields: EmailFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Email.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EmailClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    imapCredential<T extends Email$imapCredentialArgs<ExtArgs> = {}>(args?: Subset<T, Email$imapCredentialArgs<ExtArgs>>): Prisma__ImapCredentialClient<$Result.GetResult<Prisma.$ImapCredentialPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    user<T extends Email$userArgs<ExtArgs> = {}>(args?: Subset<T, Email$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    customer<T extends Email$customerArgs<ExtArgs> = {}>(args?: Subset<T, Email$customerArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Email model
+   */
+  interface EmailFieldRefs {
+    readonly id: FieldRef<"Email", 'String'>
+    readonly messageId: FieldRef<"Email", 'String'>
+    readonly source: FieldRef<"Email", 'String'>
+    readonly imapCredentialId: FieldRef<"Email", 'String'>
+    readonly userId: FieldRef<"Email", 'String'>
+    readonly customerId: FieldRef<"Email", 'String'>
+    readonly direction: FieldRef<"Email", 'String'>
+    readonly subject: FieldRef<"Email", 'String'>
+    readonly fromAddress: FieldRef<"Email", 'String'>
+    readonly fromName: FieldRef<"Email", 'String'>
+    readonly toAddresses: FieldRef<"Email", 'Json'>
+    readonly ccAddresses: FieldRef<"Email", 'Json'>
+    readonly bccAddresses: FieldRef<"Email", 'Json'>
+    readonly replyTo: FieldRef<"Email", 'String'>
+    readonly sentAt: FieldRef<"Email", 'DateTime'>
+    readonly bodyText: FieldRef<"Email", 'String'>
+    readonly bodyHtml: FieldRef<"Email", 'String'>
+    readonly inReplyTo: FieldRef<"Email", 'String'>
+    readonly threadId: FieldRef<"Email", 'String'>
+    readonly mailbox: FieldRef<"Email", 'String'>
+    readonly createdAt: FieldRef<"Email", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Email findUnique
+   */
+  export type EmailFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Email
+     */
+    select?: EmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Email
+     */
+    omit?: EmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailInclude<ExtArgs> | null
+    /**
+     * Filter, which Email to fetch.
+     */
+    where: EmailWhereUniqueInput
+  }
+
+  /**
+   * Email findUniqueOrThrow
+   */
+  export type EmailFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Email
+     */
+    select?: EmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Email
+     */
+    omit?: EmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailInclude<ExtArgs> | null
+    /**
+     * Filter, which Email to fetch.
+     */
+    where: EmailWhereUniqueInput
+  }
+
+  /**
+   * Email findFirst
+   */
+  export type EmailFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Email
+     */
+    select?: EmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Email
+     */
+    omit?: EmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailInclude<ExtArgs> | null
+    /**
+     * Filter, which Email to fetch.
+     */
+    where?: EmailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Emails to fetch.
+     */
+    orderBy?: EmailOrderByWithRelationInput | EmailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Emails.
+     */
+    cursor?: EmailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Emails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Emails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Emails.
+     */
+    distinct?: EmailScalarFieldEnum | EmailScalarFieldEnum[]
+  }
+
+  /**
+   * Email findFirstOrThrow
+   */
+  export type EmailFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Email
+     */
+    select?: EmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Email
+     */
+    omit?: EmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailInclude<ExtArgs> | null
+    /**
+     * Filter, which Email to fetch.
+     */
+    where?: EmailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Emails to fetch.
+     */
+    orderBy?: EmailOrderByWithRelationInput | EmailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Emails.
+     */
+    cursor?: EmailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Emails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Emails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Emails.
+     */
+    distinct?: EmailScalarFieldEnum | EmailScalarFieldEnum[]
+  }
+
+  /**
+   * Email findMany
+   */
+  export type EmailFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Email
+     */
+    select?: EmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Email
+     */
+    omit?: EmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailInclude<ExtArgs> | null
+    /**
+     * Filter, which Emails to fetch.
+     */
+    where?: EmailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Emails to fetch.
+     */
+    orderBy?: EmailOrderByWithRelationInput | EmailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Emails.
+     */
+    cursor?: EmailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Emails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Emails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Emails.
+     */
+    distinct?: EmailScalarFieldEnum | EmailScalarFieldEnum[]
+  }
+
+  /**
+   * Email create
+   */
+  export type EmailCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Email
+     */
+    select?: EmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Email
+     */
+    omit?: EmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Email.
+     */
+    data: XOR<EmailCreateInput, EmailUncheckedCreateInput>
+  }
+
+  /**
+   * Email createMany
+   */
+  export type EmailCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Emails.
+     */
+    data: EmailCreateManyInput | EmailCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Email createManyAndReturn
+   */
+  export type EmailCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Email
+     */
+    select?: EmailSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Email
+     */
+    omit?: EmailOmit<ExtArgs> | null
+    /**
+     * The data used to create many Emails.
+     */
+    data: EmailCreateManyInput | EmailCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Email update
+   */
+  export type EmailUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Email
+     */
+    select?: EmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Email
+     */
+    omit?: EmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Email.
+     */
+    data: XOR<EmailUpdateInput, EmailUncheckedUpdateInput>
+    /**
+     * Choose, which Email to update.
+     */
+    where: EmailWhereUniqueInput
+  }
+
+  /**
+   * Email updateMany
+   */
+  export type EmailUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Emails.
+     */
+    data: XOR<EmailUpdateManyMutationInput, EmailUncheckedUpdateManyInput>
+    /**
+     * Filter which Emails to update
+     */
+    where?: EmailWhereInput
+    /**
+     * Limit how many Emails to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Email updateManyAndReturn
+   */
+  export type EmailUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Email
+     */
+    select?: EmailSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Email
+     */
+    omit?: EmailOmit<ExtArgs> | null
+    /**
+     * The data used to update Emails.
+     */
+    data: XOR<EmailUpdateManyMutationInput, EmailUncheckedUpdateManyInput>
+    /**
+     * Filter which Emails to update
+     */
+    where?: EmailWhereInput
+    /**
+     * Limit how many Emails to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Email upsert
+   */
+  export type EmailUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Email
+     */
+    select?: EmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Email
+     */
+    omit?: EmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Email to update in case it exists.
+     */
+    where: EmailWhereUniqueInput
+    /**
+     * In case the Email found by the `where` argument doesn't exist, create a new Email with this data.
+     */
+    create: XOR<EmailCreateInput, EmailUncheckedCreateInput>
+    /**
+     * In case the Email was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EmailUpdateInput, EmailUncheckedUpdateInput>
+  }
+
+  /**
+   * Email delete
+   */
+  export type EmailDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Email
+     */
+    select?: EmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Email
+     */
+    omit?: EmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailInclude<ExtArgs> | null
+    /**
+     * Filter which Email to delete.
+     */
+    where: EmailWhereUniqueInput
+  }
+
+  /**
+   * Email deleteMany
+   */
+  export type EmailDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Emails to delete
+     */
+    where?: EmailWhereInput
+    /**
+     * Limit how many Emails to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Email.imapCredential
+   */
+  export type Email$imapCredentialArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ImapCredential
+     */
+    select?: ImapCredentialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ImapCredential
+     */
+    omit?: ImapCredentialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ImapCredentialInclude<ExtArgs> | null
+    where?: ImapCredentialWhereInput
+  }
+
+  /**
+   * Email.user
+   */
+  export type Email$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * Email.customer
+   */
+  export type Email$customerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Customer
+     */
+    select?: CustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Customer
+     */
+    omit?: CustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomerInclude<ExtArgs> | null
+    where?: CustomerWhereInput
+  }
+
+  /**
+   * Email without action
+   */
+  export type EmailDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Email
+     */
+    select?: EmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Email
+     */
+    omit?: EmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FortnoxCustomer
+   */
+
+  export type AggregateFortnoxCustomer = {
+    _count: FortnoxCustomerCountAggregateOutputType | null
+    _min: FortnoxCustomerMinAggregateOutputType | null
+    _max: FortnoxCustomerMaxAggregateOutputType | null
+  }
+
+  export type FortnoxCustomerMinAggregateOutputType = {
+    id: string | null
+    customerNumber: string | null
+    customerId: string | null
+    name: string | null
+    organisationNumber: string | null
+    email: string | null
+    phone: string | null
+    address: string | null
+    zipCode: string | null
+    city: string | null
+    country: string | null
+    currency: string | null
+    active: boolean | null
+    syncedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type FortnoxCustomerMaxAggregateOutputType = {
+    id: string | null
+    customerNumber: string | null
+    customerId: string | null
+    name: string | null
+    organisationNumber: string | null
+    email: string | null
+    phone: string | null
+    address: string | null
+    zipCode: string | null
+    city: string | null
+    country: string | null
+    currency: string | null
+    active: boolean | null
+    syncedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type FortnoxCustomerCountAggregateOutputType = {
+    id: number
+    customerNumber: number
+    customerId: number
+    name: number
+    organisationNumber: number
+    email: number
+    phone: number
+    address: number
+    zipCode: number
+    city: number
+    country: number
+    currency: number
+    active: number
+    rawData: number
+    syncedAt: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type FortnoxCustomerMinAggregateInputType = {
+    id?: true
+    customerNumber?: true
+    customerId?: true
+    name?: true
+    organisationNumber?: true
+    email?: true
+    phone?: true
+    address?: true
+    zipCode?: true
+    city?: true
+    country?: true
+    currency?: true
+    active?: true
+    syncedAt?: true
+    createdAt?: true
+  }
+
+  export type FortnoxCustomerMaxAggregateInputType = {
+    id?: true
+    customerNumber?: true
+    customerId?: true
+    name?: true
+    organisationNumber?: true
+    email?: true
+    phone?: true
+    address?: true
+    zipCode?: true
+    city?: true
+    country?: true
+    currency?: true
+    active?: true
+    syncedAt?: true
+    createdAt?: true
+  }
+
+  export type FortnoxCustomerCountAggregateInputType = {
+    id?: true
+    customerNumber?: true
+    customerId?: true
+    name?: true
+    organisationNumber?: true
+    email?: true
+    phone?: true
+    address?: true
+    zipCode?: true
+    city?: true
+    country?: true
+    currency?: true
+    active?: true
+    rawData?: true
+    syncedAt?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type FortnoxCustomerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FortnoxCustomer to aggregate.
+     */
+    where?: FortnoxCustomerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxCustomers to fetch.
+     */
+    orderBy?: FortnoxCustomerOrderByWithRelationInput | FortnoxCustomerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FortnoxCustomerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxCustomers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxCustomers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FortnoxCustomers
+    **/
+    _count?: true | FortnoxCustomerCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FortnoxCustomerMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FortnoxCustomerMaxAggregateInputType
+  }
+
+  export type GetFortnoxCustomerAggregateType<T extends FortnoxCustomerAggregateArgs> = {
+        [P in keyof T & keyof AggregateFortnoxCustomer]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFortnoxCustomer[P]>
+      : GetScalarType<T[P], AggregateFortnoxCustomer[P]>
+  }
+
+
+
+
+  export type FortnoxCustomerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FortnoxCustomerWhereInput
+    orderBy?: FortnoxCustomerOrderByWithAggregationInput | FortnoxCustomerOrderByWithAggregationInput[]
+    by: FortnoxCustomerScalarFieldEnum[] | FortnoxCustomerScalarFieldEnum
+    having?: FortnoxCustomerScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FortnoxCustomerCountAggregateInputType | true
+    _min?: FortnoxCustomerMinAggregateInputType
+    _max?: FortnoxCustomerMaxAggregateInputType
+  }
+
+  export type FortnoxCustomerGroupByOutputType = {
+    id: string
+    customerNumber: string
+    customerId: string | null
+    name: string
+    organisationNumber: string | null
+    email: string | null
+    phone: string | null
+    address: string | null
+    zipCode: string | null
+    city: string | null
+    country: string | null
+    currency: string | null
+    active: boolean
+    rawData: JsonValue | null
+    syncedAt: Date
+    createdAt: Date
+    _count: FortnoxCustomerCountAggregateOutputType | null
+    _min: FortnoxCustomerMinAggregateOutputType | null
+    _max: FortnoxCustomerMaxAggregateOutputType | null
+  }
+
+  type GetFortnoxCustomerGroupByPayload<T extends FortnoxCustomerGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FortnoxCustomerGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FortnoxCustomerGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FortnoxCustomerGroupByOutputType[P]>
+            : GetScalarType<T[P], FortnoxCustomerGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FortnoxCustomerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    customerNumber?: boolean
+    customerId?: boolean
+    name?: boolean
+    organisationNumber?: boolean
+    email?: boolean
+    phone?: boolean
+    address?: boolean
+    zipCode?: boolean
+    city?: boolean
+    country?: boolean
+    currency?: boolean
+    active?: boolean
+    rawData?: boolean
+    syncedAt?: boolean
+    createdAt?: boolean
+    customer?: boolean | FortnoxCustomer$customerArgs<ExtArgs>
+    invoices?: boolean | FortnoxCustomer$invoicesArgs<ExtArgs>
+    _count?: boolean | FortnoxCustomerCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxCustomer"]>
+
+  export type FortnoxCustomerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    customerNumber?: boolean
+    customerId?: boolean
+    name?: boolean
+    organisationNumber?: boolean
+    email?: boolean
+    phone?: boolean
+    address?: boolean
+    zipCode?: boolean
+    city?: boolean
+    country?: boolean
+    currency?: boolean
+    active?: boolean
+    rawData?: boolean
+    syncedAt?: boolean
+    createdAt?: boolean
+    customer?: boolean | FortnoxCustomer$customerArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxCustomer"]>
+
+  export type FortnoxCustomerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    customerNumber?: boolean
+    customerId?: boolean
+    name?: boolean
+    organisationNumber?: boolean
+    email?: boolean
+    phone?: boolean
+    address?: boolean
+    zipCode?: boolean
+    city?: boolean
+    country?: boolean
+    currency?: boolean
+    active?: boolean
+    rawData?: boolean
+    syncedAt?: boolean
+    createdAt?: boolean
+    customer?: boolean | FortnoxCustomer$customerArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxCustomer"]>
+
+  export type FortnoxCustomerSelectScalar = {
+    id?: boolean
+    customerNumber?: boolean
+    customerId?: boolean
+    name?: boolean
+    organisationNumber?: boolean
+    email?: boolean
+    phone?: boolean
+    address?: boolean
+    zipCode?: boolean
+    city?: boolean
+    country?: boolean
+    currency?: boolean
+    active?: boolean
+    rawData?: boolean
+    syncedAt?: boolean
+    createdAt?: boolean
+  }
+
+  export type FortnoxCustomerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "customerNumber" | "customerId" | "name" | "organisationNumber" | "email" | "phone" | "address" | "zipCode" | "city" | "country" | "currency" | "active" | "rawData" | "syncedAt" | "createdAt", ExtArgs["result"]["fortnoxCustomer"]>
+  export type FortnoxCustomerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | FortnoxCustomer$customerArgs<ExtArgs>
+    invoices?: boolean | FortnoxCustomer$invoicesArgs<ExtArgs>
+    _count?: boolean | FortnoxCustomerCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FortnoxCustomerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | FortnoxCustomer$customerArgs<ExtArgs>
+  }
+  export type FortnoxCustomerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | FortnoxCustomer$customerArgs<ExtArgs>
+  }
+
+  export type $FortnoxCustomerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FortnoxCustomer"
+    objects: {
+      customer: Prisma.$CustomerPayload<ExtArgs> | null
+      invoices: Prisma.$FortnoxInvoicePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      customerNumber: string
+      /**
+       * Optional link to our normalised Customer row (one-to-one)
+       */
+      customerId: string | null
+      name: string
+      organisationNumber: string | null
+      email: string | null
+      phone: string | null
+      address: string | null
+      zipCode: string | null
+      city: string | null
+      country: string | null
+      currency: string | null
+      active: boolean
+      /**
+       * Full Fortnox API response, preserved for forward-compatibility
+       */
+      rawData: Prisma.JsonValue | null
+      syncedAt: Date
+      createdAt: Date
+    }, ExtArgs["result"]["fortnoxCustomer"]>
+    composites: {}
+  }
+
+  type FortnoxCustomerGetPayload<S extends boolean | null | undefined | FortnoxCustomerDefaultArgs> = $Result.GetResult<Prisma.$FortnoxCustomerPayload, S>
+
+  type FortnoxCustomerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FortnoxCustomerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FortnoxCustomerCountAggregateInputType | true
+    }
+
+  export interface FortnoxCustomerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FortnoxCustomer'], meta: { name: 'FortnoxCustomer' } }
+    /**
+     * Find zero or one FortnoxCustomer that matches the filter.
+     * @param {FortnoxCustomerFindUniqueArgs} args - Arguments to find a FortnoxCustomer
+     * @example
+     * // Get one FortnoxCustomer
+     * const fortnoxCustomer = await prisma.fortnoxCustomer.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FortnoxCustomerFindUniqueArgs>(args: SelectSubset<T, FortnoxCustomerFindUniqueArgs<ExtArgs>>): Prisma__FortnoxCustomerClient<$Result.GetResult<Prisma.$FortnoxCustomerPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FortnoxCustomer that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FortnoxCustomerFindUniqueOrThrowArgs} args - Arguments to find a FortnoxCustomer
+     * @example
+     * // Get one FortnoxCustomer
+     * const fortnoxCustomer = await prisma.fortnoxCustomer.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FortnoxCustomerFindUniqueOrThrowArgs>(args: SelectSubset<T, FortnoxCustomerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FortnoxCustomerClient<$Result.GetResult<Prisma.$FortnoxCustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FortnoxCustomer that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxCustomerFindFirstArgs} args - Arguments to find a FortnoxCustomer
+     * @example
+     * // Get one FortnoxCustomer
+     * const fortnoxCustomer = await prisma.fortnoxCustomer.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FortnoxCustomerFindFirstArgs>(args?: SelectSubset<T, FortnoxCustomerFindFirstArgs<ExtArgs>>): Prisma__FortnoxCustomerClient<$Result.GetResult<Prisma.$FortnoxCustomerPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FortnoxCustomer that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxCustomerFindFirstOrThrowArgs} args - Arguments to find a FortnoxCustomer
+     * @example
+     * // Get one FortnoxCustomer
+     * const fortnoxCustomer = await prisma.fortnoxCustomer.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FortnoxCustomerFindFirstOrThrowArgs>(args?: SelectSubset<T, FortnoxCustomerFindFirstOrThrowArgs<ExtArgs>>): Prisma__FortnoxCustomerClient<$Result.GetResult<Prisma.$FortnoxCustomerPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FortnoxCustomers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxCustomerFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FortnoxCustomers
+     * const fortnoxCustomers = await prisma.fortnoxCustomer.findMany()
+     * 
+     * // Get first 10 FortnoxCustomers
+     * const fortnoxCustomers = await prisma.fortnoxCustomer.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const fortnoxCustomerWithIdOnly = await prisma.fortnoxCustomer.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FortnoxCustomerFindManyArgs>(args?: SelectSubset<T, FortnoxCustomerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxCustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FortnoxCustomer.
+     * @param {FortnoxCustomerCreateArgs} args - Arguments to create a FortnoxCustomer.
+     * @example
+     * // Create one FortnoxCustomer
+     * const FortnoxCustomer = await prisma.fortnoxCustomer.create({
+     *   data: {
+     *     // ... data to create a FortnoxCustomer
+     *   }
+     * })
+     * 
+     */
+    create<T extends FortnoxCustomerCreateArgs>(args: SelectSubset<T, FortnoxCustomerCreateArgs<ExtArgs>>): Prisma__FortnoxCustomerClient<$Result.GetResult<Prisma.$FortnoxCustomerPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FortnoxCustomers.
+     * @param {FortnoxCustomerCreateManyArgs} args - Arguments to create many FortnoxCustomers.
+     * @example
+     * // Create many FortnoxCustomers
+     * const fortnoxCustomer = await prisma.fortnoxCustomer.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FortnoxCustomerCreateManyArgs>(args?: SelectSubset<T, FortnoxCustomerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FortnoxCustomers and returns the data saved in the database.
+     * @param {FortnoxCustomerCreateManyAndReturnArgs} args - Arguments to create many FortnoxCustomers.
+     * @example
+     * // Create many FortnoxCustomers
+     * const fortnoxCustomer = await prisma.fortnoxCustomer.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FortnoxCustomers and only return the `id`
+     * const fortnoxCustomerWithIdOnly = await prisma.fortnoxCustomer.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FortnoxCustomerCreateManyAndReturnArgs>(args?: SelectSubset<T, FortnoxCustomerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxCustomerPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FortnoxCustomer.
+     * @param {FortnoxCustomerDeleteArgs} args - Arguments to delete one FortnoxCustomer.
+     * @example
+     * // Delete one FortnoxCustomer
+     * const FortnoxCustomer = await prisma.fortnoxCustomer.delete({
+     *   where: {
+     *     // ... filter to delete one FortnoxCustomer
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FortnoxCustomerDeleteArgs>(args: SelectSubset<T, FortnoxCustomerDeleteArgs<ExtArgs>>): Prisma__FortnoxCustomerClient<$Result.GetResult<Prisma.$FortnoxCustomerPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FortnoxCustomer.
+     * @param {FortnoxCustomerUpdateArgs} args - Arguments to update one FortnoxCustomer.
+     * @example
+     * // Update one FortnoxCustomer
+     * const fortnoxCustomer = await prisma.fortnoxCustomer.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FortnoxCustomerUpdateArgs>(args: SelectSubset<T, FortnoxCustomerUpdateArgs<ExtArgs>>): Prisma__FortnoxCustomerClient<$Result.GetResult<Prisma.$FortnoxCustomerPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FortnoxCustomers.
+     * @param {FortnoxCustomerDeleteManyArgs} args - Arguments to filter FortnoxCustomers to delete.
+     * @example
+     * // Delete a few FortnoxCustomers
+     * const { count } = await prisma.fortnoxCustomer.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FortnoxCustomerDeleteManyArgs>(args?: SelectSubset<T, FortnoxCustomerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FortnoxCustomers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxCustomerUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FortnoxCustomers
+     * const fortnoxCustomer = await prisma.fortnoxCustomer.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FortnoxCustomerUpdateManyArgs>(args: SelectSubset<T, FortnoxCustomerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FortnoxCustomers and returns the data updated in the database.
+     * @param {FortnoxCustomerUpdateManyAndReturnArgs} args - Arguments to update many FortnoxCustomers.
+     * @example
+     * // Update many FortnoxCustomers
+     * const fortnoxCustomer = await prisma.fortnoxCustomer.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FortnoxCustomers and only return the `id`
+     * const fortnoxCustomerWithIdOnly = await prisma.fortnoxCustomer.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FortnoxCustomerUpdateManyAndReturnArgs>(args: SelectSubset<T, FortnoxCustomerUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxCustomerPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FortnoxCustomer.
+     * @param {FortnoxCustomerUpsertArgs} args - Arguments to update or create a FortnoxCustomer.
+     * @example
+     * // Update or create a FortnoxCustomer
+     * const fortnoxCustomer = await prisma.fortnoxCustomer.upsert({
+     *   create: {
+     *     // ... data to create a FortnoxCustomer
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FortnoxCustomer we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FortnoxCustomerUpsertArgs>(args: SelectSubset<T, FortnoxCustomerUpsertArgs<ExtArgs>>): Prisma__FortnoxCustomerClient<$Result.GetResult<Prisma.$FortnoxCustomerPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FortnoxCustomers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxCustomerCountArgs} args - Arguments to filter FortnoxCustomers to count.
+     * @example
+     * // Count the number of FortnoxCustomers
+     * const count = await prisma.fortnoxCustomer.count({
+     *   where: {
+     *     // ... the filter for the FortnoxCustomers we want to count
+     *   }
+     * })
+    **/
+    count<T extends FortnoxCustomerCountArgs>(
+      args?: Subset<T, FortnoxCustomerCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FortnoxCustomerCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FortnoxCustomer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxCustomerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FortnoxCustomerAggregateArgs>(args: Subset<T, FortnoxCustomerAggregateArgs>): Prisma.PrismaPromise<GetFortnoxCustomerAggregateType<T>>
+
+    /**
+     * Group by FortnoxCustomer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxCustomerGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FortnoxCustomerGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FortnoxCustomerGroupByArgs['orderBy'] }
+        : { orderBy?: FortnoxCustomerGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FortnoxCustomerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFortnoxCustomerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FortnoxCustomer model
+   */
+  readonly fields: FortnoxCustomerFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FortnoxCustomer.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FortnoxCustomerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    customer<T extends FortnoxCustomer$customerArgs<ExtArgs> = {}>(args?: Subset<T, FortnoxCustomer$customerArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    invoices<T extends FortnoxCustomer$invoicesArgs<ExtArgs> = {}>(args?: Subset<T, FortnoxCustomer$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxInvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FortnoxCustomer model
+   */
+  interface FortnoxCustomerFieldRefs {
+    readonly id: FieldRef<"FortnoxCustomer", 'String'>
+    readonly customerNumber: FieldRef<"FortnoxCustomer", 'String'>
+    readonly customerId: FieldRef<"FortnoxCustomer", 'String'>
+    readonly name: FieldRef<"FortnoxCustomer", 'String'>
+    readonly organisationNumber: FieldRef<"FortnoxCustomer", 'String'>
+    readonly email: FieldRef<"FortnoxCustomer", 'String'>
+    readonly phone: FieldRef<"FortnoxCustomer", 'String'>
+    readonly address: FieldRef<"FortnoxCustomer", 'String'>
+    readonly zipCode: FieldRef<"FortnoxCustomer", 'String'>
+    readonly city: FieldRef<"FortnoxCustomer", 'String'>
+    readonly country: FieldRef<"FortnoxCustomer", 'String'>
+    readonly currency: FieldRef<"FortnoxCustomer", 'String'>
+    readonly active: FieldRef<"FortnoxCustomer", 'Boolean'>
+    readonly rawData: FieldRef<"FortnoxCustomer", 'Json'>
+    readonly syncedAt: FieldRef<"FortnoxCustomer", 'DateTime'>
+    readonly createdAt: FieldRef<"FortnoxCustomer", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FortnoxCustomer findUnique
+   */
+  export type FortnoxCustomerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxCustomer
+     */
+    select?: FortnoxCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxCustomer
+     */
+    omit?: FortnoxCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxCustomerInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxCustomer to fetch.
+     */
+    where: FortnoxCustomerWhereUniqueInput
+  }
+
+  /**
+   * FortnoxCustomer findUniqueOrThrow
+   */
+  export type FortnoxCustomerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxCustomer
+     */
+    select?: FortnoxCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxCustomer
+     */
+    omit?: FortnoxCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxCustomerInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxCustomer to fetch.
+     */
+    where: FortnoxCustomerWhereUniqueInput
+  }
+
+  /**
+   * FortnoxCustomer findFirst
+   */
+  export type FortnoxCustomerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxCustomer
+     */
+    select?: FortnoxCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxCustomer
+     */
+    omit?: FortnoxCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxCustomerInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxCustomer to fetch.
+     */
+    where?: FortnoxCustomerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxCustomers to fetch.
+     */
+    orderBy?: FortnoxCustomerOrderByWithRelationInput | FortnoxCustomerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FortnoxCustomers.
+     */
+    cursor?: FortnoxCustomerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxCustomers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxCustomers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxCustomers.
+     */
+    distinct?: FortnoxCustomerScalarFieldEnum | FortnoxCustomerScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxCustomer findFirstOrThrow
+   */
+  export type FortnoxCustomerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxCustomer
+     */
+    select?: FortnoxCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxCustomer
+     */
+    omit?: FortnoxCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxCustomerInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxCustomer to fetch.
+     */
+    where?: FortnoxCustomerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxCustomers to fetch.
+     */
+    orderBy?: FortnoxCustomerOrderByWithRelationInput | FortnoxCustomerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FortnoxCustomers.
+     */
+    cursor?: FortnoxCustomerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxCustomers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxCustomers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxCustomers.
+     */
+    distinct?: FortnoxCustomerScalarFieldEnum | FortnoxCustomerScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxCustomer findMany
+   */
+  export type FortnoxCustomerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxCustomer
+     */
+    select?: FortnoxCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxCustomer
+     */
+    omit?: FortnoxCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxCustomerInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxCustomers to fetch.
+     */
+    where?: FortnoxCustomerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxCustomers to fetch.
+     */
+    orderBy?: FortnoxCustomerOrderByWithRelationInput | FortnoxCustomerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FortnoxCustomers.
+     */
+    cursor?: FortnoxCustomerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxCustomers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxCustomers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxCustomers.
+     */
+    distinct?: FortnoxCustomerScalarFieldEnum | FortnoxCustomerScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxCustomer create
+   */
+  export type FortnoxCustomerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxCustomer
+     */
+    select?: FortnoxCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxCustomer
+     */
+    omit?: FortnoxCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxCustomerInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FortnoxCustomer.
+     */
+    data: XOR<FortnoxCustomerCreateInput, FortnoxCustomerUncheckedCreateInput>
+  }
+
+  /**
+   * FortnoxCustomer createMany
+   */
+  export type FortnoxCustomerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FortnoxCustomers.
+     */
+    data: FortnoxCustomerCreateManyInput | FortnoxCustomerCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FortnoxCustomer createManyAndReturn
+   */
+  export type FortnoxCustomerCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxCustomer
+     */
+    select?: FortnoxCustomerSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxCustomer
+     */
+    omit?: FortnoxCustomerOmit<ExtArgs> | null
+    /**
+     * The data used to create many FortnoxCustomers.
+     */
+    data: FortnoxCustomerCreateManyInput | FortnoxCustomerCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxCustomerIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FortnoxCustomer update
+   */
+  export type FortnoxCustomerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxCustomer
+     */
+    select?: FortnoxCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxCustomer
+     */
+    omit?: FortnoxCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxCustomerInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FortnoxCustomer.
+     */
+    data: XOR<FortnoxCustomerUpdateInput, FortnoxCustomerUncheckedUpdateInput>
+    /**
+     * Choose, which FortnoxCustomer to update.
+     */
+    where: FortnoxCustomerWhereUniqueInput
+  }
+
+  /**
+   * FortnoxCustomer updateMany
+   */
+  export type FortnoxCustomerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FortnoxCustomers.
+     */
+    data: XOR<FortnoxCustomerUpdateManyMutationInput, FortnoxCustomerUncheckedUpdateManyInput>
+    /**
+     * Filter which FortnoxCustomers to update
+     */
+    where?: FortnoxCustomerWhereInput
+    /**
+     * Limit how many FortnoxCustomers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FortnoxCustomer updateManyAndReturn
+   */
+  export type FortnoxCustomerUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxCustomer
+     */
+    select?: FortnoxCustomerSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxCustomer
+     */
+    omit?: FortnoxCustomerOmit<ExtArgs> | null
+    /**
+     * The data used to update FortnoxCustomers.
+     */
+    data: XOR<FortnoxCustomerUpdateManyMutationInput, FortnoxCustomerUncheckedUpdateManyInput>
+    /**
+     * Filter which FortnoxCustomers to update
+     */
+    where?: FortnoxCustomerWhereInput
+    /**
+     * Limit how many FortnoxCustomers to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxCustomerIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FortnoxCustomer upsert
+   */
+  export type FortnoxCustomerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxCustomer
+     */
+    select?: FortnoxCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxCustomer
+     */
+    omit?: FortnoxCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxCustomerInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FortnoxCustomer to update in case it exists.
+     */
+    where: FortnoxCustomerWhereUniqueInput
+    /**
+     * In case the FortnoxCustomer found by the `where` argument doesn't exist, create a new FortnoxCustomer with this data.
+     */
+    create: XOR<FortnoxCustomerCreateInput, FortnoxCustomerUncheckedCreateInput>
+    /**
+     * In case the FortnoxCustomer was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FortnoxCustomerUpdateInput, FortnoxCustomerUncheckedUpdateInput>
+  }
+
+  /**
+   * FortnoxCustomer delete
+   */
+  export type FortnoxCustomerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxCustomer
+     */
+    select?: FortnoxCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxCustomer
+     */
+    omit?: FortnoxCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxCustomerInclude<ExtArgs> | null
+    /**
+     * Filter which FortnoxCustomer to delete.
+     */
+    where: FortnoxCustomerWhereUniqueInput
+  }
+
+  /**
+   * FortnoxCustomer deleteMany
+   */
+  export type FortnoxCustomerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FortnoxCustomers to delete
+     */
+    where?: FortnoxCustomerWhereInput
+    /**
+     * Limit how many FortnoxCustomers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FortnoxCustomer.customer
+   */
+  export type FortnoxCustomer$customerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Customer
+     */
+    select?: CustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Customer
+     */
+    omit?: CustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomerInclude<ExtArgs> | null
+    where?: CustomerWhereInput
+  }
+
+  /**
+   * FortnoxCustomer.invoices
+   */
+  export type FortnoxCustomer$invoicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoice
+     */
+    select?: FortnoxInvoiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoice
+     */
+    omit?: FortnoxInvoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceInclude<ExtArgs> | null
+    where?: FortnoxInvoiceWhereInput
+    orderBy?: FortnoxInvoiceOrderByWithRelationInput | FortnoxInvoiceOrderByWithRelationInput[]
+    cursor?: FortnoxInvoiceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FortnoxInvoiceScalarFieldEnum | FortnoxInvoiceScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxCustomer without action
+   */
+  export type FortnoxCustomerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxCustomer
+     */
+    select?: FortnoxCustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxCustomer
+     */
+    omit?: FortnoxCustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxCustomerInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FortnoxInvoice
+   */
+
+  export type AggregateFortnoxInvoice = {
+    _count: FortnoxInvoiceCountAggregateOutputType | null
+    _avg: FortnoxInvoiceAvgAggregateOutputType | null
+    _sum: FortnoxInvoiceSumAggregateOutputType | null
+    _min: FortnoxInvoiceMinAggregateOutputType | null
+    _max: FortnoxInvoiceMaxAggregateOutputType | null
+  }
+
+  export type FortnoxInvoiceAvgAggregateOutputType = {
+    totalExclVat: Decimal | null
+    totalInclVat: Decimal | null
+    vat: Decimal | null
+  }
+
+  export type FortnoxInvoiceSumAggregateOutputType = {
+    totalExclVat: Decimal | null
+    totalInclVat: Decimal | null
+    vat: Decimal | null
+  }
+
+  export type FortnoxInvoiceMinAggregateOutputType = {
+    id: string | null
+    invoiceNumber: string | null
+    customerNumber: string | null
+    customerId: string | null
+    invoiceDate: Date | null
+    dueDate: Date | null
+    totalExclVat: Decimal | null
+    totalInclVat: Decimal | null
+    vat: Decimal | null
+    currency: string | null
+    status: string | null
+    ourReference: string | null
+    yourReference: string | null
+    syncedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type FortnoxInvoiceMaxAggregateOutputType = {
+    id: string | null
+    invoiceNumber: string | null
+    customerNumber: string | null
+    customerId: string | null
+    invoiceDate: Date | null
+    dueDate: Date | null
+    totalExclVat: Decimal | null
+    totalInclVat: Decimal | null
+    vat: Decimal | null
+    currency: string | null
+    status: string | null
+    ourReference: string | null
+    yourReference: string | null
+    syncedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type FortnoxInvoiceCountAggregateOutputType = {
+    id: number
+    invoiceNumber: number
+    customerNumber: number
+    customerId: number
+    invoiceDate: number
+    dueDate: number
+    totalExclVat: number
+    totalInclVat: number
+    vat: number
+    currency: number
+    status: number
+    ourReference: number
+    yourReference: number
+    rawData: number
+    syncedAt: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type FortnoxInvoiceAvgAggregateInputType = {
+    totalExclVat?: true
+    totalInclVat?: true
+    vat?: true
+  }
+
+  export type FortnoxInvoiceSumAggregateInputType = {
+    totalExclVat?: true
+    totalInclVat?: true
+    vat?: true
+  }
+
+  export type FortnoxInvoiceMinAggregateInputType = {
+    id?: true
+    invoiceNumber?: true
+    customerNumber?: true
+    customerId?: true
+    invoiceDate?: true
+    dueDate?: true
+    totalExclVat?: true
+    totalInclVat?: true
+    vat?: true
+    currency?: true
+    status?: true
+    ourReference?: true
+    yourReference?: true
+    syncedAt?: true
+    createdAt?: true
+  }
+
+  export type FortnoxInvoiceMaxAggregateInputType = {
+    id?: true
+    invoiceNumber?: true
+    customerNumber?: true
+    customerId?: true
+    invoiceDate?: true
+    dueDate?: true
+    totalExclVat?: true
+    totalInclVat?: true
+    vat?: true
+    currency?: true
+    status?: true
+    ourReference?: true
+    yourReference?: true
+    syncedAt?: true
+    createdAt?: true
+  }
+
+  export type FortnoxInvoiceCountAggregateInputType = {
+    id?: true
+    invoiceNumber?: true
+    customerNumber?: true
+    customerId?: true
+    invoiceDate?: true
+    dueDate?: true
+    totalExclVat?: true
+    totalInclVat?: true
+    vat?: true
+    currency?: true
+    status?: true
+    ourReference?: true
+    yourReference?: true
+    rawData?: true
+    syncedAt?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type FortnoxInvoiceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FortnoxInvoice to aggregate.
+     */
+    where?: FortnoxInvoiceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxInvoices to fetch.
+     */
+    orderBy?: FortnoxInvoiceOrderByWithRelationInput | FortnoxInvoiceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FortnoxInvoiceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxInvoices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxInvoices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FortnoxInvoices
+    **/
+    _count?: true | FortnoxInvoiceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FortnoxInvoiceAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FortnoxInvoiceSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FortnoxInvoiceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FortnoxInvoiceMaxAggregateInputType
+  }
+
+  export type GetFortnoxInvoiceAggregateType<T extends FortnoxInvoiceAggregateArgs> = {
+        [P in keyof T & keyof AggregateFortnoxInvoice]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFortnoxInvoice[P]>
+      : GetScalarType<T[P], AggregateFortnoxInvoice[P]>
+  }
+
+
+
+
+  export type FortnoxInvoiceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FortnoxInvoiceWhereInput
+    orderBy?: FortnoxInvoiceOrderByWithAggregationInput | FortnoxInvoiceOrderByWithAggregationInput[]
+    by: FortnoxInvoiceScalarFieldEnum[] | FortnoxInvoiceScalarFieldEnum
+    having?: FortnoxInvoiceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FortnoxInvoiceCountAggregateInputType | true
+    _avg?: FortnoxInvoiceAvgAggregateInputType
+    _sum?: FortnoxInvoiceSumAggregateInputType
+    _min?: FortnoxInvoiceMinAggregateInputType
+    _max?: FortnoxInvoiceMaxAggregateInputType
+  }
+
+  export type FortnoxInvoiceGroupByOutputType = {
+    id: string
+    invoiceNumber: string
+    customerNumber: string
+    customerId: string | null
+    invoiceDate: Date
+    dueDate: Date | null
+    totalExclVat: Decimal | null
+    totalInclVat: Decimal | null
+    vat: Decimal | null
+    currency: string
+    status: string | null
+    ourReference: string | null
+    yourReference: string | null
+    rawData: JsonValue | null
+    syncedAt: Date
+    createdAt: Date
+    _count: FortnoxInvoiceCountAggregateOutputType | null
+    _avg: FortnoxInvoiceAvgAggregateOutputType | null
+    _sum: FortnoxInvoiceSumAggregateOutputType | null
+    _min: FortnoxInvoiceMinAggregateOutputType | null
+    _max: FortnoxInvoiceMaxAggregateOutputType | null
+  }
+
+  type GetFortnoxInvoiceGroupByPayload<T extends FortnoxInvoiceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FortnoxInvoiceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FortnoxInvoiceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FortnoxInvoiceGroupByOutputType[P]>
+            : GetScalarType<T[P], FortnoxInvoiceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FortnoxInvoiceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    invoiceNumber?: boolean
+    customerNumber?: boolean
+    customerId?: boolean
+    invoiceDate?: boolean
+    dueDate?: boolean
+    totalExclVat?: boolean
+    totalInclVat?: boolean
+    vat?: boolean
+    currency?: boolean
+    status?: boolean
+    ourReference?: boolean
+    yourReference?: boolean
+    rawData?: boolean
+    syncedAt?: boolean
+    createdAt?: boolean
+    fortnoxCustomer?: boolean | FortnoxCustomerDefaultArgs<ExtArgs>
+    customer?: boolean | FortnoxInvoice$customerArgs<ExtArgs>
+    rows?: boolean | FortnoxInvoice$rowsArgs<ExtArgs>
+    _count?: boolean | FortnoxInvoiceCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxInvoice"]>
+
+  export type FortnoxInvoiceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    invoiceNumber?: boolean
+    customerNumber?: boolean
+    customerId?: boolean
+    invoiceDate?: boolean
+    dueDate?: boolean
+    totalExclVat?: boolean
+    totalInclVat?: boolean
+    vat?: boolean
+    currency?: boolean
+    status?: boolean
+    ourReference?: boolean
+    yourReference?: boolean
+    rawData?: boolean
+    syncedAt?: boolean
+    createdAt?: boolean
+    fortnoxCustomer?: boolean | FortnoxCustomerDefaultArgs<ExtArgs>
+    customer?: boolean | FortnoxInvoice$customerArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxInvoice"]>
+
+  export type FortnoxInvoiceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    invoiceNumber?: boolean
+    customerNumber?: boolean
+    customerId?: boolean
+    invoiceDate?: boolean
+    dueDate?: boolean
+    totalExclVat?: boolean
+    totalInclVat?: boolean
+    vat?: boolean
+    currency?: boolean
+    status?: boolean
+    ourReference?: boolean
+    yourReference?: boolean
+    rawData?: boolean
+    syncedAt?: boolean
+    createdAt?: boolean
+    fortnoxCustomer?: boolean | FortnoxCustomerDefaultArgs<ExtArgs>
+    customer?: boolean | FortnoxInvoice$customerArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxInvoice"]>
+
+  export type FortnoxInvoiceSelectScalar = {
+    id?: boolean
+    invoiceNumber?: boolean
+    customerNumber?: boolean
+    customerId?: boolean
+    invoiceDate?: boolean
+    dueDate?: boolean
+    totalExclVat?: boolean
+    totalInclVat?: boolean
+    vat?: boolean
+    currency?: boolean
+    status?: boolean
+    ourReference?: boolean
+    yourReference?: boolean
+    rawData?: boolean
+    syncedAt?: boolean
+    createdAt?: boolean
+  }
+
+  export type FortnoxInvoiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "invoiceNumber" | "customerNumber" | "customerId" | "invoiceDate" | "dueDate" | "totalExclVat" | "totalInclVat" | "vat" | "currency" | "status" | "ourReference" | "yourReference" | "rawData" | "syncedAt" | "createdAt", ExtArgs["result"]["fortnoxInvoice"]>
+  export type FortnoxInvoiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    fortnoxCustomer?: boolean | FortnoxCustomerDefaultArgs<ExtArgs>
+    customer?: boolean | FortnoxInvoice$customerArgs<ExtArgs>
+    rows?: boolean | FortnoxInvoice$rowsArgs<ExtArgs>
+    _count?: boolean | FortnoxInvoiceCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FortnoxInvoiceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    fortnoxCustomer?: boolean | FortnoxCustomerDefaultArgs<ExtArgs>
+    customer?: boolean | FortnoxInvoice$customerArgs<ExtArgs>
+  }
+  export type FortnoxInvoiceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    fortnoxCustomer?: boolean | FortnoxCustomerDefaultArgs<ExtArgs>
+    customer?: boolean | FortnoxInvoice$customerArgs<ExtArgs>
+  }
+
+  export type $FortnoxInvoicePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FortnoxInvoice"
+    objects: {
+      fortnoxCustomer: Prisma.$FortnoxCustomerPayload<ExtArgs>
+      customer: Prisma.$CustomerPayload<ExtArgs> | null
+      rows: Prisma.$FortnoxInvoiceRowPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      invoiceNumber: string
+      customerNumber: string
+      /**
+       * Optional link to our normalised Customer row
+       */
+      customerId: string | null
+      invoiceDate: Date
+      dueDate: Date | null
+      totalExclVat: Prisma.Decimal | null
+      totalInclVat: Prisma.Decimal | null
+      vat: Prisma.Decimal | null
+      currency: string
+      /**
+       * e.g. 'unpaid' | 'paid' | 'overdue' | 'cancelled'
+       */
+      status: string | null
+      ourReference: string | null
+      yourReference: string | null
+      /**
+       * Full Fortnox API response, preserved for forward-compatibility
+       */
+      rawData: Prisma.JsonValue | null
+      syncedAt: Date
+      createdAt: Date
+    }, ExtArgs["result"]["fortnoxInvoice"]>
+    composites: {}
+  }
+
+  type FortnoxInvoiceGetPayload<S extends boolean | null | undefined | FortnoxInvoiceDefaultArgs> = $Result.GetResult<Prisma.$FortnoxInvoicePayload, S>
+
+  type FortnoxInvoiceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FortnoxInvoiceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FortnoxInvoiceCountAggregateInputType | true
+    }
+
+  export interface FortnoxInvoiceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FortnoxInvoice'], meta: { name: 'FortnoxInvoice' } }
+    /**
+     * Find zero or one FortnoxInvoice that matches the filter.
+     * @param {FortnoxInvoiceFindUniqueArgs} args - Arguments to find a FortnoxInvoice
+     * @example
+     * // Get one FortnoxInvoice
+     * const fortnoxInvoice = await prisma.fortnoxInvoice.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FortnoxInvoiceFindUniqueArgs>(args: SelectSubset<T, FortnoxInvoiceFindUniqueArgs<ExtArgs>>): Prisma__FortnoxInvoiceClient<$Result.GetResult<Prisma.$FortnoxInvoicePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FortnoxInvoice that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FortnoxInvoiceFindUniqueOrThrowArgs} args - Arguments to find a FortnoxInvoice
+     * @example
+     * // Get one FortnoxInvoice
+     * const fortnoxInvoice = await prisma.fortnoxInvoice.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FortnoxInvoiceFindUniqueOrThrowArgs>(args: SelectSubset<T, FortnoxInvoiceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FortnoxInvoiceClient<$Result.GetResult<Prisma.$FortnoxInvoicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FortnoxInvoice that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxInvoiceFindFirstArgs} args - Arguments to find a FortnoxInvoice
+     * @example
+     * // Get one FortnoxInvoice
+     * const fortnoxInvoice = await prisma.fortnoxInvoice.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FortnoxInvoiceFindFirstArgs>(args?: SelectSubset<T, FortnoxInvoiceFindFirstArgs<ExtArgs>>): Prisma__FortnoxInvoiceClient<$Result.GetResult<Prisma.$FortnoxInvoicePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FortnoxInvoice that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxInvoiceFindFirstOrThrowArgs} args - Arguments to find a FortnoxInvoice
+     * @example
+     * // Get one FortnoxInvoice
+     * const fortnoxInvoice = await prisma.fortnoxInvoice.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FortnoxInvoiceFindFirstOrThrowArgs>(args?: SelectSubset<T, FortnoxInvoiceFindFirstOrThrowArgs<ExtArgs>>): Prisma__FortnoxInvoiceClient<$Result.GetResult<Prisma.$FortnoxInvoicePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FortnoxInvoices that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxInvoiceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FortnoxInvoices
+     * const fortnoxInvoices = await prisma.fortnoxInvoice.findMany()
+     * 
+     * // Get first 10 FortnoxInvoices
+     * const fortnoxInvoices = await prisma.fortnoxInvoice.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const fortnoxInvoiceWithIdOnly = await prisma.fortnoxInvoice.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FortnoxInvoiceFindManyArgs>(args?: SelectSubset<T, FortnoxInvoiceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxInvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FortnoxInvoice.
+     * @param {FortnoxInvoiceCreateArgs} args - Arguments to create a FortnoxInvoice.
+     * @example
+     * // Create one FortnoxInvoice
+     * const FortnoxInvoice = await prisma.fortnoxInvoice.create({
+     *   data: {
+     *     // ... data to create a FortnoxInvoice
+     *   }
+     * })
+     * 
+     */
+    create<T extends FortnoxInvoiceCreateArgs>(args: SelectSubset<T, FortnoxInvoiceCreateArgs<ExtArgs>>): Prisma__FortnoxInvoiceClient<$Result.GetResult<Prisma.$FortnoxInvoicePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FortnoxInvoices.
+     * @param {FortnoxInvoiceCreateManyArgs} args - Arguments to create many FortnoxInvoices.
+     * @example
+     * // Create many FortnoxInvoices
+     * const fortnoxInvoice = await prisma.fortnoxInvoice.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FortnoxInvoiceCreateManyArgs>(args?: SelectSubset<T, FortnoxInvoiceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FortnoxInvoices and returns the data saved in the database.
+     * @param {FortnoxInvoiceCreateManyAndReturnArgs} args - Arguments to create many FortnoxInvoices.
+     * @example
+     * // Create many FortnoxInvoices
+     * const fortnoxInvoice = await prisma.fortnoxInvoice.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FortnoxInvoices and only return the `id`
+     * const fortnoxInvoiceWithIdOnly = await prisma.fortnoxInvoice.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FortnoxInvoiceCreateManyAndReturnArgs>(args?: SelectSubset<T, FortnoxInvoiceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxInvoicePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FortnoxInvoice.
+     * @param {FortnoxInvoiceDeleteArgs} args - Arguments to delete one FortnoxInvoice.
+     * @example
+     * // Delete one FortnoxInvoice
+     * const FortnoxInvoice = await prisma.fortnoxInvoice.delete({
+     *   where: {
+     *     // ... filter to delete one FortnoxInvoice
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FortnoxInvoiceDeleteArgs>(args: SelectSubset<T, FortnoxInvoiceDeleteArgs<ExtArgs>>): Prisma__FortnoxInvoiceClient<$Result.GetResult<Prisma.$FortnoxInvoicePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FortnoxInvoice.
+     * @param {FortnoxInvoiceUpdateArgs} args - Arguments to update one FortnoxInvoice.
+     * @example
+     * // Update one FortnoxInvoice
+     * const fortnoxInvoice = await prisma.fortnoxInvoice.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FortnoxInvoiceUpdateArgs>(args: SelectSubset<T, FortnoxInvoiceUpdateArgs<ExtArgs>>): Prisma__FortnoxInvoiceClient<$Result.GetResult<Prisma.$FortnoxInvoicePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FortnoxInvoices.
+     * @param {FortnoxInvoiceDeleteManyArgs} args - Arguments to filter FortnoxInvoices to delete.
+     * @example
+     * // Delete a few FortnoxInvoices
+     * const { count } = await prisma.fortnoxInvoice.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FortnoxInvoiceDeleteManyArgs>(args?: SelectSubset<T, FortnoxInvoiceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FortnoxInvoices.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxInvoiceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FortnoxInvoices
+     * const fortnoxInvoice = await prisma.fortnoxInvoice.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FortnoxInvoiceUpdateManyArgs>(args: SelectSubset<T, FortnoxInvoiceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FortnoxInvoices and returns the data updated in the database.
+     * @param {FortnoxInvoiceUpdateManyAndReturnArgs} args - Arguments to update many FortnoxInvoices.
+     * @example
+     * // Update many FortnoxInvoices
+     * const fortnoxInvoice = await prisma.fortnoxInvoice.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FortnoxInvoices and only return the `id`
+     * const fortnoxInvoiceWithIdOnly = await prisma.fortnoxInvoice.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FortnoxInvoiceUpdateManyAndReturnArgs>(args: SelectSubset<T, FortnoxInvoiceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxInvoicePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FortnoxInvoice.
+     * @param {FortnoxInvoiceUpsertArgs} args - Arguments to update or create a FortnoxInvoice.
+     * @example
+     * // Update or create a FortnoxInvoice
+     * const fortnoxInvoice = await prisma.fortnoxInvoice.upsert({
+     *   create: {
+     *     // ... data to create a FortnoxInvoice
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FortnoxInvoice we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FortnoxInvoiceUpsertArgs>(args: SelectSubset<T, FortnoxInvoiceUpsertArgs<ExtArgs>>): Prisma__FortnoxInvoiceClient<$Result.GetResult<Prisma.$FortnoxInvoicePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FortnoxInvoices.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxInvoiceCountArgs} args - Arguments to filter FortnoxInvoices to count.
+     * @example
+     * // Count the number of FortnoxInvoices
+     * const count = await prisma.fortnoxInvoice.count({
+     *   where: {
+     *     // ... the filter for the FortnoxInvoices we want to count
+     *   }
+     * })
+    **/
+    count<T extends FortnoxInvoiceCountArgs>(
+      args?: Subset<T, FortnoxInvoiceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FortnoxInvoiceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FortnoxInvoice.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxInvoiceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FortnoxInvoiceAggregateArgs>(args: Subset<T, FortnoxInvoiceAggregateArgs>): Prisma.PrismaPromise<GetFortnoxInvoiceAggregateType<T>>
+
+    /**
+     * Group by FortnoxInvoice.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxInvoiceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FortnoxInvoiceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FortnoxInvoiceGroupByArgs['orderBy'] }
+        : { orderBy?: FortnoxInvoiceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FortnoxInvoiceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFortnoxInvoiceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FortnoxInvoice model
+   */
+  readonly fields: FortnoxInvoiceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FortnoxInvoice.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FortnoxInvoiceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    fortnoxCustomer<T extends FortnoxCustomerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FortnoxCustomerDefaultArgs<ExtArgs>>): Prisma__FortnoxCustomerClient<$Result.GetResult<Prisma.$FortnoxCustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    customer<T extends FortnoxInvoice$customerArgs<ExtArgs> = {}>(args?: Subset<T, FortnoxInvoice$customerArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    rows<T extends FortnoxInvoice$rowsArgs<ExtArgs> = {}>(args?: Subset<T, FortnoxInvoice$rowsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxInvoiceRowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FortnoxInvoice model
+   */
+  interface FortnoxInvoiceFieldRefs {
+    readonly id: FieldRef<"FortnoxInvoice", 'String'>
+    readonly invoiceNumber: FieldRef<"FortnoxInvoice", 'String'>
+    readonly customerNumber: FieldRef<"FortnoxInvoice", 'String'>
+    readonly customerId: FieldRef<"FortnoxInvoice", 'String'>
+    readonly invoiceDate: FieldRef<"FortnoxInvoice", 'DateTime'>
+    readonly dueDate: FieldRef<"FortnoxInvoice", 'DateTime'>
+    readonly totalExclVat: FieldRef<"FortnoxInvoice", 'Decimal'>
+    readonly totalInclVat: FieldRef<"FortnoxInvoice", 'Decimal'>
+    readonly vat: FieldRef<"FortnoxInvoice", 'Decimal'>
+    readonly currency: FieldRef<"FortnoxInvoice", 'String'>
+    readonly status: FieldRef<"FortnoxInvoice", 'String'>
+    readonly ourReference: FieldRef<"FortnoxInvoice", 'String'>
+    readonly yourReference: FieldRef<"FortnoxInvoice", 'String'>
+    readonly rawData: FieldRef<"FortnoxInvoice", 'Json'>
+    readonly syncedAt: FieldRef<"FortnoxInvoice", 'DateTime'>
+    readonly createdAt: FieldRef<"FortnoxInvoice", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FortnoxInvoice findUnique
+   */
+  export type FortnoxInvoiceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoice
+     */
+    select?: FortnoxInvoiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoice
+     */
+    omit?: FortnoxInvoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxInvoice to fetch.
+     */
+    where: FortnoxInvoiceWhereUniqueInput
+  }
+
+  /**
+   * FortnoxInvoice findUniqueOrThrow
+   */
+  export type FortnoxInvoiceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoice
+     */
+    select?: FortnoxInvoiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoice
+     */
+    omit?: FortnoxInvoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxInvoice to fetch.
+     */
+    where: FortnoxInvoiceWhereUniqueInput
+  }
+
+  /**
+   * FortnoxInvoice findFirst
+   */
+  export type FortnoxInvoiceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoice
+     */
+    select?: FortnoxInvoiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoice
+     */
+    omit?: FortnoxInvoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxInvoice to fetch.
+     */
+    where?: FortnoxInvoiceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxInvoices to fetch.
+     */
+    orderBy?: FortnoxInvoiceOrderByWithRelationInput | FortnoxInvoiceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FortnoxInvoices.
+     */
+    cursor?: FortnoxInvoiceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxInvoices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxInvoices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxInvoices.
+     */
+    distinct?: FortnoxInvoiceScalarFieldEnum | FortnoxInvoiceScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxInvoice findFirstOrThrow
+   */
+  export type FortnoxInvoiceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoice
+     */
+    select?: FortnoxInvoiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoice
+     */
+    omit?: FortnoxInvoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxInvoice to fetch.
+     */
+    where?: FortnoxInvoiceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxInvoices to fetch.
+     */
+    orderBy?: FortnoxInvoiceOrderByWithRelationInput | FortnoxInvoiceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FortnoxInvoices.
+     */
+    cursor?: FortnoxInvoiceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxInvoices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxInvoices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxInvoices.
+     */
+    distinct?: FortnoxInvoiceScalarFieldEnum | FortnoxInvoiceScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxInvoice findMany
+   */
+  export type FortnoxInvoiceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoice
+     */
+    select?: FortnoxInvoiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoice
+     */
+    omit?: FortnoxInvoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxInvoices to fetch.
+     */
+    where?: FortnoxInvoiceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxInvoices to fetch.
+     */
+    orderBy?: FortnoxInvoiceOrderByWithRelationInput | FortnoxInvoiceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FortnoxInvoices.
+     */
+    cursor?: FortnoxInvoiceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxInvoices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxInvoices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxInvoices.
+     */
+    distinct?: FortnoxInvoiceScalarFieldEnum | FortnoxInvoiceScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxInvoice create
+   */
+  export type FortnoxInvoiceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoice
+     */
+    select?: FortnoxInvoiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoice
+     */
+    omit?: FortnoxInvoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FortnoxInvoice.
+     */
+    data: XOR<FortnoxInvoiceCreateInput, FortnoxInvoiceUncheckedCreateInput>
+  }
+
+  /**
+   * FortnoxInvoice createMany
+   */
+  export type FortnoxInvoiceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FortnoxInvoices.
+     */
+    data: FortnoxInvoiceCreateManyInput | FortnoxInvoiceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FortnoxInvoice createManyAndReturn
+   */
+  export type FortnoxInvoiceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoice
+     */
+    select?: FortnoxInvoiceSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoice
+     */
+    omit?: FortnoxInvoiceOmit<ExtArgs> | null
+    /**
+     * The data used to create many FortnoxInvoices.
+     */
+    data: FortnoxInvoiceCreateManyInput | FortnoxInvoiceCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FortnoxInvoice update
+   */
+  export type FortnoxInvoiceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoice
+     */
+    select?: FortnoxInvoiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoice
+     */
+    omit?: FortnoxInvoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FortnoxInvoice.
+     */
+    data: XOR<FortnoxInvoiceUpdateInput, FortnoxInvoiceUncheckedUpdateInput>
+    /**
+     * Choose, which FortnoxInvoice to update.
+     */
+    where: FortnoxInvoiceWhereUniqueInput
+  }
+
+  /**
+   * FortnoxInvoice updateMany
+   */
+  export type FortnoxInvoiceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FortnoxInvoices.
+     */
+    data: XOR<FortnoxInvoiceUpdateManyMutationInput, FortnoxInvoiceUncheckedUpdateManyInput>
+    /**
+     * Filter which FortnoxInvoices to update
+     */
+    where?: FortnoxInvoiceWhereInput
+    /**
+     * Limit how many FortnoxInvoices to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FortnoxInvoice updateManyAndReturn
+   */
+  export type FortnoxInvoiceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoice
+     */
+    select?: FortnoxInvoiceSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoice
+     */
+    omit?: FortnoxInvoiceOmit<ExtArgs> | null
+    /**
+     * The data used to update FortnoxInvoices.
+     */
+    data: XOR<FortnoxInvoiceUpdateManyMutationInput, FortnoxInvoiceUncheckedUpdateManyInput>
+    /**
+     * Filter which FortnoxInvoices to update
+     */
+    where?: FortnoxInvoiceWhereInput
+    /**
+     * Limit how many FortnoxInvoices to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FortnoxInvoice upsert
+   */
+  export type FortnoxInvoiceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoice
+     */
+    select?: FortnoxInvoiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoice
+     */
+    omit?: FortnoxInvoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FortnoxInvoice to update in case it exists.
+     */
+    where: FortnoxInvoiceWhereUniqueInput
+    /**
+     * In case the FortnoxInvoice found by the `where` argument doesn't exist, create a new FortnoxInvoice with this data.
+     */
+    create: XOR<FortnoxInvoiceCreateInput, FortnoxInvoiceUncheckedCreateInput>
+    /**
+     * In case the FortnoxInvoice was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FortnoxInvoiceUpdateInput, FortnoxInvoiceUncheckedUpdateInput>
+  }
+
+  /**
+   * FortnoxInvoice delete
+   */
+  export type FortnoxInvoiceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoice
+     */
+    select?: FortnoxInvoiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoice
+     */
+    omit?: FortnoxInvoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceInclude<ExtArgs> | null
+    /**
+     * Filter which FortnoxInvoice to delete.
+     */
+    where: FortnoxInvoiceWhereUniqueInput
+  }
+
+  /**
+   * FortnoxInvoice deleteMany
+   */
+  export type FortnoxInvoiceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FortnoxInvoices to delete
+     */
+    where?: FortnoxInvoiceWhereInput
+    /**
+     * Limit how many FortnoxInvoices to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FortnoxInvoice.customer
+   */
+  export type FortnoxInvoice$customerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Customer
+     */
+    select?: CustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Customer
+     */
+    omit?: CustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomerInclude<ExtArgs> | null
+    where?: CustomerWhereInput
+  }
+
+  /**
+   * FortnoxInvoice.rows
+   */
+  export type FortnoxInvoice$rowsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoiceRow
+     */
+    select?: FortnoxInvoiceRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoiceRow
+     */
+    omit?: FortnoxInvoiceRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceRowInclude<ExtArgs> | null
+    where?: FortnoxInvoiceRowWhereInput
+    orderBy?: FortnoxInvoiceRowOrderByWithRelationInput | FortnoxInvoiceRowOrderByWithRelationInput[]
+    cursor?: FortnoxInvoiceRowWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FortnoxInvoiceRowScalarFieldEnum | FortnoxInvoiceRowScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxInvoice without action
+   */
+  export type FortnoxInvoiceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoice
+     */
+    select?: FortnoxInvoiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoice
+     */
+    omit?: FortnoxInvoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FortnoxInvoiceRow
+   */
+
+  export type AggregateFortnoxInvoiceRow = {
+    _count: FortnoxInvoiceRowCountAggregateOutputType | null
+    _avg: FortnoxInvoiceRowAvgAggregateOutputType | null
+    _sum: FortnoxInvoiceRowSumAggregateOutputType | null
+    _min: FortnoxInvoiceRowMinAggregateOutputType | null
+    _max: FortnoxInvoiceRowMaxAggregateOutputType | null
+  }
+
+  export type FortnoxInvoiceRowAvgAggregateOutputType = {
+    rowNumber: number | null
+    quantity: Decimal | null
+    price: Decimal | null
+    vatPercent: Decimal | null
+    total: Decimal | null
+  }
+
+  export type FortnoxInvoiceRowSumAggregateOutputType = {
+    rowNumber: number | null
+    quantity: Decimal | null
+    price: Decimal | null
+    vatPercent: Decimal | null
+    total: Decimal | null
+  }
+
+  export type FortnoxInvoiceRowMinAggregateOutputType = {
+    id: string | null
+    invoiceNumber: string | null
+    rowNumber: number | null
+    articleNumber: string | null
+    description: string | null
+    quantity: Decimal | null
+    price: Decimal | null
+    vatPercent: Decimal | null
+    total: Decimal | null
+  }
+
+  export type FortnoxInvoiceRowMaxAggregateOutputType = {
+    id: string | null
+    invoiceNumber: string | null
+    rowNumber: number | null
+    articleNumber: string | null
+    description: string | null
+    quantity: Decimal | null
+    price: Decimal | null
+    vatPercent: Decimal | null
+    total: Decimal | null
+  }
+
+  export type FortnoxInvoiceRowCountAggregateOutputType = {
+    id: number
+    invoiceNumber: number
+    rowNumber: number
+    articleNumber: number
+    description: number
+    quantity: number
+    price: number
+    vatPercent: number
+    total: number
+    _all: number
+  }
+
+
+  export type FortnoxInvoiceRowAvgAggregateInputType = {
+    rowNumber?: true
+    quantity?: true
+    price?: true
+    vatPercent?: true
+    total?: true
+  }
+
+  export type FortnoxInvoiceRowSumAggregateInputType = {
+    rowNumber?: true
+    quantity?: true
+    price?: true
+    vatPercent?: true
+    total?: true
+  }
+
+  export type FortnoxInvoiceRowMinAggregateInputType = {
+    id?: true
+    invoiceNumber?: true
+    rowNumber?: true
+    articleNumber?: true
+    description?: true
+    quantity?: true
+    price?: true
+    vatPercent?: true
+    total?: true
+  }
+
+  export type FortnoxInvoiceRowMaxAggregateInputType = {
+    id?: true
+    invoiceNumber?: true
+    rowNumber?: true
+    articleNumber?: true
+    description?: true
+    quantity?: true
+    price?: true
+    vatPercent?: true
+    total?: true
+  }
+
+  export type FortnoxInvoiceRowCountAggregateInputType = {
+    id?: true
+    invoiceNumber?: true
+    rowNumber?: true
+    articleNumber?: true
+    description?: true
+    quantity?: true
+    price?: true
+    vatPercent?: true
+    total?: true
+    _all?: true
+  }
+
+  export type FortnoxInvoiceRowAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FortnoxInvoiceRow to aggregate.
+     */
+    where?: FortnoxInvoiceRowWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxInvoiceRows to fetch.
+     */
+    orderBy?: FortnoxInvoiceRowOrderByWithRelationInput | FortnoxInvoiceRowOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FortnoxInvoiceRowWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxInvoiceRows from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxInvoiceRows.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FortnoxInvoiceRows
+    **/
+    _count?: true | FortnoxInvoiceRowCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FortnoxInvoiceRowAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FortnoxInvoiceRowSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FortnoxInvoiceRowMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FortnoxInvoiceRowMaxAggregateInputType
+  }
+
+  export type GetFortnoxInvoiceRowAggregateType<T extends FortnoxInvoiceRowAggregateArgs> = {
+        [P in keyof T & keyof AggregateFortnoxInvoiceRow]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFortnoxInvoiceRow[P]>
+      : GetScalarType<T[P], AggregateFortnoxInvoiceRow[P]>
+  }
+
+
+
+
+  export type FortnoxInvoiceRowGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FortnoxInvoiceRowWhereInput
+    orderBy?: FortnoxInvoiceRowOrderByWithAggregationInput | FortnoxInvoiceRowOrderByWithAggregationInput[]
+    by: FortnoxInvoiceRowScalarFieldEnum[] | FortnoxInvoiceRowScalarFieldEnum
+    having?: FortnoxInvoiceRowScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FortnoxInvoiceRowCountAggregateInputType | true
+    _avg?: FortnoxInvoiceRowAvgAggregateInputType
+    _sum?: FortnoxInvoiceRowSumAggregateInputType
+    _min?: FortnoxInvoiceRowMinAggregateInputType
+    _max?: FortnoxInvoiceRowMaxAggregateInputType
+  }
+
+  export type FortnoxInvoiceRowGroupByOutputType = {
+    id: string
+    invoiceNumber: string
+    rowNumber: number | null
+    articleNumber: string | null
+    description: string | null
+    quantity: Decimal | null
+    price: Decimal | null
+    vatPercent: Decimal | null
+    total: Decimal | null
+    _count: FortnoxInvoiceRowCountAggregateOutputType | null
+    _avg: FortnoxInvoiceRowAvgAggregateOutputType | null
+    _sum: FortnoxInvoiceRowSumAggregateOutputType | null
+    _min: FortnoxInvoiceRowMinAggregateOutputType | null
+    _max: FortnoxInvoiceRowMaxAggregateOutputType | null
+  }
+
+  type GetFortnoxInvoiceRowGroupByPayload<T extends FortnoxInvoiceRowGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FortnoxInvoiceRowGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FortnoxInvoiceRowGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FortnoxInvoiceRowGroupByOutputType[P]>
+            : GetScalarType<T[P], FortnoxInvoiceRowGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FortnoxInvoiceRowSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    invoiceNumber?: boolean
+    rowNumber?: boolean
+    articleNumber?: boolean
+    description?: boolean
+    quantity?: boolean
+    price?: boolean
+    vatPercent?: boolean
+    total?: boolean
+    invoice?: boolean | FortnoxInvoiceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxInvoiceRow"]>
+
+  export type FortnoxInvoiceRowSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    invoiceNumber?: boolean
+    rowNumber?: boolean
+    articleNumber?: boolean
+    description?: boolean
+    quantity?: boolean
+    price?: boolean
+    vatPercent?: boolean
+    total?: boolean
+    invoice?: boolean | FortnoxInvoiceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxInvoiceRow"]>
+
+  export type FortnoxInvoiceRowSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    invoiceNumber?: boolean
+    rowNumber?: boolean
+    articleNumber?: boolean
+    description?: boolean
+    quantity?: boolean
+    price?: boolean
+    vatPercent?: boolean
+    total?: boolean
+    invoice?: boolean | FortnoxInvoiceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxInvoiceRow"]>
+
+  export type FortnoxInvoiceRowSelectScalar = {
+    id?: boolean
+    invoiceNumber?: boolean
+    rowNumber?: boolean
+    articleNumber?: boolean
+    description?: boolean
+    quantity?: boolean
+    price?: boolean
+    vatPercent?: boolean
+    total?: boolean
+  }
+
+  export type FortnoxInvoiceRowOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "invoiceNumber" | "rowNumber" | "articleNumber" | "description" | "quantity" | "price" | "vatPercent" | "total", ExtArgs["result"]["fortnoxInvoiceRow"]>
+  export type FortnoxInvoiceRowInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    invoice?: boolean | FortnoxInvoiceDefaultArgs<ExtArgs>
+  }
+  export type FortnoxInvoiceRowIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    invoice?: boolean | FortnoxInvoiceDefaultArgs<ExtArgs>
+  }
+  export type FortnoxInvoiceRowIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    invoice?: boolean | FortnoxInvoiceDefaultArgs<ExtArgs>
+  }
+
+  export type $FortnoxInvoiceRowPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FortnoxInvoiceRow"
+    objects: {
+      invoice: Prisma.$FortnoxInvoicePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      invoiceNumber: string
+      rowNumber: number | null
+      articleNumber: string | null
+      description: string | null
+      quantity: Prisma.Decimal | null
+      price: Prisma.Decimal | null
+      vatPercent: Prisma.Decimal | null
+      total: Prisma.Decimal | null
+    }, ExtArgs["result"]["fortnoxInvoiceRow"]>
+    composites: {}
+  }
+
+  type FortnoxInvoiceRowGetPayload<S extends boolean | null | undefined | FortnoxInvoiceRowDefaultArgs> = $Result.GetResult<Prisma.$FortnoxInvoiceRowPayload, S>
+
+  type FortnoxInvoiceRowCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FortnoxInvoiceRowFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FortnoxInvoiceRowCountAggregateInputType | true
+    }
+
+  export interface FortnoxInvoiceRowDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FortnoxInvoiceRow'], meta: { name: 'FortnoxInvoiceRow' } }
+    /**
+     * Find zero or one FortnoxInvoiceRow that matches the filter.
+     * @param {FortnoxInvoiceRowFindUniqueArgs} args - Arguments to find a FortnoxInvoiceRow
+     * @example
+     * // Get one FortnoxInvoiceRow
+     * const fortnoxInvoiceRow = await prisma.fortnoxInvoiceRow.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FortnoxInvoiceRowFindUniqueArgs>(args: SelectSubset<T, FortnoxInvoiceRowFindUniqueArgs<ExtArgs>>): Prisma__FortnoxInvoiceRowClient<$Result.GetResult<Prisma.$FortnoxInvoiceRowPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FortnoxInvoiceRow that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FortnoxInvoiceRowFindUniqueOrThrowArgs} args - Arguments to find a FortnoxInvoiceRow
+     * @example
+     * // Get one FortnoxInvoiceRow
+     * const fortnoxInvoiceRow = await prisma.fortnoxInvoiceRow.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FortnoxInvoiceRowFindUniqueOrThrowArgs>(args: SelectSubset<T, FortnoxInvoiceRowFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FortnoxInvoiceRowClient<$Result.GetResult<Prisma.$FortnoxInvoiceRowPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FortnoxInvoiceRow that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxInvoiceRowFindFirstArgs} args - Arguments to find a FortnoxInvoiceRow
+     * @example
+     * // Get one FortnoxInvoiceRow
+     * const fortnoxInvoiceRow = await prisma.fortnoxInvoiceRow.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FortnoxInvoiceRowFindFirstArgs>(args?: SelectSubset<T, FortnoxInvoiceRowFindFirstArgs<ExtArgs>>): Prisma__FortnoxInvoiceRowClient<$Result.GetResult<Prisma.$FortnoxInvoiceRowPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FortnoxInvoiceRow that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxInvoiceRowFindFirstOrThrowArgs} args - Arguments to find a FortnoxInvoiceRow
+     * @example
+     * // Get one FortnoxInvoiceRow
+     * const fortnoxInvoiceRow = await prisma.fortnoxInvoiceRow.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FortnoxInvoiceRowFindFirstOrThrowArgs>(args?: SelectSubset<T, FortnoxInvoiceRowFindFirstOrThrowArgs<ExtArgs>>): Prisma__FortnoxInvoiceRowClient<$Result.GetResult<Prisma.$FortnoxInvoiceRowPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FortnoxInvoiceRows that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxInvoiceRowFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FortnoxInvoiceRows
+     * const fortnoxInvoiceRows = await prisma.fortnoxInvoiceRow.findMany()
+     * 
+     * // Get first 10 FortnoxInvoiceRows
+     * const fortnoxInvoiceRows = await prisma.fortnoxInvoiceRow.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const fortnoxInvoiceRowWithIdOnly = await prisma.fortnoxInvoiceRow.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FortnoxInvoiceRowFindManyArgs>(args?: SelectSubset<T, FortnoxInvoiceRowFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxInvoiceRowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FortnoxInvoiceRow.
+     * @param {FortnoxInvoiceRowCreateArgs} args - Arguments to create a FortnoxInvoiceRow.
+     * @example
+     * // Create one FortnoxInvoiceRow
+     * const FortnoxInvoiceRow = await prisma.fortnoxInvoiceRow.create({
+     *   data: {
+     *     // ... data to create a FortnoxInvoiceRow
+     *   }
+     * })
+     * 
+     */
+    create<T extends FortnoxInvoiceRowCreateArgs>(args: SelectSubset<T, FortnoxInvoiceRowCreateArgs<ExtArgs>>): Prisma__FortnoxInvoiceRowClient<$Result.GetResult<Prisma.$FortnoxInvoiceRowPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FortnoxInvoiceRows.
+     * @param {FortnoxInvoiceRowCreateManyArgs} args - Arguments to create many FortnoxInvoiceRows.
+     * @example
+     * // Create many FortnoxInvoiceRows
+     * const fortnoxInvoiceRow = await prisma.fortnoxInvoiceRow.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FortnoxInvoiceRowCreateManyArgs>(args?: SelectSubset<T, FortnoxInvoiceRowCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FortnoxInvoiceRows and returns the data saved in the database.
+     * @param {FortnoxInvoiceRowCreateManyAndReturnArgs} args - Arguments to create many FortnoxInvoiceRows.
+     * @example
+     * // Create many FortnoxInvoiceRows
+     * const fortnoxInvoiceRow = await prisma.fortnoxInvoiceRow.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FortnoxInvoiceRows and only return the `id`
+     * const fortnoxInvoiceRowWithIdOnly = await prisma.fortnoxInvoiceRow.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FortnoxInvoiceRowCreateManyAndReturnArgs>(args?: SelectSubset<T, FortnoxInvoiceRowCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxInvoiceRowPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FortnoxInvoiceRow.
+     * @param {FortnoxInvoiceRowDeleteArgs} args - Arguments to delete one FortnoxInvoiceRow.
+     * @example
+     * // Delete one FortnoxInvoiceRow
+     * const FortnoxInvoiceRow = await prisma.fortnoxInvoiceRow.delete({
+     *   where: {
+     *     // ... filter to delete one FortnoxInvoiceRow
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FortnoxInvoiceRowDeleteArgs>(args: SelectSubset<T, FortnoxInvoiceRowDeleteArgs<ExtArgs>>): Prisma__FortnoxInvoiceRowClient<$Result.GetResult<Prisma.$FortnoxInvoiceRowPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FortnoxInvoiceRow.
+     * @param {FortnoxInvoiceRowUpdateArgs} args - Arguments to update one FortnoxInvoiceRow.
+     * @example
+     * // Update one FortnoxInvoiceRow
+     * const fortnoxInvoiceRow = await prisma.fortnoxInvoiceRow.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FortnoxInvoiceRowUpdateArgs>(args: SelectSubset<T, FortnoxInvoiceRowUpdateArgs<ExtArgs>>): Prisma__FortnoxInvoiceRowClient<$Result.GetResult<Prisma.$FortnoxInvoiceRowPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FortnoxInvoiceRows.
+     * @param {FortnoxInvoiceRowDeleteManyArgs} args - Arguments to filter FortnoxInvoiceRows to delete.
+     * @example
+     * // Delete a few FortnoxInvoiceRows
+     * const { count } = await prisma.fortnoxInvoiceRow.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FortnoxInvoiceRowDeleteManyArgs>(args?: SelectSubset<T, FortnoxInvoiceRowDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FortnoxInvoiceRows.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxInvoiceRowUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FortnoxInvoiceRows
+     * const fortnoxInvoiceRow = await prisma.fortnoxInvoiceRow.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FortnoxInvoiceRowUpdateManyArgs>(args: SelectSubset<T, FortnoxInvoiceRowUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FortnoxInvoiceRows and returns the data updated in the database.
+     * @param {FortnoxInvoiceRowUpdateManyAndReturnArgs} args - Arguments to update many FortnoxInvoiceRows.
+     * @example
+     * // Update many FortnoxInvoiceRows
+     * const fortnoxInvoiceRow = await prisma.fortnoxInvoiceRow.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FortnoxInvoiceRows and only return the `id`
+     * const fortnoxInvoiceRowWithIdOnly = await prisma.fortnoxInvoiceRow.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FortnoxInvoiceRowUpdateManyAndReturnArgs>(args: SelectSubset<T, FortnoxInvoiceRowUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxInvoiceRowPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FortnoxInvoiceRow.
+     * @param {FortnoxInvoiceRowUpsertArgs} args - Arguments to update or create a FortnoxInvoiceRow.
+     * @example
+     * // Update or create a FortnoxInvoiceRow
+     * const fortnoxInvoiceRow = await prisma.fortnoxInvoiceRow.upsert({
+     *   create: {
+     *     // ... data to create a FortnoxInvoiceRow
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FortnoxInvoiceRow we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FortnoxInvoiceRowUpsertArgs>(args: SelectSubset<T, FortnoxInvoiceRowUpsertArgs<ExtArgs>>): Prisma__FortnoxInvoiceRowClient<$Result.GetResult<Prisma.$FortnoxInvoiceRowPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FortnoxInvoiceRows.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxInvoiceRowCountArgs} args - Arguments to filter FortnoxInvoiceRows to count.
+     * @example
+     * // Count the number of FortnoxInvoiceRows
+     * const count = await prisma.fortnoxInvoiceRow.count({
+     *   where: {
+     *     // ... the filter for the FortnoxInvoiceRows we want to count
+     *   }
+     * })
+    **/
+    count<T extends FortnoxInvoiceRowCountArgs>(
+      args?: Subset<T, FortnoxInvoiceRowCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FortnoxInvoiceRowCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FortnoxInvoiceRow.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxInvoiceRowAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FortnoxInvoiceRowAggregateArgs>(args: Subset<T, FortnoxInvoiceRowAggregateArgs>): Prisma.PrismaPromise<GetFortnoxInvoiceRowAggregateType<T>>
+
+    /**
+     * Group by FortnoxInvoiceRow.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxInvoiceRowGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FortnoxInvoiceRowGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FortnoxInvoiceRowGroupByArgs['orderBy'] }
+        : { orderBy?: FortnoxInvoiceRowGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FortnoxInvoiceRowGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFortnoxInvoiceRowGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FortnoxInvoiceRow model
+   */
+  readonly fields: FortnoxInvoiceRowFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FortnoxInvoiceRow.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FortnoxInvoiceRowClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    invoice<T extends FortnoxInvoiceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FortnoxInvoiceDefaultArgs<ExtArgs>>): Prisma__FortnoxInvoiceClient<$Result.GetResult<Prisma.$FortnoxInvoicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FortnoxInvoiceRow model
+   */
+  interface FortnoxInvoiceRowFieldRefs {
+    readonly id: FieldRef<"FortnoxInvoiceRow", 'String'>
+    readonly invoiceNumber: FieldRef<"FortnoxInvoiceRow", 'String'>
+    readonly rowNumber: FieldRef<"FortnoxInvoiceRow", 'Int'>
+    readonly articleNumber: FieldRef<"FortnoxInvoiceRow", 'String'>
+    readonly description: FieldRef<"FortnoxInvoiceRow", 'String'>
+    readonly quantity: FieldRef<"FortnoxInvoiceRow", 'Decimal'>
+    readonly price: FieldRef<"FortnoxInvoiceRow", 'Decimal'>
+    readonly vatPercent: FieldRef<"FortnoxInvoiceRow", 'Decimal'>
+    readonly total: FieldRef<"FortnoxInvoiceRow", 'Decimal'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FortnoxInvoiceRow findUnique
+   */
+  export type FortnoxInvoiceRowFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoiceRow
+     */
+    select?: FortnoxInvoiceRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoiceRow
+     */
+    omit?: FortnoxInvoiceRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceRowInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxInvoiceRow to fetch.
+     */
+    where: FortnoxInvoiceRowWhereUniqueInput
+  }
+
+  /**
+   * FortnoxInvoiceRow findUniqueOrThrow
+   */
+  export type FortnoxInvoiceRowFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoiceRow
+     */
+    select?: FortnoxInvoiceRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoiceRow
+     */
+    omit?: FortnoxInvoiceRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceRowInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxInvoiceRow to fetch.
+     */
+    where: FortnoxInvoiceRowWhereUniqueInput
+  }
+
+  /**
+   * FortnoxInvoiceRow findFirst
+   */
+  export type FortnoxInvoiceRowFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoiceRow
+     */
+    select?: FortnoxInvoiceRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoiceRow
+     */
+    omit?: FortnoxInvoiceRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceRowInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxInvoiceRow to fetch.
+     */
+    where?: FortnoxInvoiceRowWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxInvoiceRows to fetch.
+     */
+    orderBy?: FortnoxInvoiceRowOrderByWithRelationInput | FortnoxInvoiceRowOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FortnoxInvoiceRows.
+     */
+    cursor?: FortnoxInvoiceRowWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxInvoiceRows from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxInvoiceRows.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxInvoiceRows.
+     */
+    distinct?: FortnoxInvoiceRowScalarFieldEnum | FortnoxInvoiceRowScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxInvoiceRow findFirstOrThrow
+   */
+  export type FortnoxInvoiceRowFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoiceRow
+     */
+    select?: FortnoxInvoiceRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoiceRow
+     */
+    omit?: FortnoxInvoiceRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceRowInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxInvoiceRow to fetch.
+     */
+    where?: FortnoxInvoiceRowWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxInvoiceRows to fetch.
+     */
+    orderBy?: FortnoxInvoiceRowOrderByWithRelationInput | FortnoxInvoiceRowOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FortnoxInvoiceRows.
+     */
+    cursor?: FortnoxInvoiceRowWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxInvoiceRows from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxInvoiceRows.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxInvoiceRows.
+     */
+    distinct?: FortnoxInvoiceRowScalarFieldEnum | FortnoxInvoiceRowScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxInvoiceRow findMany
+   */
+  export type FortnoxInvoiceRowFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoiceRow
+     */
+    select?: FortnoxInvoiceRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoiceRow
+     */
+    omit?: FortnoxInvoiceRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceRowInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxInvoiceRows to fetch.
+     */
+    where?: FortnoxInvoiceRowWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxInvoiceRows to fetch.
+     */
+    orderBy?: FortnoxInvoiceRowOrderByWithRelationInput | FortnoxInvoiceRowOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FortnoxInvoiceRows.
+     */
+    cursor?: FortnoxInvoiceRowWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxInvoiceRows from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxInvoiceRows.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxInvoiceRows.
+     */
+    distinct?: FortnoxInvoiceRowScalarFieldEnum | FortnoxInvoiceRowScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxInvoiceRow create
+   */
+  export type FortnoxInvoiceRowCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoiceRow
+     */
+    select?: FortnoxInvoiceRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoiceRow
+     */
+    omit?: FortnoxInvoiceRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceRowInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FortnoxInvoiceRow.
+     */
+    data: XOR<FortnoxInvoiceRowCreateInput, FortnoxInvoiceRowUncheckedCreateInput>
+  }
+
+  /**
+   * FortnoxInvoiceRow createMany
+   */
+  export type FortnoxInvoiceRowCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FortnoxInvoiceRows.
+     */
+    data: FortnoxInvoiceRowCreateManyInput | FortnoxInvoiceRowCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FortnoxInvoiceRow createManyAndReturn
+   */
+  export type FortnoxInvoiceRowCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoiceRow
+     */
+    select?: FortnoxInvoiceRowSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoiceRow
+     */
+    omit?: FortnoxInvoiceRowOmit<ExtArgs> | null
+    /**
+     * The data used to create many FortnoxInvoiceRows.
+     */
+    data: FortnoxInvoiceRowCreateManyInput | FortnoxInvoiceRowCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceRowIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FortnoxInvoiceRow update
+   */
+  export type FortnoxInvoiceRowUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoiceRow
+     */
+    select?: FortnoxInvoiceRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoiceRow
+     */
+    omit?: FortnoxInvoiceRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceRowInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FortnoxInvoiceRow.
+     */
+    data: XOR<FortnoxInvoiceRowUpdateInput, FortnoxInvoiceRowUncheckedUpdateInput>
+    /**
+     * Choose, which FortnoxInvoiceRow to update.
+     */
+    where: FortnoxInvoiceRowWhereUniqueInput
+  }
+
+  /**
+   * FortnoxInvoiceRow updateMany
+   */
+  export type FortnoxInvoiceRowUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FortnoxInvoiceRows.
+     */
+    data: XOR<FortnoxInvoiceRowUpdateManyMutationInput, FortnoxInvoiceRowUncheckedUpdateManyInput>
+    /**
+     * Filter which FortnoxInvoiceRows to update
+     */
+    where?: FortnoxInvoiceRowWhereInput
+    /**
+     * Limit how many FortnoxInvoiceRows to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FortnoxInvoiceRow updateManyAndReturn
+   */
+  export type FortnoxInvoiceRowUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoiceRow
+     */
+    select?: FortnoxInvoiceRowSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoiceRow
+     */
+    omit?: FortnoxInvoiceRowOmit<ExtArgs> | null
+    /**
+     * The data used to update FortnoxInvoiceRows.
+     */
+    data: XOR<FortnoxInvoiceRowUpdateManyMutationInput, FortnoxInvoiceRowUncheckedUpdateManyInput>
+    /**
+     * Filter which FortnoxInvoiceRows to update
+     */
+    where?: FortnoxInvoiceRowWhereInput
+    /**
+     * Limit how many FortnoxInvoiceRows to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceRowIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FortnoxInvoiceRow upsert
+   */
+  export type FortnoxInvoiceRowUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoiceRow
+     */
+    select?: FortnoxInvoiceRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoiceRow
+     */
+    omit?: FortnoxInvoiceRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceRowInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FortnoxInvoiceRow to update in case it exists.
+     */
+    where: FortnoxInvoiceRowWhereUniqueInput
+    /**
+     * In case the FortnoxInvoiceRow found by the `where` argument doesn't exist, create a new FortnoxInvoiceRow with this data.
+     */
+    create: XOR<FortnoxInvoiceRowCreateInput, FortnoxInvoiceRowUncheckedCreateInput>
+    /**
+     * In case the FortnoxInvoiceRow was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FortnoxInvoiceRowUpdateInput, FortnoxInvoiceRowUncheckedUpdateInput>
+  }
+
+  /**
+   * FortnoxInvoiceRow delete
+   */
+  export type FortnoxInvoiceRowDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoiceRow
+     */
+    select?: FortnoxInvoiceRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoiceRow
+     */
+    omit?: FortnoxInvoiceRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceRowInclude<ExtArgs> | null
+    /**
+     * Filter which FortnoxInvoiceRow to delete.
+     */
+    where: FortnoxInvoiceRowWhereUniqueInput
+  }
+
+  /**
+   * FortnoxInvoiceRow deleteMany
+   */
+  export type FortnoxInvoiceRowDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FortnoxInvoiceRows to delete
+     */
+    where?: FortnoxInvoiceRowWhereInput
+    /**
+     * Limit how many FortnoxInvoiceRows to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FortnoxInvoiceRow without action
+   */
+  export type FortnoxInvoiceRowDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxInvoiceRow
+     */
+    select?: FortnoxInvoiceRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxInvoiceRow
+     */
+    omit?: FortnoxInvoiceRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxInvoiceRowInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model FortnoxSyncLog
    */
 
@@ -12055,6 +17758,92 @@ export namespace Prisma {
   export type EmailActivityScalarFieldEnum = (typeof EmailActivityScalarFieldEnum)[keyof typeof EmailActivityScalarFieldEnum]
 
 
+  export const EmailScalarFieldEnum: {
+    id: 'id',
+    messageId: 'messageId',
+    source: 'source',
+    imapCredentialId: 'imapCredentialId',
+    userId: 'userId',
+    customerId: 'customerId',
+    direction: 'direction',
+    subject: 'subject',
+    fromAddress: 'fromAddress',
+    fromName: 'fromName',
+    toAddresses: 'toAddresses',
+    ccAddresses: 'ccAddresses',
+    bccAddresses: 'bccAddresses',
+    replyTo: 'replyTo',
+    sentAt: 'sentAt',
+    bodyText: 'bodyText',
+    bodyHtml: 'bodyHtml',
+    inReplyTo: 'inReplyTo',
+    threadId: 'threadId',
+    mailbox: 'mailbox',
+    createdAt: 'createdAt'
+  };
+
+  export type EmailScalarFieldEnum = (typeof EmailScalarFieldEnum)[keyof typeof EmailScalarFieldEnum]
+
+
+  export const FortnoxCustomerScalarFieldEnum: {
+    id: 'id',
+    customerNumber: 'customerNumber',
+    customerId: 'customerId',
+    name: 'name',
+    organisationNumber: 'organisationNumber',
+    email: 'email',
+    phone: 'phone',
+    address: 'address',
+    zipCode: 'zipCode',
+    city: 'city',
+    country: 'country',
+    currency: 'currency',
+    active: 'active',
+    rawData: 'rawData',
+    syncedAt: 'syncedAt',
+    createdAt: 'createdAt'
+  };
+
+  export type FortnoxCustomerScalarFieldEnum = (typeof FortnoxCustomerScalarFieldEnum)[keyof typeof FortnoxCustomerScalarFieldEnum]
+
+
+  export const FortnoxInvoiceScalarFieldEnum: {
+    id: 'id',
+    invoiceNumber: 'invoiceNumber',
+    customerNumber: 'customerNumber',
+    customerId: 'customerId',
+    invoiceDate: 'invoiceDate',
+    dueDate: 'dueDate',
+    totalExclVat: 'totalExclVat',
+    totalInclVat: 'totalInclVat',
+    vat: 'vat',
+    currency: 'currency',
+    status: 'status',
+    ourReference: 'ourReference',
+    yourReference: 'yourReference',
+    rawData: 'rawData',
+    syncedAt: 'syncedAt',
+    createdAt: 'createdAt'
+  };
+
+  export type FortnoxInvoiceScalarFieldEnum = (typeof FortnoxInvoiceScalarFieldEnum)[keyof typeof FortnoxInvoiceScalarFieldEnum]
+
+
+  export const FortnoxInvoiceRowScalarFieldEnum: {
+    id: 'id',
+    invoiceNumber: 'invoiceNumber',
+    rowNumber: 'rowNumber',
+    articleNumber: 'articleNumber',
+    description: 'description',
+    quantity: 'quantity',
+    price: 'price',
+    vatPercent: 'vatPercent',
+    total: 'total'
+  };
+
+  export type FortnoxInvoiceRowScalarFieldEnum = (typeof FortnoxInvoiceRowScalarFieldEnum)[keyof typeof FortnoxInvoiceRowScalarFieldEnum]
+
+
   export const FortnoxSyncLogScalarFieldEnum: {
     id: 'id',
     companyId: 'companyId',
@@ -12073,6 +17862,21 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
@@ -12087,6 +17891,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -12154,6 +17967,20 @@ export namespace Prisma {
    * Reference to a field of type 'Decimal[]'
    */
   export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -12248,6 +18075,7 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerListRelationFilter
     timeEntries?: TimeEntryListRelationFilter
     emailActivities?: EmailActivityListRelationFilter
+    emails?: EmailListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -12262,6 +18090,7 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerOrderByRelationAggregateInput
     timeEntries?: TimeEntryOrderByRelationAggregateInput
     emailActivities?: EmailActivityOrderByRelationAggregateInput
+    emails?: EmailOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -12279,6 +18108,7 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerListRelationFilter
     timeEntries?: TimeEntryListRelationFilter
     emailActivities?: EmailActivityListRelationFilter
+    emails?: EmailListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -12384,6 +18214,7 @@ export namespace Prisma {
     useTls?: BoolFilter<"ImapCredential"> | boolean
     createdAt?: DateTimeFilter<"ImapCredential"> | Date | string
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    emails?: EmailListRelationFilter
   }
 
   export type ImapCredentialOrderByWithRelationInput = {
@@ -12396,6 +18227,7 @@ export namespace Prisma {
     useTls?: SortOrder
     createdAt?: SortOrder
     user?: UserOrderByWithRelationInput
+    emails?: EmailOrderByRelationAggregateInput
   }
 
   export type ImapCredentialWhereUniqueInput = Prisma.AtLeast<{
@@ -12411,6 +18243,7 @@ export namespace Prisma {
     useTls?: BoolFilter<"ImapCredential"> | boolean
     createdAt?: DateTimeFilter<"ImapCredential"> | Date | string
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    emails?: EmailListRelationFilter
   }, "id">
 
   export type ImapCredentialOrderByWithAggregationInput = {
@@ -12457,6 +18290,9 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerListRelationFilter
     timeEntries?: TimeEntryListRelationFilter
     emailActivities?: EmailActivityListRelationFilter
+    emails?: EmailListRelationFilter
+    fortnoxCustomer?: XOR<FortnoxCustomerNullableScalarRelationFilter, FortnoxCustomerWhereInput> | null
+    fortnoxInvoices?: FortnoxInvoiceListRelationFilter
   }
 
   export type CustomerOrderByWithRelationInput = {
@@ -12470,6 +18306,9 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerOrderByRelationAggregateInput
     timeEntries?: TimeEntryOrderByRelationAggregateInput
     emailActivities?: EmailActivityOrderByRelationAggregateInput
+    emails?: EmailOrderByRelationAggregateInput
+    fortnoxCustomer?: FortnoxCustomerOrderByWithRelationInput
+    fortnoxInvoices?: FortnoxInvoiceOrderByRelationAggregateInput
   }
 
   export type CustomerWhereUniqueInput = Prisma.AtLeast<{
@@ -12486,6 +18325,9 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerListRelationFilter
     timeEntries?: TimeEntryListRelationFilter
     emailActivities?: EmailActivityListRelationFilter
+    emails?: EmailListRelationFilter
+    fortnoxCustomer?: XOR<FortnoxCustomerNullableScalarRelationFilter, FortnoxCustomerWhereInput> | null
+    fortnoxInvoices?: FortnoxInvoiceListRelationFilter
   }, "id">
 
   export type CustomerOrderByWithAggregationInput = {
@@ -12729,6 +18571,455 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"EmailActivity"> | Date | string
   }
 
+  export type EmailWhereInput = {
+    AND?: EmailWhereInput | EmailWhereInput[]
+    OR?: EmailWhereInput[]
+    NOT?: EmailWhereInput | EmailWhereInput[]
+    id?: UuidFilter<"Email"> | string
+    messageId?: StringFilter<"Email"> | string
+    source?: StringFilter<"Email"> | string
+    imapCredentialId?: UuidNullableFilter<"Email"> | string | null
+    userId?: UuidNullableFilter<"Email"> | string | null
+    customerId?: UuidNullableFilter<"Email"> | string | null
+    direction?: StringFilter<"Email"> | string
+    subject?: StringNullableFilter<"Email"> | string | null
+    fromAddress?: StringFilter<"Email"> | string
+    fromName?: StringNullableFilter<"Email"> | string | null
+    toAddresses?: JsonFilter<"Email">
+    ccAddresses?: JsonFilter<"Email">
+    bccAddresses?: JsonFilter<"Email">
+    replyTo?: StringNullableFilter<"Email"> | string | null
+    sentAt?: DateTimeNullableFilter<"Email"> | Date | string | null
+    bodyText?: StringNullableFilter<"Email"> | string | null
+    bodyHtml?: StringNullableFilter<"Email"> | string | null
+    inReplyTo?: StringNullableFilter<"Email"> | string | null
+    threadId?: StringNullableFilter<"Email"> | string | null
+    mailbox?: StringNullableFilter<"Email"> | string | null
+    createdAt?: DateTimeFilter<"Email"> | Date | string
+    imapCredential?: XOR<ImapCredentialNullableScalarRelationFilter, ImapCredentialWhereInput> | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    customer?: XOR<CustomerNullableScalarRelationFilter, CustomerWhereInput> | null
+  }
+
+  export type EmailOrderByWithRelationInput = {
+    id?: SortOrder
+    messageId?: SortOrder
+    source?: SortOrder
+    imapCredentialId?: SortOrderInput | SortOrder
+    userId?: SortOrderInput | SortOrder
+    customerId?: SortOrderInput | SortOrder
+    direction?: SortOrder
+    subject?: SortOrderInput | SortOrder
+    fromAddress?: SortOrder
+    fromName?: SortOrderInput | SortOrder
+    toAddresses?: SortOrder
+    ccAddresses?: SortOrder
+    bccAddresses?: SortOrder
+    replyTo?: SortOrderInput | SortOrder
+    sentAt?: SortOrderInput | SortOrder
+    bodyText?: SortOrderInput | SortOrder
+    bodyHtml?: SortOrderInput | SortOrder
+    inReplyTo?: SortOrderInput | SortOrder
+    threadId?: SortOrderInput | SortOrder
+    mailbox?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    imapCredential?: ImapCredentialOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+    customer?: CustomerOrderByWithRelationInput
+  }
+
+  export type EmailWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    messageId?: string
+    AND?: EmailWhereInput | EmailWhereInput[]
+    OR?: EmailWhereInput[]
+    NOT?: EmailWhereInput | EmailWhereInput[]
+    source?: StringFilter<"Email"> | string
+    imapCredentialId?: UuidNullableFilter<"Email"> | string | null
+    userId?: UuidNullableFilter<"Email"> | string | null
+    customerId?: UuidNullableFilter<"Email"> | string | null
+    direction?: StringFilter<"Email"> | string
+    subject?: StringNullableFilter<"Email"> | string | null
+    fromAddress?: StringFilter<"Email"> | string
+    fromName?: StringNullableFilter<"Email"> | string | null
+    toAddresses?: JsonFilter<"Email">
+    ccAddresses?: JsonFilter<"Email">
+    bccAddresses?: JsonFilter<"Email">
+    replyTo?: StringNullableFilter<"Email"> | string | null
+    sentAt?: DateTimeNullableFilter<"Email"> | Date | string | null
+    bodyText?: StringNullableFilter<"Email"> | string | null
+    bodyHtml?: StringNullableFilter<"Email"> | string | null
+    inReplyTo?: StringNullableFilter<"Email"> | string | null
+    threadId?: StringNullableFilter<"Email"> | string | null
+    mailbox?: StringNullableFilter<"Email"> | string | null
+    createdAt?: DateTimeFilter<"Email"> | Date | string
+    imapCredential?: XOR<ImapCredentialNullableScalarRelationFilter, ImapCredentialWhereInput> | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    customer?: XOR<CustomerNullableScalarRelationFilter, CustomerWhereInput> | null
+  }, "id" | "messageId">
+
+  export type EmailOrderByWithAggregationInput = {
+    id?: SortOrder
+    messageId?: SortOrder
+    source?: SortOrder
+    imapCredentialId?: SortOrderInput | SortOrder
+    userId?: SortOrderInput | SortOrder
+    customerId?: SortOrderInput | SortOrder
+    direction?: SortOrder
+    subject?: SortOrderInput | SortOrder
+    fromAddress?: SortOrder
+    fromName?: SortOrderInput | SortOrder
+    toAddresses?: SortOrder
+    ccAddresses?: SortOrder
+    bccAddresses?: SortOrder
+    replyTo?: SortOrderInput | SortOrder
+    sentAt?: SortOrderInput | SortOrder
+    bodyText?: SortOrderInput | SortOrder
+    bodyHtml?: SortOrderInput | SortOrder
+    inReplyTo?: SortOrderInput | SortOrder
+    threadId?: SortOrderInput | SortOrder
+    mailbox?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: EmailCountOrderByAggregateInput
+    _max?: EmailMaxOrderByAggregateInput
+    _min?: EmailMinOrderByAggregateInput
+  }
+
+  export type EmailScalarWhereWithAggregatesInput = {
+    AND?: EmailScalarWhereWithAggregatesInput | EmailScalarWhereWithAggregatesInput[]
+    OR?: EmailScalarWhereWithAggregatesInput[]
+    NOT?: EmailScalarWhereWithAggregatesInput | EmailScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"Email"> | string
+    messageId?: StringWithAggregatesFilter<"Email"> | string
+    source?: StringWithAggregatesFilter<"Email"> | string
+    imapCredentialId?: UuidNullableWithAggregatesFilter<"Email"> | string | null
+    userId?: UuidNullableWithAggregatesFilter<"Email"> | string | null
+    customerId?: UuidNullableWithAggregatesFilter<"Email"> | string | null
+    direction?: StringWithAggregatesFilter<"Email"> | string
+    subject?: StringNullableWithAggregatesFilter<"Email"> | string | null
+    fromAddress?: StringWithAggregatesFilter<"Email"> | string
+    fromName?: StringNullableWithAggregatesFilter<"Email"> | string | null
+    toAddresses?: JsonWithAggregatesFilter<"Email">
+    ccAddresses?: JsonWithAggregatesFilter<"Email">
+    bccAddresses?: JsonWithAggregatesFilter<"Email">
+    replyTo?: StringNullableWithAggregatesFilter<"Email"> | string | null
+    sentAt?: DateTimeNullableWithAggregatesFilter<"Email"> | Date | string | null
+    bodyText?: StringNullableWithAggregatesFilter<"Email"> | string | null
+    bodyHtml?: StringNullableWithAggregatesFilter<"Email"> | string | null
+    inReplyTo?: StringNullableWithAggregatesFilter<"Email"> | string | null
+    threadId?: StringNullableWithAggregatesFilter<"Email"> | string | null
+    mailbox?: StringNullableWithAggregatesFilter<"Email"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Email"> | Date | string
+  }
+
+  export type FortnoxCustomerWhereInput = {
+    AND?: FortnoxCustomerWhereInput | FortnoxCustomerWhereInput[]
+    OR?: FortnoxCustomerWhereInput[]
+    NOT?: FortnoxCustomerWhereInput | FortnoxCustomerWhereInput[]
+    id?: UuidFilter<"FortnoxCustomer"> | string
+    customerNumber?: StringFilter<"FortnoxCustomer"> | string
+    customerId?: UuidNullableFilter<"FortnoxCustomer"> | string | null
+    name?: StringFilter<"FortnoxCustomer"> | string
+    organisationNumber?: StringNullableFilter<"FortnoxCustomer"> | string | null
+    email?: StringNullableFilter<"FortnoxCustomer"> | string | null
+    phone?: StringNullableFilter<"FortnoxCustomer"> | string | null
+    address?: StringNullableFilter<"FortnoxCustomer"> | string | null
+    zipCode?: StringNullableFilter<"FortnoxCustomer"> | string | null
+    city?: StringNullableFilter<"FortnoxCustomer"> | string | null
+    country?: StringNullableFilter<"FortnoxCustomer"> | string | null
+    currency?: StringNullableFilter<"FortnoxCustomer"> | string | null
+    active?: BoolFilter<"FortnoxCustomer"> | boolean
+    rawData?: JsonNullableFilter<"FortnoxCustomer">
+    syncedAt?: DateTimeFilter<"FortnoxCustomer"> | Date | string
+    createdAt?: DateTimeFilter<"FortnoxCustomer"> | Date | string
+    customer?: XOR<CustomerNullableScalarRelationFilter, CustomerWhereInput> | null
+    invoices?: FortnoxInvoiceListRelationFilter
+  }
+
+  export type FortnoxCustomerOrderByWithRelationInput = {
+    id?: SortOrder
+    customerNumber?: SortOrder
+    customerId?: SortOrderInput | SortOrder
+    name?: SortOrder
+    organisationNumber?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
+    phone?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+    zipCode?: SortOrderInput | SortOrder
+    city?: SortOrderInput | SortOrder
+    country?: SortOrderInput | SortOrder
+    currency?: SortOrderInput | SortOrder
+    active?: SortOrder
+    rawData?: SortOrderInput | SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+    customer?: CustomerOrderByWithRelationInput
+    invoices?: FortnoxInvoiceOrderByRelationAggregateInput
+  }
+
+  export type FortnoxCustomerWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    customerNumber?: string
+    customerId?: string
+    AND?: FortnoxCustomerWhereInput | FortnoxCustomerWhereInput[]
+    OR?: FortnoxCustomerWhereInput[]
+    NOT?: FortnoxCustomerWhereInput | FortnoxCustomerWhereInput[]
+    name?: StringFilter<"FortnoxCustomer"> | string
+    organisationNumber?: StringNullableFilter<"FortnoxCustomer"> | string | null
+    email?: StringNullableFilter<"FortnoxCustomer"> | string | null
+    phone?: StringNullableFilter<"FortnoxCustomer"> | string | null
+    address?: StringNullableFilter<"FortnoxCustomer"> | string | null
+    zipCode?: StringNullableFilter<"FortnoxCustomer"> | string | null
+    city?: StringNullableFilter<"FortnoxCustomer"> | string | null
+    country?: StringNullableFilter<"FortnoxCustomer"> | string | null
+    currency?: StringNullableFilter<"FortnoxCustomer"> | string | null
+    active?: BoolFilter<"FortnoxCustomer"> | boolean
+    rawData?: JsonNullableFilter<"FortnoxCustomer">
+    syncedAt?: DateTimeFilter<"FortnoxCustomer"> | Date | string
+    createdAt?: DateTimeFilter<"FortnoxCustomer"> | Date | string
+    customer?: XOR<CustomerNullableScalarRelationFilter, CustomerWhereInput> | null
+    invoices?: FortnoxInvoiceListRelationFilter
+  }, "id" | "customerNumber" | "customerId">
+
+  export type FortnoxCustomerOrderByWithAggregationInput = {
+    id?: SortOrder
+    customerNumber?: SortOrder
+    customerId?: SortOrderInput | SortOrder
+    name?: SortOrder
+    organisationNumber?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
+    phone?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+    zipCode?: SortOrderInput | SortOrder
+    city?: SortOrderInput | SortOrder
+    country?: SortOrderInput | SortOrder
+    currency?: SortOrderInput | SortOrder
+    active?: SortOrder
+    rawData?: SortOrderInput | SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+    _count?: FortnoxCustomerCountOrderByAggregateInput
+    _max?: FortnoxCustomerMaxOrderByAggregateInput
+    _min?: FortnoxCustomerMinOrderByAggregateInput
+  }
+
+  export type FortnoxCustomerScalarWhereWithAggregatesInput = {
+    AND?: FortnoxCustomerScalarWhereWithAggregatesInput | FortnoxCustomerScalarWhereWithAggregatesInput[]
+    OR?: FortnoxCustomerScalarWhereWithAggregatesInput[]
+    NOT?: FortnoxCustomerScalarWhereWithAggregatesInput | FortnoxCustomerScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"FortnoxCustomer"> | string
+    customerNumber?: StringWithAggregatesFilter<"FortnoxCustomer"> | string
+    customerId?: UuidNullableWithAggregatesFilter<"FortnoxCustomer"> | string | null
+    name?: StringWithAggregatesFilter<"FortnoxCustomer"> | string
+    organisationNumber?: StringNullableWithAggregatesFilter<"FortnoxCustomer"> | string | null
+    email?: StringNullableWithAggregatesFilter<"FortnoxCustomer"> | string | null
+    phone?: StringNullableWithAggregatesFilter<"FortnoxCustomer"> | string | null
+    address?: StringNullableWithAggregatesFilter<"FortnoxCustomer"> | string | null
+    zipCode?: StringNullableWithAggregatesFilter<"FortnoxCustomer"> | string | null
+    city?: StringNullableWithAggregatesFilter<"FortnoxCustomer"> | string | null
+    country?: StringNullableWithAggregatesFilter<"FortnoxCustomer"> | string | null
+    currency?: StringNullableWithAggregatesFilter<"FortnoxCustomer"> | string | null
+    active?: BoolWithAggregatesFilter<"FortnoxCustomer"> | boolean
+    rawData?: JsonNullableWithAggregatesFilter<"FortnoxCustomer">
+    syncedAt?: DateTimeWithAggregatesFilter<"FortnoxCustomer"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"FortnoxCustomer"> | Date | string
+  }
+
+  export type FortnoxInvoiceWhereInput = {
+    AND?: FortnoxInvoiceWhereInput | FortnoxInvoiceWhereInput[]
+    OR?: FortnoxInvoiceWhereInput[]
+    NOT?: FortnoxInvoiceWhereInput | FortnoxInvoiceWhereInput[]
+    id?: UuidFilter<"FortnoxInvoice"> | string
+    invoiceNumber?: StringFilter<"FortnoxInvoice"> | string
+    customerNumber?: StringFilter<"FortnoxInvoice"> | string
+    customerId?: UuidNullableFilter<"FortnoxInvoice"> | string | null
+    invoiceDate?: DateTimeFilter<"FortnoxInvoice"> | Date | string
+    dueDate?: DateTimeNullableFilter<"FortnoxInvoice"> | Date | string | null
+    totalExclVat?: DecimalNullableFilter<"FortnoxInvoice"> | Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: DecimalNullableFilter<"FortnoxInvoice"> | Decimal | DecimalJsLike | number | string | null
+    vat?: DecimalNullableFilter<"FortnoxInvoice"> | Decimal | DecimalJsLike | number | string | null
+    currency?: StringFilter<"FortnoxInvoice"> | string
+    status?: StringNullableFilter<"FortnoxInvoice"> | string | null
+    ourReference?: StringNullableFilter<"FortnoxInvoice"> | string | null
+    yourReference?: StringNullableFilter<"FortnoxInvoice"> | string | null
+    rawData?: JsonNullableFilter<"FortnoxInvoice">
+    syncedAt?: DateTimeFilter<"FortnoxInvoice"> | Date | string
+    createdAt?: DateTimeFilter<"FortnoxInvoice"> | Date | string
+    fortnoxCustomer?: XOR<FortnoxCustomerScalarRelationFilter, FortnoxCustomerWhereInput>
+    customer?: XOR<CustomerNullableScalarRelationFilter, CustomerWhereInput> | null
+    rows?: FortnoxInvoiceRowListRelationFilter
+  }
+
+  export type FortnoxInvoiceOrderByWithRelationInput = {
+    id?: SortOrder
+    invoiceNumber?: SortOrder
+    customerNumber?: SortOrder
+    customerId?: SortOrderInput | SortOrder
+    invoiceDate?: SortOrder
+    dueDate?: SortOrderInput | SortOrder
+    totalExclVat?: SortOrderInput | SortOrder
+    totalInclVat?: SortOrderInput | SortOrder
+    vat?: SortOrderInput | SortOrder
+    currency?: SortOrder
+    status?: SortOrderInput | SortOrder
+    ourReference?: SortOrderInput | SortOrder
+    yourReference?: SortOrderInput | SortOrder
+    rawData?: SortOrderInput | SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+    fortnoxCustomer?: FortnoxCustomerOrderByWithRelationInput
+    customer?: CustomerOrderByWithRelationInput
+    rows?: FortnoxInvoiceRowOrderByRelationAggregateInput
+  }
+
+  export type FortnoxInvoiceWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    invoiceNumber?: string
+    AND?: FortnoxInvoiceWhereInput | FortnoxInvoiceWhereInput[]
+    OR?: FortnoxInvoiceWhereInput[]
+    NOT?: FortnoxInvoiceWhereInput | FortnoxInvoiceWhereInput[]
+    customerNumber?: StringFilter<"FortnoxInvoice"> | string
+    customerId?: UuidNullableFilter<"FortnoxInvoice"> | string | null
+    invoiceDate?: DateTimeFilter<"FortnoxInvoice"> | Date | string
+    dueDate?: DateTimeNullableFilter<"FortnoxInvoice"> | Date | string | null
+    totalExclVat?: DecimalNullableFilter<"FortnoxInvoice"> | Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: DecimalNullableFilter<"FortnoxInvoice"> | Decimal | DecimalJsLike | number | string | null
+    vat?: DecimalNullableFilter<"FortnoxInvoice"> | Decimal | DecimalJsLike | number | string | null
+    currency?: StringFilter<"FortnoxInvoice"> | string
+    status?: StringNullableFilter<"FortnoxInvoice"> | string | null
+    ourReference?: StringNullableFilter<"FortnoxInvoice"> | string | null
+    yourReference?: StringNullableFilter<"FortnoxInvoice"> | string | null
+    rawData?: JsonNullableFilter<"FortnoxInvoice">
+    syncedAt?: DateTimeFilter<"FortnoxInvoice"> | Date | string
+    createdAt?: DateTimeFilter<"FortnoxInvoice"> | Date | string
+    fortnoxCustomer?: XOR<FortnoxCustomerScalarRelationFilter, FortnoxCustomerWhereInput>
+    customer?: XOR<CustomerNullableScalarRelationFilter, CustomerWhereInput> | null
+    rows?: FortnoxInvoiceRowListRelationFilter
+  }, "id" | "invoiceNumber">
+
+  export type FortnoxInvoiceOrderByWithAggregationInput = {
+    id?: SortOrder
+    invoiceNumber?: SortOrder
+    customerNumber?: SortOrder
+    customerId?: SortOrderInput | SortOrder
+    invoiceDate?: SortOrder
+    dueDate?: SortOrderInput | SortOrder
+    totalExclVat?: SortOrderInput | SortOrder
+    totalInclVat?: SortOrderInput | SortOrder
+    vat?: SortOrderInput | SortOrder
+    currency?: SortOrder
+    status?: SortOrderInput | SortOrder
+    ourReference?: SortOrderInput | SortOrder
+    yourReference?: SortOrderInput | SortOrder
+    rawData?: SortOrderInput | SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+    _count?: FortnoxInvoiceCountOrderByAggregateInput
+    _avg?: FortnoxInvoiceAvgOrderByAggregateInput
+    _max?: FortnoxInvoiceMaxOrderByAggregateInput
+    _min?: FortnoxInvoiceMinOrderByAggregateInput
+    _sum?: FortnoxInvoiceSumOrderByAggregateInput
+  }
+
+  export type FortnoxInvoiceScalarWhereWithAggregatesInput = {
+    AND?: FortnoxInvoiceScalarWhereWithAggregatesInput | FortnoxInvoiceScalarWhereWithAggregatesInput[]
+    OR?: FortnoxInvoiceScalarWhereWithAggregatesInput[]
+    NOT?: FortnoxInvoiceScalarWhereWithAggregatesInput | FortnoxInvoiceScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"FortnoxInvoice"> | string
+    invoiceNumber?: StringWithAggregatesFilter<"FortnoxInvoice"> | string
+    customerNumber?: StringWithAggregatesFilter<"FortnoxInvoice"> | string
+    customerId?: UuidNullableWithAggregatesFilter<"FortnoxInvoice"> | string | null
+    invoiceDate?: DateTimeWithAggregatesFilter<"FortnoxInvoice"> | Date | string
+    dueDate?: DateTimeNullableWithAggregatesFilter<"FortnoxInvoice"> | Date | string | null
+    totalExclVat?: DecimalNullableWithAggregatesFilter<"FortnoxInvoice"> | Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: DecimalNullableWithAggregatesFilter<"FortnoxInvoice"> | Decimal | DecimalJsLike | number | string | null
+    vat?: DecimalNullableWithAggregatesFilter<"FortnoxInvoice"> | Decimal | DecimalJsLike | number | string | null
+    currency?: StringWithAggregatesFilter<"FortnoxInvoice"> | string
+    status?: StringNullableWithAggregatesFilter<"FortnoxInvoice"> | string | null
+    ourReference?: StringNullableWithAggregatesFilter<"FortnoxInvoice"> | string | null
+    yourReference?: StringNullableWithAggregatesFilter<"FortnoxInvoice"> | string | null
+    rawData?: JsonNullableWithAggregatesFilter<"FortnoxInvoice">
+    syncedAt?: DateTimeWithAggregatesFilter<"FortnoxInvoice"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"FortnoxInvoice"> | Date | string
+  }
+
+  export type FortnoxInvoiceRowWhereInput = {
+    AND?: FortnoxInvoiceRowWhereInput | FortnoxInvoiceRowWhereInput[]
+    OR?: FortnoxInvoiceRowWhereInput[]
+    NOT?: FortnoxInvoiceRowWhereInput | FortnoxInvoiceRowWhereInput[]
+    id?: UuidFilter<"FortnoxInvoiceRow"> | string
+    invoiceNumber?: StringFilter<"FortnoxInvoiceRow"> | string
+    rowNumber?: IntNullableFilter<"FortnoxInvoiceRow"> | number | null
+    articleNumber?: StringNullableFilter<"FortnoxInvoiceRow"> | string | null
+    description?: StringNullableFilter<"FortnoxInvoiceRow"> | string | null
+    quantity?: DecimalNullableFilter<"FortnoxInvoiceRow"> | Decimal | DecimalJsLike | number | string | null
+    price?: DecimalNullableFilter<"FortnoxInvoiceRow"> | Decimal | DecimalJsLike | number | string | null
+    vatPercent?: DecimalNullableFilter<"FortnoxInvoiceRow"> | Decimal | DecimalJsLike | number | string | null
+    total?: DecimalNullableFilter<"FortnoxInvoiceRow"> | Decimal | DecimalJsLike | number | string | null
+    invoice?: XOR<FortnoxInvoiceScalarRelationFilter, FortnoxInvoiceWhereInput>
+  }
+
+  export type FortnoxInvoiceRowOrderByWithRelationInput = {
+    id?: SortOrder
+    invoiceNumber?: SortOrder
+    rowNumber?: SortOrderInput | SortOrder
+    articleNumber?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    quantity?: SortOrderInput | SortOrder
+    price?: SortOrderInput | SortOrder
+    vatPercent?: SortOrderInput | SortOrder
+    total?: SortOrderInput | SortOrder
+    invoice?: FortnoxInvoiceOrderByWithRelationInput
+  }
+
+  export type FortnoxInvoiceRowWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FortnoxInvoiceRowWhereInput | FortnoxInvoiceRowWhereInput[]
+    OR?: FortnoxInvoiceRowWhereInput[]
+    NOT?: FortnoxInvoiceRowWhereInput | FortnoxInvoiceRowWhereInput[]
+    invoiceNumber?: StringFilter<"FortnoxInvoiceRow"> | string
+    rowNumber?: IntNullableFilter<"FortnoxInvoiceRow"> | number | null
+    articleNumber?: StringNullableFilter<"FortnoxInvoiceRow"> | string | null
+    description?: StringNullableFilter<"FortnoxInvoiceRow"> | string | null
+    quantity?: DecimalNullableFilter<"FortnoxInvoiceRow"> | Decimal | DecimalJsLike | number | string | null
+    price?: DecimalNullableFilter<"FortnoxInvoiceRow"> | Decimal | DecimalJsLike | number | string | null
+    vatPercent?: DecimalNullableFilter<"FortnoxInvoiceRow"> | Decimal | DecimalJsLike | number | string | null
+    total?: DecimalNullableFilter<"FortnoxInvoiceRow"> | Decimal | DecimalJsLike | number | string | null
+    invoice?: XOR<FortnoxInvoiceScalarRelationFilter, FortnoxInvoiceWhereInput>
+  }, "id">
+
+  export type FortnoxInvoiceRowOrderByWithAggregationInput = {
+    id?: SortOrder
+    invoiceNumber?: SortOrder
+    rowNumber?: SortOrderInput | SortOrder
+    articleNumber?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    quantity?: SortOrderInput | SortOrder
+    price?: SortOrderInput | SortOrder
+    vatPercent?: SortOrderInput | SortOrder
+    total?: SortOrderInput | SortOrder
+    _count?: FortnoxInvoiceRowCountOrderByAggregateInput
+    _avg?: FortnoxInvoiceRowAvgOrderByAggregateInput
+    _max?: FortnoxInvoiceRowMaxOrderByAggregateInput
+    _min?: FortnoxInvoiceRowMinOrderByAggregateInput
+    _sum?: FortnoxInvoiceRowSumOrderByAggregateInput
+  }
+
+  export type FortnoxInvoiceRowScalarWhereWithAggregatesInput = {
+    AND?: FortnoxInvoiceRowScalarWhereWithAggregatesInput | FortnoxInvoiceRowScalarWhereWithAggregatesInput[]
+    OR?: FortnoxInvoiceRowScalarWhereWithAggregatesInput[]
+    NOT?: FortnoxInvoiceRowScalarWhereWithAggregatesInput | FortnoxInvoiceRowScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"FortnoxInvoiceRow"> | string
+    invoiceNumber?: StringWithAggregatesFilter<"FortnoxInvoiceRow"> | string
+    rowNumber?: IntNullableWithAggregatesFilter<"FortnoxInvoiceRow"> | number | null
+    articleNumber?: StringNullableWithAggregatesFilter<"FortnoxInvoiceRow"> | string | null
+    description?: StringNullableWithAggregatesFilter<"FortnoxInvoiceRow"> | string | null
+    quantity?: DecimalNullableWithAggregatesFilter<"FortnoxInvoiceRow"> | Decimal | DecimalJsLike | number | string | null
+    price?: DecimalNullableWithAggregatesFilter<"FortnoxInvoiceRow"> | Decimal | DecimalJsLike | number | string | null
+    vatPercent?: DecimalNullableWithAggregatesFilter<"FortnoxInvoiceRow"> | Decimal | DecimalJsLike | number | string | null
+    total?: DecimalNullableWithAggregatesFilter<"FortnoxInvoiceRow"> | Decimal | DecimalJsLike | number | string | null
+  }
+
   export type FortnoxSyncLogWhereInput = {
     AND?: FortnoxSyncLogWhereInput | FortnoxSyncLogWhereInput[]
     OR?: FortnoxSyncLogWhereInput[]
@@ -12856,6 +19147,7 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutUserInput
     timeEntries?: TimeEntryCreateNestedManyWithoutUserInput
     emailActivities?: EmailActivityCreateNestedManyWithoutUserInput
+    emails?: EmailCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -12869,6 +19161,7 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutUserInput
     timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutUserInput
     emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutUserInput
+    emails?: EmailUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -12882,6 +19175,7 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerUpdateManyWithoutUserNestedInput
     timeEntries?: TimeEntryUpdateManyWithoutUserNestedInput
     emailActivities?: EmailActivityUpdateManyWithoutUserNestedInput
+    emails?: EmailUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -12895,6 +19189,7 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutUserNestedInput
     timeEntries?: TimeEntryUncheckedUpdateManyWithoutUserNestedInput
     emailActivities?: EmailActivityUncheckedUpdateManyWithoutUserNestedInput
+    emails?: EmailUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -13001,6 +19296,7 @@ export namespace Prisma {
     useTls?: boolean
     createdAt?: Date | string
     user?: UserCreateNestedOneWithoutImapCredentialsInput
+    emails?: EmailCreateNestedManyWithoutImapCredentialInput
   }
 
   export type ImapCredentialUncheckedCreateInput = {
@@ -13012,6 +19308,7 @@ export namespace Prisma {
     encryptedPassword: string
     useTls?: boolean
     createdAt?: Date | string
+    emails?: EmailUncheckedCreateNestedManyWithoutImapCredentialInput
   }
 
   export type ImapCredentialUpdateInput = {
@@ -13023,6 +19320,7 @@ export namespace Prisma {
     useTls?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneWithoutImapCredentialsNestedInput
+    emails?: EmailUpdateManyWithoutImapCredentialNestedInput
   }
 
   export type ImapCredentialUncheckedUpdateInput = {
@@ -13034,6 +19332,7 @@ export namespace Prisma {
     encryptedPassword?: StringFieldUpdateOperationsInput | string
     useTls?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    emails?: EmailUncheckedUpdateManyWithoutImapCredentialNestedInput
   }
 
   export type ImapCredentialCreateManyInput = {
@@ -13078,6 +19377,9 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutCustomerInput
     timeEntries?: TimeEntryCreateNestedManyWithoutCustomerInput
     emailActivities?: EmailActivityCreateNestedManyWithoutCustomerInput
+    emails?: EmailCreateNestedManyWithoutCustomerInput
+    fortnoxCustomer?: FortnoxCustomerCreateNestedOneWithoutCustomerInput
+    fortnoxInvoices?: FortnoxInvoiceCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateInput = {
@@ -13090,6 +19392,9 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutCustomerInput
     timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutCustomerInput
     emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutCustomerInput
+    emails?: EmailUncheckedCreateNestedManyWithoutCustomerInput
+    fortnoxCustomer?: FortnoxCustomerUncheckedCreateNestedOneWithoutCustomerInput
+    fortnoxInvoices?: FortnoxInvoiceUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUpdateInput = {
@@ -13102,6 +19407,9 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerUpdateManyWithoutCustomerNestedInput
     timeEntries?: TimeEntryUpdateManyWithoutCustomerNestedInput
     emailActivities?: EmailActivityUpdateManyWithoutCustomerNestedInput
+    emails?: EmailUpdateManyWithoutCustomerNestedInput
+    fortnoxCustomer?: FortnoxCustomerUpdateOneWithoutCustomerNestedInput
+    fortnoxInvoices?: FortnoxInvoiceUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateInput = {
@@ -13114,6 +19422,9 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutCustomerNestedInput
     timeEntries?: TimeEntryUncheckedUpdateManyWithoutCustomerNestedInput
     emailActivities?: EmailActivityUncheckedUpdateManyWithoutCustomerNestedInput
+    emails?: EmailUncheckedUpdateManyWithoutCustomerNestedInput
+    fortnoxCustomer?: FortnoxCustomerUncheckedUpdateOneWithoutCustomerNestedInput
+    fortnoxInvoices?: FortnoxInvoiceUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerCreateManyInput = {
@@ -13360,6 +19671,525 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type EmailCreateInput = {
+    id?: string
+    messageId: string
+    source?: string
+    direction?: string
+    subject?: string | null
+    fromAddress: string
+    fromName?: string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: string | null
+    sentAt?: Date | string | null
+    bodyText?: string | null
+    bodyHtml?: string | null
+    inReplyTo?: string | null
+    threadId?: string | null
+    mailbox?: string | null
+    createdAt?: Date | string
+    imapCredential?: ImapCredentialCreateNestedOneWithoutEmailsInput
+    user?: UserCreateNestedOneWithoutEmailsInput
+    customer?: CustomerCreateNestedOneWithoutEmailsInput
+  }
+
+  export type EmailUncheckedCreateInput = {
+    id?: string
+    messageId: string
+    source?: string
+    imapCredentialId?: string | null
+    userId?: string | null
+    customerId?: string | null
+    direction?: string
+    subject?: string | null
+    fromAddress: string
+    fromName?: string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: string | null
+    sentAt?: Date | string | null
+    bodyText?: string | null
+    bodyHtml?: string | null
+    inReplyTo?: string | null
+    threadId?: string | null
+    mailbox?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmailUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    messageId?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    direction?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    fromAddress?: StringFieldUpdateOperationsInput | string
+    fromName?: NullableStringFieldUpdateOperationsInput | string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    bodyText?: NullableStringFieldUpdateOperationsInput | string | null
+    bodyHtml?: NullableStringFieldUpdateOperationsInput | string | null
+    inReplyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    threadId?: NullableStringFieldUpdateOperationsInput | string | null
+    mailbox?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    imapCredential?: ImapCredentialUpdateOneWithoutEmailsNestedInput
+    user?: UserUpdateOneWithoutEmailsNestedInput
+    customer?: CustomerUpdateOneWithoutEmailsNestedInput
+  }
+
+  export type EmailUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    messageId?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    imapCredentialId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    direction?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    fromAddress?: StringFieldUpdateOperationsInput | string
+    fromName?: NullableStringFieldUpdateOperationsInput | string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    bodyText?: NullableStringFieldUpdateOperationsInput | string | null
+    bodyHtml?: NullableStringFieldUpdateOperationsInput | string | null
+    inReplyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    threadId?: NullableStringFieldUpdateOperationsInput | string | null
+    mailbox?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailCreateManyInput = {
+    id?: string
+    messageId: string
+    source?: string
+    imapCredentialId?: string | null
+    userId?: string | null
+    customerId?: string | null
+    direction?: string
+    subject?: string | null
+    fromAddress: string
+    fromName?: string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: string | null
+    sentAt?: Date | string | null
+    bodyText?: string | null
+    bodyHtml?: string | null
+    inReplyTo?: string | null
+    threadId?: string | null
+    mailbox?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmailUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    messageId?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    direction?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    fromAddress?: StringFieldUpdateOperationsInput | string
+    fromName?: NullableStringFieldUpdateOperationsInput | string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    bodyText?: NullableStringFieldUpdateOperationsInput | string | null
+    bodyHtml?: NullableStringFieldUpdateOperationsInput | string | null
+    inReplyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    threadId?: NullableStringFieldUpdateOperationsInput | string | null
+    mailbox?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    messageId?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    imapCredentialId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    direction?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    fromAddress?: StringFieldUpdateOperationsInput | string
+    fromName?: NullableStringFieldUpdateOperationsInput | string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    bodyText?: NullableStringFieldUpdateOperationsInput | string | null
+    bodyHtml?: NullableStringFieldUpdateOperationsInput | string | null
+    inReplyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    threadId?: NullableStringFieldUpdateOperationsInput | string | null
+    mailbox?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxCustomerCreateInput = {
+    id?: string
+    customerNumber: string
+    name: string
+    organisationNumber?: string | null
+    email?: string | null
+    phone?: string | null
+    address?: string | null
+    zipCode?: string | null
+    city?: string | null
+    country?: string | null
+    currency?: string | null
+    active?: boolean
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    customer?: CustomerCreateNestedOneWithoutFortnoxCustomerInput
+    invoices?: FortnoxInvoiceCreateNestedManyWithoutFortnoxCustomerInput
+  }
+
+  export type FortnoxCustomerUncheckedCreateInput = {
+    id?: string
+    customerNumber: string
+    customerId?: string | null
+    name: string
+    organisationNumber?: string | null
+    email?: string | null
+    phone?: string | null
+    address?: string | null
+    zipCode?: string | null
+    city?: string | null
+    country?: string | null
+    currency?: string | null
+    active?: boolean
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    invoices?: FortnoxInvoiceUncheckedCreateNestedManyWithoutFortnoxCustomerInput
+  }
+
+  export type FortnoxCustomerUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerNumber?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    organisationNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: CustomerUpdateOneWithoutFortnoxCustomerNestedInput
+    invoices?: FortnoxInvoiceUpdateManyWithoutFortnoxCustomerNestedInput
+  }
+
+  export type FortnoxCustomerUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerNumber?: StringFieldUpdateOperationsInput | string
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    organisationNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    invoices?: FortnoxInvoiceUncheckedUpdateManyWithoutFortnoxCustomerNestedInput
+  }
+
+  export type FortnoxCustomerCreateManyInput = {
+    id?: string
+    customerNumber: string
+    customerId?: string | null
+    name: string
+    organisationNumber?: string | null
+    email?: string | null
+    phone?: string | null
+    address?: string | null
+    zipCode?: string | null
+    city?: string | null
+    country?: string | null
+    currency?: string | null
+    active?: boolean
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type FortnoxCustomerUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerNumber?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    organisationNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxCustomerUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerNumber?: StringFieldUpdateOperationsInput | string
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    organisationNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxInvoiceCreateInput = {
+    id?: string
+    invoiceNumber: string
+    invoiceDate: Date | string
+    dueDate?: Date | string | null
+    totalExclVat?: Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: Decimal | DecimalJsLike | number | string | null
+    vat?: Decimal | DecimalJsLike | number | string | null
+    currency?: string
+    status?: string | null
+    ourReference?: string | null
+    yourReference?: string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    fortnoxCustomer: FortnoxCustomerCreateNestedOneWithoutInvoicesInput
+    customer?: CustomerCreateNestedOneWithoutFortnoxInvoicesInput
+    rows?: FortnoxInvoiceRowCreateNestedManyWithoutInvoiceInput
+  }
+
+  export type FortnoxInvoiceUncheckedCreateInput = {
+    id?: string
+    invoiceNumber: string
+    customerNumber: string
+    customerId?: string | null
+    invoiceDate: Date | string
+    dueDate?: Date | string | null
+    totalExclVat?: Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: Decimal | DecimalJsLike | number | string | null
+    vat?: Decimal | DecimalJsLike | number | string | null
+    currency?: string
+    status?: string | null
+    ourReference?: string | null
+    yourReference?: string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    rows?: FortnoxInvoiceRowUncheckedCreateNestedManyWithoutInvoiceInput
+  }
+
+  export type FortnoxInvoiceUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    invoiceNumber?: StringFieldUpdateOperationsInput | string
+    invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalExclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    ourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fortnoxCustomer?: FortnoxCustomerUpdateOneRequiredWithoutInvoicesNestedInput
+    customer?: CustomerUpdateOneWithoutFortnoxInvoicesNestedInput
+    rows?: FortnoxInvoiceRowUpdateManyWithoutInvoiceNestedInput
+  }
+
+  export type FortnoxInvoiceUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    invoiceNumber?: StringFieldUpdateOperationsInput | string
+    customerNumber?: StringFieldUpdateOperationsInput | string
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalExclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    ourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    rows?: FortnoxInvoiceRowUncheckedUpdateManyWithoutInvoiceNestedInput
+  }
+
+  export type FortnoxInvoiceCreateManyInput = {
+    id?: string
+    invoiceNumber: string
+    customerNumber: string
+    customerId?: string | null
+    invoiceDate: Date | string
+    dueDate?: Date | string | null
+    totalExclVat?: Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: Decimal | DecimalJsLike | number | string | null
+    vat?: Decimal | DecimalJsLike | number | string | null
+    currency?: string
+    status?: string | null
+    ourReference?: string | null
+    yourReference?: string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type FortnoxInvoiceUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    invoiceNumber?: StringFieldUpdateOperationsInput | string
+    invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalExclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    ourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxInvoiceUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    invoiceNumber?: StringFieldUpdateOperationsInput | string
+    customerNumber?: StringFieldUpdateOperationsInput | string
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalExclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    ourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxInvoiceRowCreateInput = {
+    id?: string
+    rowNumber?: number | null
+    articleNumber?: string | null
+    description?: string | null
+    quantity?: Decimal | DecimalJsLike | number | string | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    vatPercent?: Decimal | DecimalJsLike | number | string | null
+    total?: Decimal | DecimalJsLike | number | string | null
+    invoice: FortnoxInvoiceCreateNestedOneWithoutRowsInput
+  }
+
+  export type FortnoxInvoiceRowUncheckedCreateInput = {
+    id?: string
+    invoiceNumber: string
+    rowNumber?: number | null
+    articleNumber?: string | null
+    description?: string | null
+    quantity?: Decimal | DecimalJsLike | number | string | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    vatPercent?: Decimal | DecimalJsLike | number | string | null
+    total?: Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type FortnoxInvoiceRowUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rowNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    articleNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vatPercent?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    invoice?: FortnoxInvoiceUpdateOneRequiredWithoutRowsNestedInput
+  }
+
+  export type FortnoxInvoiceRowUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    invoiceNumber?: StringFieldUpdateOperationsInput | string
+    rowNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    articleNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vatPercent?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type FortnoxInvoiceRowCreateManyInput = {
+    id?: string
+    invoiceNumber: string
+    rowNumber?: number | null
+    articleNumber?: string | null
+    description?: string | null
+    quantity?: Decimal | DecimalJsLike | number | string | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    vatPercent?: Decimal | DecimalJsLike | number | string | null
+    total?: Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type FortnoxInvoiceRowUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rowNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    articleNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vatPercent?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type FortnoxInvoiceRowUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    invoiceNumber?: StringFieldUpdateOperationsInput | string
+    rowNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    articleNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vatPercent?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+  }
+
   export type FortnoxSyncLogCreateInput = {
     id?: string
     resource: string
@@ -13583,6 +20413,12 @@ export namespace Prisma {
     none?: EmailActivityWhereInput
   }
 
+  export type EmailListRelationFilter = {
+    every?: EmailWhereInput
+    some?: EmailWhereInput
+    none?: EmailWhereInput
+  }
+
   export type ImapCredentialOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -13596,6 +20432,10 @@ export namespace Prisma {
   }
 
   export type EmailActivityOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EmailOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -13837,6 +20677,21 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type FortnoxCustomerNullableScalarRelationFilter = {
+    is?: FortnoxCustomerWhereInput | null
+    isNot?: FortnoxCustomerWhereInput | null
+  }
+
+  export type FortnoxInvoiceListRelationFilter = {
+    every?: FortnoxInvoiceWhereInput
+    some?: FortnoxInvoiceWhereInput
+    none?: FortnoxInvoiceWhereInput
+  }
+
+  export type FortnoxInvoiceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type CustomerCountOrderByAggregateInput = {
     id?: SortOrder
     fortnoxCustomerNumber?: SortOrder
@@ -14013,6 +20868,423 @@ export namespace Prisma {
     subject?: SortOrder
     messageId?: SortOrder
     createdAt?: SortOrder
+  }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type ImapCredentialNullableScalarRelationFilter = {
+    is?: ImapCredentialWhereInput | null
+    isNot?: ImapCredentialWhereInput | null
+  }
+
+  export type EmailCountOrderByAggregateInput = {
+    id?: SortOrder
+    messageId?: SortOrder
+    source?: SortOrder
+    imapCredentialId?: SortOrder
+    userId?: SortOrder
+    customerId?: SortOrder
+    direction?: SortOrder
+    subject?: SortOrder
+    fromAddress?: SortOrder
+    fromName?: SortOrder
+    toAddresses?: SortOrder
+    ccAddresses?: SortOrder
+    bccAddresses?: SortOrder
+    replyTo?: SortOrder
+    sentAt?: SortOrder
+    bodyText?: SortOrder
+    bodyHtml?: SortOrder
+    inReplyTo?: SortOrder
+    threadId?: SortOrder
+    mailbox?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EmailMaxOrderByAggregateInput = {
+    id?: SortOrder
+    messageId?: SortOrder
+    source?: SortOrder
+    imapCredentialId?: SortOrder
+    userId?: SortOrder
+    customerId?: SortOrder
+    direction?: SortOrder
+    subject?: SortOrder
+    fromAddress?: SortOrder
+    fromName?: SortOrder
+    replyTo?: SortOrder
+    sentAt?: SortOrder
+    bodyText?: SortOrder
+    bodyHtml?: SortOrder
+    inReplyTo?: SortOrder
+    threadId?: SortOrder
+    mailbox?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EmailMinOrderByAggregateInput = {
+    id?: SortOrder
+    messageId?: SortOrder
+    source?: SortOrder
+    imapCredentialId?: SortOrder
+    userId?: SortOrder
+    customerId?: SortOrder
+    direction?: SortOrder
+    subject?: SortOrder
+    fromAddress?: SortOrder
+    fromName?: SortOrder
+    replyTo?: SortOrder
+    sentAt?: SortOrder
+    bodyText?: SortOrder
+    bodyHtml?: SortOrder
+    inReplyTo?: SortOrder
+    threadId?: SortOrder
+    mailbox?: SortOrder
+    createdAt?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type FortnoxCustomerCountOrderByAggregateInput = {
+    id?: SortOrder
+    customerNumber?: SortOrder
+    customerId?: SortOrder
+    name?: SortOrder
+    organisationNumber?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    address?: SortOrder
+    zipCode?: SortOrder
+    city?: SortOrder
+    country?: SortOrder
+    currency?: SortOrder
+    active?: SortOrder
+    rawData?: SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FortnoxCustomerMaxOrderByAggregateInput = {
+    id?: SortOrder
+    customerNumber?: SortOrder
+    customerId?: SortOrder
+    name?: SortOrder
+    organisationNumber?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    address?: SortOrder
+    zipCode?: SortOrder
+    city?: SortOrder
+    country?: SortOrder
+    currency?: SortOrder
+    active?: SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FortnoxCustomerMinOrderByAggregateInput = {
+    id?: SortOrder
+    customerNumber?: SortOrder
+    customerId?: SortOrder
+    name?: SortOrder
+    organisationNumber?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    address?: SortOrder
+    zipCode?: SortOrder
+    city?: SortOrder
+    country?: SortOrder
+    currency?: SortOrder
+    active?: SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type DecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type FortnoxCustomerScalarRelationFilter = {
+    is?: FortnoxCustomerWhereInput
+    isNot?: FortnoxCustomerWhereInput
+  }
+
+  export type FortnoxInvoiceRowListRelationFilter = {
+    every?: FortnoxInvoiceRowWhereInput
+    some?: FortnoxInvoiceRowWhereInput
+    none?: FortnoxInvoiceRowWhereInput
+  }
+
+  export type FortnoxInvoiceRowOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FortnoxInvoiceCountOrderByAggregateInput = {
+    id?: SortOrder
+    invoiceNumber?: SortOrder
+    customerNumber?: SortOrder
+    customerId?: SortOrder
+    invoiceDate?: SortOrder
+    dueDate?: SortOrder
+    totalExclVat?: SortOrder
+    totalInclVat?: SortOrder
+    vat?: SortOrder
+    currency?: SortOrder
+    status?: SortOrder
+    ourReference?: SortOrder
+    yourReference?: SortOrder
+    rawData?: SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FortnoxInvoiceAvgOrderByAggregateInput = {
+    totalExclVat?: SortOrder
+    totalInclVat?: SortOrder
+    vat?: SortOrder
+  }
+
+  export type FortnoxInvoiceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    invoiceNumber?: SortOrder
+    customerNumber?: SortOrder
+    customerId?: SortOrder
+    invoiceDate?: SortOrder
+    dueDate?: SortOrder
+    totalExclVat?: SortOrder
+    totalInclVat?: SortOrder
+    vat?: SortOrder
+    currency?: SortOrder
+    status?: SortOrder
+    ourReference?: SortOrder
+    yourReference?: SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FortnoxInvoiceMinOrderByAggregateInput = {
+    id?: SortOrder
+    invoiceNumber?: SortOrder
+    customerNumber?: SortOrder
+    customerId?: SortOrder
+    invoiceDate?: SortOrder
+    dueDate?: SortOrder
+    totalExclVat?: SortOrder
+    totalInclVat?: SortOrder
+    vat?: SortOrder
+    currency?: SortOrder
+    status?: SortOrder
+    ourReference?: SortOrder
+    yourReference?: SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FortnoxInvoiceSumOrderByAggregateInput = {
+    totalExclVat?: SortOrder
+    totalInclVat?: SortOrder
+    vat?: SortOrder
+  }
+
+  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type FortnoxInvoiceScalarRelationFilter = {
+    is?: FortnoxInvoiceWhereInput
+    isNot?: FortnoxInvoiceWhereInput
+  }
+
+  export type FortnoxInvoiceRowCountOrderByAggregateInput = {
+    id?: SortOrder
+    invoiceNumber?: SortOrder
+    rowNumber?: SortOrder
+    articleNumber?: SortOrder
+    description?: SortOrder
+    quantity?: SortOrder
+    price?: SortOrder
+    vatPercent?: SortOrder
+    total?: SortOrder
+  }
+
+  export type FortnoxInvoiceRowAvgOrderByAggregateInput = {
+    rowNumber?: SortOrder
+    quantity?: SortOrder
+    price?: SortOrder
+    vatPercent?: SortOrder
+    total?: SortOrder
+  }
+
+  export type FortnoxInvoiceRowMaxOrderByAggregateInput = {
+    id?: SortOrder
+    invoiceNumber?: SortOrder
+    rowNumber?: SortOrder
+    articleNumber?: SortOrder
+    description?: SortOrder
+    quantity?: SortOrder
+    price?: SortOrder
+    vatPercent?: SortOrder
+    total?: SortOrder
+  }
+
+  export type FortnoxInvoiceRowMinOrderByAggregateInput = {
+    id?: SortOrder
+    invoiceNumber?: SortOrder
+    rowNumber?: SortOrder
+    articleNumber?: SortOrder
+    description?: SortOrder
+    quantity?: SortOrder
+    price?: SortOrder
+    vatPercent?: SortOrder
+    total?: SortOrder
+  }
+
+  export type FortnoxInvoiceRowSumOrderByAggregateInput = {
+    rowNumber?: SortOrder
+    quantity?: SortOrder
+    price?: SortOrder
+    vatPercent?: SortOrder
+    total?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type FortnoxSyncLogCompanyIdResourceCompoundUniqueInput = {
@@ -14251,6 +21523,13 @@ export namespace Prisma {
     connect?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
   }
 
+  export type EmailCreateNestedManyWithoutUserInput = {
+    create?: XOR<EmailCreateWithoutUserInput, EmailUncheckedCreateWithoutUserInput> | EmailCreateWithoutUserInput[] | EmailUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EmailCreateOrConnectWithoutUserInput | EmailCreateOrConnectWithoutUserInput[]
+    createMany?: EmailCreateManyUserInputEnvelope
+    connect?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+  }
+
   export type ImapCredentialUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<ImapCredentialCreateWithoutUserInput, ImapCredentialUncheckedCreateWithoutUserInput> | ImapCredentialCreateWithoutUserInput[] | ImapCredentialUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ImapCredentialCreateOrConnectWithoutUserInput | ImapCredentialCreateOrConnectWithoutUserInput[]
@@ -14277,6 +21556,13 @@ export namespace Prisma {
     connectOrCreate?: EmailActivityCreateOrConnectWithoutUserInput | EmailActivityCreateOrConnectWithoutUserInput[]
     createMany?: EmailActivityCreateManyUserInputEnvelope
     connect?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+  }
+
+  export type EmailUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<EmailCreateWithoutUserInput, EmailUncheckedCreateWithoutUserInput> | EmailCreateWithoutUserInput[] | EmailUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EmailCreateOrConnectWithoutUserInput | EmailCreateOrConnectWithoutUserInput[]
+    createMany?: EmailCreateManyUserInputEnvelope
+    connect?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
   }
 
   export type CompanyUpdateOneRequiredWithoutUsersNestedInput = {
@@ -14343,6 +21629,20 @@ export namespace Prisma {
     deleteMany?: EmailActivityScalarWhereInput | EmailActivityScalarWhereInput[]
   }
 
+  export type EmailUpdateManyWithoutUserNestedInput = {
+    create?: XOR<EmailCreateWithoutUserInput, EmailUncheckedCreateWithoutUserInput> | EmailCreateWithoutUserInput[] | EmailUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EmailCreateOrConnectWithoutUserInput | EmailCreateOrConnectWithoutUserInput[]
+    upsert?: EmailUpsertWithWhereUniqueWithoutUserInput | EmailUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: EmailCreateManyUserInputEnvelope
+    set?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    disconnect?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    delete?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    connect?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    update?: EmailUpdateWithWhereUniqueWithoutUserInput | EmailUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: EmailUpdateManyWithWhereWithoutUserInput | EmailUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: EmailScalarWhereInput | EmailScalarWhereInput[]
+  }
+
   export type ImapCredentialUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<ImapCredentialCreateWithoutUserInput, ImapCredentialUncheckedCreateWithoutUserInput> | ImapCredentialCreateWithoutUserInput[] | ImapCredentialUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ImapCredentialCreateOrConnectWithoutUserInput | ImapCredentialCreateOrConnectWithoutUserInput[]
@@ -14399,6 +21699,20 @@ export namespace Prisma {
     deleteMany?: EmailActivityScalarWhereInput | EmailActivityScalarWhereInput[]
   }
 
+  export type EmailUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<EmailCreateWithoutUserInput, EmailUncheckedCreateWithoutUserInput> | EmailCreateWithoutUserInput[] | EmailUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EmailCreateOrConnectWithoutUserInput | EmailCreateOrConnectWithoutUserInput[]
+    upsert?: EmailUpsertWithWhereUniqueWithoutUserInput | EmailUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: EmailCreateManyUserInputEnvelope
+    set?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    disconnect?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    delete?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    connect?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    update?: EmailUpdateWithWhereUniqueWithoutUserInput | EmailUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: EmailUpdateManyWithWhereWithoutUserInput | EmailUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: EmailScalarWhereInput | EmailScalarWhereInput[]
+  }
+
   export type CompanyCreateNestedOneWithoutIntegrationsInput = {
     create?: XOR<CompanyCreateWithoutIntegrationsInput, CompanyUncheckedCreateWithoutIntegrationsInput>
     connectOrCreate?: CompanyCreateOrConnectWithoutIntegrationsInput
@@ -14427,6 +21741,20 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type EmailCreateNestedManyWithoutImapCredentialInput = {
+    create?: XOR<EmailCreateWithoutImapCredentialInput, EmailUncheckedCreateWithoutImapCredentialInput> | EmailCreateWithoutImapCredentialInput[] | EmailUncheckedCreateWithoutImapCredentialInput[]
+    connectOrCreate?: EmailCreateOrConnectWithoutImapCredentialInput | EmailCreateOrConnectWithoutImapCredentialInput[]
+    createMany?: EmailCreateManyImapCredentialInputEnvelope
+    connect?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+  }
+
+  export type EmailUncheckedCreateNestedManyWithoutImapCredentialInput = {
+    create?: XOR<EmailCreateWithoutImapCredentialInput, EmailUncheckedCreateWithoutImapCredentialInput> | EmailCreateWithoutImapCredentialInput[] | EmailUncheckedCreateWithoutImapCredentialInput[]
+    connectOrCreate?: EmailCreateOrConnectWithoutImapCredentialInput | EmailCreateOrConnectWithoutImapCredentialInput[]
+    createMany?: EmailCreateManyImapCredentialInputEnvelope
+    connect?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -14447,6 +21775,34 @@ export namespace Prisma {
     delete?: UserWhereInput | boolean
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutImapCredentialsInput, UserUpdateWithoutImapCredentialsInput>, UserUncheckedUpdateWithoutImapCredentialsInput>
+  }
+
+  export type EmailUpdateManyWithoutImapCredentialNestedInput = {
+    create?: XOR<EmailCreateWithoutImapCredentialInput, EmailUncheckedCreateWithoutImapCredentialInput> | EmailCreateWithoutImapCredentialInput[] | EmailUncheckedCreateWithoutImapCredentialInput[]
+    connectOrCreate?: EmailCreateOrConnectWithoutImapCredentialInput | EmailCreateOrConnectWithoutImapCredentialInput[]
+    upsert?: EmailUpsertWithWhereUniqueWithoutImapCredentialInput | EmailUpsertWithWhereUniqueWithoutImapCredentialInput[]
+    createMany?: EmailCreateManyImapCredentialInputEnvelope
+    set?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    disconnect?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    delete?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    connect?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    update?: EmailUpdateWithWhereUniqueWithoutImapCredentialInput | EmailUpdateWithWhereUniqueWithoutImapCredentialInput[]
+    updateMany?: EmailUpdateManyWithWhereWithoutImapCredentialInput | EmailUpdateManyWithWhereWithoutImapCredentialInput[]
+    deleteMany?: EmailScalarWhereInput | EmailScalarWhereInput[]
+  }
+
+  export type EmailUncheckedUpdateManyWithoutImapCredentialNestedInput = {
+    create?: XOR<EmailCreateWithoutImapCredentialInput, EmailUncheckedCreateWithoutImapCredentialInput> | EmailCreateWithoutImapCredentialInput[] | EmailUncheckedCreateWithoutImapCredentialInput[]
+    connectOrCreate?: EmailCreateOrConnectWithoutImapCredentialInput | EmailCreateOrConnectWithoutImapCredentialInput[]
+    upsert?: EmailUpsertWithWhereUniqueWithoutImapCredentialInput | EmailUpsertWithWhereUniqueWithoutImapCredentialInput[]
+    createMany?: EmailCreateManyImapCredentialInputEnvelope
+    set?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    disconnect?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    delete?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    connect?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    update?: EmailUpdateWithWhereUniqueWithoutImapCredentialInput | EmailUpdateWithWhereUniqueWithoutImapCredentialInput[]
+    updateMany?: EmailUpdateManyWithWhereWithoutImapCredentialInput | EmailUpdateManyWithWhereWithoutImapCredentialInput[]
+    deleteMany?: EmailScalarWhereInput | EmailScalarWhereInput[]
   }
 
   export type CompanyCreateNestedOneWithoutCustomersInput = {
@@ -14476,6 +21832,26 @@ export namespace Prisma {
     connect?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
   }
 
+  export type EmailCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<EmailCreateWithoutCustomerInput, EmailUncheckedCreateWithoutCustomerInput> | EmailCreateWithoutCustomerInput[] | EmailUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: EmailCreateOrConnectWithoutCustomerInput | EmailCreateOrConnectWithoutCustomerInput[]
+    createMany?: EmailCreateManyCustomerInputEnvelope
+    connect?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+  }
+
+  export type FortnoxCustomerCreateNestedOneWithoutCustomerInput = {
+    create?: XOR<FortnoxCustomerCreateWithoutCustomerInput, FortnoxCustomerUncheckedCreateWithoutCustomerInput>
+    connectOrCreate?: FortnoxCustomerCreateOrConnectWithoutCustomerInput
+    connect?: FortnoxCustomerWhereUniqueInput
+  }
+
+  export type FortnoxInvoiceCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<FortnoxInvoiceCreateWithoutCustomerInput, FortnoxInvoiceUncheckedCreateWithoutCustomerInput> | FortnoxInvoiceCreateWithoutCustomerInput[] | FortnoxInvoiceUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: FortnoxInvoiceCreateOrConnectWithoutCustomerInput | FortnoxInvoiceCreateOrConnectWithoutCustomerInput[]
+    createMany?: FortnoxInvoiceCreateManyCustomerInputEnvelope
+    connect?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
+  }
+
   export type EmployeeCustomerUncheckedCreateNestedManyWithoutCustomerInput = {
     create?: XOR<EmployeeCustomerCreateWithoutCustomerInput, EmployeeCustomerUncheckedCreateWithoutCustomerInput> | EmployeeCustomerCreateWithoutCustomerInput[] | EmployeeCustomerUncheckedCreateWithoutCustomerInput[]
     connectOrCreate?: EmployeeCustomerCreateOrConnectWithoutCustomerInput | EmployeeCustomerCreateOrConnectWithoutCustomerInput[]
@@ -14495,6 +21871,26 @@ export namespace Prisma {
     connectOrCreate?: EmailActivityCreateOrConnectWithoutCustomerInput | EmailActivityCreateOrConnectWithoutCustomerInput[]
     createMany?: EmailActivityCreateManyCustomerInputEnvelope
     connect?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+  }
+
+  export type EmailUncheckedCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<EmailCreateWithoutCustomerInput, EmailUncheckedCreateWithoutCustomerInput> | EmailCreateWithoutCustomerInput[] | EmailUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: EmailCreateOrConnectWithoutCustomerInput | EmailCreateOrConnectWithoutCustomerInput[]
+    createMany?: EmailCreateManyCustomerInputEnvelope
+    connect?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+  }
+
+  export type FortnoxCustomerUncheckedCreateNestedOneWithoutCustomerInput = {
+    create?: XOR<FortnoxCustomerCreateWithoutCustomerInput, FortnoxCustomerUncheckedCreateWithoutCustomerInput>
+    connectOrCreate?: FortnoxCustomerCreateOrConnectWithoutCustomerInput
+    connect?: FortnoxCustomerWhereUniqueInput
+  }
+
+  export type FortnoxInvoiceUncheckedCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<FortnoxInvoiceCreateWithoutCustomerInput, FortnoxInvoiceUncheckedCreateWithoutCustomerInput> | FortnoxInvoiceCreateWithoutCustomerInput[] | FortnoxInvoiceUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: FortnoxInvoiceCreateOrConnectWithoutCustomerInput | FortnoxInvoiceCreateOrConnectWithoutCustomerInput[]
+    createMany?: FortnoxInvoiceCreateManyCustomerInputEnvelope
+    connect?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
   }
 
   export type CompanyUpdateOneRequiredWithoutCustomersNestedInput = {
@@ -14547,6 +21943,44 @@ export namespace Prisma {
     deleteMany?: EmailActivityScalarWhereInput | EmailActivityScalarWhereInput[]
   }
 
+  export type EmailUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<EmailCreateWithoutCustomerInput, EmailUncheckedCreateWithoutCustomerInput> | EmailCreateWithoutCustomerInput[] | EmailUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: EmailCreateOrConnectWithoutCustomerInput | EmailCreateOrConnectWithoutCustomerInput[]
+    upsert?: EmailUpsertWithWhereUniqueWithoutCustomerInput | EmailUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: EmailCreateManyCustomerInputEnvelope
+    set?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    disconnect?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    delete?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    connect?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    update?: EmailUpdateWithWhereUniqueWithoutCustomerInput | EmailUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: EmailUpdateManyWithWhereWithoutCustomerInput | EmailUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: EmailScalarWhereInput | EmailScalarWhereInput[]
+  }
+
+  export type FortnoxCustomerUpdateOneWithoutCustomerNestedInput = {
+    create?: XOR<FortnoxCustomerCreateWithoutCustomerInput, FortnoxCustomerUncheckedCreateWithoutCustomerInput>
+    connectOrCreate?: FortnoxCustomerCreateOrConnectWithoutCustomerInput
+    upsert?: FortnoxCustomerUpsertWithoutCustomerInput
+    disconnect?: FortnoxCustomerWhereInput | boolean
+    delete?: FortnoxCustomerWhereInput | boolean
+    connect?: FortnoxCustomerWhereUniqueInput
+    update?: XOR<XOR<FortnoxCustomerUpdateToOneWithWhereWithoutCustomerInput, FortnoxCustomerUpdateWithoutCustomerInput>, FortnoxCustomerUncheckedUpdateWithoutCustomerInput>
+  }
+
+  export type FortnoxInvoiceUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<FortnoxInvoiceCreateWithoutCustomerInput, FortnoxInvoiceUncheckedCreateWithoutCustomerInput> | FortnoxInvoiceCreateWithoutCustomerInput[] | FortnoxInvoiceUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: FortnoxInvoiceCreateOrConnectWithoutCustomerInput | FortnoxInvoiceCreateOrConnectWithoutCustomerInput[]
+    upsert?: FortnoxInvoiceUpsertWithWhereUniqueWithoutCustomerInput | FortnoxInvoiceUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: FortnoxInvoiceCreateManyCustomerInputEnvelope
+    set?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
+    disconnect?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
+    delete?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
+    connect?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
+    update?: FortnoxInvoiceUpdateWithWhereUniqueWithoutCustomerInput | FortnoxInvoiceUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: FortnoxInvoiceUpdateManyWithWhereWithoutCustomerInput | FortnoxInvoiceUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: FortnoxInvoiceScalarWhereInput | FortnoxInvoiceScalarWhereInput[]
+  }
+
   export type EmployeeCustomerUncheckedUpdateManyWithoutCustomerNestedInput = {
     create?: XOR<EmployeeCustomerCreateWithoutCustomerInput, EmployeeCustomerUncheckedCreateWithoutCustomerInput> | EmployeeCustomerCreateWithoutCustomerInput[] | EmployeeCustomerUncheckedCreateWithoutCustomerInput[]
     connectOrCreate?: EmployeeCustomerCreateOrConnectWithoutCustomerInput | EmployeeCustomerCreateOrConnectWithoutCustomerInput[]
@@ -14587,6 +22021,44 @@ export namespace Prisma {
     update?: EmailActivityUpdateWithWhereUniqueWithoutCustomerInput | EmailActivityUpdateWithWhereUniqueWithoutCustomerInput[]
     updateMany?: EmailActivityUpdateManyWithWhereWithoutCustomerInput | EmailActivityUpdateManyWithWhereWithoutCustomerInput[]
     deleteMany?: EmailActivityScalarWhereInput | EmailActivityScalarWhereInput[]
+  }
+
+  export type EmailUncheckedUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<EmailCreateWithoutCustomerInput, EmailUncheckedCreateWithoutCustomerInput> | EmailCreateWithoutCustomerInput[] | EmailUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: EmailCreateOrConnectWithoutCustomerInput | EmailCreateOrConnectWithoutCustomerInput[]
+    upsert?: EmailUpsertWithWhereUniqueWithoutCustomerInput | EmailUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: EmailCreateManyCustomerInputEnvelope
+    set?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    disconnect?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    delete?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    connect?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+    update?: EmailUpdateWithWhereUniqueWithoutCustomerInput | EmailUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: EmailUpdateManyWithWhereWithoutCustomerInput | EmailUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: EmailScalarWhereInput | EmailScalarWhereInput[]
+  }
+
+  export type FortnoxCustomerUncheckedUpdateOneWithoutCustomerNestedInput = {
+    create?: XOR<FortnoxCustomerCreateWithoutCustomerInput, FortnoxCustomerUncheckedCreateWithoutCustomerInput>
+    connectOrCreate?: FortnoxCustomerCreateOrConnectWithoutCustomerInput
+    upsert?: FortnoxCustomerUpsertWithoutCustomerInput
+    disconnect?: FortnoxCustomerWhereInput | boolean
+    delete?: FortnoxCustomerWhereInput | boolean
+    connect?: FortnoxCustomerWhereUniqueInput
+    update?: XOR<XOR<FortnoxCustomerUpdateToOneWithWhereWithoutCustomerInput, FortnoxCustomerUpdateWithoutCustomerInput>, FortnoxCustomerUncheckedUpdateWithoutCustomerInput>
+  }
+
+  export type FortnoxInvoiceUncheckedUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<FortnoxInvoiceCreateWithoutCustomerInput, FortnoxInvoiceUncheckedCreateWithoutCustomerInput> | FortnoxInvoiceCreateWithoutCustomerInput[] | FortnoxInvoiceUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: FortnoxInvoiceCreateOrConnectWithoutCustomerInput | FortnoxInvoiceCreateOrConnectWithoutCustomerInput[]
+    upsert?: FortnoxInvoiceUpsertWithWhereUniqueWithoutCustomerInput | FortnoxInvoiceUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: FortnoxInvoiceCreateManyCustomerInputEnvelope
+    set?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
+    disconnect?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
+    delete?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
+    connect?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
+    update?: FortnoxInvoiceUpdateWithWhereUniqueWithoutCustomerInput | FortnoxInvoiceUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: FortnoxInvoiceUpdateManyWithWhereWithoutCustomerInput | FortnoxInvoiceUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: FortnoxInvoiceScalarWhereInput | FortnoxInvoiceScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutEmployeeCustomersInput = {
@@ -14683,6 +22155,214 @@ export namespace Prisma {
     delete?: CustomerWhereInput | boolean
     connect?: CustomerWhereUniqueInput
     update?: XOR<XOR<CustomerUpdateToOneWithWhereWithoutEmailActivitiesInput, CustomerUpdateWithoutEmailActivitiesInput>, CustomerUncheckedUpdateWithoutEmailActivitiesInput>
+  }
+
+  export type ImapCredentialCreateNestedOneWithoutEmailsInput = {
+    create?: XOR<ImapCredentialCreateWithoutEmailsInput, ImapCredentialUncheckedCreateWithoutEmailsInput>
+    connectOrCreate?: ImapCredentialCreateOrConnectWithoutEmailsInput
+    connect?: ImapCredentialWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutEmailsInput = {
+    create?: XOR<UserCreateWithoutEmailsInput, UserUncheckedCreateWithoutEmailsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEmailsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type CustomerCreateNestedOneWithoutEmailsInput = {
+    create?: XOR<CustomerCreateWithoutEmailsInput, CustomerUncheckedCreateWithoutEmailsInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutEmailsInput
+    connect?: CustomerWhereUniqueInput
+  }
+
+  export type ImapCredentialUpdateOneWithoutEmailsNestedInput = {
+    create?: XOR<ImapCredentialCreateWithoutEmailsInput, ImapCredentialUncheckedCreateWithoutEmailsInput>
+    connectOrCreate?: ImapCredentialCreateOrConnectWithoutEmailsInput
+    upsert?: ImapCredentialUpsertWithoutEmailsInput
+    disconnect?: ImapCredentialWhereInput | boolean
+    delete?: ImapCredentialWhereInput | boolean
+    connect?: ImapCredentialWhereUniqueInput
+    update?: XOR<XOR<ImapCredentialUpdateToOneWithWhereWithoutEmailsInput, ImapCredentialUpdateWithoutEmailsInput>, ImapCredentialUncheckedUpdateWithoutEmailsInput>
+  }
+
+  export type UserUpdateOneWithoutEmailsNestedInput = {
+    create?: XOR<UserCreateWithoutEmailsInput, UserUncheckedCreateWithoutEmailsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEmailsInput
+    upsert?: UserUpsertWithoutEmailsInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutEmailsInput, UserUpdateWithoutEmailsInput>, UserUncheckedUpdateWithoutEmailsInput>
+  }
+
+  export type CustomerUpdateOneWithoutEmailsNestedInput = {
+    create?: XOR<CustomerCreateWithoutEmailsInput, CustomerUncheckedCreateWithoutEmailsInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutEmailsInput
+    upsert?: CustomerUpsertWithoutEmailsInput
+    disconnect?: CustomerWhereInput | boolean
+    delete?: CustomerWhereInput | boolean
+    connect?: CustomerWhereUniqueInput
+    update?: XOR<XOR<CustomerUpdateToOneWithWhereWithoutEmailsInput, CustomerUpdateWithoutEmailsInput>, CustomerUncheckedUpdateWithoutEmailsInput>
+  }
+
+  export type CustomerCreateNestedOneWithoutFortnoxCustomerInput = {
+    create?: XOR<CustomerCreateWithoutFortnoxCustomerInput, CustomerUncheckedCreateWithoutFortnoxCustomerInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutFortnoxCustomerInput
+    connect?: CustomerWhereUniqueInput
+  }
+
+  export type FortnoxInvoiceCreateNestedManyWithoutFortnoxCustomerInput = {
+    create?: XOR<FortnoxInvoiceCreateWithoutFortnoxCustomerInput, FortnoxInvoiceUncheckedCreateWithoutFortnoxCustomerInput> | FortnoxInvoiceCreateWithoutFortnoxCustomerInput[] | FortnoxInvoiceUncheckedCreateWithoutFortnoxCustomerInput[]
+    connectOrCreate?: FortnoxInvoiceCreateOrConnectWithoutFortnoxCustomerInput | FortnoxInvoiceCreateOrConnectWithoutFortnoxCustomerInput[]
+    createMany?: FortnoxInvoiceCreateManyFortnoxCustomerInputEnvelope
+    connect?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
+  }
+
+  export type FortnoxInvoiceUncheckedCreateNestedManyWithoutFortnoxCustomerInput = {
+    create?: XOR<FortnoxInvoiceCreateWithoutFortnoxCustomerInput, FortnoxInvoiceUncheckedCreateWithoutFortnoxCustomerInput> | FortnoxInvoiceCreateWithoutFortnoxCustomerInput[] | FortnoxInvoiceUncheckedCreateWithoutFortnoxCustomerInput[]
+    connectOrCreate?: FortnoxInvoiceCreateOrConnectWithoutFortnoxCustomerInput | FortnoxInvoiceCreateOrConnectWithoutFortnoxCustomerInput[]
+    createMany?: FortnoxInvoiceCreateManyFortnoxCustomerInputEnvelope
+    connect?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
+  }
+
+  export type CustomerUpdateOneWithoutFortnoxCustomerNestedInput = {
+    create?: XOR<CustomerCreateWithoutFortnoxCustomerInput, CustomerUncheckedCreateWithoutFortnoxCustomerInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutFortnoxCustomerInput
+    upsert?: CustomerUpsertWithoutFortnoxCustomerInput
+    disconnect?: CustomerWhereInput | boolean
+    delete?: CustomerWhereInput | boolean
+    connect?: CustomerWhereUniqueInput
+    update?: XOR<XOR<CustomerUpdateToOneWithWhereWithoutFortnoxCustomerInput, CustomerUpdateWithoutFortnoxCustomerInput>, CustomerUncheckedUpdateWithoutFortnoxCustomerInput>
+  }
+
+  export type FortnoxInvoiceUpdateManyWithoutFortnoxCustomerNestedInput = {
+    create?: XOR<FortnoxInvoiceCreateWithoutFortnoxCustomerInput, FortnoxInvoiceUncheckedCreateWithoutFortnoxCustomerInput> | FortnoxInvoiceCreateWithoutFortnoxCustomerInput[] | FortnoxInvoiceUncheckedCreateWithoutFortnoxCustomerInput[]
+    connectOrCreate?: FortnoxInvoiceCreateOrConnectWithoutFortnoxCustomerInput | FortnoxInvoiceCreateOrConnectWithoutFortnoxCustomerInput[]
+    upsert?: FortnoxInvoiceUpsertWithWhereUniqueWithoutFortnoxCustomerInput | FortnoxInvoiceUpsertWithWhereUniqueWithoutFortnoxCustomerInput[]
+    createMany?: FortnoxInvoiceCreateManyFortnoxCustomerInputEnvelope
+    set?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
+    disconnect?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
+    delete?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
+    connect?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
+    update?: FortnoxInvoiceUpdateWithWhereUniqueWithoutFortnoxCustomerInput | FortnoxInvoiceUpdateWithWhereUniqueWithoutFortnoxCustomerInput[]
+    updateMany?: FortnoxInvoiceUpdateManyWithWhereWithoutFortnoxCustomerInput | FortnoxInvoiceUpdateManyWithWhereWithoutFortnoxCustomerInput[]
+    deleteMany?: FortnoxInvoiceScalarWhereInput | FortnoxInvoiceScalarWhereInput[]
+  }
+
+  export type FortnoxInvoiceUncheckedUpdateManyWithoutFortnoxCustomerNestedInput = {
+    create?: XOR<FortnoxInvoiceCreateWithoutFortnoxCustomerInput, FortnoxInvoiceUncheckedCreateWithoutFortnoxCustomerInput> | FortnoxInvoiceCreateWithoutFortnoxCustomerInput[] | FortnoxInvoiceUncheckedCreateWithoutFortnoxCustomerInput[]
+    connectOrCreate?: FortnoxInvoiceCreateOrConnectWithoutFortnoxCustomerInput | FortnoxInvoiceCreateOrConnectWithoutFortnoxCustomerInput[]
+    upsert?: FortnoxInvoiceUpsertWithWhereUniqueWithoutFortnoxCustomerInput | FortnoxInvoiceUpsertWithWhereUniqueWithoutFortnoxCustomerInput[]
+    createMany?: FortnoxInvoiceCreateManyFortnoxCustomerInputEnvelope
+    set?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
+    disconnect?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
+    delete?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
+    connect?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
+    update?: FortnoxInvoiceUpdateWithWhereUniqueWithoutFortnoxCustomerInput | FortnoxInvoiceUpdateWithWhereUniqueWithoutFortnoxCustomerInput[]
+    updateMany?: FortnoxInvoiceUpdateManyWithWhereWithoutFortnoxCustomerInput | FortnoxInvoiceUpdateManyWithWhereWithoutFortnoxCustomerInput[]
+    deleteMany?: FortnoxInvoiceScalarWhereInput | FortnoxInvoiceScalarWhereInput[]
+  }
+
+  export type FortnoxCustomerCreateNestedOneWithoutInvoicesInput = {
+    create?: XOR<FortnoxCustomerCreateWithoutInvoicesInput, FortnoxCustomerUncheckedCreateWithoutInvoicesInput>
+    connectOrCreate?: FortnoxCustomerCreateOrConnectWithoutInvoicesInput
+    connect?: FortnoxCustomerWhereUniqueInput
+  }
+
+  export type CustomerCreateNestedOneWithoutFortnoxInvoicesInput = {
+    create?: XOR<CustomerCreateWithoutFortnoxInvoicesInput, CustomerUncheckedCreateWithoutFortnoxInvoicesInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutFortnoxInvoicesInput
+    connect?: CustomerWhereUniqueInput
+  }
+
+  export type FortnoxInvoiceRowCreateNestedManyWithoutInvoiceInput = {
+    create?: XOR<FortnoxInvoiceRowCreateWithoutInvoiceInput, FortnoxInvoiceRowUncheckedCreateWithoutInvoiceInput> | FortnoxInvoiceRowCreateWithoutInvoiceInput[] | FortnoxInvoiceRowUncheckedCreateWithoutInvoiceInput[]
+    connectOrCreate?: FortnoxInvoiceRowCreateOrConnectWithoutInvoiceInput | FortnoxInvoiceRowCreateOrConnectWithoutInvoiceInput[]
+    createMany?: FortnoxInvoiceRowCreateManyInvoiceInputEnvelope
+    connect?: FortnoxInvoiceRowWhereUniqueInput | FortnoxInvoiceRowWhereUniqueInput[]
+  }
+
+  export type FortnoxInvoiceRowUncheckedCreateNestedManyWithoutInvoiceInput = {
+    create?: XOR<FortnoxInvoiceRowCreateWithoutInvoiceInput, FortnoxInvoiceRowUncheckedCreateWithoutInvoiceInput> | FortnoxInvoiceRowCreateWithoutInvoiceInput[] | FortnoxInvoiceRowUncheckedCreateWithoutInvoiceInput[]
+    connectOrCreate?: FortnoxInvoiceRowCreateOrConnectWithoutInvoiceInput | FortnoxInvoiceRowCreateOrConnectWithoutInvoiceInput[]
+    createMany?: FortnoxInvoiceRowCreateManyInvoiceInputEnvelope
+    connect?: FortnoxInvoiceRowWhereUniqueInput | FortnoxInvoiceRowWhereUniqueInput[]
+  }
+
+  export type NullableDecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string | null
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type FortnoxCustomerUpdateOneRequiredWithoutInvoicesNestedInput = {
+    create?: XOR<FortnoxCustomerCreateWithoutInvoicesInput, FortnoxCustomerUncheckedCreateWithoutInvoicesInput>
+    connectOrCreate?: FortnoxCustomerCreateOrConnectWithoutInvoicesInput
+    upsert?: FortnoxCustomerUpsertWithoutInvoicesInput
+    connect?: FortnoxCustomerWhereUniqueInput
+    update?: XOR<XOR<FortnoxCustomerUpdateToOneWithWhereWithoutInvoicesInput, FortnoxCustomerUpdateWithoutInvoicesInput>, FortnoxCustomerUncheckedUpdateWithoutInvoicesInput>
+  }
+
+  export type CustomerUpdateOneWithoutFortnoxInvoicesNestedInput = {
+    create?: XOR<CustomerCreateWithoutFortnoxInvoicesInput, CustomerUncheckedCreateWithoutFortnoxInvoicesInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutFortnoxInvoicesInput
+    upsert?: CustomerUpsertWithoutFortnoxInvoicesInput
+    disconnect?: CustomerWhereInput | boolean
+    delete?: CustomerWhereInput | boolean
+    connect?: CustomerWhereUniqueInput
+    update?: XOR<XOR<CustomerUpdateToOneWithWhereWithoutFortnoxInvoicesInput, CustomerUpdateWithoutFortnoxInvoicesInput>, CustomerUncheckedUpdateWithoutFortnoxInvoicesInput>
+  }
+
+  export type FortnoxInvoiceRowUpdateManyWithoutInvoiceNestedInput = {
+    create?: XOR<FortnoxInvoiceRowCreateWithoutInvoiceInput, FortnoxInvoiceRowUncheckedCreateWithoutInvoiceInput> | FortnoxInvoiceRowCreateWithoutInvoiceInput[] | FortnoxInvoiceRowUncheckedCreateWithoutInvoiceInput[]
+    connectOrCreate?: FortnoxInvoiceRowCreateOrConnectWithoutInvoiceInput | FortnoxInvoiceRowCreateOrConnectWithoutInvoiceInput[]
+    upsert?: FortnoxInvoiceRowUpsertWithWhereUniqueWithoutInvoiceInput | FortnoxInvoiceRowUpsertWithWhereUniqueWithoutInvoiceInput[]
+    createMany?: FortnoxInvoiceRowCreateManyInvoiceInputEnvelope
+    set?: FortnoxInvoiceRowWhereUniqueInput | FortnoxInvoiceRowWhereUniqueInput[]
+    disconnect?: FortnoxInvoiceRowWhereUniqueInput | FortnoxInvoiceRowWhereUniqueInput[]
+    delete?: FortnoxInvoiceRowWhereUniqueInput | FortnoxInvoiceRowWhereUniqueInput[]
+    connect?: FortnoxInvoiceRowWhereUniqueInput | FortnoxInvoiceRowWhereUniqueInput[]
+    update?: FortnoxInvoiceRowUpdateWithWhereUniqueWithoutInvoiceInput | FortnoxInvoiceRowUpdateWithWhereUniqueWithoutInvoiceInput[]
+    updateMany?: FortnoxInvoiceRowUpdateManyWithWhereWithoutInvoiceInput | FortnoxInvoiceRowUpdateManyWithWhereWithoutInvoiceInput[]
+    deleteMany?: FortnoxInvoiceRowScalarWhereInput | FortnoxInvoiceRowScalarWhereInput[]
+  }
+
+  export type FortnoxInvoiceRowUncheckedUpdateManyWithoutInvoiceNestedInput = {
+    create?: XOR<FortnoxInvoiceRowCreateWithoutInvoiceInput, FortnoxInvoiceRowUncheckedCreateWithoutInvoiceInput> | FortnoxInvoiceRowCreateWithoutInvoiceInput[] | FortnoxInvoiceRowUncheckedCreateWithoutInvoiceInput[]
+    connectOrCreate?: FortnoxInvoiceRowCreateOrConnectWithoutInvoiceInput | FortnoxInvoiceRowCreateOrConnectWithoutInvoiceInput[]
+    upsert?: FortnoxInvoiceRowUpsertWithWhereUniqueWithoutInvoiceInput | FortnoxInvoiceRowUpsertWithWhereUniqueWithoutInvoiceInput[]
+    createMany?: FortnoxInvoiceRowCreateManyInvoiceInputEnvelope
+    set?: FortnoxInvoiceRowWhereUniqueInput | FortnoxInvoiceRowWhereUniqueInput[]
+    disconnect?: FortnoxInvoiceRowWhereUniqueInput | FortnoxInvoiceRowWhereUniqueInput[]
+    delete?: FortnoxInvoiceRowWhereUniqueInput | FortnoxInvoiceRowWhereUniqueInput[]
+    connect?: FortnoxInvoiceRowWhereUniqueInput | FortnoxInvoiceRowWhereUniqueInput[]
+    update?: FortnoxInvoiceRowUpdateWithWhereUniqueWithoutInvoiceInput | FortnoxInvoiceRowUpdateWithWhereUniqueWithoutInvoiceInput[]
+    updateMany?: FortnoxInvoiceRowUpdateManyWithWhereWithoutInvoiceInput | FortnoxInvoiceRowUpdateManyWithWhereWithoutInvoiceInput[]
+    deleteMany?: FortnoxInvoiceRowScalarWhereInput | FortnoxInvoiceRowScalarWhereInput[]
+  }
+
+  export type FortnoxInvoiceCreateNestedOneWithoutRowsInput = {
+    create?: XOR<FortnoxInvoiceCreateWithoutRowsInput, FortnoxInvoiceUncheckedCreateWithoutRowsInput>
+    connectOrCreate?: FortnoxInvoiceCreateOrConnectWithoutRowsInput
+    connect?: FortnoxInvoiceWhereUniqueInput
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type FortnoxInvoiceUpdateOneRequiredWithoutRowsNestedInput = {
+    create?: XOR<FortnoxInvoiceCreateWithoutRowsInput, FortnoxInvoiceUncheckedCreateWithoutRowsInput>
+    connectOrCreate?: FortnoxInvoiceCreateOrConnectWithoutRowsInput
+    upsert?: FortnoxInvoiceUpsertWithoutRowsInput
+    connect?: FortnoxInvoiceWhereUniqueInput
+    update?: XOR<XOR<FortnoxInvoiceUpdateToOneWithWhereWithoutRowsInput, FortnoxInvoiceUpdateWithoutRowsInput>, FortnoxInvoiceUncheckedUpdateWithoutRowsInput>
   }
 
   export type CompanyCreateNestedOneWithoutFortnoxSyncLogsInput = {
@@ -14949,6 +22629,106 @@ export namespace Prisma {
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
   }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
 
   export type UserCreateWithoutCompanyInput = {
     id?: string
@@ -14960,6 +22740,7 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutUserInput
     timeEntries?: TimeEntryCreateNestedManyWithoutUserInput
     emailActivities?: EmailActivityCreateNestedManyWithoutUserInput
+    emails?: EmailCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCompanyInput = {
@@ -14972,6 +22753,7 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutUserInput
     timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutUserInput
     emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutUserInput
+    emails?: EmailUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCompanyInput = {
@@ -15021,6 +22803,9 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutCustomerInput
     timeEntries?: TimeEntryCreateNestedManyWithoutCustomerInput
     emailActivities?: EmailActivityCreateNestedManyWithoutCustomerInput
+    emails?: EmailCreateNestedManyWithoutCustomerInput
+    fortnoxCustomer?: FortnoxCustomerCreateNestedOneWithoutCustomerInput
+    fortnoxInvoices?: FortnoxInvoiceCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutCompanyInput = {
@@ -15032,6 +22817,9 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutCustomerInput
     timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutCustomerInput
     emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutCustomerInput
+    emails?: EmailUncheckedCreateNestedManyWithoutCustomerInput
+    fortnoxCustomer?: FortnoxCustomerUncheckedCreateNestedOneWithoutCustomerInput
+    fortnoxInvoices?: FortnoxInvoiceUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutCompanyInput = {
@@ -15210,6 +22998,7 @@ export namespace Prisma {
     encryptedPassword: string
     useTls?: boolean
     createdAt?: Date | string
+    emails?: EmailCreateNestedManyWithoutImapCredentialInput
   }
 
   export type ImapCredentialUncheckedCreateWithoutUserInput = {
@@ -15220,6 +23009,7 @@ export namespace Prisma {
     encryptedPassword: string
     useTls?: boolean
     createdAt?: Date | string
+    emails?: EmailUncheckedCreateNestedManyWithoutImapCredentialInput
   }
 
   export type ImapCredentialCreateOrConnectWithoutUserInput = {
@@ -15317,6 +23107,62 @@ export namespace Prisma {
 
   export type EmailActivityCreateManyUserInputEnvelope = {
     data: EmailActivityCreateManyUserInput | EmailActivityCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmailCreateWithoutUserInput = {
+    id?: string
+    messageId: string
+    source?: string
+    direction?: string
+    subject?: string | null
+    fromAddress: string
+    fromName?: string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: string | null
+    sentAt?: Date | string | null
+    bodyText?: string | null
+    bodyHtml?: string | null
+    inReplyTo?: string | null
+    threadId?: string | null
+    mailbox?: string | null
+    createdAt?: Date | string
+    imapCredential?: ImapCredentialCreateNestedOneWithoutEmailsInput
+    customer?: CustomerCreateNestedOneWithoutEmailsInput
+  }
+
+  export type EmailUncheckedCreateWithoutUserInput = {
+    id?: string
+    messageId: string
+    source?: string
+    imapCredentialId?: string | null
+    customerId?: string | null
+    direction?: string
+    subject?: string | null
+    fromAddress: string
+    fromName?: string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: string | null
+    sentAt?: Date | string | null
+    bodyText?: string | null
+    bodyHtml?: string | null
+    inReplyTo?: string | null
+    threadId?: string | null
+    mailbox?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmailCreateOrConnectWithoutUserInput = {
+    where: EmailWhereUniqueInput
+    create: XOR<EmailCreateWithoutUserInput, EmailUncheckedCreateWithoutUserInput>
+  }
+
+  export type EmailCreateManyUserInputEnvelope = {
+    data: EmailCreateManyUserInput | EmailCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -15470,6 +23316,49 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"EmailActivity"> | Date | string
   }
 
+  export type EmailUpsertWithWhereUniqueWithoutUserInput = {
+    where: EmailWhereUniqueInput
+    update: XOR<EmailUpdateWithoutUserInput, EmailUncheckedUpdateWithoutUserInput>
+    create: XOR<EmailCreateWithoutUserInput, EmailUncheckedCreateWithoutUserInput>
+  }
+
+  export type EmailUpdateWithWhereUniqueWithoutUserInput = {
+    where: EmailWhereUniqueInput
+    data: XOR<EmailUpdateWithoutUserInput, EmailUncheckedUpdateWithoutUserInput>
+  }
+
+  export type EmailUpdateManyWithWhereWithoutUserInput = {
+    where: EmailScalarWhereInput
+    data: XOR<EmailUpdateManyMutationInput, EmailUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type EmailScalarWhereInput = {
+    AND?: EmailScalarWhereInput | EmailScalarWhereInput[]
+    OR?: EmailScalarWhereInput[]
+    NOT?: EmailScalarWhereInput | EmailScalarWhereInput[]
+    id?: UuidFilter<"Email"> | string
+    messageId?: StringFilter<"Email"> | string
+    source?: StringFilter<"Email"> | string
+    imapCredentialId?: UuidNullableFilter<"Email"> | string | null
+    userId?: UuidNullableFilter<"Email"> | string | null
+    customerId?: UuidNullableFilter<"Email"> | string | null
+    direction?: StringFilter<"Email"> | string
+    subject?: StringNullableFilter<"Email"> | string | null
+    fromAddress?: StringFilter<"Email"> | string
+    fromName?: StringNullableFilter<"Email"> | string | null
+    toAddresses?: JsonFilter<"Email">
+    ccAddresses?: JsonFilter<"Email">
+    bccAddresses?: JsonFilter<"Email">
+    replyTo?: StringNullableFilter<"Email"> | string | null
+    sentAt?: DateTimeNullableFilter<"Email"> | Date | string | null
+    bodyText?: StringNullableFilter<"Email"> | string | null
+    bodyHtml?: StringNullableFilter<"Email"> | string | null
+    inReplyTo?: StringNullableFilter<"Email"> | string | null
+    threadId?: StringNullableFilter<"Email"> | string | null
+    mailbox?: StringNullableFilter<"Email"> | string | null
+    createdAt?: DateTimeFilter<"Email"> | Date | string
+  }
+
   export type CompanyCreateWithoutIntegrationsInput = {
     id?: string
     name: string
@@ -15536,6 +23425,7 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutUserInput
     timeEntries?: TimeEntryCreateNestedManyWithoutUserInput
     emailActivities?: EmailActivityCreateNestedManyWithoutUserInput
+    emails?: EmailCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutImapCredentialsInput = {
@@ -15548,11 +23438,68 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutUserInput
     timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutUserInput
     emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutUserInput
+    emails?: EmailUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutImapCredentialsInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutImapCredentialsInput, UserUncheckedCreateWithoutImapCredentialsInput>
+  }
+
+  export type EmailCreateWithoutImapCredentialInput = {
+    id?: string
+    messageId: string
+    source?: string
+    direction?: string
+    subject?: string | null
+    fromAddress: string
+    fromName?: string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: string | null
+    sentAt?: Date | string | null
+    bodyText?: string | null
+    bodyHtml?: string | null
+    inReplyTo?: string | null
+    threadId?: string | null
+    mailbox?: string | null
+    createdAt?: Date | string
+    user?: UserCreateNestedOneWithoutEmailsInput
+    customer?: CustomerCreateNestedOneWithoutEmailsInput
+  }
+
+  export type EmailUncheckedCreateWithoutImapCredentialInput = {
+    id?: string
+    messageId: string
+    source?: string
+    userId?: string | null
+    customerId?: string | null
+    direction?: string
+    subject?: string | null
+    fromAddress: string
+    fromName?: string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: string | null
+    sentAt?: Date | string | null
+    bodyText?: string | null
+    bodyHtml?: string | null
+    inReplyTo?: string | null
+    threadId?: string | null
+    mailbox?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmailCreateOrConnectWithoutImapCredentialInput = {
+    where: EmailWhereUniqueInput
+    create: XOR<EmailCreateWithoutImapCredentialInput, EmailUncheckedCreateWithoutImapCredentialInput>
+  }
+
+  export type EmailCreateManyImapCredentialInputEnvelope = {
+    data: EmailCreateManyImapCredentialInput | EmailCreateManyImapCredentialInput[]
+    skipDuplicates?: boolean
   }
 
   export type UserUpsertWithoutImapCredentialsInput = {
@@ -15576,6 +23523,7 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerUpdateManyWithoutUserNestedInput
     timeEntries?: TimeEntryUpdateManyWithoutUserNestedInput
     emailActivities?: EmailActivityUpdateManyWithoutUserNestedInput
+    emails?: EmailUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutImapCredentialsInput = {
@@ -15588,6 +23536,23 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutUserNestedInput
     timeEntries?: TimeEntryUncheckedUpdateManyWithoutUserNestedInput
     emailActivities?: EmailActivityUncheckedUpdateManyWithoutUserNestedInput
+    emails?: EmailUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type EmailUpsertWithWhereUniqueWithoutImapCredentialInput = {
+    where: EmailWhereUniqueInput
+    update: XOR<EmailUpdateWithoutImapCredentialInput, EmailUncheckedUpdateWithoutImapCredentialInput>
+    create: XOR<EmailCreateWithoutImapCredentialInput, EmailUncheckedCreateWithoutImapCredentialInput>
+  }
+
+  export type EmailUpdateWithWhereUniqueWithoutImapCredentialInput = {
+    where: EmailWhereUniqueInput
+    data: XOR<EmailUpdateWithoutImapCredentialInput, EmailUncheckedUpdateWithoutImapCredentialInput>
+  }
+
+  export type EmailUpdateManyWithWhereWithoutImapCredentialInput = {
+    where: EmailScalarWhereInput
+    data: XOR<EmailUpdateManyMutationInput, EmailUncheckedUpdateManyWithoutImapCredentialInput>
   }
 
   export type CompanyCreateWithoutCustomersInput = {
@@ -15703,6 +23668,153 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type EmailCreateWithoutCustomerInput = {
+    id?: string
+    messageId: string
+    source?: string
+    direction?: string
+    subject?: string | null
+    fromAddress: string
+    fromName?: string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: string | null
+    sentAt?: Date | string | null
+    bodyText?: string | null
+    bodyHtml?: string | null
+    inReplyTo?: string | null
+    threadId?: string | null
+    mailbox?: string | null
+    createdAt?: Date | string
+    imapCredential?: ImapCredentialCreateNestedOneWithoutEmailsInput
+    user?: UserCreateNestedOneWithoutEmailsInput
+  }
+
+  export type EmailUncheckedCreateWithoutCustomerInput = {
+    id?: string
+    messageId: string
+    source?: string
+    imapCredentialId?: string | null
+    userId?: string | null
+    direction?: string
+    subject?: string | null
+    fromAddress: string
+    fromName?: string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: string | null
+    sentAt?: Date | string | null
+    bodyText?: string | null
+    bodyHtml?: string | null
+    inReplyTo?: string | null
+    threadId?: string | null
+    mailbox?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmailCreateOrConnectWithoutCustomerInput = {
+    where: EmailWhereUniqueInput
+    create: XOR<EmailCreateWithoutCustomerInput, EmailUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type EmailCreateManyCustomerInputEnvelope = {
+    data: EmailCreateManyCustomerInput | EmailCreateManyCustomerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FortnoxCustomerCreateWithoutCustomerInput = {
+    id?: string
+    customerNumber: string
+    name: string
+    organisationNumber?: string | null
+    email?: string | null
+    phone?: string | null
+    address?: string | null
+    zipCode?: string | null
+    city?: string | null
+    country?: string | null
+    currency?: string | null
+    active?: boolean
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    invoices?: FortnoxInvoiceCreateNestedManyWithoutFortnoxCustomerInput
+  }
+
+  export type FortnoxCustomerUncheckedCreateWithoutCustomerInput = {
+    id?: string
+    customerNumber: string
+    name: string
+    organisationNumber?: string | null
+    email?: string | null
+    phone?: string | null
+    address?: string | null
+    zipCode?: string | null
+    city?: string | null
+    country?: string | null
+    currency?: string | null
+    active?: boolean
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    invoices?: FortnoxInvoiceUncheckedCreateNestedManyWithoutFortnoxCustomerInput
+  }
+
+  export type FortnoxCustomerCreateOrConnectWithoutCustomerInput = {
+    where: FortnoxCustomerWhereUniqueInput
+    create: XOR<FortnoxCustomerCreateWithoutCustomerInput, FortnoxCustomerUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type FortnoxInvoiceCreateWithoutCustomerInput = {
+    id?: string
+    invoiceNumber: string
+    invoiceDate: Date | string
+    dueDate?: Date | string | null
+    totalExclVat?: Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: Decimal | DecimalJsLike | number | string | null
+    vat?: Decimal | DecimalJsLike | number | string | null
+    currency?: string
+    status?: string | null
+    ourReference?: string | null
+    yourReference?: string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    fortnoxCustomer: FortnoxCustomerCreateNestedOneWithoutInvoicesInput
+    rows?: FortnoxInvoiceRowCreateNestedManyWithoutInvoiceInput
+  }
+
+  export type FortnoxInvoiceUncheckedCreateWithoutCustomerInput = {
+    id?: string
+    invoiceNumber: string
+    customerNumber: string
+    invoiceDate: Date | string
+    dueDate?: Date | string | null
+    totalExclVat?: Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: Decimal | DecimalJsLike | number | string | null
+    vat?: Decimal | DecimalJsLike | number | string | null
+    currency?: string
+    status?: string | null
+    ourReference?: string | null
+    yourReference?: string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    rows?: FortnoxInvoiceRowUncheckedCreateNestedManyWithoutInvoiceInput
+  }
+
+  export type FortnoxInvoiceCreateOrConnectWithoutCustomerInput = {
+    where: FortnoxInvoiceWhereUniqueInput
+    create: XOR<FortnoxInvoiceCreateWithoutCustomerInput, FortnoxInvoiceUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type FortnoxInvoiceCreateManyCustomerInputEnvelope = {
+    data: FortnoxInvoiceCreateManyCustomerInput | FortnoxInvoiceCreateManyCustomerInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CompanyUpsertWithoutCustomersInput = {
     update: XOR<CompanyUpdateWithoutCustomersInput, CompanyUncheckedUpdateWithoutCustomersInput>
     create: XOR<CompanyCreateWithoutCustomersInput, CompanyUncheckedCreateWithoutCustomersInput>
@@ -15782,6 +23894,109 @@ export namespace Prisma {
     data: XOR<EmailActivityUpdateManyMutationInput, EmailActivityUncheckedUpdateManyWithoutCustomerInput>
   }
 
+  export type EmailUpsertWithWhereUniqueWithoutCustomerInput = {
+    where: EmailWhereUniqueInput
+    update: XOR<EmailUpdateWithoutCustomerInput, EmailUncheckedUpdateWithoutCustomerInput>
+    create: XOR<EmailCreateWithoutCustomerInput, EmailUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type EmailUpdateWithWhereUniqueWithoutCustomerInput = {
+    where: EmailWhereUniqueInput
+    data: XOR<EmailUpdateWithoutCustomerInput, EmailUncheckedUpdateWithoutCustomerInput>
+  }
+
+  export type EmailUpdateManyWithWhereWithoutCustomerInput = {
+    where: EmailScalarWhereInput
+    data: XOR<EmailUpdateManyMutationInput, EmailUncheckedUpdateManyWithoutCustomerInput>
+  }
+
+  export type FortnoxCustomerUpsertWithoutCustomerInput = {
+    update: XOR<FortnoxCustomerUpdateWithoutCustomerInput, FortnoxCustomerUncheckedUpdateWithoutCustomerInput>
+    create: XOR<FortnoxCustomerCreateWithoutCustomerInput, FortnoxCustomerUncheckedCreateWithoutCustomerInput>
+    where?: FortnoxCustomerWhereInput
+  }
+
+  export type FortnoxCustomerUpdateToOneWithWhereWithoutCustomerInput = {
+    where?: FortnoxCustomerWhereInput
+    data: XOR<FortnoxCustomerUpdateWithoutCustomerInput, FortnoxCustomerUncheckedUpdateWithoutCustomerInput>
+  }
+
+  export type FortnoxCustomerUpdateWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerNumber?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    organisationNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    invoices?: FortnoxInvoiceUpdateManyWithoutFortnoxCustomerNestedInput
+  }
+
+  export type FortnoxCustomerUncheckedUpdateWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerNumber?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    organisationNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    invoices?: FortnoxInvoiceUncheckedUpdateManyWithoutFortnoxCustomerNestedInput
+  }
+
+  export type FortnoxInvoiceUpsertWithWhereUniqueWithoutCustomerInput = {
+    where: FortnoxInvoiceWhereUniqueInput
+    update: XOR<FortnoxInvoiceUpdateWithoutCustomerInput, FortnoxInvoiceUncheckedUpdateWithoutCustomerInput>
+    create: XOR<FortnoxInvoiceCreateWithoutCustomerInput, FortnoxInvoiceUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type FortnoxInvoiceUpdateWithWhereUniqueWithoutCustomerInput = {
+    where: FortnoxInvoiceWhereUniqueInput
+    data: XOR<FortnoxInvoiceUpdateWithoutCustomerInput, FortnoxInvoiceUncheckedUpdateWithoutCustomerInput>
+  }
+
+  export type FortnoxInvoiceUpdateManyWithWhereWithoutCustomerInput = {
+    where: FortnoxInvoiceScalarWhereInput
+    data: XOR<FortnoxInvoiceUpdateManyMutationInput, FortnoxInvoiceUncheckedUpdateManyWithoutCustomerInput>
+  }
+
+  export type FortnoxInvoiceScalarWhereInput = {
+    AND?: FortnoxInvoiceScalarWhereInput | FortnoxInvoiceScalarWhereInput[]
+    OR?: FortnoxInvoiceScalarWhereInput[]
+    NOT?: FortnoxInvoiceScalarWhereInput | FortnoxInvoiceScalarWhereInput[]
+    id?: UuidFilter<"FortnoxInvoice"> | string
+    invoiceNumber?: StringFilter<"FortnoxInvoice"> | string
+    customerNumber?: StringFilter<"FortnoxInvoice"> | string
+    customerId?: UuidNullableFilter<"FortnoxInvoice"> | string | null
+    invoiceDate?: DateTimeFilter<"FortnoxInvoice"> | Date | string
+    dueDate?: DateTimeNullableFilter<"FortnoxInvoice"> | Date | string | null
+    totalExclVat?: DecimalNullableFilter<"FortnoxInvoice"> | Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: DecimalNullableFilter<"FortnoxInvoice"> | Decimal | DecimalJsLike | number | string | null
+    vat?: DecimalNullableFilter<"FortnoxInvoice"> | Decimal | DecimalJsLike | number | string | null
+    currency?: StringFilter<"FortnoxInvoice"> | string
+    status?: StringNullableFilter<"FortnoxInvoice"> | string | null
+    ourReference?: StringNullableFilter<"FortnoxInvoice"> | string | null
+    yourReference?: StringNullableFilter<"FortnoxInvoice"> | string | null
+    rawData?: JsonNullableFilter<"FortnoxInvoice">
+    syncedAt?: DateTimeFilter<"FortnoxInvoice"> | Date | string
+    createdAt?: DateTimeFilter<"FortnoxInvoice"> | Date | string
+  }
+
   export type UserCreateWithoutEmployeeCustomersInput = {
     id?: string
     email: string
@@ -15792,6 +24007,7 @@ export namespace Prisma {
     imapCredentials?: ImapCredentialCreateNestedManyWithoutUserInput
     timeEntries?: TimeEntryCreateNestedManyWithoutUserInput
     emailActivities?: EmailActivityCreateNestedManyWithoutUserInput
+    emails?: EmailCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEmployeeCustomersInput = {
@@ -15804,6 +24020,7 @@ export namespace Prisma {
     imapCredentials?: ImapCredentialUncheckedCreateNestedManyWithoutUserInput
     timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutUserInput
     emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutUserInput
+    emails?: EmailUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEmployeeCustomersInput = {
@@ -15820,6 +24037,9 @@ export namespace Prisma {
     company: CompanyCreateNestedOneWithoutCustomersInput
     timeEntries?: TimeEntryCreateNestedManyWithoutCustomerInput
     emailActivities?: EmailActivityCreateNestedManyWithoutCustomerInput
+    emails?: EmailCreateNestedManyWithoutCustomerInput
+    fortnoxCustomer?: FortnoxCustomerCreateNestedOneWithoutCustomerInput
+    fortnoxInvoices?: FortnoxInvoiceCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutEmployeeCustomersInput = {
@@ -15831,6 +24051,9 @@ export namespace Prisma {
     createdAt?: Date | string
     timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutCustomerInput
     emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutCustomerInput
+    emails?: EmailUncheckedCreateNestedManyWithoutCustomerInput
+    fortnoxCustomer?: FortnoxCustomerUncheckedCreateNestedOneWithoutCustomerInput
+    fortnoxInvoices?: FortnoxInvoiceUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutEmployeeCustomersInput = {
@@ -15859,6 +24082,7 @@ export namespace Prisma {
     imapCredentials?: ImapCredentialUpdateManyWithoutUserNestedInput
     timeEntries?: TimeEntryUpdateManyWithoutUserNestedInput
     emailActivities?: EmailActivityUpdateManyWithoutUserNestedInput
+    emails?: EmailUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEmployeeCustomersInput = {
@@ -15871,6 +24095,7 @@ export namespace Prisma {
     imapCredentials?: ImapCredentialUncheckedUpdateManyWithoutUserNestedInput
     timeEntries?: TimeEntryUncheckedUpdateManyWithoutUserNestedInput
     emailActivities?: EmailActivityUncheckedUpdateManyWithoutUserNestedInput
+    emails?: EmailUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type CustomerUpsertWithoutEmployeeCustomersInput = {
@@ -15893,6 +24118,9 @@ export namespace Prisma {
     company?: CompanyUpdateOneRequiredWithoutCustomersNestedInput
     timeEntries?: TimeEntryUpdateManyWithoutCustomerNestedInput
     emailActivities?: EmailActivityUpdateManyWithoutCustomerNestedInput
+    emails?: EmailUpdateManyWithoutCustomerNestedInput
+    fortnoxCustomer?: FortnoxCustomerUpdateOneWithoutCustomerNestedInput
+    fortnoxInvoices?: FortnoxInvoiceUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutEmployeeCustomersInput = {
@@ -15904,6 +24132,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     timeEntries?: TimeEntryUncheckedUpdateManyWithoutCustomerNestedInput
     emailActivities?: EmailActivityUncheckedUpdateManyWithoutCustomerNestedInput
+    emails?: EmailUncheckedUpdateManyWithoutCustomerNestedInput
+    fortnoxCustomer?: FortnoxCustomerUncheckedUpdateOneWithoutCustomerNestedInput
+    fortnoxInvoices?: FortnoxInvoiceUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type UserCreateWithoutTimeEntriesInput = {
@@ -15916,6 +24147,7 @@ export namespace Prisma {
     imapCredentials?: ImapCredentialCreateNestedManyWithoutUserInput
     employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutUserInput
     emailActivities?: EmailActivityCreateNestedManyWithoutUserInput
+    emails?: EmailCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTimeEntriesInput = {
@@ -15928,6 +24160,7 @@ export namespace Prisma {
     imapCredentials?: ImapCredentialUncheckedCreateNestedManyWithoutUserInput
     employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutUserInput
     emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutUserInput
+    emails?: EmailUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTimeEntriesInput = {
@@ -15944,6 +24177,9 @@ export namespace Prisma {
     company: CompanyCreateNestedOneWithoutCustomersInput
     employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutCustomerInput
     emailActivities?: EmailActivityCreateNestedManyWithoutCustomerInput
+    emails?: EmailCreateNestedManyWithoutCustomerInput
+    fortnoxCustomer?: FortnoxCustomerCreateNestedOneWithoutCustomerInput
+    fortnoxInvoices?: FortnoxInvoiceCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutTimeEntriesInput = {
@@ -15955,6 +24191,9 @@ export namespace Prisma {
     createdAt?: Date | string
     employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutCustomerInput
     emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutCustomerInput
+    emails?: EmailUncheckedCreateNestedManyWithoutCustomerInput
+    fortnoxCustomer?: FortnoxCustomerUncheckedCreateNestedOneWithoutCustomerInput
+    fortnoxInvoices?: FortnoxInvoiceUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutTimeEntriesInput = {
@@ -15983,6 +24222,7 @@ export namespace Prisma {
     imapCredentials?: ImapCredentialUpdateManyWithoutUserNestedInput
     employeeCustomers?: EmployeeCustomerUpdateManyWithoutUserNestedInput
     emailActivities?: EmailActivityUpdateManyWithoutUserNestedInput
+    emails?: EmailUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTimeEntriesInput = {
@@ -15995,6 +24235,7 @@ export namespace Prisma {
     imapCredentials?: ImapCredentialUncheckedUpdateManyWithoutUserNestedInput
     employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutUserNestedInput
     emailActivities?: EmailActivityUncheckedUpdateManyWithoutUserNestedInput
+    emails?: EmailUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type CustomerUpsertWithoutTimeEntriesInput = {
@@ -16017,6 +24258,9 @@ export namespace Prisma {
     company?: CompanyUpdateOneRequiredWithoutCustomersNestedInput
     employeeCustomers?: EmployeeCustomerUpdateManyWithoutCustomerNestedInput
     emailActivities?: EmailActivityUpdateManyWithoutCustomerNestedInput
+    emails?: EmailUpdateManyWithoutCustomerNestedInput
+    fortnoxCustomer?: FortnoxCustomerUpdateOneWithoutCustomerNestedInput
+    fortnoxInvoices?: FortnoxInvoiceUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutTimeEntriesInput = {
@@ -16028,6 +24272,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutCustomerNestedInput
     emailActivities?: EmailActivityUncheckedUpdateManyWithoutCustomerNestedInput
+    emails?: EmailUncheckedUpdateManyWithoutCustomerNestedInput
+    fortnoxCustomer?: FortnoxCustomerUncheckedUpdateOneWithoutCustomerNestedInput
+    fortnoxInvoices?: FortnoxInvoiceUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type UserCreateWithoutEmailActivitiesInput = {
@@ -16040,6 +24287,7 @@ export namespace Prisma {
     imapCredentials?: ImapCredentialCreateNestedManyWithoutUserInput
     employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutUserInput
     timeEntries?: TimeEntryCreateNestedManyWithoutUserInput
+    emails?: EmailCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEmailActivitiesInput = {
@@ -16052,6 +24300,7 @@ export namespace Prisma {
     imapCredentials?: ImapCredentialUncheckedCreateNestedManyWithoutUserInput
     employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutUserInput
     timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutUserInput
+    emails?: EmailUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEmailActivitiesInput = {
@@ -16068,6 +24317,9 @@ export namespace Prisma {
     company: CompanyCreateNestedOneWithoutCustomersInput
     employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutCustomerInput
     timeEntries?: TimeEntryCreateNestedManyWithoutCustomerInput
+    emails?: EmailCreateNestedManyWithoutCustomerInput
+    fortnoxCustomer?: FortnoxCustomerCreateNestedOneWithoutCustomerInput
+    fortnoxInvoices?: FortnoxInvoiceCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutEmailActivitiesInput = {
@@ -16079,6 +24331,9 @@ export namespace Prisma {
     createdAt?: Date | string
     employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutCustomerInput
     timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutCustomerInput
+    emails?: EmailUncheckedCreateNestedManyWithoutCustomerInput
+    fortnoxCustomer?: FortnoxCustomerUncheckedCreateNestedOneWithoutCustomerInput
+    fortnoxInvoices?: FortnoxInvoiceUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutEmailActivitiesInput = {
@@ -16107,6 +24362,7 @@ export namespace Prisma {
     imapCredentials?: ImapCredentialUpdateManyWithoutUserNestedInput
     employeeCustomers?: EmployeeCustomerUpdateManyWithoutUserNestedInput
     timeEntries?: TimeEntryUpdateManyWithoutUserNestedInput
+    emails?: EmailUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEmailActivitiesInput = {
@@ -16119,6 +24375,7 @@ export namespace Prisma {
     imapCredentials?: ImapCredentialUncheckedUpdateManyWithoutUserNestedInput
     employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutUserNestedInput
     timeEntries?: TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+    emails?: EmailUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type CustomerUpsertWithoutEmailActivitiesInput = {
@@ -16141,6 +24398,9 @@ export namespace Prisma {
     company?: CompanyUpdateOneRequiredWithoutCustomersNestedInput
     employeeCustomers?: EmployeeCustomerUpdateManyWithoutCustomerNestedInput
     timeEntries?: TimeEntryUpdateManyWithoutCustomerNestedInput
+    emails?: EmailUpdateManyWithoutCustomerNestedInput
+    fortnoxCustomer?: FortnoxCustomerUpdateOneWithoutCustomerNestedInput
+    fortnoxInvoices?: FortnoxInvoiceUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutEmailActivitiesInput = {
@@ -16152,6 +24412,664 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutCustomerNestedInput
     timeEntries?: TimeEntryUncheckedUpdateManyWithoutCustomerNestedInput
+    emails?: EmailUncheckedUpdateManyWithoutCustomerNestedInput
+    fortnoxCustomer?: FortnoxCustomerUncheckedUpdateOneWithoutCustomerNestedInput
+    fortnoxInvoices?: FortnoxInvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type ImapCredentialCreateWithoutEmailsInput = {
+    id?: string
+    imapHost: string
+    imapPort?: number
+    emailAddress: string
+    encryptedPassword: string
+    useTls?: boolean
+    createdAt?: Date | string
+    user?: UserCreateNestedOneWithoutImapCredentialsInput
+  }
+
+  export type ImapCredentialUncheckedCreateWithoutEmailsInput = {
+    id?: string
+    userId?: string | null
+    imapHost: string
+    imapPort?: number
+    emailAddress: string
+    encryptedPassword: string
+    useTls?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ImapCredentialCreateOrConnectWithoutEmailsInput = {
+    where: ImapCredentialWhereUniqueInput
+    create: XOR<ImapCredentialCreateWithoutEmailsInput, ImapCredentialUncheckedCreateWithoutEmailsInput>
+  }
+
+  export type UserCreateWithoutEmailsInput = {
+    id?: string
+    email: string
+    password: string
+    role?: string
+    createdAt?: Date | string
+    company: CompanyCreateNestedOneWithoutUsersInput
+    imapCredentials?: ImapCredentialCreateNestedManyWithoutUserInput
+    employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutUserInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutUserInput
+    emailActivities?: EmailActivityCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutEmailsInput = {
+    id?: string
+    email: string
+    password: string
+    companyId: string
+    role?: string
+    createdAt?: Date | string
+    imapCredentials?: ImapCredentialUncheckedCreateNestedManyWithoutUserInput
+    employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutUserInput
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutUserInput
+    emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutEmailsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutEmailsInput, UserUncheckedCreateWithoutEmailsInput>
+  }
+
+  export type CustomerCreateWithoutEmailsInput = {
+    id?: string
+    fortnoxCustomerNumber?: string | null
+    name: string
+    domain?: string | null
+    createdAt?: Date | string
+    company: CompanyCreateNestedOneWithoutCustomersInput
+    employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutCustomerInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutCustomerInput
+    emailActivities?: EmailActivityCreateNestedManyWithoutCustomerInput
+    fortnoxCustomer?: FortnoxCustomerCreateNestedOneWithoutCustomerInput
+    fortnoxInvoices?: FortnoxInvoiceCreateNestedManyWithoutCustomerInput
+  }
+
+  export type CustomerUncheckedCreateWithoutEmailsInput = {
+    id?: string
+    fortnoxCustomerNumber?: string | null
+    name: string
+    domain?: string | null
+    companyId: string
+    createdAt?: Date | string
+    employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutCustomerInput
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutCustomerInput
+    emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutCustomerInput
+    fortnoxCustomer?: FortnoxCustomerUncheckedCreateNestedOneWithoutCustomerInput
+    fortnoxInvoices?: FortnoxInvoiceUncheckedCreateNestedManyWithoutCustomerInput
+  }
+
+  export type CustomerCreateOrConnectWithoutEmailsInput = {
+    where: CustomerWhereUniqueInput
+    create: XOR<CustomerCreateWithoutEmailsInput, CustomerUncheckedCreateWithoutEmailsInput>
+  }
+
+  export type ImapCredentialUpsertWithoutEmailsInput = {
+    update: XOR<ImapCredentialUpdateWithoutEmailsInput, ImapCredentialUncheckedUpdateWithoutEmailsInput>
+    create: XOR<ImapCredentialCreateWithoutEmailsInput, ImapCredentialUncheckedCreateWithoutEmailsInput>
+    where?: ImapCredentialWhereInput
+  }
+
+  export type ImapCredentialUpdateToOneWithWhereWithoutEmailsInput = {
+    where?: ImapCredentialWhereInput
+    data: XOR<ImapCredentialUpdateWithoutEmailsInput, ImapCredentialUncheckedUpdateWithoutEmailsInput>
+  }
+
+  export type ImapCredentialUpdateWithoutEmailsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imapHost?: StringFieldUpdateOperationsInput | string
+    imapPort?: IntFieldUpdateOperationsInput | number
+    emailAddress?: StringFieldUpdateOperationsInput | string
+    encryptedPassword?: StringFieldUpdateOperationsInput | string
+    useTls?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutImapCredentialsNestedInput
+  }
+
+  export type ImapCredentialUncheckedUpdateWithoutEmailsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    imapHost?: StringFieldUpdateOperationsInput | string
+    imapPort?: IntFieldUpdateOperationsInput | number
+    emailAddress?: StringFieldUpdateOperationsInput | string
+    encryptedPassword?: StringFieldUpdateOperationsInput | string
+    useTls?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUpsertWithoutEmailsInput = {
+    update: XOR<UserUpdateWithoutEmailsInput, UserUncheckedUpdateWithoutEmailsInput>
+    create: XOR<UserCreateWithoutEmailsInput, UserUncheckedCreateWithoutEmailsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutEmailsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutEmailsInput, UserUncheckedUpdateWithoutEmailsInput>
+  }
+
+  export type UserUpdateWithoutEmailsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    company?: CompanyUpdateOneRequiredWithoutUsersNestedInput
+    imapCredentials?: ImapCredentialUpdateManyWithoutUserNestedInput
+    employeeCustomers?: EmployeeCustomerUpdateManyWithoutUserNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutUserNestedInput
+    emailActivities?: EmailActivityUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutEmailsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    companyId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    imapCredentials?: ImapCredentialUncheckedUpdateManyWithoutUserNestedInput
+    employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutUserNestedInput
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+    emailActivities?: EmailActivityUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type CustomerUpsertWithoutEmailsInput = {
+    update: XOR<CustomerUpdateWithoutEmailsInput, CustomerUncheckedUpdateWithoutEmailsInput>
+    create: XOR<CustomerCreateWithoutEmailsInput, CustomerUncheckedCreateWithoutEmailsInput>
+    where?: CustomerWhereInput
+  }
+
+  export type CustomerUpdateToOneWithWhereWithoutEmailsInput = {
+    where?: CustomerWhereInput
+    data: XOR<CustomerUpdateWithoutEmailsInput, CustomerUncheckedUpdateWithoutEmailsInput>
+  }
+
+  export type CustomerUpdateWithoutEmailsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    company?: CompanyUpdateOneRequiredWithoutCustomersNestedInput
+    employeeCustomers?: EmployeeCustomerUpdateManyWithoutCustomerNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutCustomerNestedInput
+    emailActivities?: EmailActivityUpdateManyWithoutCustomerNestedInput
+    fortnoxCustomer?: FortnoxCustomerUpdateOneWithoutCustomerNestedInput
+    fortnoxInvoices?: FortnoxInvoiceUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type CustomerUncheckedUpdateWithoutEmailsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    companyId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutCustomerNestedInput
+    emailActivities?: EmailActivityUncheckedUpdateManyWithoutCustomerNestedInput
+    fortnoxCustomer?: FortnoxCustomerUncheckedUpdateOneWithoutCustomerNestedInput
+    fortnoxInvoices?: FortnoxInvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type CustomerCreateWithoutFortnoxCustomerInput = {
+    id?: string
+    fortnoxCustomerNumber?: string | null
+    name: string
+    domain?: string | null
+    createdAt?: Date | string
+    company: CompanyCreateNestedOneWithoutCustomersInput
+    employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutCustomerInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutCustomerInput
+    emailActivities?: EmailActivityCreateNestedManyWithoutCustomerInput
+    emails?: EmailCreateNestedManyWithoutCustomerInput
+    fortnoxInvoices?: FortnoxInvoiceCreateNestedManyWithoutCustomerInput
+  }
+
+  export type CustomerUncheckedCreateWithoutFortnoxCustomerInput = {
+    id?: string
+    fortnoxCustomerNumber?: string | null
+    name: string
+    domain?: string | null
+    companyId: string
+    createdAt?: Date | string
+    employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutCustomerInput
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutCustomerInput
+    emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutCustomerInput
+    emails?: EmailUncheckedCreateNestedManyWithoutCustomerInput
+    fortnoxInvoices?: FortnoxInvoiceUncheckedCreateNestedManyWithoutCustomerInput
+  }
+
+  export type CustomerCreateOrConnectWithoutFortnoxCustomerInput = {
+    where: CustomerWhereUniqueInput
+    create: XOR<CustomerCreateWithoutFortnoxCustomerInput, CustomerUncheckedCreateWithoutFortnoxCustomerInput>
+  }
+
+  export type FortnoxInvoiceCreateWithoutFortnoxCustomerInput = {
+    id?: string
+    invoiceNumber: string
+    invoiceDate: Date | string
+    dueDate?: Date | string | null
+    totalExclVat?: Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: Decimal | DecimalJsLike | number | string | null
+    vat?: Decimal | DecimalJsLike | number | string | null
+    currency?: string
+    status?: string | null
+    ourReference?: string | null
+    yourReference?: string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    customer?: CustomerCreateNestedOneWithoutFortnoxInvoicesInput
+    rows?: FortnoxInvoiceRowCreateNestedManyWithoutInvoiceInput
+  }
+
+  export type FortnoxInvoiceUncheckedCreateWithoutFortnoxCustomerInput = {
+    id?: string
+    invoiceNumber: string
+    customerId?: string | null
+    invoiceDate: Date | string
+    dueDate?: Date | string | null
+    totalExclVat?: Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: Decimal | DecimalJsLike | number | string | null
+    vat?: Decimal | DecimalJsLike | number | string | null
+    currency?: string
+    status?: string | null
+    ourReference?: string | null
+    yourReference?: string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    rows?: FortnoxInvoiceRowUncheckedCreateNestedManyWithoutInvoiceInput
+  }
+
+  export type FortnoxInvoiceCreateOrConnectWithoutFortnoxCustomerInput = {
+    where: FortnoxInvoiceWhereUniqueInput
+    create: XOR<FortnoxInvoiceCreateWithoutFortnoxCustomerInput, FortnoxInvoiceUncheckedCreateWithoutFortnoxCustomerInput>
+  }
+
+  export type FortnoxInvoiceCreateManyFortnoxCustomerInputEnvelope = {
+    data: FortnoxInvoiceCreateManyFortnoxCustomerInput | FortnoxInvoiceCreateManyFortnoxCustomerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CustomerUpsertWithoutFortnoxCustomerInput = {
+    update: XOR<CustomerUpdateWithoutFortnoxCustomerInput, CustomerUncheckedUpdateWithoutFortnoxCustomerInput>
+    create: XOR<CustomerCreateWithoutFortnoxCustomerInput, CustomerUncheckedCreateWithoutFortnoxCustomerInput>
+    where?: CustomerWhereInput
+  }
+
+  export type CustomerUpdateToOneWithWhereWithoutFortnoxCustomerInput = {
+    where?: CustomerWhereInput
+    data: XOR<CustomerUpdateWithoutFortnoxCustomerInput, CustomerUncheckedUpdateWithoutFortnoxCustomerInput>
+  }
+
+  export type CustomerUpdateWithoutFortnoxCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    company?: CompanyUpdateOneRequiredWithoutCustomersNestedInput
+    employeeCustomers?: EmployeeCustomerUpdateManyWithoutCustomerNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutCustomerNestedInput
+    emailActivities?: EmailActivityUpdateManyWithoutCustomerNestedInput
+    emails?: EmailUpdateManyWithoutCustomerNestedInput
+    fortnoxInvoices?: FortnoxInvoiceUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type CustomerUncheckedUpdateWithoutFortnoxCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    companyId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutCustomerNestedInput
+    emailActivities?: EmailActivityUncheckedUpdateManyWithoutCustomerNestedInput
+    emails?: EmailUncheckedUpdateManyWithoutCustomerNestedInput
+    fortnoxInvoices?: FortnoxInvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type FortnoxInvoiceUpsertWithWhereUniqueWithoutFortnoxCustomerInput = {
+    where: FortnoxInvoiceWhereUniqueInput
+    update: XOR<FortnoxInvoiceUpdateWithoutFortnoxCustomerInput, FortnoxInvoiceUncheckedUpdateWithoutFortnoxCustomerInput>
+    create: XOR<FortnoxInvoiceCreateWithoutFortnoxCustomerInput, FortnoxInvoiceUncheckedCreateWithoutFortnoxCustomerInput>
+  }
+
+  export type FortnoxInvoiceUpdateWithWhereUniqueWithoutFortnoxCustomerInput = {
+    where: FortnoxInvoiceWhereUniqueInput
+    data: XOR<FortnoxInvoiceUpdateWithoutFortnoxCustomerInput, FortnoxInvoiceUncheckedUpdateWithoutFortnoxCustomerInput>
+  }
+
+  export type FortnoxInvoiceUpdateManyWithWhereWithoutFortnoxCustomerInput = {
+    where: FortnoxInvoiceScalarWhereInput
+    data: XOR<FortnoxInvoiceUpdateManyMutationInput, FortnoxInvoiceUncheckedUpdateManyWithoutFortnoxCustomerInput>
+  }
+
+  export type FortnoxCustomerCreateWithoutInvoicesInput = {
+    id?: string
+    customerNumber: string
+    name: string
+    organisationNumber?: string | null
+    email?: string | null
+    phone?: string | null
+    address?: string | null
+    zipCode?: string | null
+    city?: string | null
+    country?: string | null
+    currency?: string | null
+    active?: boolean
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    customer?: CustomerCreateNestedOneWithoutFortnoxCustomerInput
+  }
+
+  export type FortnoxCustomerUncheckedCreateWithoutInvoicesInput = {
+    id?: string
+    customerNumber: string
+    customerId?: string | null
+    name: string
+    organisationNumber?: string | null
+    email?: string | null
+    phone?: string | null
+    address?: string | null
+    zipCode?: string | null
+    city?: string | null
+    country?: string | null
+    currency?: string | null
+    active?: boolean
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type FortnoxCustomerCreateOrConnectWithoutInvoicesInput = {
+    where: FortnoxCustomerWhereUniqueInput
+    create: XOR<FortnoxCustomerCreateWithoutInvoicesInput, FortnoxCustomerUncheckedCreateWithoutInvoicesInput>
+  }
+
+  export type CustomerCreateWithoutFortnoxInvoicesInput = {
+    id?: string
+    fortnoxCustomerNumber?: string | null
+    name: string
+    domain?: string | null
+    createdAt?: Date | string
+    company: CompanyCreateNestedOneWithoutCustomersInput
+    employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutCustomerInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutCustomerInput
+    emailActivities?: EmailActivityCreateNestedManyWithoutCustomerInput
+    emails?: EmailCreateNestedManyWithoutCustomerInput
+    fortnoxCustomer?: FortnoxCustomerCreateNestedOneWithoutCustomerInput
+  }
+
+  export type CustomerUncheckedCreateWithoutFortnoxInvoicesInput = {
+    id?: string
+    fortnoxCustomerNumber?: string | null
+    name: string
+    domain?: string | null
+    companyId: string
+    createdAt?: Date | string
+    employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutCustomerInput
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutCustomerInput
+    emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutCustomerInput
+    emails?: EmailUncheckedCreateNestedManyWithoutCustomerInput
+    fortnoxCustomer?: FortnoxCustomerUncheckedCreateNestedOneWithoutCustomerInput
+  }
+
+  export type CustomerCreateOrConnectWithoutFortnoxInvoicesInput = {
+    where: CustomerWhereUniqueInput
+    create: XOR<CustomerCreateWithoutFortnoxInvoicesInput, CustomerUncheckedCreateWithoutFortnoxInvoicesInput>
+  }
+
+  export type FortnoxInvoiceRowCreateWithoutInvoiceInput = {
+    id?: string
+    rowNumber?: number | null
+    articleNumber?: string | null
+    description?: string | null
+    quantity?: Decimal | DecimalJsLike | number | string | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    vatPercent?: Decimal | DecimalJsLike | number | string | null
+    total?: Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type FortnoxInvoiceRowUncheckedCreateWithoutInvoiceInput = {
+    id?: string
+    rowNumber?: number | null
+    articleNumber?: string | null
+    description?: string | null
+    quantity?: Decimal | DecimalJsLike | number | string | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    vatPercent?: Decimal | DecimalJsLike | number | string | null
+    total?: Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type FortnoxInvoiceRowCreateOrConnectWithoutInvoiceInput = {
+    where: FortnoxInvoiceRowWhereUniqueInput
+    create: XOR<FortnoxInvoiceRowCreateWithoutInvoiceInput, FortnoxInvoiceRowUncheckedCreateWithoutInvoiceInput>
+  }
+
+  export type FortnoxInvoiceRowCreateManyInvoiceInputEnvelope = {
+    data: FortnoxInvoiceRowCreateManyInvoiceInput | FortnoxInvoiceRowCreateManyInvoiceInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FortnoxCustomerUpsertWithoutInvoicesInput = {
+    update: XOR<FortnoxCustomerUpdateWithoutInvoicesInput, FortnoxCustomerUncheckedUpdateWithoutInvoicesInput>
+    create: XOR<FortnoxCustomerCreateWithoutInvoicesInput, FortnoxCustomerUncheckedCreateWithoutInvoicesInput>
+    where?: FortnoxCustomerWhereInput
+  }
+
+  export type FortnoxCustomerUpdateToOneWithWhereWithoutInvoicesInput = {
+    where?: FortnoxCustomerWhereInput
+    data: XOR<FortnoxCustomerUpdateWithoutInvoicesInput, FortnoxCustomerUncheckedUpdateWithoutInvoicesInput>
+  }
+
+  export type FortnoxCustomerUpdateWithoutInvoicesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerNumber?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    organisationNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: CustomerUpdateOneWithoutFortnoxCustomerNestedInput
+  }
+
+  export type FortnoxCustomerUncheckedUpdateWithoutInvoicesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerNumber?: StringFieldUpdateOperationsInput | string
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    organisationNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CustomerUpsertWithoutFortnoxInvoicesInput = {
+    update: XOR<CustomerUpdateWithoutFortnoxInvoicesInput, CustomerUncheckedUpdateWithoutFortnoxInvoicesInput>
+    create: XOR<CustomerCreateWithoutFortnoxInvoicesInput, CustomerUncheckedCreateWithoutFortnoxInvoicesInput>
+    where?: CustomerWhereInput
+  }
+
+  export type CustomerUpdateToOneWithWhereWithoutFortnoxInvoicesInput = {
+    where?: CustomerWhereInput
+    data: XOR<CustomerUpdateWithoutFortnoxInvoicesInput, CustomerUncheckedUpdateWithoutFortnoxInvoicesInput>
+  }
+
+  export type CustomerUpdateWithoutFortnoxInvoicesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    company?: CompanyUpdateOneRequiredWithoutCustomersNestedInput
+    employeeCustomers?: EmployeeCustomerUpdateManyWithoutCustomerNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutCustomerNestedInput
+    emailActivities?: EmailActivityUpdateManyWithoutCustomerNestedInput
+    emails?: EmailUpdateManyWithoutCustomerNestedInput
+    fortnoxCustomer?: FortnoxCustomerUpdateOneWithoutCustomerNestedInput
+  }
+
+  export type CustomerUncheckedUpdateWithoutFortnoxInvoicesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    companyId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutCustomerNestedInput
+    emailActivities?: EmailActivityUncheckedUpdateManyWithoutCustomerNestedInput
+    emails?: EmailUncheckedUpdateManyWithoutCustomerNestedInput
+    fortnoxCustomer?: FortnoxCustomerUncheckedUpdateOneWithoutCustomerNestedInput
+  }
+
+  export type FortnoxInvoiceRowUpsertWithWhereUniqueWithoutInvoiceInput = {
+    where: FortnoxInvoiceRowWhereUniqueInput
+    update: XOR<FortnoxInvoiceRowUpdateWithoutInvoiceInput, FortnoxInvoiceRowUncheckedUpdateWithoutInvoiceInput>
+    create: XOR<FortnoxInvoiceRowCreateWithoutInvoiceInput, FortnoxInvoiceRowUncheckedCreateWithoutInvoiceInput>
+  }
+
+  export type FortnoxInvoiceRowUpdateWithWhereUniqueWithoutInvoiceInput = {
+    where: FortnoxInvoiceRowWhereUniqueInput
+    data: XOR<FortnoxInvoiceRowUpdateWithoutInvoiceInput, FortnoxInvoiceRowUncheckedUpdateWithoutInvoiceInput>
+  }
+
+  export type FortnoxInvoiceRowUpdateManyWithWhereWithoutInvoiceInput = {
+    where: FortnoxInvoiceRowScalarWhereInput
+    data: XOR<FortnoxInvoiceRowUpdateManyMutationInput, FortnoxInvoiceRowUncheckedUpdateManyWithoutInvoiceInput>
+  }
+
+  export type FortnoxInvoiceRowScalarWhereInput = {
+    AND?: FortnoxInvoiceRowScalarWhereInput | FortnoxInvoiceRowScalarWhereInput[]
+    OR?: FortnoxInvoiceRowScalarWhereInput[]
+    NOT?: FortnoxInvoiceRowScalarWhereInput | FortnoxInvoiceRowScalarWhereInput[]
+    id?: UuidFilter<"FortnoxInvoiceRow"> | string
+    invoiceNumber?: StringFilter<"FortnoxInvoiceRow"> | string
+    rowNumber?: IntNullableFilter<"FortnoxInvoiceRow"> | number | null
+    articleNumber?: StringNullableFilter<"FortnoxInvoiceRow"> | string | null
+    description?: StringNullableFilter<"FortnoxInvoiceRow"> | string | null
+    quantity?: DecimalNullableFilter<"FortnoxInvoiceRow"> | Decimal | DecimalJsLike | number | string | null
+    price?: DecimalNullableFilter<"FortnoxInvoiceRow"> | Decimal | DecimalJsLike | number | string | null
+    vatPercent?: DecimalNullableFilter<"FortnoxInvoiceRow"> | Decimal | DecimalJsLike | number | string | null
+    total?: DecimalNullableFilter<"FortnoxInvoiceRow"> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type FortnoxInvoiceCreateWithoutRowsInput = {
+    id?: string
+    invoiceNumber: string
+    invoiceDate: Date | string
+    dueDate?: Date | string | null
+    totalExclVat?: Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: Decimal | DecimalJsLike | number | string | null
+    vat?: Decimal | DecimalJsLike | number | string | null
+    currency?: string
+    status?: string | null
+    ourReference?: string | null
+    yourReference?: string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    fortnoxCustomer: FortnoxCustomerCreateNestedOneWithoutInvoicesInput
+    customer?: CustomerCreateNestedOneWithoutFortnoxInvoicesInput
+  }
+
+  export type FortnoxInvoiceUncheckedCreateWithoutRowsInput = {
+    id?: string
+    invoiceNumber: string
+    customerNumber: string
+    customerId?: string | null
+    invoiceDate: Date | string
+    dueDate?: Date | string | null
+    totalExclVat?: Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: Decimal | DecimalJsLike | number | string | null
+    vat?: Decimal | DecimalJsLike | number | string | null
+    currency?: string
+    status?: string | null
+    ourReference?: string | null
+    yourReference?: string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type FortnoxInvoiceCreateOrConnectWithoutRowsInput = {
+    where: FortnoxInvoiceWhereUniqueInput
+    create: XOR<FortnoxInvoiceCreateWithoutRowsInput, FortnoxInvoiceUncheckedCreateWithoutRowsInput>
+  }
+
+  export type FortnoxInvoiceUpsertWithoutRowsInput = {
+    update: XOR<FortnoxInvoiceUpdateWithoutRowsInput, FortnoxInvoiceUncheckedUpdateWithoutRowsInput>
+    create: XOR<FortnoxInvoiceCreateWithoutRowsInput, FortnoxInvoiceUncheckedCreateWithoutRowsInput>
+    where?: FortnoxInvoiceWhereInput
+  }
+
+  export type FortnoxInvoiceUpdateToOneWithWhereWithoutRowsInput = {
+    where?: FortnoxInvoiceWhereInput
+    data: XOR<FortnoxInvoiceUpdateWithoutRowsInput, FortnoxInvoiceUncheckedUpdateWithoutRowsInput>
+  }
+
+  export type FortnoxInvoiceUpdateWithoutRowsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    invoiceNumber?: StringFieldUpdateOperationsInput | string
+    invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalExclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    ourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fortnoxCustomer?: FortnoxCustomerUpdateOneRequiredWithoutInvoicesNestedInput
+    customer?: CustomerUpdateOneWithoutFortnoxInvoicesNestedInput
+  }
+
+  export type FortnoxInvoiceUncheckedUpdateWithoutRowsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    invoiceNumber?: StringFieldUpdateOperationsInput | string
+    customerNumber?: StringFieldUpdateOperationsInput | string
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalExclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    ourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CompanyCreateWithoutFortnoxSyncLogsInput = {
@@ -16251,6 +25169,7 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerUpdateManyWithoutUserNestedInput
     timeEntries?: TimeEntryUpdateManyWithoutUserNestedInput
     emailActivities?: EmailActivityUpdateManyWithoutUserNestedInput
+    emails?: EmailUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCompanyInput = {
@@ -16263,6 +25182,7 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutUserNestedInput
     timeEntries?: TimeEntryUncheckedUpdateManyWithoutUserNestedInput
     emailActivities?: EmailActivityUncheckedUpdateManyWithoutUserNestedInput
+    emails?: EmailUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutCompanyInput = {
@@ -16309,6 +25229,9 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerUpdateManyWithoutCustomerNestedInput
     timeEntries?: TimeEntryUpdateManyWithoutCustomerNestedInput
     emailActivities?: EmailActivityUpdateManyWithoutCustomerNestedInput
+    emails?: EmailUpdateManyWithoutCustomerNestedInput
+    fortnoxCustomer?: FortnoxCustomerUpdateOneWithoutCustomerNestedInput
+    fortnoxInvoices?: FortnoxInvoiceUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutCompanyInput = {
@@ -16320,6 +25243,9 @@ export namespace Prisma {
     employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutCustomerNestedInput
     timeEntries?: TimeEntryUncheckedUpdateManyWithoutCustomerNestedInput
     emailActivities?: EmailActivityUncheckedUpdateManyWithoutCustomerNestedInput
+    emails?: EmailUncheckedUpdateManyWithoutCustomerNestedInput
+    fortnoxCustomer?: FortnoxCustomerUncheckedUpdateOneWithoutCustomerNestedInput
+    fortnoxInvoices?: FortnoxInvoiceUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateManyWithoutCompanyInput = {
@@ -16387,6 +25313,29 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
+  export type EmailCreateManyUserInput = {
+    id?: string
+    messageId: string
+    source?: string
+    imapCredentialId?: string | null
+    customerId?: string | null
+    direction?: string
+    subject?: string | null
+    fromAddress: string
+    fromName?: string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: string | null
+    sentAt?: Date | string | null
+    bodyText?: string | null
+    bodyHtml?: string | null
+    inReplyTo?: string | null
+    threadId?: string | null
+    mailbox?: string | null
+    createdAt?: Date | string
+  }
+
   export type ImapCredentialUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     imapHost?: StringFieldUpdateOperationsInput | string
@@ -16395,6 +25344,7 @@ export namespace Prisma {
     encryptedPassword?: StringFieldUpdateOperationsInput | string
     useTls?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    emails?: EmailUpdateManyWithoutImapCredentialNestedInput
   }
 
   export type ImapCredentialUncheckedUpdateWithoutUserInput = {
@@ -16405,6 +25355,7 @@ export namespace Prisma {
     encryptedPassword?: StringFieldUpdateOperationsInput | string
     useTls?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    emails?: EmailUncheckedUpdateManyWithoutImapCredentialNestedInput
   }
 
   export type ImapCredentialUncheckedUpdateManyWithoutUserInput = {
@@ -16504,6 +25455,167 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type EmailUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    messageId?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    direction?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    fromAddress?: StringFieldUpdateOperationsInput | string
+    fromName?: NullableStringFieldUpdateOperationsInput | string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    bodyText?: NullableStringFieldUpdateOperationsInput | string | null
+    bodyHtml?: NullableStringFieldUpdateOperationsInput | string | null
+    inReplyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    threadId?: NullableStringFieldUpdateOperationsInput | string | null
+    mailbox?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    imapCredential?: ImapCredentialUpdateOneWithoutEmailsNestedInput
+    customer?: CustomerUpdateOneWithoutEmailsNestedInput
+  }
+
+  export type EmailUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    messageId?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    imapCredentialId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    direction?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    fromAddress?: StringFieldUpdateOperationsInput | string
+    fromName?: NullableStringFieldUpdateOperationsInput | string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    bodyText?: NullableStringFieldUpdateOperationsInput | string | null
+    bodyHtml?: NullableStringFieldUpdateOperationsInput | string | null
+    inReplyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    threadId?: NullableStringFieldUpdateOperationsInput | string | null
+    mailbox?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    messageId?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    imapCredentialId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    direction?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    fromAddress?: StringFieldUpdateOperationsInput | string
+    fromName?: NullableStringFieldUpdateOperationsInput | string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    bodyText?: NullableStringFieldUpdateOperationsInput | string | null
+    bodyHtml?: NullableStringFieldUpdateOperationsInput | string | null
+    inReplyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    threadId?: NullableStringFieldUpdateOperationsInput | string | null
+    mailbox?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailCreateManyImapCredentialInput = {
+    id?: string
+    messageId: string
+    source?: string
+    userId?: string | null
+    customerId?: string | null
+    direction?: string
+    subject?: string | null
+    fromAddress: string
+    fromName?: string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: string | null
+    sentAt?: Date | string | null
+    bodyText?: string | null
+    bodyHtml?: string | null
+    inReplyTo?: string | null
+    threadId?: string | null
+    mailbox?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmailUpdateWithoutImapCredentialInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    messageId?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    direction?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    fromAddress?: StringFieldUpdateOperationsInput | string
+    fromName?: NullableStringFieldUpdateOperationsInput | string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    bodyText?: NullableStringFieldUpdateOperationsInput | string | null
+    bodyHtml?: NullableStringFieldUpdateOperationsInput | string | null
+    inReplyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    threadId?: NullableStringFieldUpdateOperationsInput | string | null
+    mailbox?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutEmailsNestedInput
+    customer?: CustomerUpdateOneWithoutEmailsNestedInput
+  }
+
+  export type EmailUncheckedUpdateWithoutImapCredentialInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    messageId?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    direction?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    fromAddress?: StringFieldUpdateOperationsInput | string
+    fromName?: NullableStringFieldUpdateOperationsInput | string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    bodyText?: NullableStringFieldUpdateOperationsInput | string | null
+    bodyHtml?: NullableStringFieldUpdateOperationsInput | string | null
+    inReplyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    threadId?: NullableStringFieldUpdateOperationsInput | string | null
+    mailbox?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailUncheckedUpdateManyWithoutImapCredentialInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    messageId?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    direction?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    fromAddress?: StringFieldUpdateOperationsInput | string
+    fromName?: NullableStringFieldUpdateOperationsInput | string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    bodyText?: NullableStringFieldUpdateOperationsInput | string | null
+    bodyHtml?: NullableStringFieldUpdateOperationsInput | string | null
+    inReplyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    threadId?: NullableStringFieldUpdateOperationsInput | string | null
+    mailbox?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type EmployeeCustomerCreateManyCustomerInput = {
     id?: string
     userId: string
@@ -16530,6 +25642,47 @@ export namespace Prisma {
     recipientDomain: string
     subject?: string | null
     messageId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmailCreateManyCustomerInput = {
+    id?: string
+    messageId: string
+    source?: string
+    imapCredentialId?: string | null
+    userId?: string | null
+    direction?: string
+    subject?: string | null
+    fromAddress: string
+    fromName?: string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: string | null
+    sentAt?: Date | string | null
+    bodyText?: string | null
+    bodyHtml?: string | null
+    inReplyTo?: string | null
+    threadId?: string | null
+    mailbox?: string | null
+    createdAt?: Date | string
+  }
+
+  export type FortnoxInvoiceCreateManyCustomerInput = {
+    id?: string
+    invoiceNumber: string
+    customerNumber: string
+    invoiceDate: Date | string
+    dueDate?: Date | string | null
+    totalExclVat?: Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: Decimal | DecimalJsLike | number | string | null
+    vat?: Decimal | DecimalJsLike | number | string | null
+    currency?: string
+    status?: string | null
+    ourReference?: string | null
+    yourReference?: string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
     createdAt?: Date | string
   }
 
@@ -16618,6 +25771,249 @@ export namespace Prisma {
     subject?: NullableStringFieldUpdateOperationsInput | string | null
     messageId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailUpdateWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    messageId?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    direction?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    fromAddress?: StringFieldUpdateOperationsInput | string
+    fromName?: NullableStringFieldUpdateOperationsInput | string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    bodyText?: NullableStringFieldUpdateOperationsInput | string | null
+    bodyHtml?: NullableStringFieldUpdateOperationsInput | string | null
+    inReplyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    threadId?: NullableStringFieldUpdateOperationsInput | string | null
+    mailbox?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    imapCredential?: ImapCredentialUpdateOneWithoutEmailsNestedInput
+    user?: UserUpdateOneWithoutEmailsNestedInput
+  }
+
+  export type EmailUncheckedUpdateWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    messageId?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    imapCredentialId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    direction?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    fromAddress?: StringFieldUpdateOperationsInput | string
+    fromName?: NullableStringFieldUpdateOperationsInput | string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    bodyText?: NullableStringFieldUpdateOperationsInput | string | null
+    bodyHtml?: NullableStringFieldUpdateOperationsInput | string | null
+    inReplyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    threadId?: NullableStringFieldUpdateOperationsInput | string | null
+    mailbox?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailUncheckedUpdateManyWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    messageId?: StringFieldUpdateOperationsInput | string
+    source?: StringFieldUpdateOperationsInput | string
+    imapCredentialId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    direction?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    fromAddress?: StringFieldUpdateOperationsInput | string
+    fromName?: NullableStringFieldUpdateOperationsInput | string | null
+    toAddresses?: JsonNullValueInput | InputJsonValue
+    ccAddresses?: JsonNullValueInput | InputJsonValue
+    bccAddresses?: JsonNullValueInput | InputJsonValue
+    replyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    bodyText?: NullableStringFieldUpdateOperationsInput | string | null
+    bodyHtml?: NullableStringFieldUpdateOperationsInput | string | null
+    inReplyTo?: NullableStringFieldUpdateOperationsInput | string | null
+    threadId?: NullableStringFieldUpdateOperationsInput | string | null
+    mailbox?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxInvoiceUpdateWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    invoiceNumber?: StringFieldUpdateOperationsInput | string
+    invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalExclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    ourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fortnoxCustomer?: FortnoxCustomerUpdateOneRequiredWithoutInvoicesNestedInput
+    rows?: FortnoxInvoiceRowUpdateManyWithoutInvoiceNestedInput
+  }
+
+  export type FortnoxInvoiceUncheckedUpdateWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    invoiceNumber?: StringFieldUpdateOperationsInput | string
+    customerNumber?: StringFieldUpdateOperationsInput | string
+    invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalExclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    ourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    rows?: FortnoxInvoiceRowUncheckedUpdateManyWithoutInvoiceNestedInput
+  }
+
+  export type FortnoxInvoiceUncheckedUpdateManyWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    invoiceNumber?: StringFieldUpdateOperationsInput | string
+    customerNumber?: StringFieldUpdateOperationsInput | string
+    invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalExclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    ourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxInvoiceCreateManyFortnoxCustomerInput = {
+    id?: string
+    invoiceNumber: string
+    customerId?: string | null
+    invoiceDate: Date | string
+    dueDate?: Date | string | null
+    totalExclVat?: Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: Decimal | DecimalJsLike | number | string | null
+    vat?: Decimal | DecimalJsLike | number | string | null
+    currency?: string
+    status?: string | null
+    ourReference?: string | null
+    yourReference?: string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type FortnoxInvoiceUpdateWithoutFortnoxCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    invoiceNumber?: StringFieldUpdateOperationsInput | string
+    invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalExclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    ourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: CustomerUpdateOneWithoutFortnoxInvoicesNestedInput
+    rows?: FortnoxInvoiceRowUpdateManyWithoutInvoiceNestedInput
+  }
+
+  export type FortnoxInvoiceUncheckedUpdateWithoutFortnoxCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    invoiceNumber?: StringFieldUpdateOperationsInput | string
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalExclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    ourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    rows?: FortnoxInvoiceRowUncheckedUpdateManyWithoutInvoiceNestedInput
+  }
+
+  export type FortnoxInvoiceUncheckedUpdateManyWithoutFortnoxCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    invoiceNumber?: StringFieldUpdateOperationsInput | string
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    invoiceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalExclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalInclVat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    ourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxInvoiceRowCreateManyInvoiceInput = {
+    id?: string
+    rowNumber?: number | null
+    articleNumber?: string | null
+    description?: string | null
+    quantity?: Decimal | DecimalJsLike | number | string | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    vatPercent?: Decimal | DecimalJsLike | number | string | null
+    total?: Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type FortnoxInvoiceRowUpdateWithoutInvoiceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rowNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    articleNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vatPercent?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type FortnoxInvoiceRowUncheckedUpdateWithoutInvoiceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rowNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    articleNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vatPercent?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type FortnoxInvoiceRowUncheckedUpdateManyWithoutInvoiceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rowNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    articleNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vatPercent?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
 
