@@ -83,9 +83,16 @@ const typeDefs = `
     message: String!
   }
 
+  type SuperAdminAuthPayload {
+    token: String!
+    userName: String!
+    role: String!
+  }
+
   type Mutation {
     createCompany(name: String!, domain: String!): Company
     login(email: String!, password: String!, companyDomain: String!): AuthPayload!
+    loginSuperAdmin(userName: String!, password: String!): SuperAdminAuthPayload!
     onboardCompany(name: String!, domain: String!): OnboardResult!
     createCompanyAdmin(company: String!, email: String!, password: String!): String!
     createUser(email: String!, companyDomain: String!, password: String!): String!
