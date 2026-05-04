@@ -43,6 +43,21 @@ export type Customer = $Result.DefaultSelection<Prisma.$CustomerPayload>
  * 
  */
 export type EmployeeCustomer = $Result.DefaultSelection<Prisma.$EmployeeCustomerPayload>
+/**
+ * Model TimeEntry
+ * 
+ */
+export type TimeEntry = $Result.DefaultSelection<Prisma.$TimeEntryPayload>
+/**
+ * Model EmailActivity
+ * 
+ */
+export type EmailActivity = $Result.DefaultSelection<Prisma.$EmailActivityPayload>
+/**
+ * Model FortnoxSyncLog
+ * 
+ */
+export type FortnoxSyncLog = $Result.DefaultSelection<Prisma.$FortnoxSyncLogPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -224,6 +239,36 @@ export class PrismaClient<
     * ```
     */
   get employeeCustomer(): Prisma.EmployeeCustomerDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.timeEntry`: Exposes CRUD operations for the **TimeEntry** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TimeEntries
+    * const timeEntries = await prisma.timeEntry.findMany()
+    * ```
+    */
+  get timeEntry(): Prisma.TimeEntryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.emailActivity`: Exposes CRUD operations for the **EmailActivity** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EmailActivities
+    * const emailActivities = await prisma.emailActivity.findMany()
+    * ```
+    */
+  get emailActivity(): Prisma.EmailActivityDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.fortnoxSyncLog`: Exposes CRUD operations for the **FortnoxSyncLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FortnoxSyncLogs
+    * const fortnoxSyncLogs = await prisma.fortnoxSyncLog.findMany()
+    * ```
+    */
+  get fortnoxSyncLog(): Prisma.FortnoxSyncLogDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -663,7 +708,10 @@ export namespace Prisma {
     CompanyIntegration: 'CompanyIntegration',
     ImapCredential: 'ImapCredential',
     Customer: 'Customer',
-    EmployeeCustomer: 'EmployeeCustomer'
+    EmployeeCustomer: 'EmployeeCustomer',
+    TimeEntry: 'TimeEntry',
+    EmailActivity: 'EmailActivity',
+    FortnoxSyncLog: 'FortnoxSyncLog'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -679,7 +727,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "company" | "user" | "companyIntegration" | "imapCredential" | "customer" | "employeeCustomer"
+      modelProps: "company" | "user" | "companyIntegration" | "imapCredential" | "customer" | "employeeCustomer" | "timeEntry" | "emailActivity" | "fortnoxSyncLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1127,6 +1175,228 @@ export namespace Prisma {
           }
         }
       }
+      TimeEntry: {
+        payload: Prisma.$TimeEntryPayload<ExtArgs>
+        fields: Prisma.TimeEntryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TimeEntryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TimeEntryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TimeEntryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TimeEntryPayload>
+          }
+          findFirst: {
+            args: Prisma.TimeEntryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TimeEntryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TimeEntryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TimeEntryPayload>
+          }
+          findMany: {
+            args: Prisma.TimeEntryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TimeEntryPayload>[]
+          }
+          create: {
+            args: Prisma.TimeEntryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TimeEntryPayload>
+          }
+          createMany: {
+            args: Prisma.TimeEntryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TimeEntryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TimeEntryPayload>[]
+          }
+          delete: {
+            args: Prisma.TimeEntryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TimeEntryPayload>
+          }
+          update: {
+            args: Prisma.TimeEntryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TimeEntryPayload>
+          }
+          deleteMany: {
+            args: Prisma.TimeEntryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TimeEntryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TimeEntryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TimeEntryPayload>[]
+          }
+          upsert: {
+            args: Prisma.TimeEntryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TimeEntryPayload>
+          }
+          aggregate: {
+            args: Prisma.TimeEntryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTimeEntry>
+          }
+          groupBy: {
+            args: Prisma.TimeEntryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TimeEntryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TimeEntryCountArgs<ExtArgs>
+            result: $Utils.Optional<TimeEntryCountAggregateOutputType> | number
+          }
+        }
+      }
+      EmailActivity: {
+        payload: Prisma.$EmailActivityPayload<ExtArgs>
+        fields: Prisma.EmailActivityFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EmailActivityFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailActivityPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EmailActivityFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailActivityPayload>
+          }
+          findFirst: {
+            args: Prisma.EmailActivityFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailActivityPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EmailActivityFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailActivityPayload>
+          }
+          findMany: {
+            args: Prisma.EmailActivityFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailActivityPayload>[]
+          }
+          create: {
+            args: Prisma.EmailActivityCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailActivityPayload>
+          }
+          createMany: {
+            args: Prisma.EmailActivityCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EmailActivityCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailActivityPayload>[]
+          }
+          delete: {
+            args: Prisma.EmailActivityDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailActivityPayload>
+          }
+          update: {
+            args: Prisma.EmailActivityUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailActivityPayload>
+          }
+          deleteMany: {
+            args: Prisma.EmailActivityDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EmailActivityUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EmailActivityUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailActivityPayload>[]
+          }
+          upsert: {
+            args: Prisma.EmailActivityUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailActivityPayload>
+          }
+          aggregate: {
+            args: Prisma.EmailActivityAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEmailActivity>
+          }
+          groupBy: {
+            args: Prisma.EmailActivityGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EmailActivityGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EmailActivityCountArgs<ExtArgs>
+            result: $Utils.Optional<EmailActivityCountAggregateOutputType> | number
+          }
+        }
+      }
+      FortnoxSyncLog: {
+        payload: Prisma.$FortnoxSyncLogPayload<ExtArgs>
+        fields: Prisma.FortnoxSyncLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FortnoxSyncLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxSyncLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FortnoxSyncLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxSyncLogPayload>
+          }
+          findFirst: {
+            args: Prisma.FortnoxSyncLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxSyncLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FortnoxSyncLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxSyncLogPayload>
+          }
+          findMany: {
+            args: Prisma.FortnoxSyncLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxSyncLogPayload>[]
+          }
+          create: {
+            args: Prisma.FortnoxSyncLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxSyncLogPayload>
+          }
+          createMany: {
+            args: Prisma.FortnoxSyncLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FortnoxSyncLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxSyncLogPayload>[]
+          }
+          delete: {
+            args: Prisma.FortnoxSyncLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxSyncLogPayload>
+          }
+          update: {
+            args: Prisma.FortnoxSyncLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxSyncLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.FortnoxSyncLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FortnoxSyncLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FortnoxSyncLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxSyncLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.FortnoxSyncLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxSyncLogPayload>
+          }
+          aggregate: {
+            args: Prisma.FortnoxSyncLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFortnoxSyncLog>
+          }
+          groupBy: {
+            args: Prisma.FortnoxSyncLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FortnoxSyncLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FortnoxSyncLogCountArgs<ExtArgs>
+            result: $Utils.Optional<FortnoxSyncLogCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1241,6 +1511,9 @@ export namespace Prisma {
     imapCredential?: ImapCredentialOmit
     customer?: CustomerOmit
     employeeCustomer?: EmployeeCustomerOmit
+    timeEntry?: TimeEntryOmit
+    emailActivity?: EmailActivityOmit
+    fortnoxSyncLog?: FortnoxSyncLogOmit
   }
 
   /* Types for Logging */
@@ -1324,14 +1597,14 @@ export namespace Prisma {
     users: number
     integrations: number
     customers: number
-    employeeCustomers: number
+    fortnoxSyncLogs: number
   }
 
   export type CompanyCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | CompanyCountOutputTypeCountUsersArgs
     integrations?: boolean | CompanyCountOutputTypeCountIntegrationsArgs
     customers?: boolean | CompanyCountOutputTypeCountCustomersArgs
-    employeeCustomers?: boolean | CompanyCountOutputTypeCountEmployeeCustomersArgs
+    fortnoxSyncLogs?: boolean | CompanyCountOutputTypeCountFortnoxSyncLogsArgs
   }
 
   // Custom InputTypes
@@ -1369,8 +1642,8 @@ export namespace Prisma {
   /**
    * CompanyCountOutputType without action
    */
-  export type CompanyCountOutputTypeCountEmployeeCustomersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: EmployeeCustomerWhereInput
+  export type CompanyCountOutputTypeCountFortnoxSyncLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FortnoxSyncLogWhereInput
   }
 
 
@@ -1381,11 +1654,15 @@ export namespace Prisma {
   export type UserCountOutputType = {
     imapCredentials: number
     employeeCustomers: number
+    timeEntries: number
+    emailActivities: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     imapCredentials?: boolean | UserCountOutputTypeCountImapCredentialsArgs
     employeeCustomers?: boolean | UserCountOutputTypeCountEmployeeCustomersArgs
+    timeEntries?: boolean | UserCountOutputTypeCountTimeEntriesArgs
+    emailActivities?: boolean | UserCountOutputTypeCountEmailActivitiesArgs
   }
 
   // Custom InputTypes
@@ -1413,6 +1690,20 @@ export namespace Prisma {
     where?: EmployeeCustomerWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountTimeEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TimeEntryWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountEmailActivitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmailActivityWhereInput
+  }
+
 
   /**
    * Count Type CustomerCountOutputType
@@ -1420,10 +1711,14 @@ export namespace Prisma {
 
   export type CustomerCountOutputType = {
     employeeCustomers: number
+    timeEntries: number
+    emailActivities: number
   }
 
   export type CustomerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employeeCustomers?: boolean | CustomerCountOutputTypeCountEmployeeCustomersArgs
+    timeEntries?: boolean | CustomerCountOutputTypeCountTimeEntriesArgs
+    emailActivities?: boolean | CustomerCountOutputTypeCountEmailActivitiesArgs
   }
 
   // Custom InputTypes
@@ -1442,6 +1737,20 @@ export namespace Prisma {
    */
   export type CustomerCountOutputTypeCountEmployeeCustomersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: EmployeeCustomerWhereInput
+  }
+
+  /**
+   * CustomerCountOutputType without action
+   */
+  export type CustomerCountOutputTypeCountTimeEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TimeEntryWhereInput
+  }
+
+  /**
+   * CustomerCountOutputType without action
+   */
+  export type CustomerCountOutputTypeCountEmailActivitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmailActivityWhereInput
   }
 
 
@@ -1608,7 +1917,7 @@ export namespace Prisma {
     users?: boolean | Company$usersArgs<ExtArgs>
     integrations?: boolean | Company$integrationsArgs<ExtArgs>
     customers?: boolean | Company$customersArgs<ExtArgs>
-    employeeCustomers?: boolean | Company$employeeCustomersArgs<ExtArgs>
+    fortnoxSyncLogs?: boolean | Company$fortnoxSyncLogsArgs<ExtArgs>
     _count?: boolean | CompanyCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["company"]>
 
@@ -1638,7 +1947,7 @@ export namespace Prisma {
     users?: boolean | Company$usersArgs<ExtArgs>
     integrations?: boolean | Company$integrationsArgs<ExtArgs>
     customers?: boolean | Company$customersArgs<ExtArgs>
-    employeeCustomers?: boolean | Company$employeeCustomersArgs<ExtArgs>
+    fortnoxSyncLogs?: boolean | Company$fortnoxSyncLogsArgs<ExtArgs>
     _count?: boolean | CompanyCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CompanyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1650,7 +1959,7 @@ export namespace Prisma {
       users: Prisma.$UserPayload<ExtArgs>[]
       integrations: Prisma.$CompanyIntegrationPayload<ExtArgs>[]
       customers: Prisma.$CustomerPayload<ExtArgs>[]
-      employeeCustomers: Prisma.$EmployeeCustomerPayload<ExtArgs>[]
+      fortnoxSyncLogs: Prisma.$FortnoxSyncLogPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2054,7 +2363,7 @@ export namespace Prisma {
     users<T extends Company$usersArgs<ExtArgs> = {}>(args?: Subset<T, Company$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     integrations<T extends Company$integrationsArgs<ExtArgs> = {}>(args?: Subset<T, Company$integrationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompanyIntegrationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     customers<T extends Company$customersArgs<ExtArgs> = {}>(args?: Subset<T, Company$customersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    employeeCustomers<T extends Company$employeeCustomersArgs<ExtArgs> = {}>(args?: Subset<T, Company$employeeCustomersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeCustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    fortnoxSyncLogs<T extends Company$fortnoxSyncLogsArgs<ExtArgs> = {}>(args?: Subset<T, Company$fortnoxSyncLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxSyncLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2553,27 +2862,27 @@ export namespace Prisma {
   }
 
   /**
-   * Company.employeeCustomers
+   * Company.fortnoxSyncLogs
    */
-  export type Company$employeeCustomersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Company$fortnoxSyncLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the EmployeeCustomer
+     * Select specific fields to fetch from the FortnoxSyncLog
      */
-    select?: EmployeeCustomerSelect<ExtArgs> | null
+    select?: FortnoxSyncLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the EmployeeCustomer
+     * Omit specific fields from the FortnoxSyncLog
      */
-    omit?: EmployeeCustomerOmit<ExtArgs> | null
+    omit?: FortnoxSyncLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeeCustomerInclude<ExtArgs> | null
-    where?: EmployeeCustomerWhereInput
-    orderBy?: EmployeeCustomerOrderByWithRelationInput | EmployeeCustomerOrderByWithRelationInput[]
-    cursor?: EmployeeCustomerWhereUniqueInput
+    include?: FortnoxSyncLogInclude<ExtArgs> | null
+    where?: FortnoxSyncLogWhereInput
+    orderBy?: FortnoxSyncLogOrderByWithRelationInput | FortnoxSyncLogOrderByWithRelationInput[]
+    cursor?: FortnoxSyncLogWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: EmployeeCustomerScalarFieldEnum | EmployeeCustomerScalarFieldEnum[]
+    distinct?: FortnoxSyncLogScalarFieldEnum | FortnoxSyncLogScalarFieldEnum[]
   }
 
   /**
@@ -2770,6 +3079,8 @@ export namespace Prisma {
     company?: boolean | CompanyDefaultArgs<ExtArgs>
     imapCredentials?: boolean | User$imapCredentialsArgs<ExtArgs>
     employeeCustomers?: boolean | User$employeeCustomersArgs<ExtArgs>
+    timeEntries?: boolean | User$timeEntriesArgs<ExtArgs>
+    emailActivities?: boolean | User$emailActivitiesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2807,6 +3118,8 @@ export namespace Prisma {
     company?: boolean | CompanyDefaultArgs<ExtArgs>
     imapCredentials?: boolean | User$imapCredentialsArgs<ExtArgs>
     employeeCustomers?: boolean | User$employeeCustomersArgs<ExtArgs>
+    timeEntries?: boolean | User$timeEntriesArgs<ExtArgs>
+    emailActivities?: boolean | User$emailActivitiesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2822,6 +3135,8 @@ export namespace Prisma {
       company: Prisma.$CompanyPayload<ExtArgs>
       imapCredentials: Prisma.$ImapCredentialPayload<ExtArgs>[]
       employeeCustomers: Prisma.$EmployeeCustomerPayload<ExtArgs>[]
+      timeEntries: Prisma.$TimeEntryPayload<ExtArgs>[]
+      emailActivities: Prisma.$EmailActivityPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3227,6 +3542,8 @@ export namespace Prisma {
     company<T extends CompanyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CompanyDefaultArgs<ExtArgs>>): Prisma__CompanyClient<$Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     imapCredentials<T extends User$imapCredentialsArgs<ExtArgs> = {}>(args?: Subset<T, User$imapCredentialsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImapCredentialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     employeeCustomers<T extends User$employeeCustomersArgs<ExtArgs> = {}>(args?: Subset<T, User$employeeCustomersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeCustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    timeEntries<T extends User$timeEntriesArgs<ExtArgs> = {}>(args?: Subset<T, User$timeEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    emailActivities<T extends User$emailActivitiesArgs<ExtArgs> = {}>(args?: Subset<T, User$emailActivitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3711,6 +4028,54 @@ export namespace Prisma {
   }
 
   /**
+   * User.timeEntries
+   */
+  export type User$timeEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TimeEntry
+     */
+    select?: TimeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TimeEntry
+     */
+    omit?: TimeEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimeEntryInclude<ExtArgs> | null
+    where?: TimeEntryWhereInput
+    orderBy?: TimeEntryOrderByWithRelationInput | TimeEntryOrderByWithRelationInput[]
+    cursor?: TimeEntryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TimeEntryScalarFieldEnum | TimeEntryScalarFieldEnum[]
+  }
+
+  /**
+   * User.emailActivities
+   */
+  export type User$emailActivitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailActivity
+     */
+    select?: EmailActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailActivity
+     */
+    omit?: EmailActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailActivityInclude<ExtArgs> | null
+    where?: EmailActivityWhereInput
+    orderBy?: EmailActivityOrderByWithRelationInput | EmailActivityOrderByWithRelationInput[]
+    cursor?: EmailActivityWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmailActivityScalarFieldEnum | EmailActivityScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3877,7 +4242,7 @@ export namespace Prisma {
   export type CompanyIntegrationGroupByOutputType = {
     id: string
     companyId: string
-    service: string | null
+    service: string
     accessToken: string
     refreshToken: string | null
     expiresAt: Date | null
@@ -3963,7 +4328,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       companyId: string
-      service: string | null
+      service: string
       accessToken: string
       refreshToken: string | null
       expiresAt: Date | null
@@ -5985,52 +6350,58 @@ export namespace Prisma {
 
   export type CustomerMinAggregateOutputType = {
     id: string | null
-    email: string | null
+    fortnoxCustomerNumber: string | null
     name: string | null
+    domain: string | null
     companyId: string | null
-    companyName: string | null
+    createdAt: Date | null
   }
 
   export type CustomerMaxAggregateOutputType = {
     id: string | null
-    email: string | null
+    fortnoxCustomerNumber: string | null
     name: string | null
+    domain: string | null
     companyId: string | null
-    companyName: string | null
+    createdAt: Date | null
   }
 
   export type CustomerCountAggregateOutputType = {
     id: number
-    email: number
+    fortnoxCustomerNumber: number
     name: number
+    domain: number
     companyId: number
-    companyName: number
+    createdAt: number
     _all: number
   }
 
 
   export type CustomerMinAggregateInputType = {
     id?: true
-    email?: true
+    fortnoxCustomerNumber?: true
     name?: true
+    domain?: true
     companyId?: true
-    companyName?: true
+    createdAt?: true
   }
 
   export type CustomerMaxAggregateInputType = {
     id?: true
-    email?: true
+    fortnoxCustomerNumber?: true
     name?: true
+    domain?: true
     companyId?: true
-    companyName?: true
+    createdAt?: true
   }
 
   export type CustomerCountAggregateInputType = {
     id?: true
-    email?: true
+    fortnoxCustomerNumber?: true
     name?: true
+    domain?: true
     companyId?: true
-    companyName?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -6108,10 +6479,11 @@ export namespace Prisma {
 
   export type CustomerGroupByOutputType = {
     id: string
-    email: string
-    name: string | null
-    companyId: string | null
-    companyName: string | null
+    fortnoxCustomerNumber: string | null
+    name: string
+    domain: string | null
+    companyId: string
+    createdAt: Date
     _count: CustomerCountAggregateOutputType | null
     _min: CustomerMinAggregateOutputType | null
     _max: CustomerMaxAggregateOutputType | null
@@ -6133,66 +6505,77 @@ export namespace Prisma {
 
   export type CustomerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    email?: boolean
+    fortnoxCustomerNumber?: boolean
     name?: boolean
+    domain?: boolean
     companyId?: boolean
-    companyName?: boolean
-    company?: boolean | Customer$companyArgs<ExtArgs>
+    createdAt?: boolean
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
     employeeCustomers?: boolean | Customer$employeeCustomersArgs<ExtArgs>
+    timeEntries?: boolean | Customer$timeEntriesArgs<ExtArgs>
+    emailActivities?: boolean | Customer$emailActivitiesArgs<ExtArgs>
     _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["customer"]>
 
   export type CustomerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    email?: boolean
+    fortnoxCustomerNumber?: boolean
     name?: boolean
+    domain?: boolean
     companyId?: boolean
-    companyName?: boolean
-    company?: boolean | Customer$companyArgs<ExtArgs>
+    createdAt?: boolean
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["customer"]>
 
   export type CustomerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    email?: boolean
+    fortnoxCustomerNumber?: boolean
     name?: boolean
+    domain?: boolean
     companyId?: boolean
-    companyName?: boolean
-    company?: boolean | Customer$companyArgs<ExtArgs>
+    createdAt?: boolean
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["customer"]>
 
   export type CustomerSelectScalar = {
     id?: boolean
-    email?: boolean
+    fortnoxCustomerNumber?: boolean
     name?: boolean
+    domain?: boolean
     companyId?: boolean
-    companyName?: boolean
+    createdAt?: boolean
   }
 
-  export type CustomerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "companyId" | "companyName", ExtArgs["result"]["customer"]>
+  export type CustomerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fortnoxCustomerNumber" | "name" | "domain" | "companyId" | "createdAt", ExtArgs["result"]["customer"]>
   export type CustomerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    company?: boolean | Customer$companyArgs<ExtArgs>
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
     employeeCustomers?: boolean | Customer$employeeCustomersArgs<ExtArgs>
+    timeEntries?: boolean | Customer$timeEntriesArgs<ExtArgs>
+    emailActivities?: boolean | Customer$emailActivitiesArgs<ExtArgs>
     _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CustomerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    company?: boolean | Customer$companyArgs<ExtArgs>
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
   }
   export type CustomerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    company?: boolean | Customer$companyArgs<ExtArgs>
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
   }
 
   export type $CustomerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Customer"
     objects: {
-      company: Prisma.$CompanyPayload<ExtArgs> | null
+      company: Prisma.$CompanyPayload<ExtArgs>
       employeeCustomers: Prisma.$EmployeeCustomerPayload<ExtArgs>[]
+      timeEntries: Prisma.$TimeEntryPayload<ExtArgs>[]
+      emailActivities: Prisma.$EmailActivityPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      email: string
-      name: string | null
-      companyId: string | null
-      companyName: string | null
+      fortnoxCustomerNumber: string | null
+      name: string
+      domain: string | null
+      companyId: string
+      createdAt: Date
     }, ExtArgs["result"]["customer"]>
     composites: {}
   }
@@ -6587,8 +6970,10 @@ export namespace Prisma {
    */
   export interface Prisma__CustomerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    company<T extends Customer$companyArgs<ExtArgs> = {}>(args?: Subset<T, Customer$companyArgs<ExtArgs>>): Prisma__CompanyClient<$Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    company<T extends CompanyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CompanyDefaultArgs<ExtArgs>>): Prisma__CompanyClient<$Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     employeeCustomers<T extends Customer$employeeCustomersArgs<ExtArgs> = {}>(args?: Subset<T, Customer$employeeCustomersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeCustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    timeEntries<T extends Customer$timeEntriesArgs<ExtArgs> = {}>(args?: Subset<T, Customer$timeEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    emailActivities<T extends Customer$emailActivitiesArgs<ExtArgs> = {}>(args?: Subset<T, Customer$emailActivitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6619,10 +7004,11 @@ export namespace Prisma {
    */
   interface CustomerFieldRefs {
     readonly id: FieldRef<"Customer", 'String'>
-    readonly email: FieldRef<"Customer", 'String'>
+    readonly fortnoxCustomerNumber: FieldRef<"Customer", 'String'>
     readonly name: FieldRef<"Customer", 'String'>
+    readonly domain: FieldRef<"Customer", 'String'>
     readonly companyId: FieldRef<"Customer", 'String'>
-    readonly companyName: FieldRef<"Customer", 'String'>
+    readonly createdAt: FieldRef<"Customer", 'DateTime'>
   }
     
 
@@ -7024,25 +7410,6 @@ export namespace Prisma {
   }
 
   /**
-   * Customer.company
-   */
-  export type Customer$companyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Company
-     */
-    select?: CompanySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Company
-     */
-    omit?: CompanyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CompanyInclude<ExtArgs> | null
-    where?: CompanyWhereInput
-  }
-
-  /**
    * Customer.employeeCustomers
    */
   export type Customer$employeeCustomersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7064,6 +7431,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: EmployeeCustomerScalarFieldEnum | EmployeeCustomerScalarFieldEnum[]
+  }
+
+  /**
+   * Customer.timeEntries
+   */
+  export type Customer$timeEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TimeEntry
+     */
+    select?: TimeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TimeEntry
+     */
+    omit?: TimeEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimeEntryInclude<ExtArgs> | null
+    where?: TimeEntryWhereInput
+    orderBy?: TimeEntryOrderByWithRelationInput | TimeEntryOrderByWithRelationInput[]
+    cursor?: TimeEntryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TimeEntryScalarFieldEnum | TimeEntryScalarFieldEnum[]
+  }
+
+  /**
+   * Customer.emailActivities
+   */
+  export type Customer$emailActivitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailActivity
+     */
+    select?: EmailActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailActivity
+     */
+    omit?: EmailActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailActivityInclude<ExtArgs> | null
+    where?: EmailActivityWhereInput
+    orderBy?: EmailActivityOrderByWithRelationInput | EmailActivityOrderByWithRelationInput[]
+    cursor?: EmailActivityWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmailActivityScalarFieldEnum | EmailActivityScalarFieldEnum[]
   }
 
   /**
@@ -7098,22 +7513,25 @@ export namespace Prisma {
   export type EmployeeCustomerMinAggregateOutputType = {
     id: string | null
     userId: string | null
-    companyId: string | null
     customerId: string | null
+    assignedAt: Date | null
+    assignedBy: string | null
   }
 
   export type EmployeeCustomerMaxAggregateOutputType = {
     id: string | null
     userId: string | null
-    companyId: string | null
     customerId: string | null
+    assignedAt: Date | null
+    assignedBy: string | null
   }
 
   export type EmployeeCustomerCountAggregateOutputType = {
     id: number
     userId: number
-    companyId: number
     customerId: number
+    assignedAt: number
+    assignedBy: number
     _all: number
   }
 
@@ -7121,22 +7539,25 @@ export namespace Prisma {
   export type EmployeeCustomerMinAggregateInputType = {
     id?: true
     userId?: true
-    companyId?: true
     customerId?: true
+    assignedAt?: true
+    assignedBy?: true
   }
 
   export type EmployeeCustomerMaxAggregateInputType = {
     id?: true
     userId?: true
-    companyId?: true
     customerId?: true
+    assignedAt?: true
+    assignedBy?: true
   }
 
   export type EmployeeCustomerCountAggregateInputType = {
     id?: true
     userId?: true
-    companyId?: true
     customerId?: true
+    assignedAt?: true
+    assignedBy?: true
     _all?: true
   }
 
@@ -7214,9 +7635,10 @@ export namespace Prisma {
 
   export type EmployeeCustomerGroupByOutputType = {
     id: string
-    userId: string | null
-    companyId: string | null
-    customerId: string | null
+    userId: string
+    customerId: string
+    assignedAt: Date
+    assignedBy: string | null
     _count: EmployeeCustomerCountAggregateOutputType | null
     _min: EmployeeCustomerMinAggregateOutputType | null
     _max: EmployeeCustomerMaxAggregateOutputType | null
@@ -7239,69 +7661,67 @@ export namespace Prisma {
   export type EmployeeCustomerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    companyId?: boolean
     customerId?: boolean
-    user?: boolean | EmployeeCustomer$userArgs<ExtArgs>
-    company?: boolean | EmployeeCustomer$companyArgs<ExtArgs>
-    customer?: boolean | EmployeeCustomer$customerArgs<ExtArgs>
+    assignedAt?: boolean
+    assignedBy?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employeeCustomer"]>
 
   export type EmployeeCustomerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    companyId?: boolean
     customerId?: boolean
-    user?: boolean | EmployeeCustomer$userArgs<ExtArgs>
-    company?: boolean | EmployeeCustomer$companyArgs<ExtArgs>
-    customer?: boolean | EmployeeCustomer$customerArgs<ExtArgs>
+    assignedAt?: boolean
+    assignedBy?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employeeCustomer"]>
 
   export type EmployeeCustomerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    companyId?: boolean
     customerId?: boolean
-    user?: boolean | EmployeeCustomer$userArgs<ExtArgs>
-    company?: boolean | EmployeeCustomer$companyArgs<ExtArgs>
-    customer?: boolean | EmployeeCustomer$customerArgs<ExtArgs>
+    assignedAt?: boolean
+    assignedBy?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employeeCustomer"]>
 
   export type EmployeeCustomerSelectScalar = {
     id?: boolean
     userId?: boolean
-    companyId?: boolean
     customerId?: boolean
+    assignedAt?: boolean
+    assignedBy?: boolean
   }
 
-  export type EmployeeCustomerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "companyId" | "customerId", ExtArgs["result"]["employeeCustomer"]>
+  export type EmployeeCustomerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "customerId" | "assignedAt" | "assignedBy", ExtArgs["result"]["employeeCustomer"]>
   export type EmployeeCustomerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | EmployeeCustomer$userArgs<ExtArgs>
-    company?: boolean | EmployeeCustomer$companyArgs<ExtArgs>
-    customer?: boolean | EmployeeCustomer$customerArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
   }
   export type EmployeeCustomerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | EmployeeCustomer$userArgs<ExtArgs>
-    company?: boolean | EmployeeCustomer$companyArgs<ExtArgs>
-    customer?: boolean | EmployeeCustomer$customerArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
   }
   export type EmployeeCustomerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | EmployeeCustomer$userArgs<ExtArgs>
-    company?: boolean | EmployeeCustomer$companyArgs<ExtArgs>
-    customer?: boolean | EmployeeCustomer$customerArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
   }
 
   export type $EmployeeCustomerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "EmployeeCustomer"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs> | null
-      company: Prisma.$CompanyPayload<ExtArgs> | null
-      customer: Prisma.$CustomerPayload<ExtArgs> | null
+      user: Prisma.$UserPayload<ExtArgs>
+      customer: Prisma.$CustomerPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      userId: string | null
-      companyId: string | null
-      customerId: string | null
+      userId: string
+      customerId: string
+      assignedAt: Date
+      assignedBy: string | null
     }, ExtArgs["result"]["employeeCustomer"]>
     composites: {}
   }
@@ -7696,9 +8116,8 @@ export namespace Prisma {
    */
   export interface Prisma__EmployeeCustomerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends EmployeeCustomer$userArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeCustomer$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    company<T extends EmployeeCustomer$companyArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeCustomer$companyArgs<ExtArgs>>): Prisma__CompanyClient<$Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    customer<T extends EmployeeCustomer$customerArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeCustomer$customerArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    customer<T extends CustomerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CustomerDefaultArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7730,8 +8149,9 @@ export namespace Prisma {
   interface EmployeeCustomerFieldRefs {
     readonly id: FieldRef<"EmployeeCustomer", 'String'>
     readonly userId: FieldRef<"EmployeeCustomer", 'String'>
-    readonly companyId: FieldRef<"EmployeeCustomer", 'String'>
     readonly customerId: FieldRef<"EmployeeCustomer", 'String'>
+    readonly assignedAt: FieldRef<"EmployeeCustomer", 'DateTime'>
+    readonly assignedBy: FieldRef<"EmployeeCustomer", 'String'>
   }
     
 
@@ -7955,7 +8375,7 @@ export namespace Prisma {
     /**
      * The data needed to create a EmployeeCustomer.
      */
-    data?: XOR<EmployeeCustomerCreateInput, EmployeeCustomerUncheckedCreateInput>
+    data: XOR<EmployeeCustomerCreateInput, EmployeeCustomerUncheckedCreateInput>
   }
 
   /**
@@ -8133,47 +8553,1166 @@ export namespace Prisma {
   }
 
   /**
-   * EmployeeCustomer.user
+   * EmployeeCustomer without action
    */
-  export type EmployeeCustomer$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeCustomerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the User
+     * Select specific fields to fetch from the EmployeeCustomer
      */
-    select?: UserSelect<ExtArgs> | null
+    select?: EmployeeCustomerSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the User
+     * Omit specific fields from the EmployeeCustomer
      */
-    omit?: UserOmit<ExtArgs> | null
+    omit?: EmployeeCustomerOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
+    include?: EmployeeCustomerInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TimeEntry
+   */
+
+  export type AggregateTimeEntry = {
+    _count: TimeEntryCountAggregateOutputType | null
+    _avg: TimeEntryAvgAggregateOutputType | null
+    _sum: TimeEntrySumAggregateOutputType | null
+    _min: TimeEntryMinAggregateOutputType | null
+    _max: TimeEntryMaxAggregateOutputType | null
+  }
+
+  export type TimeEntryAvgAggregateOutputType = {
+    hours: Decimal | null
+  }
+
+  export type TimeEntrySumAggregateOutputType = {
+    hours: Decimal | null
+  }
+
+  export type TimeEntryMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    customerId: string | null
+    date: Date | null
+    hours: Decimal | null
+    description: string | null
+    source: string | null
+    rawCustomerName: string | null
+    createdAt: Date | null
+  }
+
+  export type TimeEntryMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    customerId: string | null
+    date: Date | null
+    hours: Decimal | null
+    description: string | null
+    source: string | null
+    rawCustomerName: string | null
+    createdAt: Date | null
+  }
+
+  export type TimeEntryCountAggregateOutputType = {
+    id: number
+    userId: number
+    customerId: number
+    date: number
+    hours: number
+    description: number
+    source: number
+    rawCustomerName: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type TimeEntryAvgAggregateInputType = {
+    hours?: true
+  }
+
+  export type TimeEntrySumAggregateInputType = {
+    hours?: true
+  }
+
+  export type TimeEntryMinAggregateInputType = {
+    id?: true
+    userId?: true
+    customerId?: true
+    date?: true
+    hours?: true
+    description?: true
+    source?: true
+    rawCustomerName?: true
+    createdAt?: true
+  }
+
+  export type TimeEntryMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    customerId?: true
+    date?: true
+    hours?: true
+    description?: true
+    source?: true
+    rawCustomerName?: true
+    createdAt?: true
+  }
+
+  export type TimeEntryCountAggregateInputType = {
+    id?: true
+    userId?: true
+    customerId?: true
+    date?: true
+    hours?: true
+    description?: true
+    source?: true
+    rawCustomerName?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type TimeEntryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TimeEntry to aggregate.
+     */
+    where?: TimeEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TimeEntries to fetch.
+     */
+    orderBy?: TimeEntryOrderByWithRelationInput | TimeEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TimeEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TimeEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TimeEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TimeEntries
+    **/
+    _count?: true | TimeEntryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TimeEntryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TimeEntrySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TimeEntryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TimeEntryMaxAggregateInputType
+  }
+
+  export type GetTimeEntryAggregateType<T extends TimeEntryAggregateArgs> = {
+        [P in keyof T & keyof AggregateTimeEntry]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTimeEntry[P]>
+      : GetScalarType<T[P], AggregateTimeEntry[P]>
+  }
+
+
+
+
+  export type TimeEntryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TimeEntryWhereInput
+    orderBy?: TimeEntryOrderByWithAggregationInput | TimeEntryOrderByWithAggregationInput[]
+    by: TimeEntryScalarFieldEnum[] | TimeEntryScalarFieldEnum
+    having?: TimeEntryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TimeEntryCountAggregateInputType | true
+    _avg?: TimeEntryAvgAggregateInputType
+    _sum?: TimeEntrySumAggregateInputType
+    _min?: TimeEntryMinAggregateInputType
+    _max?: TimeEntryMaxAggregateInputType
+  }
+
+  export type TimeEntryGroupByOutputType = {
+    id: string
+    userId: string
+    customerId: string | null
+    date: Date
+    hours: Decimal
+    description: string | null
+    source: string
+    rawCustomerName: string | null
+    createdAt: Date
+    _count: TimeEntryCountAggregateOutputType | null
+    _avg: TimeEntryAvgAggregateOutputType | null
+    _sum: TimeEntrySumAggregateOutputType | null
+    _min: TimeEntryMinAggregateOutputType | null
+    _max: TimeEntryMaxAggregateOutputType | null
+  }
+
+  type GetTimeEntryGroupByPayload<T extends TimeEntryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TimeEntryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TimeEntryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TimeEntryGroupByOutputType[P]>
+            : GetScalarType<T[P], TimeEntryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TimeEntrySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    customerId?: boolean
+    date?: boolean
+    hours?: boolean
+    description?: boolean
+    source?: boolean
+    rawCustomerName?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    customer?: boolean | TimeEntry$customerArgs<ExtArgs>
+  }, ExtArgs["result"]["timeEntry"]>
+
+  export type TimeEntrySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    customerId?: boolean
+    date?: boolean
+    hours?: boolean
+    description?: boolean
+    source?: boolean
+    rawCustomerName?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    customer?: boolean | TimeEntry$customerArgs<ExtArgs>
+  }, ExtArgs["result"]["timeEntry"]>
+
+  export type TimeEntrySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    customerId?: boolean
+    date?: boolean
+    hours?: boolean
+    description?: boolean
+    source?: boolean
+    rawCustomerName?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    customer?: boolean | TimeEntry$customerArgs<ExtArgs>
+  }, ExtArgs["result"]["timeEntry"]>
+
+  export type TimeEntrySelectScalar = {
+    id?: boolean
+    userId?: boolean
+    customerId?: boolean
+    date?: boolean
+    hours?: boolean
+    description?: boolean
+    source?: boolean
+    rawCustomerName?: boolean
+    createdAt?: boolean
+  }
+
+  export type TimeEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "customerId" | "date" | "hours" | "description" | "source" | "rawCustomerName" | "createdAt", ExtArgs["result"]["timeEntry"]>
+  export type TimeEntryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    customer?: boolean | TimeEntry$customerArgs<ExtArgs>
+  }
+  export type TimeEntryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    customer?: boolean | TimeEntry$customerArgs<ExtArgs>
+  }
+  export type TimeEntryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    customer?: boolean | TimeEntry$customerArgs<ExtArgs>
+  }
+
+  export type $TimeEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TimeEntry"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      customer: Prisma.$CustomerPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      customerId: string | null
+      date: Date
+      hours: Prisma.Decimal
+      description: string | null
+      source: string
+      rawCustomerName: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["timeEntry"]>
+    composites: {}
+  }
+
+  type TimeEntryGetPayload<S extends boolean | null | undefined | TimeEntryDefaultArgs> = $Result.GetResult<Prisma.$TimeEntryPayload, S>
+
+  type TimeEntryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TimeEntryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TimeEntryCountAggregateInputType | true
+    }
+
+  export interface TimeEntryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TimeEntry'], meta: { name: 'TimeEntry' } }
+    /**
+     * Find zero or one TimeEntry that matches the filter.
+     * @param {TimeEntryFindUniqueArgs} args - Arguments to find a TimeEntry
+     * @example
+     * // Get one TimeEntry
+     * const timeEntry = await prisma.timeEntry.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TimeEntryFindUniqueArgs>(args: SelectSubset<T, TimeEntryFindUniqueArgs<ExtArgs>>): Prisma__TimeEntryClient<$Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TimeEntry that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TimeEntryFindUniqueOrThrowArgs} args - Arguments to find a TimeEntry
+     * @example
+     * // Get one TimeEntry
+     * const timeEntry = await prisma.timeEntry.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TimeEntryFindUniqueOrThrowArgs>(args: SelectSubset<T, TimeEntryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TimeEntryClient<$Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TimeEntry that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TimeEntryFindFirstArgs} args - Arguments to find a TimeEntry
+     * @example
+     * // Get one TimeEntry
+     * const timeEntry = await prisma.timeEntry.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TimeEntryFindFirstArgs>(args?: SelectSubset<T, TimeEntryFindFirstArgs<ExtArgs>>): Prisma__TimeEntryClient<$Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TimeEntry that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TimeEntryFindFirstOrThrowArgs} args - Arguments to find a TimeEntry
+     * @example
+     * // Get one TimeEntry
+     * const timeEntry = await prisma.timeEntry.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TimeEntryFindFirstOrThrowArgs>(args?: SelectSubset<T, TimeEntryFindFirstOrThrowArgs<ExtArgs>>): Prisma__TimeEntryClient<$Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TimeEntries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TimeEntryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TimeEntries
+     * const timeEntries = await prisma.timeEntry.findMany()
+     * 
+     * // Get first 10 TimeEntries
+     * const timeEntries = await prisma.timeEntry.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const timeEntryWithIdOnly = await prisma.timeEntry.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TimeEntryFindManyArgs>(args?: SelectSubset<T, TimeEntryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TimeEntry.
+     * @param {TimeEntryCreateArgs} args - Arguments to create a TimeEntry.
+     * @example
+     * // Create one TimeEntry
+     * const TimeEntry = await prisma.timeEntry.create({
+     *   data: {
+     *     // ... data to create a TimeEntry
+     *   }
+     * })
+     * 
+     */
+    create<T extends TimeEntryCreateArgs>(args: SelectSubset<T, TimeEntryCreateArgs<ExtArgs>>): Prisma__TimeEntryClient<$Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TimeEntries.
+     * @param {TimeEntryCreateManyArgs} args - Arguments to create many TimeEntries.
+     * @example
+     * // Create many TimeEntries
+     * const timeEntry = await prisma.timeEntry.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TimeEntryCreateManyArgs>(args?: SelectSubset<T, TimeEntryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TimeEntries and returns the data saved in the database.
+     * @param {TimeEntryCreateManyAndReturnArgs} args - Arguments to create many TimeEntries.
+     * @example
+     * // Create many TimeEntries
+     * const timeEntry = await prisma.timeEntry.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TimeEntries and only return the `id`
+     * const timeEntryWithIdOnly = await prisma.timeEntry.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TimeEntryCreateManyAndReturnArgs>(args?: SelectSubset<T, TimeEntryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TimeEntry.
+     * @param {TimeEntryDeleteArgs} args - Arguments to delete one TimeEntry.
+     * @example
+     * // Delete one TimeEntry
+     * const TimeEntry = await prisma.timeEntry.delete({
+     *   where: {
+     *     // ... filter to delete one TimeEntry
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TimeEntryDeleteArgs>(args: SelectSubset<T, TimeEntryDeleteArgs<ExtArgs>>): Prisma__TimeEntryClient<$Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TimeEntry.
+     * @param {TimeEntryUpdateArgs} args - Arguments to update one TimeEntry.
+     * @example
+     * // Update one TimeEntry
+     * const timeEntry = await prisma.timeEntry.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TimeEntryUpdateArgs>(args: SelectSubset<T, TimeEntryUpdateArgs<ExtArgs>>): Prisma__TimeEntryClient<$Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TimeEntries.
+     * @param {TimeEntryDeleteManyArgs} args - Arguments to filter TimeEntries to delete.
+     * @example
+     * // Delete a few TimeEntries
+     * const { count } = await prisma.timeEntry.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TimeEntryDeleteManyArgs>(args?: SelectSubset<T, TimeEntryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TimeEntries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TimeEntryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TimeEntries
+     * const timeEntry = await prisma.timeEntry.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TimeEntryUpdateManyArgs>(args: SelectSubset<T, TimeEntryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TimeEntries and returns the data updated in the database.
+     * @param {TimeEntryUpdateManyAndReturnArgs} args - Arguments to update many TimeEntries.
+     * @example
+     * // Update many TimeEntries
+     * const timeEntry = await prisma.timeEntry.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TimeEntries and only return the `id`
+     * const timeEntryWithIdOnly = await prisma.timeEntry.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TimeEntryUpdateManyAndReturnArgs>(args: SelectSubset<T, TimeEntryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TimeEntry.
+     * @param {TimeEntryUpsertArgs} args - Arguments to update or create a TimeEntry.
+     * @example
+     * // Update or create a TimeEntry
+     * const timeEntry = await prisma.timeEntry.upsert({
+     *   create: {
+     *     // ... data to create a TimeEntry
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TimeEntry we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TimeEntryUpsertArgs>(args: SelectSubset<T, TimeEntryUpsertArgs<ExtArgs>>): Prisma__TimeEntryClient<$Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TimeEntries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TimeEntryCountArgs} args - Arguments to filter TimeEntries to count.
+     * @example
+     * // Count the number of TimeEntries
+     * const count = await prisma.timeEntry.count({
+     *   where: {
+     *     // ... the filter for the TimeEntries we want to count
+     *   }
+     * })
+    **/
+    count<T extends TimeEntryCountArgs>(
+      args?: Subset<T, TimeEntryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TimeEntryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TimeEntry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TimeEntryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TimeEntryAggregateArgs>(args: Subset<T, TimeEntryAggregateArgs>): Prisma.PrismaPromise<GetTimeEntryAggregateType<T>>
+
+    /**
+     * Group by TimeEntry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TimeEntryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TimeEntryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TimeEntryGroupByArgs['orderBy'] }
+        : { orderBy?: TimeEntryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TimeEntryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTimeEntryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TimeEntry model
+   */
+  readonly fields: TimeEntryFieldRefs;
   }
 
   /**
-   * EmployeeCustomer.company
+   * The delegate class that acts as a "Promise-like" for TimeEntry.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export type EmployeeCustomer$companyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export interface Prisma__TimeEntryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    customer<T extends TimeEntry$customerArgs<ExtArgs> = {}>(args?: Subset<T, TimeEntry$customerArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
-     * Select specific fields to fetch from the Company
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
      */
-    select?: CompanySelect<ExtArgs> | null
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
     /**
-     * Omit specific fields from the Company
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
      */
-    omit?: CompanyOmit<ExtArgs> | null
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TimeEntry model
+   */
+  interface TimeEntryFieldRefs {
+    readonly id: FieldRef<"TimeEntry", 'String'>
+    readonly userId: FieldRef<"TimeEntry", 'String'>
+    readonly customerId: FieldRef<"TimeEntry", 'String'>
+    readonly date: FieldRef<"TimeEntry", 'DateTime'>
+    readonly hours: FieldRef<"TimeEntry", 'Decimal'>
+    readonly description: FieldRef<"TimeEntry", 'String'>
+    readonly source: FieldRef<"TimeEntry", 'String'>
+    readonly rawCustomerName: FieldRef<"TimeEntry", 'String'>
+    readonly createdAt: FieldRef<"TimeEntry", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TimeEntry findUnique
+   */
+  export type TimeEntryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TimeEntry
+     */
+    select?: TimeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TimeEntry
+     */
+    omit?: TimeEntryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CompanyInclude<ExtArgs> | null
-    where?: CompanyWhereInput
+    include?: TimeEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which TimeEntry to fetch.
+     */
+    where: TimeEntryWhereUniqueInput
   }
 
   /**
-   * EmployeeCustomer.customer
+   * TimeEntry findUniqueOrThrow
    */
-  export type EmployeeCustomer$customerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TimeEntryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TimeEntry
+     */
+    select?: TimeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TimeEntry
+     */
+    omit?: TimeEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimeEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which TimeEntry to fetch.
+     */
+    where: TimeEntryWhereUniqueInput
+  }
+
+  /**
+   * TimeEntry findFirst
+   */
+  export type TimeEntryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TimeEntry
+     */
+    select?: TimeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TimeEntry
+     */
+    omit?: TimeEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimeEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which TimeEntry to fetch.
+     */
+    where?: TimeEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TimeEntries to fetch.
+     */
+    orderBy?: TimeEntryOrderByWithRelationInput | TimeEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TimeEntries.
+     */
+    cursor?: TimeEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TimeEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TimeEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TimeEntries.
+     */
+    distinct?: TimeEntryScalarFieldEnum | TimeEntryScalarFieldEnum[]
+  }
+
+  /**
+   * TimeEntry findFirstOrThrow
+   */
+  export type TimeEntryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TimeEntry
+     */
+    select?: TimeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TimeEntry
+     */
+    omit?: TimeEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimeEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which TimeEntry to fetch.
+     */
+    where?: TimeEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TimeEntries to fetch.
+     */
+    orderBy?: TimeEntryOrderByWithRelationInput | TimeEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TimeEntries.
+     */
+    cursor?: TimeEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TimeEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TimeEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TimeEntries.
+     */
+    distinct?: TimeEntryScalarFieldEnum | TimeEntryScalarFieldEnum[]
+  }
+
+  /**
+   * TimeEntry findMany
+   */
+  export type TimeEntryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TimeEntry
+     */
+    select?: TimeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TimeEntry
+     */
+    omit?: TimeEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimeEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which TimeEntries to fetch.
+     */
+    where?: TimeEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TimeEntries to fetch.
+     */
+    orderBy?: TimeEntryOrderByWithRelationInput | TimeEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TimeEntries.
+     */
+    cursor?: TimeEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TimeEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TimeEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TimeEntries.
+     */
+    distinct?: TimeEntryScalarFieldEnum | TimeEntryScalarFieldEnum[]
+  }
+
+  /**
+   * TimeEntry create
+   */
+  export type TimeEntryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TimeEntry
+     */
+    select?: TimeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TimeEntry
+     */
+    omit?: TimeEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimeEntryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TimeEntry.
+     */
+    data: XOR<TimeEntryCreateInput, TimeEntryUncheckedCreateInput>
+  }
+
+  /**
+   * TimeEntry createMany
+   */
+  export type TimeEntryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TimeEntries.
+     */
+    data: TimeEntryCreateManyInput | TimeEntryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TimeEntry createManyAndReturn
+   */
+  export type TimeEntryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TimeEntry
+     */
+    select?: TimeEntrySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TimeEntry
+     */
+    omit?: TimeEntryOmit<ExtArgs> | null
+    /**
+     * The data used to create many TimeEntries.
+     */
+    data: TimeEntryCreateManyInput | TimeEntryCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimeEntryIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TimeEntry update
+   */
+  export type TimeEntryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TimeEntry
+     */
+    select?: TimeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TimeEntry
+     */
+    omit?: TimeEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimeEntryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TimeEntry.
+     */
+    data: XOR<TimeEntryUpdateInput, TimeEntryUncheckedUpdateInput>
+    /**
+     * Choose, which TimeEntry to update.
+     */
+    where: TimeEntryWhereUniqueInput
+  }
+
+  /**
+   * TimeEntry updateMany
+   */
+  export type TimeEntryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TimeEntries.
+     */
+    data: XOR<TimeEntryUpdateManyMutationInput, TimeEntryUncheckedUpdateManyInput>
+    /**
+     * Filter which TimeEntries to update
+     */
+    where?: TimeEntryWhereInput
+    /**
+     * Limit how many TimeEntries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TimeEntry updateManyAndReturn
+   */
+  export type TimeEntryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TimeEntry
+     */
+    select?: TimeEntrySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TimeEntry
+     */
+    omit?: TimeEntryOmit<ExtArgs> | null
+    /**
+     * The data used to update TimeEntries.
+     */
+    data: XOR<TimeEntryUpdateManyMutationInput, TimeEntryUncheckedUpdateManyInput>
+    /**
+     * Filter which TimeEntries to update
+     */
+    where?: TimeEntryWhereInput
+    /**
+     * Limit how many TimeEntries to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimeEntryIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TimeEntry upsert
+   */
+  export type TimeEntryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TimeEntry
+     */
+    select?: TimeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TimeEntry
+     */
+    omit?: TimeEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimeEntryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TimeEntry to update in case it exists.
+     */
+    where: TimeEntryWhereUniqueInput
+    /**
+     * In case the TimeEntry found by the `where` argument doesn't exist, create a new TimeEntry with this data.
+     */
+    create: XOR<TimeEntryCreateInput, TimeEntryUncheckedCreateInput>
+    /**
+     * In case the TimeEntry was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TimeEntryUpdateInput, TimeEntryUncheckedUpdateInput>
+  }
+
+  /**
+   * TimeEntry delete
+   */
+  export type TimeEntryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TimeEntry
+     */
+    select?: TimeEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TimeEntry
+     */
+    omit?: TimeEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimeEntryInclude<ExtArgs> | null
+    /**
+     * Filter which TimeEntry to delete.
+     */
+    where: TimeEntryWhereUniqueInput
+  }
+
+  /**
+   * TimeEntry deleteMany
+   */
+  export type TimeEntryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TimeEntries to delete
+     */
+    where?: TimeEntryWhereInput
+    /**
+     * Limit how many TimeEntries to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TimeEntry.customer
+   */
+  export type TimeEntry$customerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Customer
      */
@@ -8190,21 +9729,2213 @@ export namespace Prisma {
   }
 
   /**
-   * EmployeeCustomer without action
+   * TimeEntry without action
    */
-  export type EmployeeCustomerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TimeEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the EmployeeCustomer
+     * Select specific fields to fetch from the TimeEntry
      */
-    select?: EmployeeCustomerSelect<ExtArgs> | null
+    select?: TimeEntrySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the EmployeeCustomer
+     * Omit specific fields from the TimeEntry
      */
-    omit?: EmployeeCustomerOmit<ExtArgs> | null
+    omit?: TimeEntryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeeCustomerInclude<ExtArgs> | null
+    include?: TimeEntryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EmailActivity
+   */
+
+  export type AggregateEmailActivity = {
+    _count: EmailActivityCountAggregateOutputType | null
+    _min: EmailActivityMinAggregateOutputType | null
+    _max: EmailActivityMaxAggregateOutputType | null
+  }
+
+  export type EmailActivityMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    customerId: string | null
+    sentAt: Date | null
+    recipientEmail: string | null
+    recipientDomain: string | null
+    subject: string | null
+    messageId: string | null
+    createdAt: Date | null
+  }
+
+  export type EmailActivityMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    customerId: string | null
+    sentAt: Date | null
+    recipientEmail: string | null
+    recipientDomain: string | null
+    subject: string | null
+    messageId: string | null
+    createdAt: Date | null
+  }
+
+  export type EmailActivityCountAggregateOutputType = {
+    id: number
+    userId: number
+    customerId: number
+    sentAt: number
+    recipientEmail: number
+    recipientDomain: number
+    subject: number
+    messageId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type EmailActivityMinAggregateInputType = {
+    id?: true
+    userId?: true
+    customerId?: true
+    sentAt?: true
+    recipientEmail?: true
+    recipientDomain?: true
+    subject?: true
+    messageId?: true
+    createdAt?: true
+  }
+
+  export type EmailActivityMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    customerId?: true
+    sentAt?: true
+    recipientEmail?: true
+    recipientDomain?: true
+    subject?: true
+    messageId?: true
+    createdAt?: true
+  }
+
+  export type EmailActivityCountAggregateInputType = {
+    id?: true
+    userId?: true
+    customerId?: true
+    sentAt?: true
+    recipientEmail?: true
+    recipientDomain?: true
+    subject?: true
+    messageId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type EmailActivityAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmailActivity to aggregate.
+     */
+    where?: EmailActivityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmailActivities to fetch.
+     */
+    orderBy?: EmailActivityOrderByWithRelationInput | EmailActivityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EmailActivityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmailActivities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmailActivities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EmailActivities
+    **/
+    _count?: true | EmailActivityCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EmailActivityMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EmailActivityMaxAggregateInputType
+  }
+
+  export type GetEmailActivityAggregateType<T extends EmailActivityAggregateArgs> = {
+        [P in keyof T & keyof AggregateEmailActivity]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEmailActivity[P]>
+      : GetScalarType<T[P], AggregateEmailActivity[P]>
+  }
+
+
+
+
+  export type EmailActivityGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmailActivityWhereInput
+    orderBy?: EmailActivityOrderByWithAggregationInput | EmailActivityOrderByWithAggregationInput[]
+    by: EmailActivityScalarFieldEnum[] | EmailActivityScalarFieldEnum
+    having?: EmailActivityScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EmailActivityCountAggregateInputType | true
+    _min?: EmailActivityMinAggregateInputType
+    _max?: EmailActivityMaxAggregateInputType
+  }
+
+  export type EmailActivityGroupByOutputType = {
+    id: string
+    userId: string
+    customerId: string | null
+    sentAt: Date
+    recipientEmail: string
+    recipientDomain: string
+    subject: string | null
+    messageId: string | null
+    createdAt: Date
+    _count: EmailActivityCountAggregateOutputType | null
+    _min: EmailActivityMinAggregateOutputType | null
+    _max: EmailActivityMaxAggregateOutputType | null
+  }
+
+  type GetEmailActivityGroupByPayload<T extends EmailActivityGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EmailActivityGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EmailActivityGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EmailActivityGroupByOutputType[P]>
+            : GetScalarType<T[P], EmailActivityGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EmailActivitySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    customerId?: boolean
+    sentAt?: boolean
+    recipientEmail?: boolean
+    recipientDomain?: boolean
+    subject?: boolean
+    messageId?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    customer?: boolean | EmailActivity$customerArgs<ExtArgs>
+  }, ExtArgs["result"]["emailActivity"]>
+
+  export type EmailActivitySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    customerId?: boolean
+    sentAt?: boolean
+    recipientEmail?: boolean
+    recipientDomain?: boolean
+    subject?: boolean
+    messageId?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    customer?: boolean | EmailActivity$customerArgs<ExtArgs>
+  }, ExtArgs["result"]["emailActivity"]>
+
+  export type EmailActivitySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    customerId?: boolean
+    sentAt?: boolean
+    recipientEmail?: boolean
+    recipientDomain?: boolean
+    subject?: boolean
+    messageId?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    customer?: boolean | EmailActivity$customerArgs<ExtArgs>
+  }, ExtArgs["result"]["emailActivity"]>
+
+  export type EmailActivitySelectScalar = {
+    id?: boolean
+    userId?: boolean
+    customerId?: boolean
+    sentAt?: boolean
+    recipientEmail?: boolean
+    recipientDomain?: boolean
+    subject?: boolean
+    messageId?: boolean
+    createdAt?: boolean
+  }
+
+  export type EmailActivityOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "customerId" | "sentAt" | "recipientEmail" | "recipientDomain" | "subject" | "messageId" | "createdAt", ExtArgs["result"]["emailActivity"]>
+  export type EmailActivityInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    customer?: boolean | EmailActivity$customerArgs<ExtArgs>
+  }
+  export type EmailActivityIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    customer?: boolean | EmailActivity$customerArgs<ExtArgs>
+  }
+  export type EmailActivityIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    customer?: boolean | EmailActivity$customerArgs<ExtArgs>
+  }
+
+  export type $EmailActivityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EmailActivity"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      customer: Prisma.$CustomerPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      customerId: string | null
+      sentAt: Date
+      recipientEmail: string
+      recipientDomain: string
+      subject: string | null
+      messageId: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["emailActivity"]>
+    composites: {}
+  }
+
+  type EmailActivityGetPayload<S extends boolean | null | undefined | EmailActivityDefaultArgs> = $Result.GetResult<Prisma.$EmailActivityPayload, S>
+
+  type EmailActivityCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EmailActivityFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EmailActivityCountAggregateInputType | true
+    }
+
+  export interface EmailActivityDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EmailActivity'], meta: { name: 'EmailActivity' } }
+    /**
+     * Find zero or one EmailActivity that matches the filter.
+     * @param {EmailActivityFindUniqueArgs} args - Arguments to find a EmailActivity
+     * @example
+     * // Get one EmailActivity
+     * const emailActivity = await prisma.emailActivity.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EmailActivityFindUniqueArgs>(args: SelectSubset<T, EmailActivityFindUniqueArgs<ExtArgs>>): Prisma__EmailActivityClient<$Result.GetResult<Prisma.$EmailActivityPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EmailActivity that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EmailActivityFindUniqueOrThrowArgs} args - Arguments to find a EmailActivity
+     * @example
+     * // Get one EmailActivity
+     * const emailActivity = await prisma.emailActivity.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EmailActivityFindUniqueOrThrowArgs>(args: SelectSubset<T, EmailActivityFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmailActivityClient<$Result.GetResult<Prisma.$EmailActivityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmailActivity that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailActivityFindFirstArgs} args - Arguments to find a EmailActivity
+     * @example
+     * // Get one EmailActivity
+     * const emailActivity = await prisma.emailActivity.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EmailActivityFindFirstArgs>(args?: SelectSubset<T, EmailActivityFindFirstArgs<ExtArgs>>): Prisma__EmailActivityClient<$Result.GetResult<Prisma.$EmailActivityPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmailActivity that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailActivityFindFirstOrThrowArgs} args - Arguments to find a EmailActivity
+     * @example
+     * // Get one EmailActivity
+     * const emailActivity = await prisma.emailActivity.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EmailActivityFindFirstOrThrowArgs>(args?: SelectSubset<T, EmailActivityFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmailActivityClient<$Result.GetResult<Prisma.$EmailActivityPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EmailActivities that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailActivityFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EmailActivities
+     * const emailActivities = await prisma.emailActivity.findMany()
+     * 
+     * // Get first 10 EmailActivities
+     * const emailActivities = await prisma.emailActivity.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const emailActivityWithIdOnly = await prisma.emailActivity.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EmailActivityFindManyArgs>(args?: SelectSubset<T, EmailActivityFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EmailActivity.
+     * @param {EmailActivityCreateArgs} args - Arguments to create a EmailActivity.
+     * @example
+     * // Create one EmailActivity
+     * const EmailActivity = await prisma.emailActivity.create({
+     *   data: {
+     *     // ... data to create a EmailActivity
+     *   }
+     * })
+     * 
+     */
+    create<T extends EmailActivityCreateArgs>(args: SelectSubset<T, EmailActivityCreateArgs<ExtArgs>>): Prisma__EmailActivityClient<$Result.GetResult<Prisma.$EmailActivityPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EmailActivities.
+     * @param {EmailActivityCreateManyArgs} args - Arguments to create many EmailActivities.
+     * @example
+     * // Create many EmailActivities
+     * const emailActivity = await prisma.emailActivity.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EmailActivityCreateManyArgs>(args?: SelectSubset<T, EmailActivityCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EmailActivities and returns the data saved in the database.
+     * @param {EmailActivityCreateManyAndReturnArgs} args - Arguments to create many EmailActivities.
+     * @example
+     * // Create many EmailActivities
+     * const emailActivity = await prisma.emailActivity.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EmailActivities and only return the `id`
+     * const emailActivityWithIdOnly = await prisma.emailActivity.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EmailActivityCreateManyAndReturnArgs>(args?: SelectSubset<T, EmailActivityCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailActivityPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EmailActivity.
+     * @param {EmailActivityDeleteArgs} args - Arguments to delete one EmailActivity.
+     * @example
+     * // Delete one EmailActivity
+     * const EmailActivity = await prisma.emailActivity.delete({
+     *   where: {
+     *     // ... filter to delete one EmailActivity
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EmailActivityDeleteArgs>(args: SelectSubset<T, EmailActivityDeleteArgs<ExtArgs>>): Prisma__EmailActivityClient<$Result.GetResult<Prisma.$EmailActivityPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EmailActivity.
+     * @param {EmailActivityUpdateArgs} args - Arguments to update one EmailActivity.
+     * @example
+     * // Update one EmailActivity
+     * const emailActivity = await prisma.emailActivity.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EmailActivityUpdateArgs>(args: SelectSubset<T, EmailActivityUpdateArgs<ExtArgs>>): Prisma__EmailActivityClient<$Result.GetResult<Prisma.$EmailActivityPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EmailActivities.
+     * @param {EmailActivityDeleteManyArgs} args - Arguments to filter EmailActivities to delete.
+     * @example
+     * // Delete a few EmailActivities
+     * const { count } = await prisma.emailActivity.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EmailActivityDeleteManyArgs>(args?: SelectSubset<T, EmailActivityDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmailActivities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailActivityUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EmailActivities
+     * const emailActivity = await prisma.emailActivity.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EmailActivityUpdateManyArgs>(args: SelectSubset<T, EmailActivityUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmailActivities and returns the data updated in the database.
+     * @param {EmailActivityUpdateManyAndReturnArgs} args - Arguments to update many EmailActivities.
+     * @example
+     * // Update many EmailActivities
+     * const emailActivity = await prisma.emailActivity.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EmailActivities and only return the `id`
+     * const emailActivityWithIdOnly = await prisma.emailActivity.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EmailActivityUpdateManyAndReturnArgs>(args: SelectSubset<T, EmailActivityUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailActivityPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EmailActivity.
+     * @param {EmailActivityUpsertArgs} args - Arguments to update or create a EmailActivity.
+     * @example
+     * // Update or create a EmailActivity
+     * const emailActivity = await prisma.emailActivity.upsert({
+     *   create: {
+     *     // ... data to create a EmailActivity
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EmailActivity we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EmailActivityUpsertArgs>(args: SelectSubset<T, EmailActivityUpsertArgs<ExtArgs>>): Prisma__EmailActivityClient<$Result.GetResult<Prisma.$EmailActivityPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EmailActivities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailActivityCountArgs} args - Arguments to filter EmailActivities to count.
+     * @example
+     * // Count the number of EmailActivities
+     * const count = await prisma.emailActivity.count({
+     *   where: {
+     *     // ... the filter for the EmailActivities we want to count
+     *   }
+     * })
+    **/
+    count<T extends EmailActivityCountArgs>(
+      args?: Subset<T, EmailActivityCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EmailActivityCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EmailActivity.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailActivityAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EmailActivityAggregateArgs>(args: Subset<T, EmailActivityAggregateArgs>): Prisma.PrismaPromise<GetEmailActivityAggregateType<T>>
+
+    /**
+     * Group by EmailActivity.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailActivityGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EmailActivityGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EmailActivityGroupByArgs['orderBy'] }
+        : { orderBy?: EmailActivityGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EmailActivityGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmailActivityGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EmailActivity model
+   */
+  readonly fields: EmailActivityFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EmailActivity.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EmailActivityClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    customer<T extends EmailActivity$customerArgs<ExtArgs> = {}>(args?: Subset<T, EmailActivity$customerArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EmailActivity model
+   */
+  interface EmailActivityFieldRefs {
+    readonly id: FieldRef<"EmailActivity", 'String'>
+    readonly userId: FieldRef<"EmailActivity", 'String'>
+    readonly customerId: FieldRef<"EmailActivity", 'String'>
+    readonly sentAt: FieldRef<"EmailActivity", 'DateTime'>
+    readonly recipientEmail: FieldRef<"EmailActivity", 'String'>
+    readonly recipientDomain: FieldRef<"EmailActivity", 'String'>
+    readonly subject: FieldRef<"EmailActivity", 'String'>
+    readonly messageId: FieldRef<"EmailActivity", 'String'>
+    readonly createdAt: FieldRef<"EmailActivity", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EmailActivity findUnique
+   */
+  export type EmailActivityFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailActivity
+     */
+    select?: EmailActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailActivity
+     */
+    omit?: EmailActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailActivityInclude<ExtArgs> | null
+    /**
+     * Filter, which EmailActivity to fetch.
+     */
+    where: EmailActivityWhereUniqueInput
+  }
+
+  /**
+   * EmailActivity findUniqueOrThrow
+   */
+  export type EmailActivityFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailActivity
+     */
+    select?: EmailActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailActivity
+     */
+    omit?: EmailActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailActivityInclude<ExtArgs> | null
+    /**
+     * Filter, which EmailActivity to fetch.
+     */
+    where: EmailActivityWhereUniqueInput
+  }
+
+  /**
+   * EmailActivity findFirst
+   */
+  export type EmailActivityFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailActivity
+     */
+    select?: EmailActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailActivity
+     */
+    omit?: EmailActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailActivityInclude<ExtArgs> | null
+    /**
+     * Filter, which EmailActivity to fetch.
+     */
+    where?: EmailActivityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmailActivities to fetch.
+     */
+    orderBy?: EmailActivityOrderByWithRelationInput | EmailActivityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmailActivities.
+     */
+    cursor?: EmailActivityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmailActivities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmailActivities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmailActivities.
+     */
+    distinct?: EmailActivityScalarFieldEnum | EmailActivityScalarFieldEnum[]
+  }
+
+  /**
+   * EmailActivity findFirstOrThrow
+   */
+  export type EmailActivityFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailActivity
+     */
+    select?: EmailActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailActivity
+     */
+    omit?: EmailActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailActivityInclude<ExtArgs> | null
+    /**
+     * Filter, which EmailActivity to fetch.
+     */
+    where?: EmailActivityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmailActivities to fetch.
+     */
+    orderBy?: EmailActivityOrderByWithRelationInput | EmailActivityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmailActivities.
+     */
+    cursor?: EmailActivityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmailActivities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmailActivities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmailActivities.
+     */
+    distinct?: EmailActivityScalarFieldEnum | EmailActivityScalarFieldEnum[]
+  }
+
+  /**
+   * EmailActivity findMany
+   */
+  export type EmailActivityFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailActivity
+     */
+    select?: EmailActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailActivity
+     */
+    omit?: EmailActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailActivityInclude<ExtArgs> | null
+    /**
+     * Filter, which EmailActivities to fetch.
+     */
+    where?: EmailActivityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmailActivities to fetch.
+     */
+    orderBy?: EmailActivityOrderByWithRelationInput | EmailActivityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EmailActivities.
+     */
+    cursor?: EmailActivityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmailActivities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmailActivities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmailActivities.
+     */
+    distinct?: EmailActivityScalarFieldEnum | EmailActivityScalarFieldEnum[]
+  }
+
+  /**
+   * EmailActivity create
+   */
+  export type EmailActivityCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailActivity
+     */
+    select?: EmailActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailActivity
+     */
+    omit?: EmailActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailActivityInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EmailActivity.
+     */
+    data: XOR<EmailActivityCreateInput, EmailActivityUncheckedCreateInput>
+  }
+
+  /**
+   * EmailActivity createMany
+   */
+  export type EmailActivityCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EmailActivities.
+     */
+    data: EmailActivityCreateManyInput | EmailActivityCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EmailActivity createManyAndReturn
+   */
+  export type EmailActivityCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailActivity
+     */
+    select?: EmailActivitySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailActivity
+     */
+    omit?: EmailActivityOmit<ExtArgs> | null
+    /**
+     * The data used to create many EmailActivities.
+     */
+    data: EmailActivityCreateManyInput | EmailActivityCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailActivityIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmailActivity update
+   */
+  export type EmailActivityUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailActivity
+     */
+    select?: EmailActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailActivity
+     */
+    omit?: EmailActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailActivityInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EmailActivity.
+     */
+    data: XOR<EmailActivityUpdateInput, EmailActivityUncheckedUpdateInput>
+    /**
+     * Choose, which EmailActivity to update.
+     */
+    where: EmailActivityWhereUniqueInput
+  }
+
+  /**
+   * EmailActivity updateMany
+   */
+  export type EmailActivityUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EmailActivities.
+     */
+    data: XOR<EmailActivityUpdateManyMutationInput, EmailActivityUncheckedUpdateManyInput>
+    /**
+     * Filter which EmailActivities to update
+     */
+    where?: EmailActivityWhereInput
+    /**
+     * Limit how many EmailActivities to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmailActivity updateManyAndReturn
+   */
+  export type EmailActivityUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailActivity
+     */
+    select?: EmailActivitySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailActivity
+     */
+    omit?: EmailActivityOmit<ExtArgs> | null
+    /**
+     * The data used to update EmailActivities.
+     */
+    data: XOR<EmailActivityUpdateManyMutationInput, EmailActivityUncheckedUpdateManyInput>
+    /**
+     * Filter which EmailActivities to update
+     */
+    where?: EmailActivityWhereInput
+    /**
+     * Limit how many EmailActivities to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailActivityIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmailActivity upsert
+   */
+  export type EmailActivityUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailActivity
+     */
+    select?: EmailActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailActivity
+     */
+    omit?: EmailActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailActivityInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EmailActivity to update in case it exists.
+     */
+    where: EmailActivityWhereUniqueInput
+    /**
+     * In case the EmailActivity found by the `where` argument doesn't exist, create a new EmailActivity with this data.
+     */
+    create: XOR<EmailActivityCreateInput, EmailActivityUncheckedCreateInput>
+    /**
+     * In case the EmailActivity was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EmailActivityUpdateInput, EmailActivityUncheckedUpdateInput>
+  }
+
+  /**
+   * EmailActivity delete
+   */
+  export type EmailActivityDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailActivity
+     */
+    select?: EmailActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailActivity
+     */
+    omit?: EmailActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailActivityInclude<ExtArgs> | null
+    /**
+     * Filter which EmailActivity to delete.
+     */
+    where: EmailActivityWhereUniqueInput
+  }
+
+  /**
+   * EmailActivity deleteMany
+   */
+  export type EmailActivityDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmailActivities to delete
+     */
+    where?: EmailActivityWhereInput
+    /**
+     * Limit how many EmailActivities to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmailActivity.customer
+   */
+  export type EmailActivity$customerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Customer
+     */
+    select?: CustomerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Customer
+     */
+    omit?: CustomerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CustomerInclude<ExtArgs> | null
+    where?: CustomerWhereInput
+  }
+
+  /**
+   * EmailActivity without action
+   */
+  export type EmailActivityDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailActivity
+     */
+    select?: EmailActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailActivity
+     */
+    omit?: EmailActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailActivityInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FortnoxSyncLog
+   */
+
+  export type AggregateFortnoxSyncLog = {
+    _count: FortnoxSyncLogCountAggregateOutputType | null
+    _min: FortnoxSyncLogMinAggregateOutputType | null
+    _max: FortnoxSyncLogMaxAggregateOutputType | null
+  }
+
+  export type FortnoxSyncLogMinAggregateOutputType = {
+    id: string | null
+    companyId: string | null
+    resource: string | null
+    lastSyncedAt: Date | null
+  }
+
+  export type FortnoxSyncLogMaxAggregateOutputType = {
+    id: string | null
+    companyId: string | null
+    resource: string | null
+    lastSyncedAt: Date | null
+  }
+
+  export type FortnoxSyncLogCountAggregateOutputType = {
+    id: number
+    companyId: number
+    resource: number
+    lastSyncedAt: number
+    _all: number
+  }
+
+
+  export type FortnoxSyncLogMinAggregateInputType = {
+    id?: true
+    companyId?: true
+    resource?: true
+    lastSyncedAt?: true
+  }
+
+  export type FortnoxSyncLogMaxAggregateInputType = {
+    id?: true
+    companyId?: true
+    resource?: true
+    lastSyncedAt?: true
+  }
+
+  export type FortnoxSyncLogCountAggregateInputType = {
+    id?: true
+    companyId?: true
+    resource?: true
+    lastSyncedAt?: true
+    _all?: true
+  }
+
+  export type FortnoxSyncLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FortnoxSyncLog to aggregate.
+     */
+    where?: FortnoxSyncLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxSyncLogs to fetch.
+     */
+    orderBy?: FortnoxSyncLogOrderByWithRelationInput | FortnoxSyncLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FortnoxSyncLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxSyncLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxSyncLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FortnoxSyncLogs
+    **/
+    _count?: true | FortnoxSyncLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FortnoxSyncLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FortnoxSyncLogMaxAggregateInputType
+  }
+
+  export type GetFortnoxSyncLogAggregateType<T extends FortnoxSyncLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateFortnoxSyncLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFortnoxSyncLog[P]>
+      : GetScalarType<T[P], AggregateFortnoxSyncLog[P]>
+  }
+
+
+
+
+  export type FortnoxSyncLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FortnoxSyncLogWhereInput
+    orderBy?: FortnoxSyncLogOrderByWithAggregationInput | FortnoxSyncLogOrderByWithAggregationInput[]
+    by: FortnoxSyncLogScalarFieldEnum[] | FortnoxSyncLogScalarFieldEnum
+    having?: FortnoxSyncLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FortnoxSyncLogCountAggregateInputType | true
+    _min?: FortnoxSyncLogMinAggregateInputType
+    _max?: FortnoxSyncLogMaxAggregateInputType
+  }
+
+  export type FortnoxSyncLogGroupByOutputType = {
+    id: string
+    companyId: string
+    resource: string
+    lastSyncedAt: Date
+    _count: FortnoxSyncLogCountAggregateOutputType | null
+    _min: FortnoxSyncLogMinAggregateOutputType | null
+    _max: FortnoxSyncLogMaxAggregateOutputType | null
+  }
+
+  type GetFortnoxSyncLogGroupByPayload<T extends FortnoxSyncLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FortnoxSyncLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FortnoxSyncLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FortnoxSyncLogGroupByOutputType[P]>
+            : GetScalarType<T[P], FortnoxSyncLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FortnoxSyncLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    companyId?: boolean
+    resource?: boolean
+    lastSyncedAt?: boolean
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxSyncLog"]>
+
+  export type FortnoxSyncLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    companyId?: boolean
+    resource?: boolean
+    lastSyncedAt?: boolean
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxSyncLog"]>
+
+  export type FortnoxSyncLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    companyId?: boolean
+    resource?: boolean
+    lastSyncedAt?: boolean
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxSyncLog"]>
+
+  export type FortnoxSyncLogSelectScalar = {
+    id?: boolean
+    companyId?: boolean
+    resource?: boolean
+    lastSyncedAt?: boolean
+  }
+
+  export type FortnoxSyncLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyId" | "resource" | "lastSyncedAt", ExtArgs["result"]["fortnoxSyncLog"]>
+  export type FortnoxSyncLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
+  }
+  export type FortnoxSyncLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
+  }
+  export type FortnoxSyncLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
+  }
+
+  export type $FortnoxSyncLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FortnoxSyncLog"
+    objects: {
+      company: Prisma.$CompanyPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      companyId: string
+      resource: string
+      lastSyncedAt: Date
+    }, ExtArgs["result"]["fortnoxSyncLog"]>
+    composites: {}
+  }
+
+  type FortnoxSyncLogGetPayload<S extends boolean | null | undefined | FortnoxSyncLogDefaultArgs> = $Result.GetResult<Prisma.$FortnoxSyncLogPayload, S>
+
+  type FortnoxSyncLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FortnoxSyncLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FortnoxSyncLogCountAggregateInputType | true
+    }
+
+  export interface FortnoxSyncLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FortnoxSyncLog'], meta: { name: 'FortnoxSyncLog' } }
+    /**
+     * Find zero or one FortnoxSyncLog that matches the filter.
+     * @param {FortnoxSyncLogFindUniqueArgs} args - Arguments to find a FortnoxSyncLog
+     * @example
+     * // Get one FortnoxSyncLog
+     * const fortnoxSyncLog = await prisma.fortnoxSyncLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FortnoxSyncLogFindUniqueArgs>(args: SelectSubset<T, FortnoxSyncLogFindUniqueArgs<ExtArgs>>): Prisma__FortnoxSyncLogClient<$Result.GetResult<Prisma.$FortnoxSyncLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FortnoxSyncLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FortnoxSyncLogFindUniqueOrThrowArgs} args - Arguments to find a FortnoxSyncLog
+     * @example
+     * // Get one FortnoxSyncLog
+     * const fortnoxSyncLog = await prisma.fortnoxSyncLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FortnoxSyncLogFindUniqueOrThrowArgs>(args: SelectSubset<T, FortnoxSyncLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FortnoxSyncLogClient<$Result.GetResult<Prisma.$FortnoxSyncLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FortnoxSyncLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxSyncLogFindFirstArgs} args - Arguments to find a FortnoxSyncLog
+     * @example
+     * // Get one FortnoxSyncLog
+     * const fortnoxSyncLog = await prisma.fortnoxSyncLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FortnoxSyncLogFindFirstArgs>(args?: SelectSubset<T, FortnoxSyncLogFindFirstArgs<ExtArgs>>): Prisma__FortnoxSyncLogClient<$Result.GetResult<Prisma.$FortnoxSyncLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FortnoxSyncLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxSyncLogFindFirstOrThrowArgs} args - Arguments to find a FortnoxSyncLog
+     * @example
+     * // Get one FortnoxSyncLog
+     * const fortnoxSyncLog = await prisma.fortnoxSyncLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FortnoxSyncLogFindFirstOrThrowArgs>(args?: SelectSubset<T, FortnoxSyncLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__FortnoxSyncLogClient<$Result.GetResult<Prisma.$FortnoxSyncLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FortnoxSyncLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxSyncLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FortnoxSyncLogs
+     * const fortnoxSyncLogs = await prisma.fortnoxSyncLog.findMany()
+     * 
+     * // Get first 10 FortnoxSyncLogs
+     * const fortnoxSyncLogs = await prisma.fortnoxSyncLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const fortnoxSyncLogWithIdOnly = await prisma.fortnoxSyncLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FortnoxSyncLogFindManyArgs>(args?: SelectSubset<T, FortnoxSyncLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxSyncLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FortnoxSyncLog.
+     * @param {FortnoxSyncLogCreateArgs} args - Arguments to create a FortnoxSyncLog.
+     * @example
+     * // Create one FortnoxSyncLog
+     * const FortnoxSyncLog = await prisma.fortnoxSyncLog.create({
+     *   data: {
+     *     // ... data to create a FortnoxSyncLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends FortnoxSyncLogCreateArgs>(args: SelectSubset<T, FortnoxSyncLogCreateArgs<ExtArgs>>): Prisma__FortnoxSyncLogClient<$Result.GetResult<Prisma.$FortnoxSyncLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FortnoxSyncLogs.
+     * @param {FortnoxSyncLogCreateManyArgs} args - Arguments to create many FortnoxSyncLogs.
+     * @example
+     * // Create many FortnoxSyncLogs
+     * const fortnoxSyncLog = await prisma.fortnoxSyncLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FortnoxSyncLogCreateManyArgs>(args?: SelectSubset<T, FortnoxSyncLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FortnoxSyncLogs and returns the data saved in the database.
+     * @param {FortnoxSyncLogCreateManyAndReturnArgs} args - Arguments to create many FortnoxSyncLogs.
+     * @example
+     * // Create many FortnoxSyncLogs
+     * const fortnoxSyncLog = await prisma.fortnoxSyncLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FortnoxSyncLogs and only return the `id`
+     * const fortnoxSyncLogWithIdOnly = await prisma.fortnoxSyncLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FortnoxSyncLogCreateManyAndReturnArgs>(args?: SelectSubset<T, FortnoxSyncLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxSyncLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FortnoxSyncLog.
+     * @param {FortnoxSyncLogDeleteArgs} args - Arguments to delete one FortnoxSyncLog.
+     * @example
+     * // Delete one FortnoxSyncLog
+     * const FortnoxSyncLog = await prisma.fortnoxSyncLog.delete({
+     *   where: {
+     *     // ... filter to delete one FortnoxSyncLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FortnoxSyncLogDeleteArgs>(args: SelectSubset<T, FortnoxSyncLogDeleteArgs<ExtArgs>>): Prisma__FortnoxSyncLogClient<$Result.GetResult<Prisma.$FortnoxSyncLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FortnoxSyncLog.
+     * @param {FortnoxSyncLogUpdateArgs} args - Arguments to update one FortnoxSyncLog.
+     * @example
+     * // Update one FortnoxSyncLog
+     * const fortnoxSyncLog = await prisma.fortnoxSyncLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FortnoxSyncLogUpdateArgs>(args: SelectSubset<T, FortnoxSyncLogUpdateArgs<ExtArgs>>): Prisma__FortnoxSyncLogClient<$Result.GetResult<Prisma.$FortnoxSyncLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FortnoxSyncLogs.
+     * @param {FortnoxSyncLogDeleteManyArgs} args - Arguments to filter FortnoxSyncLogs to delete.
+     * @example
+     * // Delete a few FortnoxSyncLogs
+     * const { count } = await prisma.fortnoxSyncLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FortnoxSyncLogDeleteManyArgs>(args?: SelectSubset<T, FortnoxSyncLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FortnoxSyncLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxSyncLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FortnoxSyncLogs
+     * const fortnoxSyncLog = await prisma.fortnoxSyncLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FortnoxSyncLogUpdateManyArgs>(args: SelectSubset<T, FortnoxSyncLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FortnoxSyncLogs and returns the data updated in the database.
+     * @param {FortnoxSyncLogUpdateManyAndReturnArgs} args - Arguments to update many FortnoxSyncLogs.
+     * @example
+     * // Update many FortnoxSyncLogs
+     * const fortnoxSyncLog = await prisma.fortnoxSyncLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FortnoxSyncLogs and only return the `id`
+     * const fortnoxSyncLogWithIdOnly = await prisma.fortnoxSyncLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FortnoxSyncLogUpdateManyAndReturnArgs>(args: SelectSubset<T, FortnoxSyncLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxSyncLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FortnoxSyncLog.
+     * @param {FortnoxSyncLogUpsertArgs} args - Arguments to update or create a FortnoxSyncLog.
+     * @example
+     * // Update or create a FortnoxSyncLog
+     * const fortnoxSyncLog = await prisma.fortnoxSyncLog.upsert({
+     *   create: {
+     *     // ... data to create a FortnoxSyncLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FortnoxSyncLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FortnoxSyncLogUpsertArgs>(args: SelectSubset<T, FortnoxSyncLogUpsertArgs<ExtArgs>>): Prisma__FortnoxSyncLogClient<$Result.GetResult<Prisma.$FortnoxSyncLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FortnoxSyncLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxSyncLogCountArgs} args - Arguments to filter FortnoxSyncLogs to count.
+     * @example
+     * // Count the number of FortnoxSyncLogs
+     * const count = await prisma.fortnoxSyncLog.count({
+     *   where: {
+     *     // ... the filter for the FortnoxSyncLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends FortnoxSyncLogCountArgs>(
+      args?: Subset<T, FortnoxSyncLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FortnoxSyncLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FortnoxSyncLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxSyncLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FortnoxSyncLogAggregateArgs>(args: Subset<T, FortnoxSyncLogAggregateArgs>): Prisma.PrismaPromise<GetFortnoxSyncLogAggregateType<T>>
+
+    /**
+     * Group by FortnoxSyncLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxSyncLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FortnoxSyncLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FortnoxSyncLogGroupByArgs['orderBy'] }
+        : { orderBy?: FortnoxSyncLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FortnoxSyncLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFortnoxSyncLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FortnoxSyncLog model
+   */
+  readonly fields: FortnoxSyncLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FortnoxSyncLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FortnoxSyncLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    company<T extends CompanyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CompanyDefaultArgs<ExtArgs>>): Prisma__CompanyClient<$Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FortnoxSyncLog model
+   */
+  interface FortnoxSyncLogFieldRefs {
+    readonly id: FieldRef<"FortnoxSyncLog", 'String'>
+    readonly companyId: FieldRef<"FortnoxSyncLog", 'String'>
+    readonly resource: FieldRef<"FortnoxSyncLog", 'String'>
+    readonly lastSyncedAt: FieldRef<"FortnoxSyncLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FortnoxSyncLog findUnique
+   */
+  export type FortnoxSyncLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxSyncLog
+     */
+    select?: FortnoxSyncLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxSyncLog
+     */
+    omit?: FortnoxSyncLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxSyncLogInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxSyncLog to fetch.
+     */
+    where: FortnoxSyncLogWhereUniqueInput
+  }
+
+  /**
+   * FortnoxSyncLog findUniqueOrThrow
+   */
+  export type FortnoxSyncLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxSyncLog
+     */
+    select?: FortnoxSyncLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxSyncLog
+     */
+    omit?: FortnoxSyncLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxSyncLogInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxSyncLog to fetch.
+     */
+    where: FortnoxSyncLogWhereUniqueInput
+  }
+
+  /**
+   * FortnoxSyncLog findFirst
+   */
+  export type FortnoxSyncLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxSyncLog
+     */
+    select?: FortnoxSyncLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxSyncLog
+     */
+    omit?: FortnoxSyncLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxSyncLogInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxSyncLog to fetch.
+     */
+    where?: FortnoxSyncLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxSyncLogs to fetch.
+     */
+    orderBy?: FortnoxSyncLogOrderByWithRelationInput | FortnoxSyncLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FortnoxSyncLogs.
+     */
+    cursor?: FortnoxSyncLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxSyncLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxSyncLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxSyncLogs.
+     */
+    distinct?: FortnoxSyncLogScalarFieldEnum | FortnoxSyncLogScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxSyncLog findFirstOrThrow
+   */
+  export type FortnoxSyncLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxSyncLog
+     */
+    select?: FortnoxSyncLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxSyncLog
+     */
+    omit?: FortnoxSyncLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxSyncLogInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxSyncLog to fetch.
+     */
+    where?: FortnoxSyncLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxSyncLogs to fetch.
+     */
+    orderBy?: FortnoxSyncLogOrderByWithRelationInput | FortnoxSyncLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FortnoxSyncLogs.
+     */
+    cursor?: FortnoxSyncLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxSyncLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxSyncLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxSyncLogs.
+     */
+    distinct?: FortnoxSyncLogScalarFieldEnum | FortnoxSyncLogScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxSyncLog findMany
+   */
+  export type FortnoxSyncLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxSyncLog
+     */
+    select?: FortnoxSyncLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxSyncLog
+     */
+    omit?: FortnoxSyncLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxSyncLogInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxSyncLogs to fetch.
+     */
+    where?: FortnoxSyncLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxSyncLogs to fetch.
+     */
+    orderBy?: FortnoxSyncLogOrderByWithRelationInput | FortnoxSyncLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FortnoxSyncLogs.
+     */
+    cursor?: FortnoxSyncLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxSyncLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxSyncLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxSyncLogs.
+     */
+    distinct?: FortnoxSyncLogScalarFieldEnum | FortnoxSyncLogScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxSyncLog create
+   */
+  export type FortnoxSyncLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxSyncLog
+     */
+    select?: FortnoxSyncLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxSyncLog
+     */
+    omit?: FortnoxSyncLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxSyncLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FortnoxSyncLog.
+     */
+    data: XOR<FortnoxSyncLogCreateInput, FortnoxSyncLogUncheckedCreateInput>
+  }
+
+  /**
+   * FortnoxSyncLog createMany
+   */
+  export type FortnoxSyncLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FortnoxSyncLogs.
+     */
+    data: FortnoxSyncLogCreateManyInput | FortnoxSyncLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FortnoxSyncLog createManyAndReturn
+   */
+  export type FortnoxSyncLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxSyncLog
+     */
+    select?: FortnoxSyncLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxSyncLog
+     */
+    omit?: FortnoxSyncLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many FortnoxSyncLogs.
+     */
+    data: FortnoxSyncLogCreateManyInput | FortnoxSyncLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxSyncLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FortnoxSyncLog update
+   */
+  export type FortnoxSyncLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxSyncLog
+     */
+    select?: FortnoxSyncLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxSyncLog
+     */
+    omit?: FortnoxSyncLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxSyncLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FortnoxSyncLog.
+     */
+    data: XOR<FortnoxSyncLogUpdateInput, FortnoxSyncLogUncheckedUpdateInput>
+    /**
+     * Choose, which FortnoxSyncLog to update.
+     */
+    where: FortnoxSyncLogWhereUniqueInput
+  }
+
+  /**
+   * FortnoxSyncLog updateMany
+   */
+  export type FortnoxSyncLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FortnoxSyncLogs.
+     */
+    data: XOR<FortnoxSyncLogUpdateManyMutationInput, FortnoxSyncLogUncheckedUpdateManyInput>
+    /**
+     * Filter which FortnoxSyncLogs to update
+     */
+    where?: FortnoxSyncLogWhereInput
+    /**
+     * Limit how many FortnoxSyncLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FortnoxSyncLog updateManyAndReturn
+   */
+  export type FortnoxSyncLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxSyncLog
+     */
+    select?: FortnoxSyncLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxSyncLog
+     */
+    omit?: FortnoxSyncLogOmit<ExtArgs> | null
+    /**
+     * The data used to update FortnoxSyncLogs.
+     */
+    data: XOR<FortnoxSyncLogUpdateManyMutationInput, FortnoxSyncLogUncheckedUpdateManyInput>
+    /**
+     * Filter which FortnoxSyncLogs to update
+     */
+    where?: FortnoxSyncLogWhereInput
+    /**
+     * Limit how many FortnoxSyncLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxSyncLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FortnoxSyncLog upsert
+   */
+  export type FortnoxSyncLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxSyncLog
+     */
+    select?: FortnoxSyncLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxSyncLog
+     */
+    omit?: FortnoxSyncLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxSyncLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FortnoxSyncLog to update in case it exists.
+     */
+    where: FortnoxSyncLogWhereUniqueInput
+    /**
+     * In case the FortnoxSyncLog found by the `where` argument doesn't exist, create a new FortnoxSyncLog with this data.
+     */
+    create: XOR<FortnoxSyncLogCreateInput, FortnoxSyncLogUncheckedCreateInput>
+    /**
+     * In case the FortnoxSyncLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FortnoxSyncLogUpdateInput, FortnoxSyncLogUncheckedUpdateInput>
+  }
+
+  /**
+   * FortnoxSyncLog delete
+   */
+  export type FortnoxSyncLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxSyncLog
+     */
+    select?: FortnoxSyncLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxSyncLog
+     */
+    omit?: FortnoxSyncLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxSyncLogInclude<ExtArgs> | null
+    /**
+     * Filter which FortnoxSyncLog to delete.
+     */
+    where: FortnoxSyncLogWhereUniqueInput
+  }
+
+  /**
+   * FortnoxSyncLog deleteMany
+   */
+  export type FortnoxSyncLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FortnoxSyncLogs to delete
+     */
+    where?: FortnoxSyncLogWhereInput
+    /**
+     * Limit how many FortnoxSyncLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FortnoxSyncLog without action
+   */
+  export type FortnoxSyncLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxSyncLog
+     */
+    select?: FortnoxSyncLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxSyncLog
+     */
+    omit?: FortnoxSyncLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxSyncLogInclude<ExtArgs> | null
   }
 
 
@@ -8273,10 +12004,11 @@ export namespace Prisma {
 
   export const CustomerScalarFieldEnum: {
     id: 'id',
-    email: 'email',
+    fortnoxCustomerNumber: 'fortnoxCustomerNumber',
     name: 'name',
+    domain: 'domain',
     companyId: 'companyId',
-    companyName: 'companyName'
+    createdAt: 'createdAt'
   };
 
   export type CustomerScalarFieldEnum = (typeof CustomerScalarFieldEnum)[keyof typeof CustomerScalarFieldEnum]
@@ -8285,11 +12017,52 @@ export namespace Prisma {
   export const EmployeeCustomerScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
-    companyId: 'companyId',
-    customerId: 'customerId'
+    customerId: 'customerId',
+    assignedAt: 'assignedAt',
+    assignedBy: 'assignedBy'
   };
 
   export type EmployeeCustomerScalarFieldEnum = (typeof EmployeeCustomerScalarFieldEnum)[keyof typeof EmployeeCustomerScalarFieldEnum]
+
+
+  export const TimeEntryScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    customerId: 'customerId',
+    date: 'date',
+    hours: 'hours',
+    description: 'description',
+    source: 'source',
+    rawCustomerName: 'rawCustomerName',
+    createdAt: 'createdAt'
+  };
+
+  export type TimeEntryScalarFieldEnum = (typeof TimeEntryScalarFieldEnum)[keyof typeof TimeEntryScalarFieldEnum]
+
+
+  export const EmailActivityScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    customerId: 'customerId',
+    sentAt: 'sentAt',
+    recipientEmail: 'recipientEmail',
+    recipientDomain: 'recipientDomain',
+    subject: 'subject',
+    messageId: 'messageId',
+    createdAt: 'createdAt'
+  };
+
+  export type EmailActivityScalarFieldEnum = (typeof EmailActivityScalarFieldEnum)[keyof typeof EmailActivityScalarFieldEnum]
+
+
+  export const FortnoxSyncLogScalarFieldEnum: {
+    id: 'id',
+    companyId: 'companyId',
+    resource: 'resource',
+    lastSyncedAt: 'lastSyncedAt'
+  };
+
+  export type FortnoxSyncLogScalarFieldEnum = (typeof FortnoxSyncLogScalarFieldEnum)[keyof typeof FortnoxSyncLogScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -8371,6 +12144,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Decimal'
+   */
+  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+  /**
+   * Reference to a field of type 'Decimal[]'
+   */
+  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -8398,7 +12185,7 @@ export namespace Prisma {
     users?: UserListRelationFilter
     integrations?: CompanyIntegrationListRelationFilter
     customers?: CustomerListRelationFilter
-    employeeCustomers?: EmployeeCustomerListRelationFilter
+    fortnoxSyncLogs?: FortnoxSyncLogListRelationFilter
   }
 
   export type CompanyOrderByWithRelationInput = {
@@ -8409,7 +12196,7 @@ export namespace Prisma {
     users?: UserOrderByRelationAggregateInput
     integrations?: CompanyIntegrationOrderByRelationAggregateInput
     customers?: CustomerOrderByRelationAggregateInput
-    employeeCustomers?: EmployeeCustomerOrderByRelationAggregateInput
+    fortnoxSyncLogs?: FortnoxSyncLogOrderByRelationAggregateInput
   }
 
   export type CompanyWhereUniqueInput = Prisma.AtLeast<{
@@ -8423,7 +12210,7 @@ export namespace Prisma {
     users?: UserListRelationFilter
     integrations?: CompanyIntegrationListRelationFilter
     customers?: CustomerListRelationFilter
-    employeeCustomers?: EmployeeCustomerListRelationFilter
+    fortnoxSyncLogs?: FortnoxSyncLogListRelationFilter
   }, "id" | "domain">
 
   export type CompanyOrderByWithAggregationInput = {
@@ -8459,6 +12246,8 @@ export namespace Prisma {
     company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
     imapCredentials?: ImapCredentialListRelationFilter
     employeeCustomers?: EmployeeCustomerListRelationFilter
+    timeEntries?: TimeEntryListRelationFilter
+    emailActivities?: EmailActivityListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -8471,6 +12260,8 @@ export namespace Prisma {
     company?: CompanyOrderByWithRelationInput
     imapCredentials?: ImapCredentialOrderByRelationAggregateInput
     employeeCustomers?: EmployeeCustomerOrderByRelationAggregateInput
+    timeEntries?: TimeEntryOrderByRelationAggregateInput
+    emailActivities?: EmailActivityOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -8486,6 +12277,8 @@ export namespace Prisma {
     company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
     imapCredentials?: ImapCredentialListRelationFilter
     employeeCustomers?: EmployeeCustomerListRelationFilter
+    timeEntries?: TimeEntryListRelationFilter
+    emailActivities?: EmailActivityListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -8518,7 +12311,7 @@ export namespace Prisma {
     NOT?: CompanyIntegrationWhereInput | CompanyIntegrationWhereInput[]
     id?: UuidFilter<"CompanyIntegration"> | string
     companyId?: UuidFilter<"CompanyIntegration"> | string
-    service?: StringNullableFilter<"CompanyIntegration"> | string | null
+    service?: StringFilter<"CompanyIntegration"> | string
     accessToken?: StringFilter<"CompanyIntegration"> | string
     refreshToken?: StringNullableFilter<"CompanyIntegration"> | string | null
     expiresAt?: DateTimeNullableFilter<"CompanyIntegration"> | Date | string | null
@@ -8529,7 +12322,7 @@ export namespace Prisma {
   export type CompanyIntegrationOrderByWithRelationInput = {
     id?: SortOrder
     companyId?: SortOrder
-    service?: SortOrderInput | SortOrder
+    service?: SortOrder
     accessToken?: SortOrder
     refreshToken?: SortOrderInput | SortOrder
     expiresAt?: SortOrderInput | SortOrder
@@ -8539,22 +12332,23 @@ export namespace Prisma {
 
   export type CompanyIntegrationWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    companyId_service?: CompanyIntegrationCompanyIdServiceCompoundUniqueInput
     AND?: CompanyIntegrationWhereInput | CompanyIntegrationWhereInput[]
     OR?: CompanyIntegrationWhereInput[]
     NOT?: CompanyIntegrationWhereInput | CompanyIntegrationWhereInput[]
     companyId?: UuidFilter<"CompanyIntegration"> | string
-    service?: StringNullableFilter<"CompanyIntegration"> | string | null
+    service?: StringFilter<"CompanyIntegration"> | string
     accessToken?: StringFilter<"CompanyIntegration"> | string
     refreshToken?: StringNullableFilter<"CompanyIntegration"> | string | null
     expiresAt?: DateTimeNullableFilter<"CompanyIntegration"> | Date | string | null
     createdAt?: DateTimeFilter<"CompanyIntegration"> | Date | string
     company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
-  }, "id">
+  }, "id" | "companyId_service">
 
   export type CompanyIntegrationOrderByWithAggregationInput = {
     id?: SortOrder
     companyId?: SortOrder
-    service?: SortOrderInput | SortOrder
+    service?: SortOrder
     accessToken?: SortOrder
     refreshToken?: SortOrderInput | SortOrder
     expiresAt?: SortOrderInput | SortOrder
@@ -8570,7 +12364,7 @@ export namespace Prisma {
     NOT?: CompanyIntegrationScalarWhereWithAggregatesInput | CompanyIntegrationScalarWhereWithAggregatesInput[]
     id?: UuidWithAggregatesFilter<"CompanyIntegration"> | string
     companyId?: UuidWithAggregatesFilter<"CompanyIntegration"> | string
-    service?: StringNullableWithAggregatesFilter<"CompanyIntegration"> | string | null
+    service?: StringWithAggregatesFilter<"CompanyIntegration"> | string
     accessToken?: StringWithAggregatesFilter<"CompanyIntegration"> | string
     refreshToken?: StringNullableWithAggregatesFilter<"CompanyIntegration"> | string | null
     expiresAt?: DateTimeNullableWithAggregatesFilter<"CompanyIntegration"> | Date | string | null
@@ -8654,43 +12448,53 @@ export namespace Prisma {
     OR?: CustomerWhereInput[]
     NOT?: CustomerWhereInput | CustomerWhereInput[]
     id?: UuidFilter<"Customer"> | string
-    email?: StringFilter<"Customer"> | string
-    name?: StringNullableFilter<"Customer"> | string | null
-    companyId?: UuidNullableFilter<"Customer"> | string | null
-    companyName?: StringNullableFilter<"Customer"> | string | null
-    company?: XOR<CompanyNullableScalarRelationFilter, CompanyWhereInput> | null
+    fortnoxCustomerNumber?: StringNullableFilter<"Customer"> | string | null
+    name?: StringFilter<"Customer"> | string
+    domain?: StringNullableFilter<"Customer"> | string | null
+    companyId?: UuidFilter<"Customer"> | string
+    createdAt?: DateTimeFilter<"Customer"> | Date | string
+    company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
     employeeCustomers?: EmployeeCustomerListRelationFilter
+    timeEntries?: TimeEntryListRelationFilter
+    emailActivities?: EmailActivityListRelationFilter
   }
 
   export type CustomerOrderByWithRelationInput = {
     id?: SortOrder
-    email?: SortOrder
-    name?: SortOrderInput | SortOrder
-    companyId?: SortOrderInput | SortOrder
-    companyName?: SortOrderInput | SortOrder
+    fortnoxCustomerNumber?: SortOrderInput | SortOrder
+    name?: SortOrder
+    domain?: SortOrderInput | SortOrder
+    companyId?: SortOrder
+    createdAt?: SortOrder
     company?: CompanyOrderByWithRelationInput
     employeeCustomers?: EmployeeCustomerOrderByRelationAggregateInput
+    timeEntries?: TimeEntryOrderByRelationAggregateInput
+    emailActivities?: EmailActivityOrderByRelationAggregateInput
   }
 
   export type CustomerWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    email?: string
     AND?: CustomerWhereInput | CustomerWhereInput[]
     OR?: CustomerWhereInput[]
     NOT?: CustomerWhereInput | CustomerWhereInput[]
-    name?: StringNullableFilter<"Customer"> | string | null
-    companyId?: UuidNullableFilter<"Customer"> | string | null
-    companyName?: StringNullableFilter<"Customer"> | string | null
-    company?: XOR<CompanyNullableScalarRelationFilter, CompanyWhereInput> | null
+    fortnoxCustomerNumber?: StringNullableFilter<"Customer"> | string | null
+    name?: StringFilter<"Customer"> | string
+    domain?: StringNullableFilter<"Customer"> | string | null
+    companyId?: UuidFilter<"Customer"> | string
+    createdAt?: DateTimeFilter<"Customer"> | Date | string
+    company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
     employeeCustomers?: EmployeeCustomerListRelationFilter
-  }, "id" | "email">
+    timeEntries?: TimeEntryListRelationFilter
+    emailActivities?: EmailActivityListRelationFilter
+  }, "id">
 
   export type CustomerOrderByWithAggregationInput = {
     id?: SortOrder
-    email?: SortOrder
-    name?: SortOrderInput | SortOrder
-    companyId?: SortOrderInput | SortOrder
-    companyName?: SortOrderInput | SortOrder
+    fortnoxCustomerNumber?: SortOrderInput | SortOrder
+    name?: SortOrder
+    domain?: SortOrderInput | SortOrder
+    companyId?: SortOrder
+    createdAt?: SortOrder
     _count?: CustomerCountOrderByAggregateInput
     _max?: CustomerMaxOrderByAggregateInput
     _min?: CustomerMinOrderByAggregateInput
@@ -8701,10 +12505,11 @@ export namespace Prisma {
     OR?: CustomerScalarWhereWithAggregatesInput[]
     NOT?: CustomerScalarWhereWithAggregatesInput | CustomerScalarWhereWithAggregatesInput[]
     id?: UuidWithAggregatesFilter<"Customer"> | string
-    email?: StringWithAggregatesFilter<"Customer"> | string
-    name?: StringNullableWithAggregatesFilter<"Customer"> | string | null
-    companyId?: UuidNullableWithAggregatesFilter<"Customer"> | string | null
-    companyName?: StringNullableWithAggregatesFilter<"Customer"> | string | null
+    fortnoxCustomerNumber?: StringNullableWithAggregatesFilter<"Customer"> | string | null
+    name?: StringWithAggregatesFilter<"Customer"> | string
+    domain?: StringNullableWithAggregatesFilter<"Customer"> | string | null
+    companyId?: UuidWithAggregatesFilter<"Customer"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Customer"> | Date | string
   }
 
   export type EmployeeCustomerWhereInput = {
@@ -8712,42 +12517,44 @@ export namespace Prisma {
     OR?: EmployeeCustomerWhereInput[]
     NOT?: EmployeeCustomerWhereInput | EmployeeCustomerWhereInput[]
     id?: UuidFilter<"EmployeeCustomer"> | string
-    userId?: UuidNullableFilter<"EmployeeCustomer"> | string | null
-    companyId?: UuidNullableFilter<"EmployeeCustomer"> | string | null
-    customerId?: UuidNullableFilter<"EmployeeCustomer"> | string | null
-    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-    company?: XOR<CompanyNullableScalarRelationFilter, CompanyWhereInput> | null
-    customer?: XOR<CustomerNullableScalarRelationFilter, CustomerWhereInput> | null
+    userId?: UuidFilter<"EmployeeCustomer"> | string
+    customerId?: UuidFilter<"EmployeeCustomer"> | string
+    assignedAt?: DateTimeFilter<"EmployeeCustomer"> | Date | string
+    assignedBy?: UuidNullableFilter<"EmployeeCustomer"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
   }
 
   export type EmployeeCustomerOrderByWithRelationInput = {
     id?: SortOrder
-    userId?: SortOrderInput | SortOrder
-    companyId?: SortOrderInput | SortOrder
-    customerId?: SortOrderInput | SortOrder
+    userId?: SortOrder
+    customerId?: SortOrder
+    assignedAt?: SortOrder
+    assignedBy?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
-    company?: CompanyOrderByWithRelationInput
     customer?: CustomerOrderByWithRelationInput
   }
 
   export type EmployeeCustomerWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    userId_customerId?: EmployeeCustomerUserIdCustomerIdCompoundUniqueInput
     AND?: EmployeeCustomerWhereInput | EmployeeCustomerWhereInput[]
     OR?: EmployeeCustomerWhereInput[]
     NOT?: EmployeeCustomerWhereInput | EmployeeCustomerWhereInput[]
-    userId?: UuidNullableFilter<"EmployeeCustomer"> | string | null
-    companyId?: UuidNullableFilter<"EmployeeCustomer"> | string | null
-    customerId?: UuidNullableFilter<"EmployeeCustomer"> | string | null
-    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-    company?: XOR<CompanyNullableScalarRelationFilter, CompanyWhereInput> | null
-    customer?: XOR<CustomerNullableScalarRelationFilter, CustomerWhereInput> | null
-  }, "id">
+    userId?: UuidFilter<"EmployeeCustomer"> | string
+    customerId?: UuidFilter<"EmployeeCustomer"> | string
+    assignedAt?: DateTimeFilter<"EmployeeCustomer"> | Date | string
+    assignedBy?: UuidNullableFilter<"EmployeeCustomer"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
+  }, "id" | "userId_customerId">
 
   export type EmployeeCustomerOrderByWithAggregationInput = {
     id?: SortOrder
-    userId?: SortOrderInput | SortOrder
-    companyId?: SortOrderInput | SortOrder
-    customerId?: SortOrderInput | SortOrder
+    userId?: SortOrder
+    customerId?: SortOrder
+    assignedAt?: SortOrder
+    assignedBy?: SortOrderInput | SortOrder
     _count?: EmployeeCustomerCountOrderByAggregateInput
     _max?: EmployeeCustomerMaxOrderByAggregateInput
     _min?: EmployeeCustomerMinOrderByAggregateInput
@@ -8758,9 +12565,219 @@ export namespace Prisma {
     OR?: EmployeeCustomerScalarWhereWithAggregatesInput[]
     NOT?: EmployeeCustomerScalarWhereWithAggregatesInput | EmployeeCustomerScalarWhereWithAggregatesInput[]
     id?: UuidWithAggregatesFilter<"EmployeeCustomer"> | string
-    userId?: UuidNullableWithAggregatesFilter<"EmployeeCustomer"> | string | null
-    companyId?: UuidNullableWithAggregatesFilter<"EmployeeCustomer"> | string | null
-    customerId?: UuidNullableWithAggregatesFilter<"EmployeeCustomer"> | string | null
+    userId?: UuidWithAggregatesFilter<"EmployeeCustomer"> | string
+    customerId?: UuidWithAggregatesFilter<"EmployeeCustomer"> | string
+    assignedAt?: DateTimeWithAggregatesFilter<"EmployeeCustomer"> | Date | string
+    assignedBy?: UuidNullableWithAggregatesFilter<"EmployeeCustomer"> | string | null
+  }
+
+  export type TimeEntryWhereInput = {
+    AND?: TimeEntryWhereInput | TimeEntryWhereInput[]
+    OR?: TimeEntryWhereInput[]
+    NOT?: TimeEntryWhereInput | TimeEntryWhereInput[]
+    id?: UuidFilter<"TimeEntry"> | string
+    userId?: UuidFilter<"TimeEntry"> | string
+    customerId?: UuidNullableFilter<"TimeEntry"> | string | null
+    date?: DateTimeFilter<"TimeEntry"> | Date | string
+    hours?: DecimalFilter<"TimeEntry"> | Decimal | DecimalJsLike | number | string
+    description?: StringNullableFilter<"TimeEntry"> | string | null
+    source?: StringFilter<"TimeEntry"> | string
+    rawCustomerName?: StringNullableFilter<"TimeEntry"> | string | null
+    createdAt?: DateTimeFilter<"TimeEntry"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    customer?: XOR<CustomerNullableScalarRelationFilter, CustomerWhereInput> | null
+  }
+
+  export type TimeEntryOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    customerId?: SortOrderInput | SortOrder
+    date?: SortOrder
+    hours?: SortOrder
+    description?: SortOrderInput | SortOrder
+    source?: SortOrder
+    rawCustomerName?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    customer?: CustomerOrderByWithRelationInput
+  }
+
+  export type TimeEntryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TimeEntryWhereInput | TimeEntryWhereInput[]
+    OR?: TimeEntryWhereInput[]
+    NOT?: TimeEntryWhereInput | TimeEntryWhereInput[]
+    userId?: UuidFilter<"TimeEntry"> | string
+    customerId?: UuidNullableFilter<"TimeEntry"> | string | null
+    date?: DateTimeFilter<"TimeEntry"> | Date | string
+    hours?: DecimalFilter<"TimeEntry"> | Decimal | DecimalJsLike | number | string
+    description?: StringNullableFilter<"TimeEntry"> | string | null
+    source?: StringFilter<"TimeEntry"> | string
+    rawCustomerName?: StringNullableFilter<"TimeEntry"> | string | null
+    createdAt?: DateTimeFilter<"TimeEntry"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    customer?: XOR<CustomerNullableScalarRelationFilter, CustomerWhereInput> | null
+  }, "id">
+
+  export type TimeEntryOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    customerId?: SortOrderInput | SortOrder
+    date?: SortOrder
+    hours?: SortOrder
+    description?: SortOrderInput | SortOrder
+    source?: SortOrder
+    rawCustomerName?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: TimeEntryCountOrderByAggregateInput
+    _avg?: TimeEntryAvgOrderByAggregateInput
+    _max?: TimeEntryMaxOrderByAggregateInput
+    _min?: TimeEntryMinOrderByAggregateInput
+    _sum?: TimeEntrySumOrderByAggregateInput
+  }
+
+  export type TimeEntryScalarWhereWithAggregatesInput = {
+    AND?: TimeEntryScalarWhereWithAggregatesInput | TimeEntryScalarWhereWithAggregatesInput[]
+    OR?: TimeEntryScalarWhereWithAggregatesInput[]
+    NOT?: TimeEntryScalarWhereWithAggregatesInput | TimeEntryScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"TimeEntry"> | string
+    userId?: UuidWithAggregatesFilter<"TimeEntry"> | string
+    customerId?: UuidNullableWithAggregatesFilter<"TimeEntry"> | string | null
+    date?: DateTimeWithAggregatesFilter<"TimeEntry"> | Date | string
+    hours?: DecimalWithAggregatesFilter<"TimeEntry"> | Decimal | DecimalJsLike | number | string
+    description?: StringNullableWithAggregatesFilter<"TimeEntry"> | string | null
+    source?: StringWithAggregatesFilter<"TimeEntry"> | string
+    rawCustomerName?: StringNullableWithAggregatesFilter<"TimeEntry"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"TimeEntry"> | Date | string
+  }
+
+  export type EmailActivityWhereInput = {
+    AND?: EmailActivityWhereInput | EmailActivityWhereInput[]
+    OR?: EmailActivityWhereInput[]
+    NOT?: EmailActivityWhereInput | EmailActivityWhereInput[]
+    id?: UuidFilter<"EmailActivity"> | string
+    userId?: UuidFilter<"EmailActivity"> | string
+    customerId?: UuidNullableFilter<"EmailActivity"> | string | null
+    sentAt?: DateTimeFilter<"EmailActivity"> | Date | string
+    recipientEmail?: StringFilter<"EmailActivity"> | string
+    recipientDomain?: StringFilter<"EmailActivity"> | string
+    subject?: StringNullableFilter<"EmailActivity"> | string | null
+    messageId?: StringNullableFilter<"EmailActivity"> | string | null
+    createdAt?: DateTimeFilter<"EmailActivity"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    customer?: XOR<CustomerNullableScalarRelationFilter, CustomerWhereInput> | null
+  }
+
+  export type EmailActivityOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    customerId?: SortOrderInput | SortOrder
+    sentAt?: SortOrder
+    recipientEmail?: SortOrder
+    recipientDomain?: SortOrder
+    subject?: SortOrderInput | SortOrder
+    messageId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    customer?: CustomerOrderByWithRelationInput
+  }
+
+  export type EmailActivityWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    messageId?: string
+    AND?: EmailActivityWhereInput | EmailActivityWhereInput[]
+    OR?: EmailActivityWhereInput[]
+    NOT?: EmailActivityWhereInput | EmailActivityWhereInput[]
+    userId?: UuidFilter<"EmailActivity"> | string
+    customerId?: UuidNullableFilter<"EmailActivity"> | string | null
+    sentAt?: DateTimeFilter<"EmailActivity"> | Date | string
+    recipientEmail?: StringFilter<"EmailActivity"> | string
+    recipientDomain?: StringFilter<"EmailActivity"> | string
+    subject?: StringNullableFilter<"EmailActivity"> | string | null
+    createdAt?: DateTimeFilter<"EmailActivity"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    customer?: XOR<CustomerNullableScalarRelationFilter, CustomerWhereInput> | null
+  }, "id" | "messageId">
+
+  export type EmailActivityOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    customerId?: SortOrderInput | SortOrder
+    sentAt?: SortOrder
+    recipientEmail?: SortOrder
+    recipientDomain?: SortOrder
+    subject?: SortOrderInput | SortOrder
+    messageId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: EmailActivityCountOrderByAggregateInput
+    _max?: EmailActivityMaxOrderByAggregateInput
+    _min?: EmailActivityMinOrderByAggregateInput
+  }
+
+  export type EmailActivityScalarWhereWithAggregatesInput = {
+    AND?: EmailActivityScalarWhereWithAggregatesInput | EmailActivityScalarWhereWithAggregatesInput[]
+    OR?: EmailActivityScalarWhereWithAggregatesInput[]
+    NOT?: EmailActivityScalarWhereWithAggregatesInput | EmailActivityScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"EmailActivity"> | string
+    userId?: UuidWithAggregatesFilter<"EmailActivity"> | string
+    customerId?: UuidNullableWithAggregatesFilter<"EmailActivity"> | string | null
+    sentAt?: DateTimeWithAggregatesFilter<"EmailActivity"> | Date | string
+    recipientEmail?: StringWithAggregatesFilter<"EmailActivity"> | string
+    recipientDomain?: StringWithAggregatesFilter<"EmailActivity"> | string
+    subject?: StringNullableWithAggregatesFilter<"EmailActivity"> | string | null
+    messageId?: StringNullableWithAggregatesFilter<"EmailActivity"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"EmailActivity"> | Date | string
+  }
+
+  export type FortnoxSyncLogWhereInput = {
+    AND?: FortnoxSyncLogWhereInput | FortnoxSyncLogWhereInput[]
+    OR?: FortnoxSyncLogWhereInput[]
+    NOT?: FortnoxSyncLogWhereInput | FortnoxSyncLogWhereInput[]
+    id?: UuidFilter<"FortnoxSyncLog"> | string
+    companyId?: UuidFilter<"FortnoxSyncLog"> | string
+    resource?: StringFilter<"FortnoxSyncLog"> | string
+    lastSyncedAt?: DateTimeFilter<"FortnoxSyncLog"> | Date | string
+    company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
+  }
+
+  export type FortnoxSyncLogOrderByWithRelationInput = {
+    id?: SortOrder
+    companyId?: SortOrder
+    resource?: SortOrder
+    lastSyncedAt?: SortOrder
+    company?: CompanyOrderByWithRelationInput
+  }
+
+  export type FortnoxSyncLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    companyId_resource?: FortnoxSyncLogCompanyIdResourceCompoundUniqueInput
+    AND?: FortnoxSyncLogWhereInput | FortnoxSyncLogWhereInput[]
+    OR?: FortnoxSyncLogWhereInput[]
+    NOT?: FortnoxSyncLogWhereInput | FortnoxSyncLogWhereInput[]
+    companyId?: UuidFilter<"FortnoxSyncLog"> | string
+    resource?: StringFilter<"FortnoxSyncLog"> | string
+    lastSyncedAt?: DateTimeFilter<"FortnoxSyncLog"> | Date | string
+    company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
+  }, "id" | "companyId_resource">
+
+  export type FortnoxSyncLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    companyId?: SortOrder
+    resource?: SortOrder
+    lastSyncedAt?: SortOrder
+    _count?: FortnoxSyncLogCountOrderByAggregateInput
+    _max?: FortnoxSyncLogMaxOrderByAggregateInput
+    _min?: FortnoxSyncLogMinOrderByAggregateInput
+  }
+
+  export type FortnoxSyncLogScalarWhereWithAggregatesInput = {
+    AND?: FortnoxSyncLogScalarWhereWithAggregatesInput | FortnoxSyncLogScalarWhereWithAggregatesInput[]
+    OR?: FortnoxSyncLogScalarWhereWithAggregatesInput[]
+    NOT?: FortnoxSyncLogScalarWhereWithAggregatesInput | FortnoxSyncLogScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"FortnoxSyncLog"> | string
+    companyId?: UuidWithAggregatesFilter<"FortnoxSyncLog"> | string
+    resource?: StringWithAggregatesFilter<"FortnoxSyncLog"> | string
+    lastSyncedAt?: DateTimeWithAggregatesFilter<"FortnoxSyncLog"> | Date | string
   }
 
   export type CompanyCreateInput = {
@@ -8771,7 +12788,7 @@ export namespace Prisma {
     users?: UserCreateNestedManyWithoutCompanyInput
     integrations?: CompanyIntegrationCreateNestedManyWithoutCompanyInput
     customers?: CustomerCreateNestedManyWithoutCompanyInput
-    employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutCompanyInput
+    fortnoxSyncLogs?: FortnoxSyncLogCreateNestedManyWithoutCompanyInput
   }
 
   export type CompanyUncheckedCreateInput = {
@@ -8782,7 +12799,7 @@ export namespace Prisma {
     users?: UserUncheckedCreateNestedManyWithoutCompanyInput
     integrations?: CompanyIntegrationUncheckedCreateNestedManyWithoutCompanyInput
     customers?: CustomerUncheckedCreateNestedManyWithoutCompanyInput
-    employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutCompanyInput
+    fortnoxSyncLogs?: FortnoxSyncLogUncheckedCreateNestedManyWithoutCompanyInput
   }
 
   export type CompanyUpdateInput = {
@@ -8793,7 +12810,7 @@ export namespace Prisma {
     users?: UserUpdateManyWithoutCompanyNestedInput
     integrations?: CompanyIntegrationUpdateManyWithoutCompanyNestedInput
     customers?: CustomerUpdateManyWithoutCompanyNestedInput
-    employeeCustomers?: EmployeeCustomerUpdateManyWithoutCompanyNestedInput
+    fortnoxSyncLogs?: FortnoxSyncLogUpdateManyWithoutCompanyNestedInput
   }
 
   export type CompanyUncheckedUpdateInput = {
@@ -8804,7 +12821,7 @@ export namespace Prisma {
     users?: UserUncheckedUpdateManyWithoutCompanyNestedInput
     integrations?: CompanyIntegrationUncheckedUpdateManyWithoutCompanyNestedInput
     customers?: CustomerUncheckedUpdateManyWithoutCompanyNestedInput
-    employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutCompanyNestedInput
+    fortnoxSyncLogs?: FortnoxSyncLogUncheckedUpdateManyWithoutCompanyNestedInput
   }
 
   export type CompanyCreateManyInput = {
@@ -8837,6 +12854,8 @@ export namespace Prisma {
     company: CompanyCreateNestedOneWithoutUsersInput
     imapCredentials?: ImapCredentialCreateNestedManyWithoutUserInput
     employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutUserInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutUserInput
+    emailActivities?: EmailActivityCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -8848,6 +12867,8 @@ export namespace Prisma {
     createdAt?: Date | string
     imapCredentials?: ImapCredentialUncheckedCreateNestedManyWithoutUserInput
     employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutUserInput
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutUserInput
+    emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -8859,6 +12880,8 @@ export namespace Prisma {
     company?: CompanyUpdateOneRequiredWithoutUsersNestedInput
     imapCredentials?: ImapCredentialUpdateManyWithoutUserNestedInput
     employeeCustomers?: EmployeeCustomerUpdateManyWithoutUserNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutUserNestedInput
+    emailActivities?: EmailActivityUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -8870,6 +12893,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     imapCredentials?: ImapCredentialUncheckedUpdateManyWithoutUserNestedInput
     employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutUserNestedInput
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+    emailActivities?: EmailActivityUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -8900,7 +12925,7 @@ export namespace Prisma {
 
   export type CompanyIntegrationCreateInput = {
     id?: string
-    service?: string | null
+    service: string
     accessToken: string
     refreshToken?: string | null
     expiresAt?: Date | string | null
@@ -8911,7 +12936,7 @@ export namespace Prisma {
   export type CompanyIntegrationUncheckedCreateInput = {
     id?: string
     companyId: string
-    service?: string | null
+    service: string
     accessToken: string
     refreshToken?: string | null
     expiresAt?: Date | string | null
@@ -8920,7 +12945,7 @@ export namespace Prisma {
 
   export type CompanyIntegrationUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    service?: NullableStringFieldUpdateOperationsInput | string | null
+    service?: StringFieldUpdateOperationsInput | string
     accessToken?: StringFieldUpdateOperationsInput | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8931,7 +12956,7 @@ export namespace Prisma {
   export type CompanyIntegrationUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     companyId?: StringFieldUpdateOperationsInput | string
-    service?: NullableStringFieldUpdateOperationsInput | string | null
+    service?: StringFieldUpdateOperationsInput | string
     accessToken?: StringFieldUpdateOperationsInput | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8941,7 +12966,7 @@ export namespace Prisma {
   export type CompanyIntegrationCreateManyInput = {
     id?: string
     companyId: string
-    service?: string | null
+    service: string
     accessToken: string
     refreshToken?: string | null
     expiresAt?: Date | string | null
@@ -8950,7 +12975,7 @@ export namespace Prisma {
 
   export type CompanyIntegrationUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    service?: NullableStringFieldUpdateOperationsInput | string | null
+    service?: StringFieldUpdateOperationsInput | string
     accessToken?: StringFieldUpdateOperationsInput | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8960,7 +12985,7 @@ export namespace Prisma {
   export type CompanyIntegrationUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     companyId?: StringFieldUpdateOperationsInput | string
-    service?: NullableStringFieldUpdateOperationsInput | string | null
+    service?: StringFieldUpdateOperationsInput | string
     accessToken?: StringFieldUpdateOperationsInput | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9045,107 +13070,342 @@ export namespace Prisma {
 
   export type CustomerCreateInput = {
     id?: string
-    email: string
-    name?: string | null
-    companyName?: string | null
-    company?: CompanyCreateNestedOneWithoutCustomersInput
+    fortnoxCustomerNumber?: string | null
+    name: string
+    domain?: string | null
+    createdAt?: Date | string
+    company: CompanyCreateNestedOneWithoutCustomersInput
     employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutCustomerInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutCustomerInput
+    emailActivities?: EmailActivityCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateInput = {
     id?: string
-    email: string
-    name?: string | null
-    companyId?: string | null
-    companyName?: string | null
+    fortnoxCustomerNumber?: string | null
+    name: string
+    domain?: string | null
+    companyId: string
+    createdAt?: Date | string
     employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutCustomerInput
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutCustomerInput
+    emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    companyName?: NullableStringFieldUpdateOperationsInput | string | null
-    company?: CompanyUpdateOneWithoutCustomersNestedInput
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    company?: CompanyUpdateOneRequiredWithoutCustomersNestedInput
     employeeCustomers?: EmployeeCustomerUpdateManyWithoutCustomerNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutCustomerNestedInput
+    emailActivities?: EmailActivityUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
-    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    companyId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutCustomerNestedInput
+    emailActivities?: EmailActivityUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerCreateManyInput = {
     id?: string
-    email: string
-    name?: string | null
-    companyId?: string | null
-    companyName?: string | null
+    fortnoxCustomerNumber?: string | null
+    name: string
+    domain?: string | null
+    companyId: string
+    createdAt?: Date | string
   }
 
   export type CustomerUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CustomerUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
-    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    companyId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EmployeeCustomerCreateInput = {
     id?: string
-    user?: UserCreateNestedOneWithoutEmployeeCustomersInput
-    company?: CompanyCreateNestedOneWithoutEmployeeCustomersInput
-    customer?: CustomerCreateNestedOneWithoutEmployeeCustomersInput
+    assignedAt?: Date | string
+    assignedBy?: string | null
+    user: UserCreateNestedOneWithoutEmployeeCustomersInput
+    customer: CustomerCreateNestedOneWithoutEmployeeCustomersInput
   }
 
   export type EmployeeCustomerUncheckedCreateInput = {
     id?: string
-    userId?: string | null
-    companyId?: string | null
-    customerId?: string | null
+    userId: string
+    customerId: string
+    assignedAt?: Date | string
+    assignedBy?: string | null
   }
 
   export type EmployeeCustomerUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user?: UserUpdateOneWithoutEmployeeCustomersNestedInput
-    company?: CompanyUpdateOneWithoutEmployeeCustomersNestedInput
-    customer?: CustomerUpdateOneWithoutEmployeeCustomersNestedInput
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutEmployeeCustomersNestedInput
+    customer?: CustomerUpdateOneRequiredWithoutEmployeeCustomersNestedInput
   }
 
   export type EmployeeCustomerUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
-    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    customerId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignedBy?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type EmployeeCustomerCreateManyInput = {
     id?: string
-    userId?: string | null
-    companyId?: string | null
-    customerId?: string | null
+    userId: string
+    customerId: string
+    assignedAt?: Date | string
+    assignedBy?: string | null
   }
 
   export type EmployeeCustomerUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignedBy?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type EmployeeCustomerUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    customerId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignedBy?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type TimeEntryCreateInput = {
+    id?: string
+    date: Date | string
+    hours: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    source?: string
+    rawCustomerName?: string | null
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutTimeEntriesInput
+    customer?: CustomerCreateNestedOneWithoutTimeEntriesInput
+  }
+
+  export type TimeEntryUncheckedCreateInput = {
+    id?: string
+    userId: string
+    customerId?: string | null
+    date: Date | string
+    hours: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    source?: string
+    rawCustomerName?: string | null
+    createdAt?: Date | string
+  }
+
+  export type TimeEntryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    hours?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    rawCustomerName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutTimeEntriesNestedInput
+    customer?: CustomerUpdateOneWithoutTimeEntriesNestedInput
+  }
+
+  export type TimeEntryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    hours?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    rawCustomerName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TimeEntryCreateManyInput = {
+    id?: string
+    userId: string
+    customerId?: string | null
+    date: Date | string
+    hours: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    source?: string
+    rawCustomerName?: string | null
+    createdAt?: Date | string
+  }
+
+  export type TimeEntryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    hours?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    rawCustomerName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TimeEntryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    hours?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    rawCustomerName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailActivityCreateInput = {
+    id?: string
+    sentAt: Date | string
+    recipientEmail: string
+    recipientDomain: string
+    subject?: string | null
+    messageId?: string | null
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutEmailActivitiesInput
+    customer?: CustomerCreateNestedOneWithoutEmailActivitiesInput
+  }
+
+  export type EmailActivityUncheckedCreateInput = {
+    id?: string
+    userId: string
+    customerId?: string | null
+    sentAt: Date | string
+    recipientEmail: string
+    recipientDomain: string
+    subject?: string | null
+    messageId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmailActivityUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sentAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    recipientEmail?: StringFieldUpdateOperationsInput | string
+    recipientDomain?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    messageId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutEmailActivitiesNestedInput
+    customer?: CustomerUpdateOneWithoutEmailActivitiesNestedInput
+  }
+
+  export type EmailActivityUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    recipientEmail?: StringFieldUpdateOperationsInput | string
+    recipientDomain?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    messageId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailActivityCreateManyInput = {
+    id?: string
+    userId: string
+    customerId?: string | null
+    sentAt: Date | string
+    recipientEmail: string
+    recipientDomain: string
+    subject?: string | null
+    messageId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmailActivityUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sentAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    recipientEmail?: StringFieldUpdateOperationsInput | string
+    recipientDomain?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    messageId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailActivityUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    recipientEmail?: StringFieldUpdateOperationsInput | string
+    recipientDomain?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    messageId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxSyncLogCreateInput = {
+    id?: string
+    resource: string
+    lastSyncedAt: Date | string
+    company: CompanyCreateNestedOneWithoutFortnoxSyncLogsInput
+  }
+
+  export type FortnoxSyncLogUncheckedCreateInput = {
+    id?: string
+    companyId: string
+    resource: string
+    lastSyncedAt: Date | string
+  }
+
+  export type FortnoxSyncLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    resource?: StringFieldUpdateOperationsInput | string
+    lastSyncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    company?: CompanyUpdateOneRequiredWithoutFortnoxSyncLogsNestedInput
+  }
+
+  export type FortnoxSyncLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    companyId?: StringFieldUpdateOperationsInput | string
+    resource?: StringFieldUpdateOperationsInput | string
+    lastSyncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxSyncLogCreateManyInput = {
+    id?: string
+    companyId: string
+    resource: string
+    lastSyncedAt: Date | string
+  }
+
+  export type FortnoxSyncLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    resource?: StringFieldUpdateOperationsInput | string
+    lastSyncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxSyncLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    companyId?: StringFieldUpdateOperationsInput | string
+    resource?: StringFieldUpdateOperationsInput | string
+    lastSyncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UuidFilter<$PrismaModel = never> = {
@@ -9204,10 +13464,10 @@ export namespace Prisma {
     none?: CustomerWhereInput
   }
 
-  export type EmployeeCustomerListRelationFilter = {
-    every?: EmployeeCustomerWhereInput
-    some?: EmployeeCustomerWhereInput
-    none?: EmployeeCustomerWhereInput
+  export type FortnoxSyncLogListRelationFilter = {
+    every?: FortnoxSyncLogWhereInput
+    some?: FortnoxSyncLogWhereInput
+    none?: FortnoxSyncLogWhereInput
   }
 
   export type UserOrderByRelationAggregateInput = {
@@ -9222,7 +13482,7 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type EmployeeCustomerOrderByRelationAggregateInput = {
+  export type FortnoxSyncLogOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -9305,7 +13565,37 @@ export namespace Prisma {
     none?: ImapCredentialWhereInput
   }
 
+  export type EmployeeCustomerListRelationFilter = {
+    every?: EmployeeCustomerWhereInput
+    some?: EmployeeCustomerWhereInput
+    none?: EmployeeCustomerWhereInput
+  }
+
+  export type TimeEntryListRelationFilter = {
+    every?: TimeEntryWhereInput
+    some?: TimeEntryWhereInput
+    none?: TimeEntryWhereInput
+  }
+
+  export type EmailActivityListRelationFilter = {
+    every?: EmailActivityWhereInput
+    some?: EmailActivityWhereInput
+    none?: EmailActivityWhereInput
+  }
+
   export type ImapCredentialOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EmployeeCustomerOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TimeEntryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EmailActivityOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -9365,6 +13655,11 @@ export namespace Prisma {
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type CompanyIntegrationCompanyIdServiceCompoundUniqueInput = {
+    companyId: string
+    service: string
   }
 
   export type CompanyIntegrationCountOrderByAggregateInput = {
@@ -9542,33 +13837,81 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type CompanyNullableScalarRelationFilter = {
-    is?: CompanyWhereInput | null
-    isNot?: CompanyWhereInput | null
-  }
-
   export type CustomerCountOrderByAggregateInput = {
     id?: SortOrder
-    email?: SortOrder
+    fortnoxCustomerNumber?: SortOrder
     name?: SortOrder
+    domain?: SortOrder
     companyId?: SortOrder
-    companyName?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type CustomerMaxOrderByAggregateInput = {
     id?: SortOrder
-    email?: SortOrder
+    fortnoxCustomerNumber?: SortOrder
     name?: SortOrder
+    domain?: SortOrder
     companyId?: SortOrder
-    companyName?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type CustomerMinOrderByAggregateInput = {
     id?: SortOrder
-    email?: SortOrder
+    fortnoxCustomerNumber?: SortOrder
     name?: SortOrder
+    domain?: SortOrder
     companyId?: SortOrder
-    companyName?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type CustomerScalarRelationFilter = {
+    is?: CustomerWhereInput
+    isNot?: CustomerWhereInput
+  }
+
+  export type EmployeeCustomerUserIdCustomerIdCompoundUniqueInput = {
+    userId: string
+    customerId: string
+  }
+
+  export type EmployeeCustomerCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    customerId?: SortOrder
+    assignedAt?: SortOrder
+    assignedBy?: SortOrder
+  }
+
+  export type EmployeeCustomerMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    customerId?: SortOrder
+    assignedAt?: SortOrder
+    assignedBy?: SortOrder
+  }
+
+  export type EmployeeCustomerMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    customerId?: SortOrder
+    assignedAt?: SortOrder
+    assignedBy?: SortOrder
+  }
+
+  export type DecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
   export type CustomerNullableScalarRelationFilter = {
@@ -9576,25 +13919,126 @@ export namespace Prisma {
     isNot?: CustomerWhereInput | null
   }
 
-  export type EmployeeCustomerCountOrderByAggregateInput = {
+  export type TimeEntryCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    companyId?: SortOrder
     customerId?: SortOrder
+    date?: SortOrder
+    hours?: SortOrder
+    description?: SortOrder
+    source?: SortOrder
+    rawCustomerName?: SortOrder
+    createdAt?: SortOrder
   }
 
-  export type EmployeeCustomerMaxOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    companyId?: SortOrder
-    customerId?: SortOrder
+  export type TimeEntryAvgOrderByAggregateInput = {
+    hours?: SortOrder
   }
 
-  export type EmployeeCustomerMinOrderByAggregateInput = {
+  export type TimeEntryMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    companyId?: SortOrder
     customerId?: SortOrder
+    date?: SortOrder
+    hours?: SortOrder
+    description?: SortOrder
+    source?: SortOrder
+    rawCustomerName?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TimeEntryMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    customerId?: SortOrder
+    date?: SortOrder
+    hours?: SortOrder
+    description?: SortOrder
+    source?: SortOrder
+    rawCustomerName?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TimeEntrySumOrderByAggregateInput = {
+    hours?: SortOrder
+  }
+
+  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type EmailActivityCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    customerId?: SortOrder
+    sentAt?: SortOrder
+    recipientEmail?: SortOrder
+    recipientDomain?: SortOrder
+    subject?: SortOrder
+    messageId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EmailActivityMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    customerId?: SortOrder
+    sentAt?: SortOrder
+    recipientEmail?: SortOrder
+    recipientDomain?: SortOrder
+    subject?: SortOrder
+    messageId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EmailActivityMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    customerId?: SortOrder
+    sentAt?: SortOrder
+    recipientEmail?: SortOrder
+    recipientDomain?: SortOrder
+    subject?: SortOrder
+    messageId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FortnoxSyncLogCompanyIdResourceCompoundUniqueInput = {
+    companyId: string
+    resource: string
+  }
+
+  export type FortnoxSyncLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    companyId?: SortOrder
+    resource?: SortOrder
+    lastSyncedAt?: SortOrder
+  }
+
+  export type FortnoxSyncLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    companyId?: SortOrder
+    resource?: SortOrder
+    lastSyncedAt?: SortOrder
+  }
+
+  export type FortnoxSyncLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    companyId?: SortOrder
+    resource?: SortOrder
+    lastSyncedAt?: SortOrder
   }
 
   export type UserCreateNestedManyWithoutCompanyInput = {
@@ -9618,11 +14062,11 @@ export namespace Prisma {
     connect?: CustomerWhereUniqueInput | CustomerWhereUniqueInput[]
   }
 
-  export type EmployeeCustomerCreateNestedManyWithoutCompanyInput = {
-    create?: XOR<EmployeeCustomerCreateWithoutCompanyInput, EmployeeCustomerUncheckedCreateWithoutCompanyInput> | EmployeeCustomerCreateWithoutCompanyInput[] | EmployeeCustomerUncheckedCreateWithoutCompanyInput[]
-    connectOrCreate?: EmployeeCustomerCreateOrConnectWithoutCompanyInput | EmployeeCustomerCreateOrConnectWithoutCompanyInput[]
-    createMany?: EmployeeCustomerCreateManyCompanyInputEnvelope
-    connect?: EmployeeCustomerWhereUniqueInput | EmployeeCustomerWhereUniqueInput[]
+  export type FortnoxSyncLogCreateNestedManyWithoutCompanyInput = {
+    create?: XOR<FortnoxSyncLogCreateWithoutCompanyInput, FortnoxSyncLogUncheckedCreateWithoutCompanyInput> | FortnoxSyncLogCreateWithoutCompanyInput[] | FortnoxSyncLogUncheckedCreateWithoutCompanyInput[]
+    connectOrCreate?: FortnoxSyncLogCreateOrConnectWithoutCompanyInput | FortnoxSyncLogCreateOrConnectWithoutCompanyInput[]
+    createMany?: FortnoxSyncLogCreateManyCompanyInputEnvelope
+    connect?: FortnoxSyncLogWhereUniqueInput | FortnoxSyncLogWhereUniqueInput[]
   }
 
   export type UserUncheckedCreateNestedManyWithoutCompanyInput = {
@@ -9646,11 +14090,11 @@ export namespace Prisma {
     connect?: CustomerWhereUniqueInput | CustomerWhereUniqueInput[]
   }
 
-  export type EmployeeCustomerUncheckedCreateNestedManyWithoutCompanyInput = {
-    create?: XOR<EmployeeCustomerCreateWithoutCompanyInput, EmployeeCustomerUncheckedCreateWithoutCompanyInput> | EmployeeCustomerCreateWithoutCompanyInput[] | EmployeeCustomerUncheckedCreateWithoutCompanyInput[]
-    connectOrCreate?: EmployeeCustomerCreateOrConnectWithoutCompanyInput | EmployeeCustomerCreateOrConnectWithoutCompanyInput[]
-    createMany?: EmployeeCustomerCreateManyCompanyInputEnvelope
-    connect?: EmployeeCustomerWhereUniqueInput | EmployeeCustomerWhereUniqueInput[]
+  export type FortnoxSyncLogUncheckedCreateNestedManyWithoutCompanyInput = {
+    create?: XOR<FortnoxSyncLogCreateWithoutCompanyInput, FortnoxSyncLogUncheckedCreateWithoutCompanyInput> | FortnoxSyncLogCreateWithoutCompanyInput[] | FortnoxSyncLogUncheckedCreateWithoutCompanyInput[]
+    connectOrCreate?: FortnoxSyncLogCreateOrConnectWithoutCompanyInput | FortnoxSyncLogCreateOrConnectWithoutCompanyInput[]
+    createMany?: FortnoxSyncLogCreateManyCompanyInputEnvelope
+    connect?: FortnoxSyncLogWhereUniqueInput | FortnoxSyncLogWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -9703,18 +14147,18 @@ export namespace Prisma {
     deleteMany?: CustomerScalarWhereInput | CustomerScalarWhereInput[]
   }
 
-  export type EmployeeCustomerUpdateManyWithoutCompanyNestedInput = {
-    create?: XOR<EmployeeCustomerCreateWithoutCompanyInput, EmployeeCustomerUncheckedCreateWithoutCompanyInput> | EmployeeCustomerCreateWithoutCompanyInput[] | EmployeeCustomerUncheckedCreateWithoutCompanyInput[]
-    connectOrCreate?: EmployeeCustomerCreateOrConnectWithoutCompanyInput | EmployeeCustomerCreateOrConnectWithoutCompanyInput[]
-    upsert?: EmployeeCustomerUpsertWithWhereUniqueWithoutCompanyInput | EmployeeCustomerUpsertWithWhereUniqueWithoutCompanyInput[]
-    createMany?: EmployeeCustomerCreateManyCompanyInputEnvelope
-    set?: EmployeeCustomerWhereUniqueInput | EmployeeCustomerWhereUniqueInput[]
-    disconnect?: EmployeeCustomerWhereUniqueInput | EmployeeCustomerWhereUniqueInput[]
-    delete?: EmployeeCustomerWhereUniqueInput | EmployeeCustomerWhereUniqueInput[]
-    connect?: EmployeeCustomerWhereUniqueInput | EmployeeCustomerWhereUniqueInput[]
-    update?: EmployeeCustomerUpdateWithWhereUniqueWithoutCompanyInput | EmployeeCustomerUpdateWithWhereUniqueWithoutCompanyInput[]
-    updateMany?: EmployeeCustomerUpdateManyWithWhereWithoutCompanyInput | EmployeeCustomerUpdateManyWithWhereWithoutCompanyInput[]
-    deleteMany?: EmployeeCustomerScalarWhereInput | EmployeeCustomerScalarWhereInput[]
+  export type FortnoxSyncLogUpdateManyWithoutCompanyNestedInput = {
+    create?: XOR<FortnoxSyncLogCreateWithoutCompanyInput, FortnoxSyncLogUncheckedCreateWithoutCompanyInput> | FortnoxSyncLogCreateWithoutCompanyInput[] | FortnoxSyncLogUncheckedCreateWithoutCompanyInput[]
+    connectOrCreate?: FortnoxSyncLogCreateOrConnectWithoutCompanyInput | FortnoxSyncLogCreateOrConnectWithoutCompanyInput[]
+    upsert?: FortnoxSyncLogUpsertWithWhereUniqueWithoutCompanyInput | FortnoxSyncLogUpsertWithWhereUniqueWithoutCompanyInput[]
+    createMany?: FortnoxSyncLogCreateManyCompanyInputEnvelope
+    set?: FortnoxSyncLogWhereUniqueInput | FortnoxSyncLogWhereUniqueInput[]
+    disconnect?: FortnoxSyncLogWhereUniqueInput | FortnoxSyncLogWhereUniqueInput[]
+    delete?: FortnoxSyncLogWhereUniqueInput | FortnoxSyncLogWhereUniqueInput[]
+    connect?: FortnoxSyncLogWhereUniqueInput | FortnoxSyncLogWhereUniqueInput[]
+    update?: FortnoxSyncLogUpdateWithWhereUniqueWithoutCompanyInput | FortnoxSyncLogUpdateWithWhereUniqueWithoutCompanyInput[]
+    updateMany?: FortnoxSyncLogUpdateManyWithWhereWithoutCompanyInput | FortnoxSyncLogUpdateManyWithWhereWithoutCompanyInput[]
+    deleteMany?: FortnoxSyncLogScalarWhereInput | FortnoxSyncLogScalarWhereInput[]
   }
 
   export type UserUncheckedUpdateManyWithoutCompanyNestedInput = {
@@ -9759,18 +14203,18 @@ export namespace Prisma {
     deleteMany?: CustomerScalarWhereInput | CustomerScalarWhereInput[]
   }
 
-  export type EmployeeCustomerUncheckedUpdateManyWithoutCompanyNestedInput = {
-    create?: XOR<EmployeeCustomerCreateWithoutCompanyInput, EmployeeCustomerUncheckedCreateWithoutCompanyInput> | EmployeeCustomerCreateWithoutCompanyInput[] | EmployeeCustomerUncheckedCreateWithoutCompanyInput[]
-    connectOrCreate?: EmployeeCustomerCreateOrConnectWithoutCompanyInput | EmployeeCustomerCreateOrConnectWithoutCompanyInput[]
-    upsert?: EmployeeCustomerUpsertWithWhereUniqueWithoutCompanyInput | EmployeeCustomerUpsertWithWhereUniqueWithoutCompanyInput[]
-    createMany?: EmployeeCustomerCreateManyCompanyInputEnvelope
-    set?: EmployeeCustomerWhereUniqueInput | EmployeeCustomerWhereUniqueInput[]
-    disconnect?: EmployeeCustomerWhereUniqueInput | EmployeeCustomerWhereUniqueInput[]
-    delete?: EmployeeCustomerWhereUniqueInput | EmployeeCustomerWhereUniqueInput[]
-    connect?: EmployeeCustomerWhereUniqueInput | EmployeeCustomerWhereUniqueInput[]
-    update?: EmployeeCustomerUpdateWithWhereUniqueWithoutCompanyInput | EmployeeCustomerUpdateWithWhereUniqueWithoutCompanyInput[]
-    updateMany?: EmployeeCustomerUpdateManyWithWhereWithoutCompanyInput | EmployeeCustomerUpdateManyWithWhereWithoutCompanyInput[]
-    deleteMany?: EmployeeCustomerScalarWhereInput | EmployeeCustomerScalarWhereInput[]
+  export type FortnoxSyncLogUncheckedUpdateManyWithoutCompanyNestedInput = {
+    create?: XOR<FortnoxSyncLogCreateWithoutCompanyInput, FortnoxSyncLogUncheckedCreateWithoutCompanyInput> | FortnoxSyncLogCreateWithoutCompanyInput[] | FortnoxSyncLogUncheckedCreateWithoutCompanyInput[]
+    connectOrCreate?: FortnoxSyncLogCreateOrConnectWithoutCompanyInput | FortnoxSyncLogCreateOrConnectWithoutCompanyInput[]
+    upsert?: FortnoxSyncLogUpsertWithWhereUniqueWithoutCompanyInput | FortnoxSyncLogUpsertWithWhereUniqueWithoutCompanyInput[]
+    createMany?: FortnoxSyncLogCreateManyCompanyInputEnvelope
+    set?: FortnoxSyncLogWhereUniqueInput | FortnoxSyncLogWhereUniqueInput[]
+    disconnect?: FortnoxSyncLogWhereUniqueInput | FortnoxSyncLogWhereUniqueInput[]
+    delete?: FortnoxSyncLogWhereUniqueInput | FortnoxSyncLogWhereUniqueInput[]
+    connect?: FortnoxSyncLogWhereUniqueInput | FortnoxSyncLogWhereUniqueInput[]
+    update?: FortnoxSyncLogUpdateWithWhereUniqueWithoutCompanyInput | FortnoxSyncLogUpdateWithWhereUniqueWithoutCompanyInput[]
+    updateMany?: FortnoxSyncLogUpdateManyWithWhereWithoutCompanyInput | FortnoxSyncLogUpdateManyWithWhereWithoutCompanyInput[]
+    deleteMany?: FortnoxSyncLogScalarWhereInput | FortnoxSyncLogScalarWhereInput[]
   }
 
   export type CompanyCreateNestedOneWithoutUsersInput = {
@@ -9793,6 +14237,20 @@ export namespace Prisma {
     connect?: EmployeeCustomerWhereUniqueInput | EmployeeCustomerWhereUniqueInput[]
   }
 
+  export type TimeEntryCreateNestedManyWithoutUserInput = {
+    create?: XOR<TimeEntryCreateWithoutUserInput, TimeEntryUncheckedCreateWithoutUserInput> | TimeEntryCreateWithoutUserInput[] | TimeEntryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TimeEntryCreateOrConnectWithoutUserInput | TimeEntryCreateOrConnectWithoutUserInput[]
+    createMany?: TimeEntryCreateManyUserInputEnvelope
+    connect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+  }
+
+  export type EmailActivityCreateNestedManyWithoutUserInput = {
+    create?: XOR<EmailActivityCreateWithoutUserInput, EmailActivityUncheckedCreateWithoutUserInput> | EmailActivityCreateWithoutUserInput[] | EmailActivityUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EmailActivityCreateOrConnectWithoutUserInput | EmailActivityCreateOrConnectWithoutUserInput[]
+    createMany?: EmailActivityCreateManyUserInputEnvelope
+    connect?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+  }
+
   export type ImapCredentialUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<ImapCredentialCreateWithoutUserInput, ImapCredentialUncheckedCreateWithoutUserInput> | ImapCredentialCreateWithoutUserInput[] | ImapCredentialUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ImapCredentialCreateOrConnectWithoutUserInput | ImapCredentialCreateOrConnectWithoutUserInput[]
@@ -9805,6 +14263,20 @@ export namespace Prisma {
     connectOrCreate?: EmployeeCustomerCreateOrConnectWithoutUserInput | EmployeeCustomerCreateOrConnectWithoutUserInput[]
     createMany?: EmployeeCustomerCreateManyUserInputEnvelope
     connect?: EmployeeCustomerWhereUniqueInput | EmployeeCustomerWhereUniqueInput[]
+  }
+
+  export type TimeEntryUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<TimeEntryCreateWithoutUserInput, TimeEntryUncheckedCreateWithoutUserInput> | TimeEntryCreateWithoutUserInput[] | TimeEntryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TimeEntryCreateOrConnectWithoutUserInput | TimeEntryCreateOrConnectWithoutUserInput[]
+    createMany?: TimeEntryCreateManyUserInputEnvelope
+    connect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+  }
+
+  export type EmailActivityUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<EmailActivityCreateWithoutUserInput, EmailActivityUncheckedCreateWithoutUserInput> | EmailActivityCreateWithoutUserInput[] | EmailActivityUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EmailActivityCreateOrConnectWithoutUserInput | EmailActivityCreateOrConnectWithoutUserInput[]
+    createMany?: EmailActivityCreateManyUserInputEnvelope
+    connect?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
   }
 
   export type CompanyUpdateOneRequiredWithoutUsersNestedInput = {
@@ -9843,6 +14315,34 @@ export namespace Prisma {
     deleteMany?: EmployeeCustomerScalarWhereInput | EmployeeCustomerScalarWhereInput[]
   }
 
+  export type TimeEntryUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TimeEntryCreateWithoutUserInput, TimeEntryUncheckedCreateWithoutUserInput> | TimeEntryCreateWithoutUserInput[] | TimeEntryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TimeEntryCreateOrConnectWithoutUserInput | TimeEntryCreateOrConnectWithoutUserInput[]
+    upsert?: TimeEntryUpsertWithWhereUniqueWithoutUserInput | TimeEntryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TimeEntryCreateManyUserInputEnvelope
+    set?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    disconnect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    delete?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    connect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    update?: TimeEntryUpdateWithWhereUniqueWithoutUserInput | TimeEntryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TimeEntryUpdateManyWithWhereWithoutUserInput | TimeEntryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TimeEntryScalarWhereInput | TimeEntryScalarWhereInput[]
+  }
+
+  export type EmailActivityUpdateManyWithoutUserNestedInput = {
+    create?: XOR<EmailActivityCreateWithoutUserInput, EmailActivityUncheckedCreateWithoutUserInput> | EmailActivityCreateWithoutUserInput[] | EmailActivityUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EmailActivityCreateOrConnectWithoutUserInput | EmailActivityCreateOrConnectWithoutUserInput[]
+    upsert?: EmailActivityUpsertWithWhereUniqueWithoutUserInput | EmailActivityUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: EmailActivityCreateManyUserInputEnvelope
+    set?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+    disconnect?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+    delete?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+    connect?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+    update?: EmailActivityUpdateWithWhereUniqueWithoutUserInput | EmailActivityUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: EmailActivityUpdateManyWithWhereWithoutUserInput | EmailActivityUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: EmailActivityScalarWhereInput | EmailActivityScalarWhereInput[]
+  }
+
   export type ImapCredentialUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<ImapCredentialCreateWithoutUserInput, ImapCredentialUncheckedCreateWithoutUserInput> | ImapCredentialCreateWithoutUserInput[] | ImapCredentialUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ImapCredentialCreateOrConnectWithoutUserInput | ImapCredentialCreateOrConnectWithoutUserInput[]
@@ -9869,6 +14369,34 @@ export namespace Prisma {
     update?: EmployeeCustomerUpdateWithWhereUniqueWithoutUserInput | EmployeeCustomerUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: EmployeeCustomerUpdateManyWithWhereWithoutUserInput | EmployeeCustomerUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: EmployeeCustomerScalarWhereInput | EmployeeCustomerScalarWhereInput[]
+  }
+
+  export type TimeEntryUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TimeEntryCreateWithoutUserInput, TimeEntryUncheckedCreateWithoutUserInput> | TimeEntryCreateWithoutUserInput[] | TimeEntryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TimeEntryCreateOrConnectWithoutUserInput | TimeEntryCreateOrConnectWithoutUserInput[]
+    upsert?: TimeEntryUpsertWithWhereUniqueWithoutUserInput | TimeEntryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TimeEntryCreateManyUserInputEnvelope
+    set?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    disconnect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    delete?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    connect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    update?: TimeEntryUpdateWithWhereUniqueWithoutUserInput | TimeEntryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TimeEntryUpdateManyWithWhereWithoutUserInput | TimeEntryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TimeEntryScalarWhereInput | TimeEntryScalarWhereInput[]
+  }
+
+  export type EmailActivityUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<EmailActivityCreateWithoutUserInput, EmailActivityUncheckedCreateWithoutUserInput> | EmailActivityCreateWithoutUserInput[] | EmailActivityUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EmailActivityCreateOrConnectWithoutUserInput | EmailActivityCreateOrConnectWithoutUserInput[]
+    upsert?: EmailActivityUpsertWithWhereUniqueWithoutUserInput | EmailActivityUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: EmailActivityCreateManyUserInputEnvelope
+    set?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+    disconnect?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+    delete?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+    connect?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+    update?: EmailActivityUpdateWithWhereUniqueWithoutUserInput | EmailActivityUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: EmailActivityUpdateManyWithWhereWithoutUserInput | EmailActivityUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: EmailActivityScalarWhereInput | EmailActivityScalarWhereInput[]
   }
 
   export type CompanyCreateNestedOneWithoutIntegrationsInput = {
@@ -9934,6 +14462,20 @@ export namespace Prisma {
     connect?: EmployeeCustomerWhereUniqueInput | EmployeeCustomerWhereUniqueInput[]
   }
 
+  export type TimeEntryCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<TimeEntryCreateWithoutCustomerInput, TimeEntryUncheckedCreateWithoutCustomerInput> | TimeEntryCreateWithoutCustomerInput[] | TimeEntryUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: TimeEntryCreateOrConnectWithoutCustomerInput | TimeEntryCreateOrConnectWithoutCustomerInput[]
+    createMany?: TimeEntryCreateManyCustomerInputEnvelope
+    connect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+  }
+
+  export type EmailActivityCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<EmailActivityCreateWithoutCustomerInput, EmailActivityUncheckedCreateWithoutCustomerInput> | EmailActivityCreateWithoutCustomerInput[] | EmailActivityUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: EmailActivityCreateOrConnectWithoutCustomerInput | EmailActivityCreateOrConnectWithoutCustomerInput[]
+    createMany?: EmailActivityCreateManyCustomerInputEnvelope
+    connect?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+  }
+
   export type EmployeeCustomerUncheckedCreateNestedManyWithoutCustomerInput = {
     create?: XOR<EmployeeCustomerCreateWithoutCustomerInput, EmployeeCustomerUncheckedCreateWithoutCustomerInput> | EmployeeCustomerCreateWithoutCustomerInput[] | EmployeeCustomerUncheckedCreateWithoutCustomerInput[]
     connectOrCreate?: EmployeeCustomerCreateOrConnectWithoutCustomerInput | EmployeeCustomerCreateOrConnectWithoutCustomerInput[]
@@ -9941,12 +14483,24 @@ export namespace Prisma {
     connect?: EmployeeCustomerWhereUniqueInput | EmployeeCustomerWhereUniqueInput[]
   }
 
-  export type CompanyUpdateOneWithoutCustomersNestedInput = {
+  export type TimeEntryUncheckedCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<TimeEntryCreateWithoutCustomerInput, TimeEntryUncheckedCreateWithoutCustomerInput> | TimeEntryCreateWithoutCustomerInput[] | TimeEntryUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: TimeEntryCreateOrConnectWithoutCustomerInput | TimeEntryCreateOrConnectWithoutCustomerInput[]
+    createMany?: TimeEntryCreateManyCustomerInputEnvelope
+    connect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+  }
+
+  export type EmailActivityUncheckedCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<EmailActivityCreateWithoutCustomerInput, EmailActivityUncheckedCreateWithoutCustomerInput> | EmailActivityCreateWithoutCustomerInput[] | EmailActivityUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: EmailActivityCreateOrConnectWithoutCustomerInput | EmailActivityCreateOrConnectWithoutCustomerInput[]
+    createMany?: EmailActivityCreateManyCustomerInputEnvelope
+    connect?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+  }
+
+  export type CompanyUpdateOneRequiredWithoutCustomersNestedInput = {
     create?: XOR<CompanyCreateWithoutCustomersInput, CompanyUncheckedCreateWithoutCustomersInput>
     connectOrCreate?: CompanyCreateOrConnectWithoutCustomersInput
     upsert?: CompanyUpsertWithoutCustomersInput
-    disconnect?: CompanyWhereInput | boolean
-    delete?: CompanyWhereInput | boolean
     connect?: CompanyWhereUniqueInput
     update?: XOR<XOR<CompanyUpdateToOneWithWhereWithoutCustomersInput, CompanyUpdateWithoutCustomersInput>, CompanyUncheckedUpdateWithoutCustomersInput>
   }
@@ -9965,6 +14519,34 @@ export namespace Prisma {
     deleteMany?: EmployeeCustomerScalarWhereInput | EmployeeCustomerScalarWhereInput[]
   }
 
+  export type TimeEntryUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<TimeEntryCreateWithoutCustomerInput, TimeEntryUncheckedCreateWithoutCustomerInput> | TimeEntryCreateWithoutCustomerInput[] | TimeEntryUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: TimeEntryCreateOrConnectWithoutCustomerInput | TimeEntryCreateOrConnectWithoutCustomerInput[]
+    upsert?: TimeEntryUpsertWithWhereUniqueWithoutCustomerInput | TimeEntryUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: TimeEntryCreateManyCustomerInputEnvelope
+    set?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    disconnect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    delete?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    connect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    update?: TimeEntryUpdateWithWhereUniqueWithoutCustomerInput | TimeEntryUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: TimeEntryUpdateManyWithWhereWithoutCustomerInput | TimeEntryUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: TimeEntryScalarWhereInput | TimeEntryScalarWhereInput[]
+  }
+
+  export type EmailActivityUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<EmailActivityCreateWithoutCustomerInput, EmailActivityUncheckedCreateWithoutCustomerInput> | EmailActivityCreateWithoutCustomerInput[] | EmailActivityUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: EmailActivityCreateOrConnectWithoutCustomerInput | EmailActivityCreateOrConnectWithoutCustomerInput[]
+    upsert?: EmailActivityUpsertWithWhereUniqueWithoutCustomerInput | EmailActivityUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: EmailActivityCreateManyCustomerInputEnvelope
+    set?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+    disconnect?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+    delete?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+    connect?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+    update?: EmailActivityUpdateWithWhereUniqueWithoutCustomerInput | EmailActivityUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: EmailActivityUpdateManyWithWhereWithoutCustomerInput | EmailActivityUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: EmailActivityScalarWhereInput | EmailActivityScalarWhereInput[]
+  }
+
   export type EmployeeCustomerUncheckedUpdateManyWithoutCustomerNestedInput = {
     create?: XOR<EmployeeCustomerCreateWithoutCustomerInput, EmployeeCustomerUncheckedCreateWithoutCustomerInput> | EmployeeCustomerCreateWithoutCustomerInput[] | EmployeeCustomerUncheckedCreateWithoutCustomerInput[]
     connectOrCreate?: EmployeeCustomerCreateOrConnectWithoutCustomerInput | EmployeeCustomerCreateOrConnectWithoutCustomerInput[]
@@ -9979,16 +14561,38 @@ export namespace Prisma {
     deleteMany?: EmployeeCustomerScalarWhereInput | EmployeeCustomerScalarWhereInput[]
   }
 
+  export type TimeEntryUncheckedUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<TimeEntryCreateWithoutCustomerInput, TimeEntryUncheckedCreateWithoutCustomerInput> | TimeEntryCreateWithoutCustomerInput[] | TimeEntryUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: TimeEntryCreateOrConnectWithoutCustomerInput | TimeEntryCreateOrConnectWithoutCustomerInput[]
+    upsert?: TimeEntryUpsertWithWhereUniqueWithoutCustomerInput | TimeEntryUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: TimeEntryCreateManyCustomerInputEnvelope
+    set?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    disconnect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    delete?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    connect?: TimeEntryWhereUniqueInput | TimeEntryWhereUniqueInput[]
+    update?: TimeEntryUpdateWithWhereUniqueWithoutCustomerInput | TimeEntryUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: TimeEntryUpdateManyWithWhereWithoutCustomerInput | TimeEntryUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: TimeEntryScalarWhereInput | TimeEntryScalarWhereInput[]
+  }
+
+  export type EmailActivityUncheckedUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<EmailActivityCreateWithoutCustomerInput, EmailActivityUncheckedCreateWithoutCustomerInput> | EmailActivityCreateWithoutCustomerInput[] | EmailActivityUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: EmailActivityCreateOrConnectWithoutCustomerInput | EmailActivityCreateOrConnectWithoutCustomerInput[]
+    upsert?: EmailActivityUpsertWithWhereUniqueWithoutCustomerInput | EmailActivityUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: EmailActivityCreateManyCustomerInputEnvelope
+    set?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+    disconnect?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+    delete?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+    connect?: EmailActivityWhereUniqueInput | EmailActivityWhereUniqueInput[]
+    update?: EmailActivityUpdateWithWhereUniqueWithoutCustomerInput | EmailActivityUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: EmailActivityUpdateManyWithWhereWithoutCustomerInput | EmailActivityUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: EmailActivityScalarWhereInput | EmailActivityScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutEmployeeCustomersInput = {
     create?: XOR<UserCreateWithoutEmployeeCustomersInput, UserUncheckedCreateWithoutEmployeeCustomersInput>
     connectOrCreate?: UserCreateOrConnectWithoutEmployeeCustomersInput
     connect?: UserWhereUniqueInput
-  }
-
-  export type CompanyCreateNestedOneWithoutEmployeeCustomersInput = {
-    create?: XOR<CompanyCreateWithoutEmployeeCustomersInput, CompanyUncheckedCreateWithoutEmployeeCustomersInput>
-    connectOrCreate?: CompanyCreateOrConnectWithoutEmployeeCustomersInput
-    connect?: CompanyWhereUniqueInput
   }
 
   export type CustomerCreateNestedOneWithoutEmployeeCustomersInput = {
@@ -9997,34 +14601,102 @@ export namespace Prisma {
     connect?: CustomerWhereUniqueInput
   }
 
-  export type UserUpdateOneWithoutEmployeeCustomersNestedInput = {
+  export type UserUpdateOneRequiredWithoutEmployeeCustomersNestedInput = {
     create?: XOR<UserCreateWithoutEmployeeCustomersInput, UserUncheckedCreateWithoutEmployeeCustomersInput>
     connectOrCreate?: UserCreateOrConnectWithoutEmployeeCustomersInput
     upsert?: UserUpsertWithoutEmployeeCustomersInput
-    disconnect?: UserWhereInput | boolean
-    delete?: UserWhereInput | boolean
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutEmployeeCustomersInput, UserUpdateWithoutEmployeeCustomersInput>, UserUncheckedUpdateWithoutEmployeeCustomersInput>
   }
 
-  export type CompanyUpdateOneWithoutEmployeeCustomersNestedInput = {
-    create?: XOR<CompanyCreateWithoutEmployeeCustomersInput, CompanyUncheckedCreateWithoutEmployeeCustomersInput>
-    connectOrCreate?: CompanyCreateOrConnectWithoutEmployeeCustomersInput
-    upsert?: CompanyUpsertWithoutEmployeeCustomersInput
-    disconnect?: CompanyWhereInput | boolean
-    delete?: CompanyWhereInput | boolean
-    connect?: CompanyWhereUniqueInput
-    update?: XOR<XOR<CompanyUpdateToOneWithWhereWithoutEmployeeCustomersInput, CompanyUpdateWithoutEmployeeCustomersInput>, CompanyUncheckedUpdateWithoutEmployeeCustomersInput>
-  }
-
-  export type CustomerUpdateOneWithoutEmployeeCustomersNestedInput = {
+  export type CustomerUpdateOneRequiredWithoutEmployeeCustomersNestedInput = {
     create?: XOR<CustomerCreateWithoutEmployeeCustomersInput, CustomerUncheckedCreateWithoutEmployeeCustomersInput>
     connectOrCreate?: CustomerCreateOrConnectWithoutEmployeeCustomersInput
     upsert?: CustomerUpsertWithoutEmployeeCustomersInput
+    connect?: CustomerWhereUniqueInput
+    update?: XOR<XOR<CustomerUpdateToOneWithWhereWithoutEmployeeCustomersInput, CustomerUpdateWithoutEmployeeCustomersInput>, CustomerUncheckedUpdateWithoutEmployeeCustomersInput>
+  }
+
+  export type UserCreateNestedOneWithoutTimeEntriesInput = {
+    create?: XOR<UserCreateWithoutTimeEntriesInput, UserUncheckedCreateWithoutTimeEntriesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTimeEntriesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type CustomerCreateNestedOneWithoutTimeEntriesInput = {
+    create?: XOR<CustomerCreateWithoutTimeEntriesInput, CustomerUncheckedCreateWithoutTimeEntriesInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutTimeEntriesInput
+    connect?: CustomerWhereUniqueInput
+  }
+
+  export type DecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type UserUpdateOneRequiredWithoutTimeEntriesNestedInput = {
+    create?: XOR<UserCreateWithoutTimeEntriesInput, UserUncheckedCreateWithoutTimeEntriesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTimeEntriesInput
+    upsert?: UserUpsertWithoutTimeEntriesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTimeEntriesInput, UserUpdateWithoutTimeEntriesInput>, UserUncheckedUpdateWithoutTimeEntriesInput>
+  }
+
+  export type CustomerUpdateOneWithoutTimeEntriesNestedInput = {
+    create?: XOR<CustomerCreateWithoutTimeEntriesInput, CustomerUncheckedCreateWithoutTimeEntriesInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutTimeEntriesInput
+    upsert?: CustomerUpsertWithoutTimeEntriesInput
     disconnect?: CustomerWhereInput | boolean
     delete?: CustomerWhereInput | boolean
     connect?: CustomerWhereUniqueInput
-    update?: XOR<XOR<CustomerUpdateToOneWithWhereWithoutEmployeeCustomersInput, CustomerUpdateWithoutEmployeeCustomersInput>, CustomerUncheckedUpdateWithoutEmployeeCustomersInput>
+    update?: XOR<XOR<CustomerUpdateToOneWithWhereWithoutTimeEntriesInput, CustomerUpdateWithoutTimeEntriesInput>, CustomerUncheckedUpdateWithoutTimeEntriesInput>
+  }
+
+  export type UserCreateNestedOneWithoutEmailActivitiesInput = {
+    create?: XOR<UserCreateWithoutEmailActivitiesInput, UserUncheckedCreateWithoutEmailActivitiesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEmailActivitiesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type CustomerCreateNestedOneWithoutEmailActivitiesInput = {
+    create?: XOR<CustomerCreateWithoutEmailActivitiesInput, CustomerUncheckedCreateWithoutEmailActivitiesInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutEmailActivitiesInput
+    connect?: CustomerWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutEmailActivitiesNestedInput = {
+    create?: XOR<UserCreateWithoutEmailActivitiesInput, UserUncheckedCreateWithoutEmailActivitiesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEmailActivitiesInput
+    upsert?: UserUpsertWithoutEmailActivitiesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutEmailActivitiesInput, UserUpdateWithoutEmailActivitiesInput>, UserUncheckedUpdateWithoutEmailActivitiesInput>
+  }
+
+  export type CustomerUpdateOneWithoutEmailActivitiesNestedInput = {
+    create?: XOR<CustomerCreateWithoutEmailActivitiesInput, CustomerUncheckedCreateWithoutEmailActivitiesInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutEmailActivitiesInput
+    upsert?: CustomerUpsertWithoutEmailActivitiesInput
+    disconnect?: CustomerWhereInput | boolean
+    delete?: CustomerWhereInput | boolean
+    connect?: CustomerWhereUniqueInput
+    update?: XOR<XOR<CustomerUpdateToOneWithWhereWithoutEmailActivitiesInput, CustomerUpdateWithoutEmailActivitiesInput>, CustomerUncheckedUpdateWithoutEmailActivitiesInput>
+  }
+
+  export type CompanyCreateNestedOneWithoutFortnoxSyncLogsInput = {
+    create?: XOR<CompanyCreateWithoutFortnoxSyncLogsInput, CompanyUncheckedCreateWithoutFortnoxSyncLogsInput>
+    connectOrCreate?: CompanyCreateOrConnectWithoutFortnoxSyncLogsInput
+    connect?: CompanyWhereUniqueInput
+  }
+
+  export type CompanyUpdateOneRequiredWithoutFortnoxSyncLogsNestedInput = {
+    create?: XOR<CompanyCreateWithoutFortnoxSyncLogsInput, CompanyUncheckedCreateWithoutFortnoxSyncLogsInput>
+    connectOrCreate?: CompanyCreateOrConnectWithoutFortnoxSyncLogsInput
+    upsert?: CompanyUpsertWithoutFortnoxSyncLogsInput
+    connect?: CompanyWhereUniqueInput
+    update?: XOR<XOR<CompanyUpdateToOneWithWhereWithoutFortnoxSyncLogsInput, CompanyUpdateWithoutFortnoxSyncLogsInput>, CompanyUncheckedUpdateWithoutFortnoxSyncLogsInput>
   }
 
   export type NestedUuidFilter<$PrismaModel = never> = {
@@ -10251,6 +14923,33 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type NestedDecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
   export type UserCreateWithoutCompanyInput = {
     id?: string
     email: string
@@ -10259,6 +14958,8 @@ export namespace Prisma {
     createdAt?: Date | string
     imapCredentials?: ImapCredentialCreateNestedManyWithoutUserInput
     employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutUserInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutUserInput
+    emailActivities?: EmailActivityCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCompanyInput = {
@@ -10269,6 +14970,8 @@ export namespace Prisma {
     createdAt?: Date | string
     imapCredentials?: ImapCredentialUncheckedCreateNestedManyWithoutUserInput
     employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutUserInput
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutUserInput
+    emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCompanyInput = {
@@ -10283,7 +14986,7 @@ export namespace Prisma {
 
   export type CompanyIntegrationCreateWithoutCompanyInput = {
     id?: string
-    service?: string | null
+    service: string
     accessToken: string
     refreshToken?: string | null
     expiresAt?: Date | string | null
@@ -10292,7 +14995,7 @@ export namespace Prisma {
 
   export type CompanyIntegrationUncheckedCreateWithoutCompanyInput = {
     id?: string
-    service?: string | null
+    service: string
     accessToken: string
     refreshToken?: string | null
     expiresAt?: Date | string | null
@@ -10311,18 +15014,24 @@ export namespace Prisma {
 
   export type CustomerCreateWithoutCompanyInput = {
     id?: string
-    email: string
-    name?: string | null
-    companyName?: string | null
+    fortnoxCustomerNumber?: string | null
+    name: string
+    domain?: string | null
+    createdAt?: Date | string
     employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutCustomerInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutCustomerInput
+    emailActivities?: EmailActivityCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutCompanyInput = {
     id?: string
-    email: string
-    name?: string | null
-    companyName?: string | null
+    fortnoxCustomerNumber?: string | null
+    name: string
+    domain?: string | null
+    createdAt?: Date | string
     employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutCustomerInput
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutCustomerInput
+    emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutCompanyInput = {
@@ -10335,25 +15044,25 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type EmployeeCustomerCreateWithoutCompanyInput = {
+  export type FortnoxSyncLogCreateWithoutCompanyInput = {
     id?: string
-    user?: UserCreateNestedOneWithoutEmployeeCustomersInput
-    customer?: CustomerCreateNestedOneWithoutEmployeeCustomersInput
+    resource: string
+    lastSyncedAt: Date | string
   }
 
-  export type EmployeeCustomerUncheckedCreateWithoutCompanyInput = {
+  export type FortnoxSyncLogUncheckedCreateWithoutCompanyInput = {
     id?: string
-    userId?: string | null
-    customerId?: string | null
+    resource: string
+    lastSyncedAt: Date | string
   }
 
-  export type EmployeeCustomerCreateOrConnectWithoutCompanyInput = {
-    where: EmployeeCustomerWhereUniqueInput
-    create: XOR<EmployeeCustomerCreateWithoutCompanyInput, EmployeeCustomerUncheckedCreateWithoutCompanyInput>
+  export type FortnoxSyncLogCreateOrConnectWithoutCompanyInput = {
+    where: FortnoxSyncLogWhereUniqueInput
+    create: XOR<FortnoxSyncLogCreateWithoutCompanyInput, FortnoxSyncLogUncheckedCreateWithoutCompanyInput>
   }
 
-  export type EmployeeCustomerCreateManyCompanyInputEnvelope = {
-    data: EmployeeCustomerCreateManyCompanyInput | EmployeeCustomerCreateManyCompanyInput[]
+  export type FortnoxSyncLogCreateManyCompanyInputEnvelope = {
+    data: FortnoxSyncLogCreateManyCompanyInput | FortnoxSyncLogCreateManyCompanyInput[]
     skipDuplicates?: boolean
   }
 
@@ -10407,7 +15116,7 @@ export namespace Prisma {
     NOT?: CompanyIntegrationScalarWhereInput | CompanyIntegrationScalarWhereInput[]
     id?: UuidFilter<"CompanyIntegration"> | string
     companyId?: UuidFilter<"CompanyIntegration"> | string
-    service?: StringNullableFilter<"CompanyIntegration"> | string | null
+    service?: StringFilter<"CompanyIntegration"> | string
     accessToken?: StringFilter<"CompanyIntegration"> | string
     refreshToken?: StringNullableFilter<"CompanyIntegration"> | string | null
     expiresAt?: DateTimeNullableFilter<"CompanyIntegration"> | Date | string | null
@@ -10435,36 +15144,37 @@ export namespace Prisma {
     OR?: CustomerScalarWhereInput[]
     NOT?: CustomerScalarWhereInput | CustomerScalarWhereInput[]
     id?: UuidFilter<"Customer"> | string
-    email?: StringFilter<"Customer"> | string
-    name?: StringNullableFilter<"Customer"> | string | null
-    companyId?: UuidNullableFilter<"Customer"> | string | null
-    companyName?: StringNullableFilter<"Customer"> | string | null
+    fortnoxCustomerNumber?: StringNullableFilter<"Customer"> | string | null
+    name?: StringFilter<"Customer"> | string
+    domain?: StringNullableFilter<"Customer"> | string | null
+    companyId?: UuidFilter<"Customer"> | string
+    createdAt?: DateTimeFilter<"Customer"> | Date | string
   }
 
-  export type EmployeeCustomerUpsertWithWhereUniqueWithoutCompanyInput = {
-    where: EmployeeCustomerWhereUniqueInput
-    update: XOR<EmployeeCustomerUpdateWithoutCompanyInput, EmployeeCustomerUncheckedUpdateWithoutCompanyInput>
-    create: XOR<EmployeeCustomerCreateWithoutCompanyInput, EmployeeCustomerUncheckedCreateWithoutCompanyInput>
+  export type FortnoxSyncLogUpsertWithWhereUniqueWithoutCompanyInput = {
+    where: FortnoxSyncLogWhereUniqueInput
+    update: XOR<FortnoxSyncLogUpdateWithoutCompanyInput, FortnoxSyncLogUncheckedUpdateWithoutCompanyInput>
+    create: XOR<FortnoxSyncLogCreateWithoutCompanyInput, FortnoxSyncLogUncheckedCreateWithoutCompanyInput>
   }
 
-  export type EmployeeCustomerUpdateWithWhereUniqueWithoutCompanyInput = {
-    where: EmployeeCustomerWhereUniqueInput
-    data: XOR<EmployeeCustomerUpdateWithoutCompanyInput, EmployeeCustomerUncheckedUpdateWithoutCompanyInput>
+  export type FortnoxSyncLogUpdateWithWhereUniqueWithoutCompanyInput = {
+    where: FortnoxSyncLogWhereUniqueInput
+    data: XOR<FortnoxSyncLogUpdateWithoutCompanyInput, FortnoxSyncLogUncheckedUpdateWithoutCompanyInput>
   }
 
-  export type EmployeeCustomerUpdateManyWithWhereWithoutCompanyInput = {
-    where: EmployeeCustomerScalarWhereInput
-    data: XOR<EmployeeCustomerUpdateManyMutationInput, EmployeeCustomerUncheckedUpdateManyWithoutCompanyInput>
+  export type FortnoxSyncLogUpdateManyWithWhereWithoutCompanyInput = {
+    where: FortnoxSyncLogScalarWhereInput
+    data: XOR<FortnoxSyncLogUpdateManyMutationInput, FortnoxSyncLogUncheckedUpdateManyWithoutCompanyInput>
   }
 
-  export type EmployeeCustomerScalarWhereInput = {
-    AND?: EmployeeCustomerScalarWhereInput | EmployeeCustomerScalarWhereInput[]
-    OR?: EmployeeCustomerScalarWhereInput[]
-    NOT?: EmployeeCustomerScalarWhereInput | EmployeeCustomerScalarWhereInput[]
-    id?: UuidFilter<"EmployeeCustomer"> | string
-    userId?: UuidNullableFilter<"EmployeeCustomer"> | string | null
-    companyId?: UuidNullableFilter<"EmployeeCustomer"> | string | null
-    customerId?: UuidNullableFilter<"EmployeeCustomer"> | string | null
+  export type FortnoxSyncLogScalarWhereInput = {
+    AND?: FortnoxSyncLogScalarWhereInput | FortnoxSyncLogScalarWhereInput[]
+    OR?: FortnoxSyncLogScalarWhereInput[]
+    NOT?: FortnoxSyncLogScalarWhereInput | FortnoxSyncLogScalarWhereInput[]
+    id?: UuidFilter<"FortnoxSyncLog"> | string
+    companyId?: UuidFilter<"FortnoxSyncLog"> | string
+    resource?: StringFilter<"FortnoxSyncLog"> | string
+    lastSyncedAt?: DateTimeFilter<"FortnoxSyncLog"> | Date | string
   }
 
   export type CompanyCreateWithoutUsersInput = {
@@ -10474,7 +15184,7 @@ export namespace Prisma {
     createdAt?: Date | string
     integrations?: CompanyIntegrationCreateNestedManyWithoutCompanyInput
     customers?: CustomerCreateNestedManyWithoutCompanyInput
-    employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutCompanyInput
+    fortnoxSyncLogs?: FortnoxSyncLogCreateNestedManyWithoutCompanyInput
   }
 
   export type CompanyUncheckedCreateWithoutUsersInput = {
@@ -10484,7 +15194,7 @@ export namespace Prisma {
     createdAt?: Date | string
     integrations?: CompanyIntegrationUncheckedCreateNestedManyWithoutCompanyInput
     customers?: CustomerUncheckedCreateNestedManyWithoutCompanyInput
-    employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutCompanyInput
+    fortnoxSyncLogs?: FortnoxSyncLogUncheckedCreateNestedManyWithoutCompanyInput
   }
 
   export type CompanyCreateOrConnectWithoutUsersInput = {
@@ -10524,14 +15234,16 @@ export namespace Prisma {
 
   export type EmployeeCustomerCreateWithoutUserInput = {
     id?: string
-    company?: CompanyCreateNestedOneWithoutEmployeeCustomersInput
-    customer?: CustomerCreateNestedOneWithoutEmployeeCustomersInput
+    assignedAt?: Date | string
+    assignedBy?: string | null
+    customer: CustomerCreateNestedOneWithoutEmployeeCustomersInput
   }
 
   export type EmployeeCustomerUncheckedCreateWithoutUserInput = {
     id?: string
-    companyId?: string | null
-    customerId?: string | null
+    customerId: string
+    assignedAt?: Date | string
+    assignedBy?: string | null
   }
 
   export type EmployeeCustomerCreateOrConnectWithoutUserInput = {
@@ -10541,6 +15253,70 @@ export namespace Prisma {
 
   export type EmployeeCustomerCreateManyUserInputEnvelope = {
     data: EmployeeCustomerCreateManyUserInput | EmployeeCustomerCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TimeEntryCreateWithoutUserInput = {
+    id?: string
+    date: Date | string
+    hours: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    source?: string
+    rawCustomerName?: string | null
+    createdAt?: Date | string
+    customer?: CustomerCreateNestedOneWithoutTimeEntriesInput
+  }
+
+  export type TimeEntryUncheckedCreateWithoutUserInput = {
+    id?: string
+    customerId?: string | null
+    date: Date | string
+    hours: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    source?: string
+    rawCustomerName?: string | null
+    createdAt?: Date | string
+  }
+
+  export type TimeEntryCreateOrConnectWithoutUserInput = {
+    where: TimeEntryWhereUniqueInput
+    create: XOR<TimeEntryCreateWithoutUserInput, TimeEntryUncheckedCreateWithoutUserInput>
+  }
+
+  export type TimeEntryCreateManyUserInputEnvelope = {
+    data: TimeEntryCreateManyUserInput | TimeEntryCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmailActivityCreateWithoutUserInput = {
+    id?: string
+    sentAt: Date | string
+    recipientEmail: string
+    recipientDomain: string
+    subject?: string | null
+    messageId?: string | null
+    createdAt?: Date | string
+    customer?: CustomerCreateNestedOneWithoutEmailActivitiesInput
+  }
+
+  export type EmailActivityUncheckedCreateWithoutUserInput = {
+    id?: string
+    customerId?: string | null
+    sentAt: Date | string
+    recipientEmail: string
+    recipientDomain: string
+    subject?: string | null
+    messageId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmailActivityCreateOrConnectWithoutUserInput = {
+    where: EmailActivityWhereUniqueInput
+    create: XOR<EmailActivityCreateWithoutUserInput, EmailActivityUncheckedCreateWithoutUserInput>
+  }
+
+  export type EmailActivityCreateManyUserInputEnvelope = {
+    data: EmailActivityCreateManyUserInput | EmailActivityCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -10562,7 +15338,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     integrations?: CompanyIntegrationUpdateManyWithoutCompanyNestedInput
     customers?: CustomerUpdateManyWithoutCompanyNestedInput
-    employeeCustomers?: EmployeeCustomerUpdateManyWithoutCompanyNestedInput
+    fortnoxSyncLogs?: FortnoxSyncLogUpdateManyWithoutCompanyNestedInput
   }
 
   export type CompanyUncheckedUpdateWithoutUsersInput = {
@@ -10572,7 +15348,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     integrations?: CompanyIntegrationUncheckedUpdateManyWithoutCompanyNestedInput
     customers?: CustomerUncheckedUpdateManyWithoutCompanyNestedInput
-    employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutCompanyNestedInput
+    fortnoxSyncLogs?: FortnoxSyncLogUncheckedUpdateManyWithoutCompanyNestedInput
   }
 
   export type ImapCredentialUpsertWithWhereUniqueWithoutUserInput = {
@@ -10621,6 +15397,79 @@ export namespace Prisma {
     data: XOR<EmployeeCustomerUpdateManyMutationInput, EmployeeCustomerUncheckedUpdateManyWithoutUserInput>
   }
 
+  export type EmployeeCustomerScalarWhereInput = {
+    AND?: EmployeeCustomerScalarWhereInput | EmployeeCustomerScalarWhereInput[]
+    OR?: EmployeeCustomerScalarWhereInput[]
+    NOT?: EmployeeCustomerScalarWhereInput | EmployeeCustomerScalarWhereInput[]
+    id?: UuidFilter<"EmployeeCustomer"> | string
+    userId?: UuidFilter<"EmployeeCustomer"> | string
+    customerId?: UuidFilter<"EmployeeCustomer"> | string
+    assignedAt?: DateTimeFilter<"EmployeeCustomer"> | Date | string
+    assignedBy?: UuidNullableFilter<"EmployeeCustomer"> | string | null
+  }
+
+  export type TimeEntryUpsertWithWhereUniqueWithoutUserInput = {
+    where: TimeEntryWhereUniqueInput
+    update: XOR<TimeEntryUpdateWithoutUserInput, TimeEntryUncheckedUpdateWithoutUserInput>
+    create: XOR<TimeEntryCreateWithoutUserInput, TimeEntryUncheckedCreateWithoutUserInput>
+  }
+
+  export type TimeEntryUpdateWithWhereUniqueWithoutUserInput = {
+    where: TimeEntryWhereUniqueInput
+    data: XOR<TimeEntryUpdateWithoutUserInput, TimeEntryUncheckedUpdateWithoutUserInput>
+  }
+
+  export type TimeEntryUpdateManyWithWhereWithoutUserInput = {
+    where: TimeEntryScalarWhereInput
+    data: XOR<TimeEntryUpdateManyMutationInput, TimeEntryUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type TimeEntryScalarWhereInput = {
+    AND?: TimeEntryScalarWhereInput | TimeEntryScalarWhereInput[]
+    OR?: TimeEntryScalarWhereInput[]
+    NOT?: TimeEntryScalarWhereInput | TimeEntryScalarWhereInput[]
+    id?: UuidFilter<"TimeEntry"> | string
+    userId?: UuidFilter<"TimeEntry"> | string
+    customerId?: UuidNullableFilter<"TimeEntry"> | string | null
+    date?: DateTimeFilter<"TimeEntry"> | Date | string
+    hours?: DecimalFilter<"TimeEntry"> | Decimal | DecimalJsLike | number | string
+    description?: StringNullableFilter<"TimeEntry"> | string | null
+    source?: StringFilter<"TimeEntry"> | string
+    rawCustomerName?: StringNullableFilter<"TimeEntry"> | string | null
+    createdAt?: DateTimeFilter<"TimeEntry"> | Date | string
+  }
+
+  export type EmailActivityUpsertWithWhereUniqueWithoutUserInput = {
+    where: EmailActivityWhereUniqueInput
+    update: XOR<EmailActivityUpdateWithoutUserInput, EmailActivityUncheckedUpdateWithoutUserInput>
+    create: XOR<EmailActivityCreateWithoutUserInput, EmailActivityUncheckedCreateWithoutUserInput>
+  }
+
+  export type EmailActivityUpdateWithWhereUniqueWithoutUserInput = {
+    where: EmailActivityWhereUniqueInput
+    data: XOR<EmailActivityUpdateWithoutUserInput, EmailActivityUncheckedUpdateWithoutUserInput>
+  }
+
+  export type EmailActivityUpdateManyWithWhereWithoutUserInput = {
+    where: EmailActivityScalarWhereInput
+    data: XOR<EmailActivityUpdateManyMutationInput, EmailActivityUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type EmailActivityScalarWhereInput = {
+    AND?: EmailActivityScalarWhereInput | EmailActivityScalarWhereInput[]
+    OR?: EmailActivityScalarWhereInput[]
+    NOT?: EmailActivityScalarWhereInput | EmailActivityScalarWhereInput[]
+    id?: UuidFilter<"EmailActivity"> | string
+    userId?: UuidFilter<"EmailActivity"> | string
+    customerId?: UuidNullableFilter<"EmailActivity"> | string | null
+    sentAt?: DateTimeFilter<"EmailActivity"> | Date | string
+    recipientEmail?: StringFilter<"EmailActivity"> | string
+    recipientDomain?: StringFilter<"EmailActivity"> | string
+    subject?: StringNullableFilter<"EmailActivity"> | string | null
+    messageId?: StringNullableFilter<"EmailActivity"> | string | null
+    createdAt?: DateTimeFilter<"EmailActivity"> | Date | string
+  }
+
   export type CompanyCreateWithoutIntegrationsInput = {
     id?: string
     name: string
@@ -10628,7 +15477,7 @@ export namespace Prisma {
     createdAt?: Date | string
     users?: UserCreateNestedManyWithoutCompanyInput
     customers?: CustomerCreateNestedManyWithoutCompanyInput
-    employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutCompanyInput
+    fortnoxSyncLogs?: FortnoxSyncLogCreateNestedManyWithoutCompanyInput
   }
 
   export type CompanyUncheckedCreateWithoutIntegrationsInput = {
@@ -10638,7 +15487,7 @@ export namespace Prisma {
     createdAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutCompanyInput
     customers?: CustomerUncheckedCreateNestedManyWithoutCompanyInput
-    employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutCompanyInput
+    fortnoxSyncLogs?: FortnoxSyncLogUncheckedCreateNestedManyWithoutCompanyInput
   }
 
   export type CompanyCreateOrConnectWithoutIntegrationsInput = {
@@ -10664,7 +15513,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutCompanyNestedInput
     customers?: CustomerUpdateManyWithoutCompanyNestedInput
-    employeeCustomers?: EmployeeCustomerUpdateManyWithoutCompanyNestedInput
+    fortnoxSyncLogs?: FortnoxSyncLogUpdateManyWithoutCompanyNestedInput
   }
 
   export type CompanyUncheckedUpdateWithoutIntegrationsInput = {
@@ -10674,7 +15523,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutCompanyNestedInput
     customers?: CustomerUncheckedUpdateManyWithoutCompanyNestedInput
-    employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutCompanyNestedInput
+    fortnoxSyncLogs?: FortnoxSyncLogUncheckedUpdateManyWithoutCompanyNestedInput
   }
 
   export type UserCreateWithoutImapCredentialsInput = {
@@ -10685,6 +15534,8 @@ export namespace Prisma {
     createdAt?: Date | string
     company: CompanyCreateNestedOneWithoutUsersInput
     employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutUserInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutUserInput
+    emailActivities?: EmailActivityCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutImapCredentialsInput = {
@@ -10695,6 +15546,8 @@ export namespace Prisma {
     role?: string
     createdAt?: Date | string
     employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutUserInput
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutUserInput
+    emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutImapCredentialsInput = {
@@ -10721,6 +15574,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: CompanyUpdateOneRequiredWithoutUsersNestedInput
     employeeCustomers?: EmployeeCustomerUpdateManyWithoutUserNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutUserNestedInput
+    emailActivities?: EmailActivityUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutImapCredentialsInput = {
@@ -10731,6 +15586,8 @@ export namespace Prisma {
     role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutUserNestedInput
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+    emailActivities?: EmailActivityUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type CompanyCreateWithoutCustomersInput = {
@@ -10740,7 +15597,7 @@ export namespace Prisma {
     createdAt?: Date | string
     users?: UserCreateNestedManyWithoutCompanyInput
     integrations?: CompanyIntegrationCreateNestedManyWithoutCompanyInput
-    employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutCompanyInput
+    fortnoxSyncLogs?: FortnoxSyncLogCreateNestedManyWithoutCompanyInput
   }
 
   export type CompanyUncheckedCreateWithoutCustomersInput = {
@@ -10750,7 +15607,7 @@ export namespace Prisma {
     createdAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutCompanyInput
     integrations?: CompanyIntegrationUncheckedCreateNestedManyWithoutCompanyInput
-    employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutCompanyInput
+    fortnoxSyncLogs?: FortnoxSyncLogUncheckedCreateNestedManyWithoutCompanyInput
   }
 
   export type CompanyCreateOrConnectWithoutCustomersInput = {
@@ -10760,14 +15617,16 @@ export namespace Prisma {
 
   export type EmployeeCustomerCreateWithoutCustomerInput = {
     id?: string
-    user?: UserCreateNestedOneWithoutEmployeeCustomersInput
-    company?: CompanyCreateNestedOneWithoutEmployeeCustomersInput
+    assignedAt?: Date | string
+    assignedBy?: string | null
+    user: UserCreateNestedOneWithoutEmployeeCustomersInput
   }
 
   export type EmployeeCustomerUncheckedCreateWithoutCustomerInput = {
     id?: string
-    userId?: string | null
-    companyId?: string | null
+    userId: string
+    assignedAt?: Date | string
+    assignedBy?: string | null
   }
 
   export type EmployeeCustomerCreateOrConnectWithoutCustomerInput = {
@@ -10777,6 +15636,70 @@ export namespace Prisma {
 
   export type EmployeeCustomerCreateManyCustomerInputEnvelope = {
     data: EmployeeCustomerCreateManyCustomerInput | EmployeeCustomerCreateManyCustomerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TimeEntryCreateWithoutCustomerInput = {
+    id?: string
+    date: Date | string
+    hours: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    source?: string
+    rawCustomerName?: string | null
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutTimeEntriesInput
+  }
+
+  export type TimeEntryUncheckedCreateWithoutCustomerInput = {
+    id?: string
+    userId: string
+    date: Date | string
+    hours: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    source?: string
+    rawCustomerName?: string | null
+    createdAt?: Date | string
+  }
+
+  export type TimeEntryCreateOrConnectWithoutCustomerInput = {
+    where: TimeEntryWhereUniqueInput
+    create: XOR<TimeEntryCreateWithoutCustomerInput, TimeEntryUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type TimeEntryCreateManyCustomerInputEnvelope = {
+    data: TimeEntryCreateManyCustomerInput | TimeEntryCreateManyCustomerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmailActivityCreateWithoutCustomerInput = {
+    id?: string
+    sentAt: Date | string
+    recipientEmail: string
+    recipientDomain: string
+    subject?: string | null
+    messageId?: string | null
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutEmailActivitiesInput
+  }
+
+  export type EmailActivityUncheckedCreateWithoutCustomerInput = {
+    id?: string
+    userId: string
+    sentAt: Date | string
+    recipientEmail: string
+    recipientDomain: string
+    subject?: string | null
+    messageId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmailActivityCreateOrConnectWithoutCustomerInput = {
+    where: EmailActivityWhereUniqueInput
+    create: XOR<EmailActivityCreateWithoutCustomerInput, EmailActivityUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type EmailActivityCreateManyCustomerInputEnvelope = {
+    data: EmailActivityCreateManyCustomerInput | EmailActivityCreateManyCustomerInput[]
     skipDuplicates?: boolean
   }
 
@@ -10798,7 +15721,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutCompanyNestedInput
     integrations?: CompanyIntegrationUpdateManyWithoutCompanyNestedInput
-    employeeCustomers?: EmployeeCustomerUpdateManyWithoutCompanyNestedInput
+    fortnoxSyncLogs?: FortnoxSyncLogUpdateManyWithoutCompanyNestedInput
   }
 
   export type CompanyUncheckedUpdateWithoutCustomersInput = {
@@ -10808,7 +15731,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutCompanyNestedInput
     integrations?: CompanyIntegrationUncheckedUpdateManyWithoutCompanyNestedInput
-    employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutCompanyNestedInput
+    fortnoxSyncLogs?: FortnoxSyncLogUncheckedUpdateManyWithoutCompanyNestedInput
   }
 
   export type EmployeeCustomerUpsertWithWhereUniqueWithoutCustomerInput = {
@@ -10827,6 +15750,38 @@ export namespace Prisma {
     data: XOR<EmployeeCustomerUpdateManyMutationInput, EmployeeCustomerUncheckedUpdateManyWithoutCustomerInput>
   }
 
+  export type TimeEntryUpsertWithWhereUniqueWithoutCustomerInput = {
+    where: TimeEntryWhereUniqueInput
+    update: XOR<TimeEntryUpdateWithoutCustomerInput, TimeEntryUncheckedUpdateWithoutCustomerInput>
+    create: XOR<TimeEntryCreateWithoutCustomerInput, TimeEntryUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type TimeEntryUpdateWithWhereUniqueWithoutCustomerInput = {
+    where: TimeEntryWhereUniqueInput
+    data: XOR<TimeEntryUpdateWithoutCustomerInput, TimeEntryUncheckedUpdateWithoutCustomerInput>
+  }
+
+  export type TimeEntryUpdateManyWithWhereWithoutCustomerInput = {
+    where: TimeEntryScalarWhereInput
+    data: XOR<TimeEntryUpdateManyMutationInput, TimeEntryUncheckedUpdateManyWithoutCustomerInput>
+  }
+
+  export type EmailActivityUpsertWithWhereUniqueWithoutCustomerInput = {
+    where: EmailActivityWhereUniqueInput
+    update: XOR<EmailActivityUpdateWithoutCustomerInput, EmailActivityUncheckedUpdateWithoutCustomerInput>
+    create: XOR<EmailActivityCreateWithoutCustomerInput, EmailActivityUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type EmailActivityUpdateWithWhereUniqueWithoutCustomerInput = {
+    where: EmailActivityWhereUniqueInput
+    data: XOR<EmailActivityUpdateWithoutCustomerInput, EmailActivityUncheckedUpdateWithoutCustomerInput>
+  }
+
+  export type EmailActivityUpdateManyWithWhereWithoutCustomerInput = {
+    where: EmailActivityScalarWhereInput
+    data: XOR<EmailActivityUpdateManyMutationInput, EmailActivityUncheckedUpdateManyWithoutCustomerInput>
+  }
+
   export type UserCreateWithoutEmployeeCustomersInput = {
     id?: string
     email: string
@@ -10835,6 +15790,8 @@ export namespace Prisma {
     createdAt?: Date | string
     company: CompanyCreateNestedOneWithoutUsersInput
     imapCredentials?: ImapCredentialCreateNestedManyWithoutUserInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutUserInput
+    emailActivities?: EmailActivityCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEmployeeCustomersInput = {
@@ -10845,6 +15802,8 @@ export namespace Prisma {
     role?: string
     createdAt?: Date | string
     imapCredentials?: ImapCredentialUncheckedCreateNestedManyWithoutUserInput
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutUserInput
+    emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEmployeeCustomersInput = {
@@ -10852,45 +15811,26 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutEmployeeCustomersInput, UserUncheckedCreateWithoutEmployeeCustomersInput>
   }
 
-  export type CompanyCreateWithoutEmployeeCustomersInput = {
-    id?: string
-    name: string
-    domain: string
-    createdAt?: Date | string
-    users?: UserCreateNestedManyWithoutCompanyInput
-    integrations?: CompanyIntegrationCreateNestedManyWithoutCompanyInput
-    customers?: CustomerCreateNestedManyWithoutCompanyInput
-  }
-
-  export type CompanyUncheckedCreateWithoutEmployeeCustomersInput = {
-    id?: string
-    name: string
-    domain: string
-    createdAt?: Date | string
-    users?: UserUncheckedCreateNestedManyWithoutCompanyInput
-    integrations?: CompanyIntegrationUncheckedCreateNestedManyWithoutCompanyInput
-    customers?: CustomerUncheckedCreateNestedManyWithoutCompanyInput
-  }
-
-  export type CompanyCreateOrConnectWithoutEmployeeCustomersInput = {
-    where: CompanyWhereUniqueInput
-    create: XOR<CompanyCreateWithoutEmployeeCustomersInput, CompanyUncheckedCreateWithoutEmployeeCustomersInput>
-  }
-
   export type CustomerCreateWithoutEmployeeCustomersInput = {
     id?: string
-    email: string
-    name?: string | null
-    companyName?: string | null
-    company?: CompanyCreateNestedOneWithoutCustomersInput
+    fortnoxCustomerNumber?: string | null
+    name: string
+    domain?: string | null
+    createdAt?: Date | string
+    company: CompanyCreateNestedOneWithoutCustomersInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutCustomerInput
+    emailActivities?: EmailActivityCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutEmployeeCustomersInput = {
     id?: string
-    email: string
-    name?: string | null
-    companyId?: string | null
-    companyName?: string | null
+    fortnoxCustomerNumber?: string | null
+    name: string
+    domain?: string | null
+    companyId: string
+    createdAt?: Date | string
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutCustomerInput
+    emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutEmployeeCustomersInput = {
@@ -10917,6 +15857,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: CompanyUpdateOneRequiredWithoutUsersNestedInput
     imapCredentials?: ImapCredentialUpdateManyWithoutUserNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutUserNestedInput
+    emailActivities?: EmailActivityUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEmployeeCustomersInput = {
@@ -10927,37 +15869,8 @@ export namespace Prisma {
     role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     imapCredentials?: ImapCredentialUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type CompanyUpsertWithoutEmployeeCustomersInput = {
-    update: XOR<CompanyUpdateWithoutEmployeeCustomersInput, CompanyUncheckedUpdateWithoutEmployeeCustomersInput>
-    create: XOR<CompanyCreateWithoutEmployeeCustomersInput, CompanyUncheckedCreateWithoutEmployeeCustomersInput>
-    where?: CompanyWhereInput
-  }
-
-  export type CompanyUpdateToOneWithWhereWithoutEmployeeCustomersInput = {
-    where?: CompanyWhereInput
-    data: XOR<CompanyUpdateWithoutEmployeeCustomersInput, CompanyUncheckedUpdateWithoutEmployeeCustomersInput>
-  }
-
-  export type CompanyUpdateWithoutEmployeeCustomersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    domain?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    users?: UserUpdateManyWithoutCompanyNestedInput
-    integrations?: CompanyIntegrationUpdateManyWithoutCompanyNestedInput
-    customers?: CustomerUpdateManyWithoutCompanyNestedInput
-  }
-
-  export type CompanyUncheckedUpdateWithoutEmployeeCustomersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    domain?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    users?: UserUncheckedUpdateManyWithoutCompanyNestedInput
-    integrations?: CompanyIntegrationUncheckedUpdateManyWithoutCompanyNestedInput
-    customers?: CustomerUncheckedUpdateManyWithoutCompanyNestedInput
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+    emailActivities?: EmailActivityUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type CustomerUpsertWithoutEmployeeCustomersInput = {
@@ -10973,18 +15886,328 @@ export namespace Prisma {
 
   export type CustomerUpdateWithoutEmployeeCustomersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    companyName?: NullableStringFieldUpdateOperationsInput | string | null
-    company?: CompanyUpdateOneWithoutCustomersNestedInput
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    company?: CompanyUpdateOneRequiredWithoutCustomersNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutCustomerNestedInput
+    emailActivities?: EmailActivityUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutEmployeeCustomersInput = {
     id?: StringFieldUpdateOperationsInput | string
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    companyId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutCustomerNestedInput
+    emailActivities?: EmailActivityUncheckedUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type UserCreateWithoutTimeEntriesInput = {
+    id?: string
+    email: string
+    password: string
+    role?: string
+    createdAt?: Date | string
+    company: CompanyCreateNestedOneWithoutUsersInput
+    imapCredentials?: ImapCredentialCreateNestedManyWithoutUserInput
+    employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutUserInput
+    emailActivities?: EmailActivityCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutTimeEntriesInput = {
+    id?: string
+    email: string
+    password: string
+    companyId: string
+    role?: string
+    createdAt?: Date | string
+    imapCredentials?: ImapCredentialUncheckedCreateNestedManyWithoutUserInput
+    employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutUserInput
+    emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutTimeEntriesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTimeEntriesInput, UserUncheckedCreateWithoutTimeEntriesInput>
+  }
+
+  export type CustomerCreateWithoutTimeEntriesInput = {
+    id?: string
+    fortnoxCustomerNumber?: string | null
+    name: string
+    domain?: string | null
+    createdAt?: Date | string
+    company: CompanyCreateNestedOneWithoutCustomersInput
+    employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutCustomerInput
+    emailActivities?: EmailActivityCreateNestedManyWithoutCustomerInput
+  }
+
+  export type CustomerUncheckedCreateWithoutTimeEntriesInput = {
+    id?: string
+    fortnoxCustomerNumber?: string | null
+    name: string
+    domain?: string | null
+    companyId: string
+    createdAt?: Date | string
+    employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutCustomerInput
+    emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutCustomerInput
+  }
+
+  export type CustomerCreateOrConnectWithoutTimeEntriesInput = {
+    where: CustomerWhereUniqueInput
+    create: XOR<CustomerCreateWithoutTimeEntriesInput, CustomerUncheckedCreateWithoutTimeEntriesInput>
+  }
+
+  export type UserUpsertWithoutTimeEntriesInput = {
+    update: XOR<UserUpdateWithoutTimeEntriesInput, UserUncheckedUpdateWithoutTimeEntriesInput>
+    create: XOR<UserCreateWithoutTimeEntriesInput, UserUncheckedCreateWithoutTimeEntriesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutTimeEntriesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTimeEntriesInput, UserUncheckedUpdateWithoutTimeEntriesInput>
+  }
+
+  export type UserUpdateWithoutTimeEntriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
-    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    company?: CompanyUpdateOneRequiredWithoutUsersNestedInput
+    imapCredentials?: ImapCredentialUpdateManyWithoutUserNestedInput
+    employeeCustomers?: EmployeeCustomerUpdateManyWithoutUserNestedInput
+    emailActivities?: EmailActivityUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTimeEntriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    companyId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    imapCredentials?: ImapCredentialUncheckedUpdateManyWithoutUserNestedInput
+    employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutUserNestedInput
+    emailActivities?: EmailActivityUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type CustomerUpsertWithoutTimeEntriesInput = {
+    update: XOR<CustomerUpdateWithoutTimeEntriesInput, CustomerUncheckedUpdateWithoutTimeEntriesInput>
+    create: XOR<CustomerCreateWithoutTimeEntriesInput, CustomerUncheckedCreateWithoutTimeEntriesInput>
+    where?: CustomerWhereInput
+  }
+
+  export type CustomerUpdateToOneWithWhereWithoutTimeEntriesInput = {
+    where?: CustomerWhereInput
+    data: XOR<CustomerUpdateWithoutTimeEntriesInput, CustomerUncheckedUpdateWithoutTimeEntriesInput>
+  }
+
+  export type CustomerUpdateWithoutTimeEntriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    company?: CompanyUpdateOneRequiredWithoutCustomersNestedInput
+    employeeCustomers?: EmployeeCustomerUpdateManyWithoutCustomerNestedInput
+    emailActivities?: EmailActivityUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type CustomerUncheckedUpdateWithoutTimeEntriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    companyId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+    emailActivities?: EmailActivityUncheckedUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type UserCreateWithoutEmailActivitiesInput = {
+    id?: string
+    email: string
+    password: string
+    role?: string
+    createdAt?: Date | string
+    company: CompanyCreateNestedOneWithoutUsersInput
+    imapCredentials?: ImapCredentialCreateNestedManyWithoutUserInput
+    employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutUserInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutEmailActivitiesInput = {
+    id?: string
+    email: string
+    password: string
+    companyId: string
+    role?: string
+    createdAt?: Date | string
+    imapCredentials?: ImapCredentialUncheckedCreateNestedManyWithoutUserInput
+    employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutUserInput
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutEmailActivitiesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutEmailActivitiesInput, UserUncheckedCreateWithoutEmailActivitiesInput>
+  }
+
+  export type CustomerCreateWithoutEmailActivitiesInput = {
+    id?: string
+    fortnoxCustomerNumber?: string | null
+    name: string
+    domain?: string | null
+    createdAt?: Date | string
+    company: CompanyCreateNestedOneWithoutCustomersInput
+    employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutCustomerInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutCustomerInput
+  }
+
+  export type CustomerUncheckedCreateWithoutEmailActivitiesInput = {
+    id?: string
+    fortnoxCustomerNumber?: string | null
+    name: string
+    domain?: string | null
+    companyId: string
+    createdAt?: Date | string
+    employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutCustomerInput
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutCustomerInput
+  }
+
+  export type CustomerCreateOrConnectWithoutEmailActivitiesInput = {
+    where: CustomerWhereUniqueInput
+    create: XOR<CustomerCreateWithoutEmailActivitiesInput, CustomerUncheckedCreateWithoutEmailActivitiesInput>
+  }
+
+  export type UserUpsertWithoutEmailActivitiesInput = {
+    update: XOR<UserUpdateWithoutEmailActivitiesInput, UserUncheckedUpdateWithoutEmailActivitiesInput>
+    create: XOR<UserCreateWithoutEmailActivitiesInput, UserUncheckedCreateWithoutEmailActivitiesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutEmailActivitiesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutEmailActivitiesInput, UserUncheckedUpdateWithoutEmailActivitiesInput>
+  }
+
+  export type UserUpdateWithoutEmailActivitiesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    company?: CompanyUpdateOneRequiredWithoutUsersNestedInput
+    imapCredentials?: ImapCredentialUpdateManyWithoutUserNestedInput
+    employeeCustomers?: EmployeeCustomerUpdateManyWithoutUserNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutEmailActivitiesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    companyId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    imapCredentials?: ImapCredentialUncheckedUpdateManyWithoutUserNestedInput
+    employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutUserNestedInput
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type CustomerUpsertWithoutEmailActivitiesInput = {
+    update: XOR<CustomerUpdateWithoutEmailActivitiesInput, CustomerUncheckedUpdateWithoutEmailActivitiesInput>
+    create: XOR<CustomerCreateWithoutEmailActivitiesInput, CustomerUncheckedCreateWithoutEmailActivitiesInput>
+    where?: CustomerWhereInput
+  }
+
+  export type CustomerUpdateToOneWithWhereWithoutEmailActivitiesInput = {
+    where?: CustomerWhereInput
+    data: XOR<CustomerUpdateWithoutEmailActivitiesInput, CustomerUncheckedUpdateWithoutEmailActivitiesInput>
+  }
+
+  export type CustomerUpdateWithoutEmailActivitiesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    company?: CompanyUpdateOneRequiredWithoutCustomersNestedInput
+    employeeCustomers?: EmployeeCustomerUpdateManyWithoutCustomerNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type CustomerUncheckedUpdateWithoutEmailActivitiesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    companyId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type CompanyCreateWithoutFortnoxSyncLogsInput = {
+    id?: string
+    name: string
+    domain: string
+    createdAt?: Date | string
+    users?: UserCreateNestedManyWithoutCompanyInput
+    integrations?: CompanyIntegrationCreateNestedManyWithoutCompanyInput
+    customers?: CustomerCreateNestedManyWithoutCompanyInput
+  }
+
+  export type CompanyUncheckedCreateWithoutFortnoxSyncLogsInput = {
+    id?: string
+    name: string
+    domain: string
+    createdAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutCompanyInput
+    integrations?: CompanyIntegrationUncheckedCreateNestedManyWithoutCompanyInput
+    customers?: CustomerUncheckedCreateNestedManyWithoutCompanyInput
+  }
+
+  export type CompanyCreateOrConnectWithoutFortnoxSyncLogsInput = {
+    where: CompanyWhereUniqueInput
+    create: XOR<CompanyCreateWithoutFortnoxSyncLogsInput, CompanyUncheckedCreateWithoutFortnoxSyncLogsInput>
+  }
+
+  export type CompanyUpsertWithoutFortnoxSyncLogsInput = {
+    update: XOR<CompanyUpdateWithoutFortnoxSyncLogsInput, CompanyUncheckedUpdateWithoutFortnoxSyncLogsInput>
+    create: XOR<CompanyCreateWithoutFortnoxSyncLogsInput, CompanyUncheckedCreateWithoutFortnoxSyncLogsInput>
+    where?: CompanyWhereInput
+  }
+
+  export type CompanyUpdateToOneWithWhereWithoutFortnoxSyncLogsInput = {
+    where?: CompanyWhereInput
+    data: XOR<CompanyUpdateWithoutFortnoxSyncLogsInput, CompanyUncheckedUpdateWithoutFortnoxSyncLogsInput>
+  }
+
+  export type CompanyUpdateWithoutFortnoxSyncLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutCompanyNestedInput
+    integrations?: CompanyIntegrationUpdateManyWithoutCompanyNestedInput
+    customers?: CustomerUpdateManyWithoutCompanyNestedInput
+  }
+
+  export type CompanyUncheckedUpdateWithoutFortnoxSyncLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutCompanyNestedInput
+    integrations?: CompanyIntegrationUncheckedUpdateManyWithoutCompanyNestedInput
+    customers?: CustomerUncheckedUpdateManyWithoutCompanyNestedInput
   }
 
   export type UserCreateManyCompanyInput = {
@@ -10997,7 +16220,7 @@ export namespace Prisma {
 
   export type CompanyIntegrationCreateManyCompanyInput = {
     id?: string
-    service?: string | null
+    service: string
     accessToken: string
     refreshToken?: string | null
     expiresAt?: Date | string | null
@@ -11006,15 +16229,16 @@ export namespace Prisma {
 
   export type CustomerCreateManyCompanyInput = {
     id?: string
-    email: string
-    name?: string | null
-    companyName?: string | null
+    fortnoxCustomerNumber?: string | null
+    name: string
+    domain?: string | null
+    createdAt?: Date | string
   }
 
-  export type EmployeeCustomerCreateManyCompanyInput = {
+  export type FortnoxSyncLogCreateManyCompanyInput = {
     id?: string
-    userId?: string | null
-    customerId?: string | null
+    resource: string
+    lastSyncedAt: Date | string
   }
 
   export type UserUpdateWithoutCompanyInput = {
@@ -11025,6 +16249,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     imapCredentials?: ImapCredentialUpdateManyWithoutUserNestedInput
     employeeCustomers?: EmployeeCustomerUpdateManyWithoutUserNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutUserNestedInput
+    emailActivities?: EmailActivityUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCompanyInput = {
@@ -11035,6 +16261,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     imapCredentials?: ImapCredentialUncheckedUpdateManyWithoutUserNestedInput
     employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutUserNestedInput
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+    emailActivities?: EmailActivityUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutCompanyInput = {
@@ -11047,7 +16275,7 @@ export namespace Prisma {
 
   export type CompanyIntegrationUpdateWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    service?: NullableStringFieldUpdateOperationsInput | string | null
+    service?: StringFieldUpdateOperationsInput | string
     accessToken?: StringFieldUpdateOperationsInput | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -11056,7 +16284,7 @@ export namespace Prisma {
 
   export type CompanyIntegrationUncheckedUpdateWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    service?: NullableStringFieldUpdateOperationsInput | string | null
+    service?: StringFieldUpdateOperationsInput | string
     accessToken?: StringFieldUpdateOperationsInput | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -11065,7 +16293,7 @@ export namespace Prisma {
 
   export type CompanyIntegrationUncheckedUpdateManyWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    service?: NullableStringFieldUpdateOperationsInput | string | null
+    service?: StringFieldUpdateOperationsInput | string
     accessToken?: StringFieldUpdateOperationsInput | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -11074,43 +16302,50 @@ export namespace Prisma {
 
   export type CustomerUpdateWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeCustomers?: EmployeeCustomerUpdateManyWithoutCustomerNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutCustomerNestedInput
+    emailActivities?: EmailActivityUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutCustomerNestedInput
+    emailActivities?: EmailActivityUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateManyWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type EmployeeCustomerUpdateWithoutCompanyInput = {
+  export type FortnoxSyncLogUpdateWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user?: UserUpdateOneWithoutEmployeeCustomersNestedInput
-    customer?: CustomerUpdateOneWithoutEmployeeCustomersNestedInput
+    resource?: StringFieldUpdateOperationsInput | string
+    lastSyncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type EmployeeCustomerUncheckedUpdateWithoutCompanyInput = {
+  export type FortnoxSyncLogUncheckedUpdateWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    resource?: StringFieldUpdateOperationsInput | string
+    lastSyncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type EmployeeCustomerUncheckedUpdateManyWithoutCompanyInput = {
+  export type FortnoxSyncLogUncheckedUpdateManyWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    resource?: StringFieldUpdateOperationsInput | string
+    lastSyncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ImapCredentialCreateManyUserInput = {
@@ -11125,8 +16360,31 @@ export namespace Prisma {
 
   export type EmployeeCustomerCreateManyUserInput = {
     id?: string
-    companyId?: string | null
+    customerId: string
+    assignedAt?: Date | string
+    assignedBy?: string | null
+  }
+
+  export type TimeEntryCreateManyUserInput = {
+    id?: string
     customerId?: string | null
+    date: Date | string
+    hours: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    source?: string
+    rawCustomerName?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmailActivityCreateManyUserInput = {
+    id?: string
+    customerId?: string | null
+    sentAt: Date | string
+    recipientEmail: string
+    recipientDomain: string
+    subject?: string | null
+    messageId?: string | null
+    createdAt?: Date | string
   }
 
   export type ImapCredentialUpdateWithoutUserInput = {
@@ -11161,44 +16419,205 @@ export namespace Prisma {
 
   export type EmployeeCustomerUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    company?: CompanyUpdateOneWithoutEmployeeCustomersNestedInput
-    customer?: CustomerUpdateOneWithoutEmployeeCustomersNestedInput
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    customer?: CustomerUpdateOneRequiredWithoutEmployeeCustomersNestedInput
   }
 
   export type EmployeeCustomerUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
-    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignedBy?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type EmployeeCustomerUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignedBy?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type TimeEntryUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    hours?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    rawCustomerName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: CustomerUpdateOneWithoutTimeEntriesNestedInput
+  }
+
+  export type TimeEntryUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
     customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    hours?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    rawCustomerName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TimeEntryUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    hours?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    rawCustomerName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailActivityUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sentAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    recipientEmail?: StringFieldUpdateOperationsInput | string
+    recipientDomain?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    messageId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: CustomerUpdateOneWithoutEmailActivitiesNestedInput
+  }
+
+  export type EmailActivityUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    recipientEmail?: StringFieldUpdateOperationsInput | string
+    recipientDomain?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    messageId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailActivityUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    recipientEmail?: StringFieldUpdateOperationsInput | string
+    recipientDomain?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    messageId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EmployeeCustomerCreateManyCustomerInput = {
     id?: string
-    userId?: string | null
-    companyId?: string | null
+    userId: string
+    assignedAt?: Date | string
+    assignedBy?: string | null
+  }
+
+  export type TimeEntryCreateManyCustomerInput = {
+    id?: string
+    userId: string
+    date: Date | string
+    hours: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    source?: string
+    rawCustomerName?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmailActivityCreateManyCustomerInput = {
+    id?: string
+    userId: string
+    sentAt: Date | string
+    recipientEmail: string
+    recipientDomain: string
+    subject?: string | null
+    messageId?: string | null
+    createdAt?: Date | string
   }
 
   export type EmployeeCustomerUpdateWithoutCustomerInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user?: UserUpdateOneWithoutEmployeeCustomersNestedInput
-    company?: CompanyUpdateOneWithoutEmployeeCustomersNestedInput
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutEmployeeCustomersNestedInput
   }
 
   export type EmployeeCustomerUncheckedUpdateWithoutCustomerInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignedBy?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type EmployeeCustomerUncheckedUpdateManyWithoutCustomerInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    companyId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignedBy?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type TimeEntryUpdateWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    hours?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    rawCustomerName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutTimeEntriesNestedInput
+  }
+
+  export type TimeEntryUncheckedUpdateWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    hours?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    rawCustomerName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TimeEntryUncheckedUpdateManyWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    hours?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    rawCustomerName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailActivityUpdateWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sentAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    recipientEmail?: StringFieldUpdateOperationsInput | string
+    recipientDomain?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    messageId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutEmailActivitiesNestedInput
+  }
+
+  export type EmailActivityUncheckedUpdateWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    sentAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    recipientEmail?: StringFieldUpdateOperationsInput | string
+    recipientDomain?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    messageId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailActivityUncheckedUpdateManyWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    sentAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    recipientEmail?: StringFieldUpdateOperationsInput | string
+    recipientDomain?: StringFieldUpdateOperationsInput | string
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    messageId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
