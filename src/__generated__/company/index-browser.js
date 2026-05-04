@@ -159,17 +159,50 @@ exports.Prisma.ImapCredentialScalarFieldEnum = {
 
 exports.Prisma.CustomerScalarFieldEnum = {
   id: 'id',
-  email: 'email',
+  fortnoxCustomerNumber: 'fortnoxCustomerNumber',
   name: 'name',
+  domain: 'domain',
   companyId: 'companyId',
-  companyName: 'companyName'
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.EmployeeCustomerScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  customerId: 'customerId',
+  assignedAt: 'assignedAt',
+  assignedBy: 'assignedBy'
+};
+
+exports.Prisma.TimeEntryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  customerId: 'customerId',
+  date: 'date',
+  hours: 'hours',
+  description: 'description',
+  source: 'source',
+  rawCustomerName: 'rawCustomerName',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.EmailActivityScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  customerId: 'customerId',
+  sentAt: 'sentAt',
+  recipientEmail: 'recipientEmail',
+  recipientDomain: 'recipientDomain',
+  subject: 'subject',
+  messageId: 'messageId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.FortnoxSyncLogScalarFieldEnum = {
+  id: 'id',
   companyId: 'companyId',
-  customerId: 'customerId'
+  resource: 'resource',
+  lastSyncedAt: 'lastSyncedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -194,7 +227,10 @@ exports.Prisma.ModelName = {
   CompanyIntegration: 'CompanyIntegration',
   ImapCredential: 'ImapCredential',
   Customer: 'Customer',
-  EmployeeCustomer: 'EmployeeCustomer'
+  EmployeeCustomer: 'EmployeeCustomer',
+  TimeEntry: 'TimeEntry',
+  EmailActivity: 'EmailActivity',
+  FortnoxSyncLog: 'FortnoxSyncLog'
 };
 
 /**
