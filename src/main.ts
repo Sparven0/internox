@@ -11,6 +11,7 @@ import resolvers from "./graphql/resolvers";
 import masterPool, { masterClient } from "./DATABASE/masterpool";
 import fortnoxOAuth from "./routes/fortnoxCallbackRoute";
 import bcrypt from "bcrypt";
+import { startScheduler } from "./scheduler";
 
 dotenv.config();
 
@@ -57,17 +58,23 @@ app.use(cookieParser());
 app.use("/", fortnoxOAuth);
 
 async function seedSuperAdmin() {
-  const existing = await masterClient.user.findFirst({ where: { role: "super_admin" } });
+  const existing = await masterClient.user.findFirst({
+    where: { role: "super_admin" },
+  });
   if (existing) return;
 
   const userName = process.env.SUPER_ADMIN_USERNAME;
   const password = process.env.SUPER_ADMIN_PASSWORD;
   if (!userName || !password) {
-    throw new Error("SUPER_ADMIN_USERNAME and SUPER_ADMIN_PASSWORD must be set in .env to seed the first super admin.");
+    throw new Error(
+      "SUPER_ADMIN_USERNAME and SUPER_ADMIN_PASSWORD must be set in .env to seed the first super admin.",
+    );
   }
 
   const hashed = await bcrypt.hash(password, 12);
-  await masterClient.user.create({ data: { userName, password: hashed, role: "super_admin" } });
+  await masterClient.user.create({
+    data: { userName, password: hashed, role: "super_admin" },
+  });
   console.log(`Super admin "${userName}" created.`);
 }
 
@@ -76,6 +83,7 @@ async function startServer() {
     await waitForDb();
     await seedSuperAdmin();
     await server.start();
+    startScheduler();
 
     app.use(
       "/graphql",

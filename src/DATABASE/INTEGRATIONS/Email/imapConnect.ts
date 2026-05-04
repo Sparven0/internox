@@ -8,9 +8,11 @@ const { simpleParser }: any = require('mailparser');
 import { getCompanyPool, getCompanyClient } from '../../connectionManager';
 import { masterClient } from '../../masterpool';
 import { decryptPassword } from '../../../utils/encryptPassword';
+import { saveEmailsToDB, EmailToSave } from './saveEmailsToDB';
 
-type ParsedEmail = {
+export type ParsedEmail = {
   uid: number;
+  messageId?: string;
   subject?: string;
   from?: string;
   to?: string;
@@ -169,6 +171,8 @@ if (!uids || uids.length === 0) return [];
     if (!uids || uids.length === 0) return [];
 
     const emails: ParsedEmail[] = [];
+    const emailsToSave: EmailToSave[] = [];
+    const direction: 'sent' | 'received' = /sent/i.test(targetMailbox ?? '') ? 'sent' : 'received';
 
     // fetch envelope-only per UID to reliably get header fields
     for (const uid of uids) {
@@ -192,20 +196,68 @@ if (!uids || uids.length === 0) return [];
           }
         };
 
+        // Parse envelope addresses into structured objects for DB storage
+        const parseAddresses = (addrs: any): { address: string; name?: string }[] => {
+          if (!addrs) return [];
+          try {
+            return addrs
+              .map((a: any) => ({
+                address: `${a.mailbox || ''}@${a.host || ''}`.replace(/^@/, ''),
+                ...(a.name ? { name: String(a.name) } : {}),
+              }))
+              .filter((a: { address: string }) => a.address && a.address !== '@');
+          } catch {
+            return [];
+          }
+        };
+
         const from = formatAddresses(env.from);
         const to = formatAddresses(env.to || env.cc || env.bcc);
+        // RFC 2822 Message-ID from envelope; fall back to a stable synthetic id
+        const messageId: string | undefined = env.messageId || env['message-id'] || undefined;
+        const stableMessageId = messageId ?? `synthetic-${companyDb}-${cred.id}-${uid}`;
+
+        const fromAddresses = parseAddresses(env.from);
+        const toAddresses = parseAddresses(env.to);
+        const ccAddresses = parseAddresses(env.cc);
+        const primaryFrom = fromAddresses[0];
 
         emails.push({
           uid: Number(uid) || 0,
+          messageId,
           subject,
           from,
           to,
           date: dateVal,
         });
+
+        if (primaryFrom?.address) {
+          emailsToSave.push({
+            messageId: stableMessageId,
+            source: 'imap',
+            imapCredentialId: cred.id,
+            direction,
+            subject: subject ?? null,
+            fromAddress: primaryFrom.address,
+            fromName: primaryFrom.name ?? null,
+            toAddresses,
+            ccAddresses,
+            bccAddresses: [],
+            sentAt: dateVal ? new Date(dateVal) : null,
+            mailbox: targetMailbox ?? null,
+          });
+        }
       } catch (fetchErr) {
         console.error('Failed to fetch envelope for uid', uid, fetchErr);
         continue;
       }
+    }
+
+    try {
+      const result = await saveEmailsToDB(companyDb, emailsToSave);
+      console.log(`[imapConnect] DB persist: ${result.saved} saved, ${result.skipped} skipped, ${result.errors} errors`);
+    } catch (saveErr) {
+      console.error('[imapConnect] Failed to persist emails to DB:', saveErr);
     }
 
     return emails;
