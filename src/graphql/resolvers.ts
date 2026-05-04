@@ -185,6 +185,14 @@ const resolvers: Resolvers = {
     },
     createUser: async (_parent, { email, companyDomain, password }, { user }) => {
       requireAdmin(user);
+      if (user!.role !== "super_admin") {
+        const targetCompany = await masterClient.company.findUnique({ where: { domain: companyDomain } });
+        if (!targetCompany || targetCompany.id !== (user as any).companyId) {
+          throw new GraphQLError("Forbidden: you can only create users for your own company", {
+            extensions: { code: "FORBIDDEN" },
+          });
+        }
+      }
       await createUser(email, companyDomain, password);
       return "User created successfully";
     },
