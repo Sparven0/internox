@@ -81,6 +81,7 @@ export type Mutation = {
   createCompanyAdmin: Scalars['String']['output'];
   createUser: Scalars['String']['output'];
   login: AuthPayload;
+  loginSuperAdmin: SuperAdminAuthPayload;
   onboardCompany: OnboardResult;
   saveFortnoxTokens: Scalars['String']['output'];
 };
@@ -126,6 +127,12 @@ export type MutationLoginArgs = {
   companyDomain: Scalars['String']['input'];
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
+};
+
+
+export type MutationLoginSuperAdminArgs = {
+  password: Scalars['String']['input'];
+  userName: Scalars['String']['input'];
 };
 
 
@@ -210,6 +217,13 @@ export type SentEmail = {
   text?: Maybe<Scalars['String']['output']>;
   to?: Maybe<Scalars['String']['output']>;
   uid: Scalars['Int']['output'];
+};
+
+export type SuperAdminAuthPayload = {
+  __typename?: 'SuperAdminAuthPayload';
+  role: Scalars['String']['output'];
+  token: Scalars['String']['output'];
+  userName: Scalars['String']['output'];
 };
 
 export type User = {
@@ -310,6 +324,7 @@ export type ResolversTypes = {
   Query: ResolverTypeWrapper<Record<PropertyKey, never>>;
   SentEmail: ResolverTypeWrapper<SentEmail>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
+  SuperAdminAuthPayload: ResolverTypeWrapper<SuperAdminAuthPayload>;
   User: ResolverTypeWrapper<User>;
 };
 
@@ -332,6 +347,7 @@ export type ResolversParentTypes = {
   Query: Record<PropertyKey, never>;
   SentEmail: SentEmail;
   String: Scalars['String']['output'];
+  SuperAdminAuthPayload: SuperAdminAuthPayload;
   User: User;
 };
 
@@ -393,6 +409,7 @@ export type MutationResolvers<ContextType = GraphQLContext, ParentType extends R
   createCompanyAdmin?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationCreateCompanyAdminArgs, 'company' | 'email' | 'password'>>;
   createUser?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'companyDomain' | 'email' | 'password'>>;
   login?: Resolver<ResolversTypes['AuthPayload'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'companyDomain' | 'email' | 'password'>>;
+  loginSuperAdmin?: Resolver<ResolversTypes['SuperAdminAuthPayload'], ParentType, ContextType, RequireFields<MutationLoginSuperAdminArgs, 'password' | 'userName'>>;
   onboardCompany?: Resolver<ResolversTypes['OnboardResult'], ParentType, ContextType, RequireFields<MutationOnboardCompanyArgs, 'domain' | 'name'>>;
   saveFortnoxTokens?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationSaveFortnoxTokensArgs, 'accessToken' | 'companyName' | 'service'>>;
 };
@@ -425,6 +442,12 @@ export type SentEmailResolvers<ContextType = GraphQLContext, ParentType extends 
   uid?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
 };
 
+export type SuperAdminAuthPayloadResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['SuperAdminAuthPayload'] = ResolversParentTypes['SuperAdminAuthPayload']> = {
+  role?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  token?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  userName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+};
+
 export type UserResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
   created_at?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -446,6 +469,7 @@ export type Resolvers<ContextType = GraphQLContext> = {
   OnboardResult?: OnboardResultResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   SentEmail?: SentEmailResolvers<ContextType>;
+  SuperAdminAuthPayload?: SuperAdminAuthPayloadResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
 };
 

@@ -8,8 +8,9 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import typeDefs from "./graphql/typeDefs";
 import resolvers from "./graphql/resolvers";
-import masterPool from "./DATABASE/masterpool";
+import masterPool, { masterClient } from "./DATABASE/masterpool";
 import fortnoxOAuth from "./routes/fortnoxCallbackRoute";
+import bcrypt from "bcrypt";
 
 dotenv.config();
 
@@ -55,9 +56,25 @@ app.use(cookieParser());
 // OAuth routes must stay as REST (browser redirects + cookies)
 app.use("/", fortnoxOAuth);
 
+async function seedSuperAdmin() {
+  const existing = await masterClient.user.findFirst({ where: { role: "super_admin" } });
+  if (existing) return;
+
+  const userName = process.env.SUPER_ADMIN_USERNAME;
+  const password = process.env.SUPER_ADMIN_PASSWORD;
+  if (!userName || !password) {
+    throw new Error("SUPER_ADMIN_USERNAME and SUPER_ADMIN_PASSWORD must be set in .env to seed the first super admin.");
+  }
+
+  const hashed = await bcrypt.hash(password, 12);
+  await masterClient.user.create({ data: { userName, password: hashed, role: "super_admin" } });
+  console.log(`Super admin "${userName}" created.`);
+}
+
 async function startServer() {
   try {
     await waitForDb();
+    await seedSuperAdmin();
     await server.start();
 
     app.use(
