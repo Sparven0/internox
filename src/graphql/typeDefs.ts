@@ -68,6 +68,7 @@ const typeDefs = `
     getInitPageData: InitPageData!
     getInitPageIntegrationData: InitPageIntegrationData!
     getSentEmails(companyId: String!, credentialId: String!, password: String): [SentEmail]
+    getOnboardingStatus: OnboardingStatus!
   }
 
   type AuthPayload {
@@ -88,6 +89,12 @@ const typeDefs = `
     userName: String!
     role: String!
   }
+
+  type OnboardingStatus {
+  hasFortnox: Boolean!
+  hasEmployees: Boolean!
+  isComplete: Boolean!
+}
 
   type Mutation {
     createCompany(name: String!, domain: String!): Company

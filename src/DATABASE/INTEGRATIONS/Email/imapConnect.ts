@@ -77,9 +77,7 @@ export async function fetchSentEmailsFromYesterday(companyId: string, imapCreden
     password = String(plainPassword);
   } else {
     password = decryptPassword(cred.encryptedPassword);
-     console.log('Decrypted password length:', password.length);
-    console.log('Decrypted password first 4 chars:', password.substring(0, 4));
-    console.log('IMAP_ENCRYPTION_KEY set:', !!process.env.IMAP_ENCRYPTION_KEY);
+   
   }
   const user = cred.emailAddress;
   const host = cred.imapHost;
@@ -109,12 +107,12 @@ export async function fetchSentEmailsFromYesterday(companyId: string, imapCreden
     await client.connect();
     console.log('IMAP connected to host', host);
     const boxes = await client.list();
-console.log('Available mailboxes:', JSON.stringify(boxes, null, 2));
+// console.log('Available mailboxes:', JSON.stringify(boxes, null, 2));
 
 
     // list mailboxes and find a suitable mailbox
     const mailboxes = await client.list();
-    console.log('IMAP mailboxes:', JSON.stringify(mailboxes, null, 2));
+    // console.log('IMAP mailboxes:', JSON.stringify(mailboxes, null, 2));
     // mailboxes is an array; mailbox.path/name may vary; search for 'sent' if not specified
     let targetMailbox: string | undefined = mailbox && String(mailbox).trim() ? String(mailbox).trim() : undefined;
     const walk = (boxes: any[]): string | undefined => {
@@ -134,9 +132,9 @@ console.log('Available mailboxes:', JSON.stringify(boxes, null, 2));
 
     // open mailbox
     try {
-      console.log('Attempting to open mailbox:', targetMailbox);
+      // console.log('Attempting to open mailbox:', targetMailbox);
       await client.mailboxOpen(targetMailbox);
-      console.log('Opened mailbox:', targetMailbox);
+      // console.log('Opened mailbox:', targetMailbox);
     } catch (e) {
       console.error('Failed to open mailbox', targetMailbox, 'error:', e);
       // fallback alternatives
@@ -146,9 +144,9 @@ const mailboxesToTry = [targetMailbox, '[Gmail]/Skickat', '[Gmail]/Sent Mail', '
 
 for (const mb of mailboxesToTry) {
   try {
-    console.log('Attempting to open mailbox:', mb);
+    // console.log('Attempting to open mailbox:', mb);
     await client.mailboxOpen(mb);
-    console.log('Opened mailbox:', mb);
+    // console.log('Opened mailbox:', mb);
     targetMailbox = mb;
     opened = true;
     break;
@@ -162,16 +160,16 @@ if (!opened) {
 }
 
 // search for UIDs in date range — this runs AFTER a mailbox is successfully opened
-console.log('Searching UIDs with criteria since:', since.toISOString(), 'before:', before.toISOString());
+// console.log('Searching UIDs with criteria since:', since.toISOString(), 'before:', before.toISOString());
 const uids = await client.search({ since, before });
-console.log('Search returned uids count:', uids?.length || 0, 'sample:', (uids || []).slice(0, 50));
+// console.log('Search returned uids count:', uids?.length || 0, 'sample:', (uids || []).slice(0, 50));
 if (!uids || uids.length === 0) return [];
     }
 
     // search for UIDs in date range
-    console.log('Searching UIDs with criteria since:', since.toISOString(), 'before:', before.toISOString());
+    // console.log('Searching UIDs with criteria since:', since.toISOString(), 'before:', before.toISOString());
     const uids = await client.search({ since, before });
-    console.log('Search returned uids count:', uids?.length || 0, 'sample:', (uids || []).slice(0, 50));
+    // console.log('Search returned uids count:', uids?.length || 0, 'sample:', (uids || []).slice(0, 50));
     if (!uids || uids.length === 0) return [];
 
     const emails: ParsedEmail[] = [];
@@ -181,7 +179,7 @@ if (!uids || uids.length === 0) return [];
     // fetch envelope-only per UID to reliably get header fields
     for (const uid of uids) {
       try {
-        console.log('Fetching envelope for uid:', uid);
+        // console.log('Fetching envelope for uid:', uid);
         const msg = await client.fetchOne(uid, { envelope: true, uid: true });
         const env = msg.envelope || msg.envelope || {};
         const subject = env.subject || undefined;
@@ -259,7 +257,7 @@ if (!uids || uids.length === 0) return [];
 
     try {
       const result = await saveEmailsToDB(companyDb, emailsToSave);
-      console.log(`[imapConnect] DB persist: ${result.saved} saved, ${result.skipped} skipped, ${result.errors} errors`);
+      // console.log(`[imapConnect] DB persist: ${result.saved} saved, ${result.skipped} skipped, ${result.errors} errors`);
     } catch (saveErr) {
       console.error('[imapConnect] Failed to persist emails to DB:', saveErr);
     }

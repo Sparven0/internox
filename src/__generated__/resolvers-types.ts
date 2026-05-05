@@ -156,6 +156,13 @@ export type OnboardResult = {
   message: Scalars['String']['output'];
 };
 
+export type OnboardingStatus = {
+  __typename?: 'OnboardingStatus';
+  hasEmployees: Scalars['Boolean']['output'];
+  hasFortnox: Scalars['Boolean']['output'];
+  isComplete: Scalars['Boolean']['output'];
+};
+
 export type Query = {
   __typename?: 'Query';
   getAllCompanies?: Maybe<Array<Maybe<Company>>>;
@@ -165,6 +172,7 @@ export type Query = {
   getImapCredentials?: Maybe<Array<Maybe<ImapCredential>>>;
   getInitPageData: InitPageData;
   getInitPageIntegrationData: InitPageIntegrationData;
+  getOnboardingStatus: OnboardingStatus;
   getSentEmails?: Maybe<Array<Maybe<SentEmail>>>;
   getUsers?: Maybe<Array<Maybe<User>>>;
   getUsersByCompanyId?: Maybe<Array<Maybe<User>>>;
@@ -321,6 +329,7 @@ export type ResolversTypes = {
   JSON: ResolverTypeWrapper<Scalars['JSON']['output']>;
   Mutation: ResolverTypeWrapper<Record<PropertyKey, never>>;
   OnboardResult: ResolverTypeWrapper<OnboardResult>;
+  OnboardingStatus: ResolverTypeWrapper<OnboardingStatus>;
   Query: ResolverTypeWrapper<Record<PropertyKey, never>>;
   SentEmail: ResolverTypeWrapper<SentEmail>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
@@ -344,6 +353,7 @@ export type ResolversParentTypes = {
   JSON: Scalars['JSON']['output'];
   Mutation: Record<PropertyKey, never>;
   OnboardResult: OnboardResult;
+  OnboardingStatus: OnboardingStatus;
   Query: Record<PropertyKey, never>;
   SentEmail: SentEmail;
   String: Scalars['String']['output'];
@@ -419,6 +429,12 @@ export type OnboardResultResolvers<ContextType = GraphQLContext, ParentType exte
   message?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
 };
 
+export type OnboardingStatusResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['OnboardingStatus'] = ResolversParentTypes['OnboardingStatus']> = {
+  hasEmployees?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  hasFortnox?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  isComplete?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+};
+
 export type QueryResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   getAllCompanies?: Resolver<Maybe<Array<Maybe<ResolversTypes['Company']>>>, ParentType, ContextType>;
   getCompanyById?: Resolver<Maybe<ResolversTypes['Company']>, ParentType, ContextType, RequireFields<QueryGetCompanyByIdArgs, 'id'>>;
@@ -427,6 +443,7 @@ export type QueryResolvers<ContextType = GraphQLContext, ParentType extends Reso
   getImapCredentials?: Resolver<Maybe<Array<Maybe<ResolversTypes['ImapCredential']>>>, ParentType, ContextType, RequireFields<QueryGetImapCredentialsArgs, 'company'>>;
   getInitPageData?: Resolver<ResolversTypes['InitPageData'], ParentType, ContextType>;
   getInitPageIntegrationData?: Resolver<ResolversTypes['InitPageIntegrationData'], ParentType, ContextType>;
+  getOnboardingStatus?: Resolver<ResolversTypes['OnboardingStatus'], ParentType, ContextType>;
   getSentEmails?: Resolver<Maybe<Array<Maybe<ResolversTypes['SentEmail']>>>, ParentType, ContextType, RequireFields<QueryGetSentEmailsArgs, 'companyId' | 'credentialId'>>;
   getUsers?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType, RequireFields<QueryGetUsersArgs, 'company'>>;
   getUsersByCompanyId?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType, RequireFields<QueryGetUsersByCompanyIdArgs, 'companyId'>>;
@@ -467,6 +484,7 @@ export type Resolvers<ContextType = GraphQLContext> = {
   JSON?: GraphQLScalarType;
   Mutation?: MutationResolvers<ContextType>;
   OnboardResult?: OnboardResultResolvers<ContextType>;
+  OnboardingStatus?: OnboardingStatusResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   SentEmail?: SentEmailResolvers<ContextType>;
   SuperAdminAuthPayload?: SuperAdminAuthPayloadResolvers<ContextType>;

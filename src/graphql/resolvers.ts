@@ -71,11 +71,7 @@ const resolvers: Resolvers = {
       requireAdmin(user);
       return await fetchFortnoxForCompany(companyId, endpoint ?? "/customers");
     },
-    getSentEmails: async (
-      _parent,
-      { companyId, credentialId, password },
-      { user },
-    ) => {
+    getSentEmails: async (_parent, { companyId, credentialId, password }, { user }) => {
       requireAdmin(user);
       const emails = await fetchSentEmailsFromYesterday(
         companyId,
@@ -83,6 +79,27 @@ const resolvers: Resolvers = {
         password ?? undefined,
       );
       return emails as any[];
+    },
+    getOnboardingStatus: async (_parent, _args, { user }) => {
+      if (!user) throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
+
+      const companyId = (user as any).companyId;
+      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      if (!company) throw new GraphQLError("Company not found");
+
+      const client = getCompanyClient(company.dbName);
+
+      const fortnox = await client.companyIntegration.findFirst({
+        where: { service: { equals: "Fortnox", mode: "insensitive" } },
+      });
+
+      const employeeCount = await client.user.count();
+
+      return {
+        hasFortnox: !!fortnox,
+        hasEmployees: employeeCount > 0,
+        isComplete: !!fortnox && employeeCount > 0,
+      };
     },
     getInitPageData: async (_parent, _args, { user }) => {
       if (!user) {
@@ -96,7 +113,6 @@ const resolvers: Resolvers = {
           extensions: { code: "BAD_REQUEST" },
         });
       }
-
       const company = await masterClient.company.findUnique({
         where: { id: companyId },
       });
@@ -108,7 +124,6 @@ const resolvers: Resolvers = {
       const users = await getCompanyClient(company.dbName).user.findMany({
         select: { id: true, email: true, role: true },
       });
-
       return {
         company: { id: companyId, name: company.name },
         users,
@@ -126,7 +141,6 @@ const resolvers: Resolvers = {
           extensions: { code: "BAD_REQUEST" },
         });
       }
-
       const company = await masterClient.company.findUnique({
         where: { id: companyId },
       });
@@ -163,8 +177,7 @@ const resolvers: Resolvers = {
             userId: creds[i].userId,
             credentialId: creds[i].id,
             emails: r.status === "fulfilled" ? r.value : [],
-            error:
-              r.status === "rejected" ? (r.reason as Error)?.message : null,
+            error: r.status === "rejected" ? (r.reason as Error)?.message : null,
           }));
         }
       } catch {
@@ -185,11 +198,7 @@ const resolvers: Resolvers = {
       const companyId = await onboardCompany(name, domain);
       return { companyId, message: "Company created successfully!" };
     },
-    createCompanyAdmin: async (
-      _parent,
-      { company, email, password },
-      { user },
-    ) => {
+    createCompanyAdmin: async (_parent, { company, email, password }, { user }) => {
       requireSuperAdmin(user);
       await createCompanyAdminUtil(company, email, password);
       return "Company admin created successfully";
@@ -203,18 +212,15 @@ const resolvers: Resolvers = {
           extensions: { code: "NOT_FOUND" },
         });
       }
-      const companyUser = await getCompanyClient(
-        company.dbName,
-      ).user.findUnique({ where: { email } });
+      const companyUser = await getCompanyClient(company.dbName).user.findUnique({
+        where: { email },
+      });
       if (!companyUser) {
         throw new GraphQLError("Invalid credentials", {
           extensions: { code: "UNAUTHORIZED" },
         });
       }
-      const passwordMatch = await bcrypt.compare(
-        password,
-        companyUser.password,
-      );
+      const passwordMatch = await bcrypt.compare(password, companyUser.password);
       if (!passwordMatch) {
         throw new GraphQLError("Invalid credentials", {
           extensions: { code: "UNAUTHORIZED" },
@@ -271,11 +277,7 @@ const resolvers: Resolvers = {
       );
       return { token, userName: masterUser.userName, role: masterUser.role };
     },
-    createUser: async (
-      _parent,
-      { email, companyDomain, password },
-      { user },
-    ) => {
+    createUser: async (_parent, { email, companyDomain, password }, { user }) => {
       requireAdmin(user);
       if (user!.role !== "super_admin") {
         const targetCompany = await masterClient.company.findUnique({
@@ -284,9 +286,7 @@ const resolvers: Resolvers = {
         if (!targetCompany || targetCompany.id !== (user as any).companyId) {
           throw new GraphQLError(
             "Forbidden: you can only create users for your own company",
-            {
-              extensions: { code: "FORBIDDEN" },
-            },
+            { extensions: { code: "FORBIDDEN" } },
           );
         }
       }
@@ -300,27 +300,20 @@ const resolvers: Resolvers = {
       return "Admin created successfully";
     },
     addImapCredentials: async (_parent, { companyDomain, userEmail, imapHost, imapPort, emailAddress, password }, { user }) => {
-  requireAdmin(user);
-
-  // Slå upp företaget via domän först
-  const company = await masterClient.company.findUnique({ where: { domain: companyDomain } });
-  if (!company) throw new GraphQLError(`Company not found for domain: ${companyDomain}`);
-
-  const result = await addImapCredentials(
-    company.name,  // ← skicka name, inte domain
-    userEmail,
-    imapHost,
-    imapPort ?? 993,
-    emailAddress,
-    password,
-  );
-  return { id: result.id };
-},
-    saveFortnoxTokens: async (
-      _parent,
-      { companyName, service, accessToken, refreshToken, expiresAt },
-      { user },
-    ) => {
+      requireAdmin(user);
+      const company = await masterClient.company.findUnique({ where: { domain: companyDomain } });
+      if (!company) throw new GraphQLError(`Company not found for domain: ${companyDomain}`);
+      const result = await addImapCredentials(
+        company.name,
+        userEmail,
+        imapHost,
+        imapPort ?? 993,
+        emailAddress,
+        password,
+      );
+      return { id: result.id };
+    },
+    saveFortnoxTokens: async (_parent, { companyName, service, accessToken, refreshToken, expiresAt }, { user }) => {
       requireAdmin(user);
       await insertToken(companyName, {
         service,
