@@ -57,6 +57,7 @@ export async function fetchSentEmailsFromYesterday(companyId: string, imapCreden
       const poolTry = getCompanyPool(maybe);
       await poolTry.query('SELECT 1');
       companyDb = maybe;
+      
     } catch (e) {
       throw new Error(`Invalid companyId format or company not found: ${companyIdRaw}`);
     }
@@ -76,6 +77,9 @@ export async function fetchSentEmailsFromYesterday(companyId: string, imapCreden
     password = String(plainPassword);
   } else {
     password = decryptPassword(cred.encryptedPassword);
+     console.log('Decrypted password length:', password.length);
+    console.log('Decrypted password first 4 chars:', password.substring(0, 4));
+    console.log('IMAP_ENCRYPTION_KEY set:', !!process.env.IMAP_ENCRYPTION_KEY);
   }
   const user = cred.emailAddress;
   const host = cred.imapHost;

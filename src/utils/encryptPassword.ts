@@ -50,6 +50,7 @@ export function decryptPassword(encrypted: string): string {
     decipher.setAuthTag(tag);
     let out = decipher.update(data, 'base64', 'utf8');
     out += decipher.final('utf8');
+    
     return out;
   } catch (e) {
     throw new Error('Failed to decrypt IMAP password. Ensure IMAP_ENCRYPTION_KEY matches the key used to encrypt the password.');

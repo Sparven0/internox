@@ -299,22 +299,23 @@ const resolvers: Resolvers = {
       await createAdmin(userName, password, token);
       return "Admin created successfully";
     },
-    addImapCredentials: async (
-      _parent,
-      { companyDomain, userEmail, imapHost, imapPort, emailAddress, password },
-      { user },
-    ) => {
-      requireAdmin(user);
-      const result = await addImapCredentials(
-        companyDomain,
-        userEmail,
-        imapHost,
-        imapPort ?? 993,
-        emailAddress,
-        password,
-      );
-      return { id: result.id };
-    },
+    addImapCredentials: async (_parent, { companyDomain, userEmail, imapHost, imapPort, emailAddress, password }, { user }) => {
+  requireAdmin(user);
+
+  // Slå upp företaget via domän först
+  const company = await masterClient.company.findUnique({ where: { domain: companyDomain } });
+  if (!company) throw new GraphQLError(`Company not found for domain: ${companyDomain}`);
+
+  const result = await addImapCredentials(
+    company.name,  // ← skicka name, inte domain
+    userEmail,
+    imapHost,
+    imapPort ?? 993,
+    emailAddress,
+    password,
+  );
+  return { id: result.id };
+},
     saveFortnoxTokens: async (
       _parent,
       { companyName, service, accessToken, refreshToken, expiresAt },

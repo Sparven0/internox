@@ -7,11 +7,17 @@ import { insertToken } from '../DATABASE/INTEGRATIONS/insertTokensFunc';
 const router = Router();
 
 router.get('/auth', (req: Request, res: Response) => {
-  const state = crypto.randomBytes(16).toString('hex');
-  const token = req.query.token as string;  // ← passed from frontend
+  const nonce = crypto.randomBytes(16).toString('hex');
+  const token = req.query.token as string;
+  console.log('=== /auth hit ===');
+  console.log('token from query:', token);
+  console.log('nonce:', nonce);
 
-  res.cookie('oauthState', state, { httpOnly: true, secure: false, sameSite: 'lax' });
-  res.cookie('oauthToken', token, { httpOnly: true, secure: false, sameSite: 'lax' });  // ← store it
+  // Kombinera nonce + token i state så token överlever Fortnox-redirecten
+  const state = `${nonce}.${Buffer.from(token).toString('base64')}`;
+
+  // Spara bara nonce i cookie för CSRF-validering
+  res.cookie('oauthState', nonce, { httpOnly: true, secure: false, sameSite: 'lax' });
 
   res.redirect(
     `https://apps.fortnox.se/oauth-v1/auth?client_id=UZNsMVYcAGyy&state=${state}` +
@@ -20,18 +26,26 @@ router.get('/auth', (req: Request, res: Response) => {
   );
 });
 
-
 router.get('/fortnox-callback', async (req: Request, res: Response): Promise<any> => {
   const { state, code } = req.query;
-  const cookieState = req.cookies.oauthState;
-   const oauthToken = req.cookies.oauthToken;
+  const cookieNonce = req.cookies.oauthState;
+ console.log('=== /fortnox-callback hit ===');
+  console.log('query params:', req.query);
+  console.log('cookies:', req.cookies);
+  // Dela upp state → nonce + encoded token
+  const [nonce, encodedToken] = (state as string).split('.');
 
-  if (!state || state !== cookieState) {
+  if (!nonce || nonce !== cookieNonce) {
     return res.status(400).send('Invalid state');
   }
+
   res.clearCookie('oauthState');
-const decoded = jwt.verify(oauthToken, process.env.JWT_SECRET!) as any;
+
+  // Extrahera token ur state
+  const oauthToken = Buffer.from(encodedToken, 'base64').toString('utf8');
+  const decoded = jwt.verify(oauthToken, process.env.JWT_SECRET!) as any;
   const companyName = decoded.companyName;
+
   if (!code) {
     return res.status(400).send('Missing authorization code');
   }

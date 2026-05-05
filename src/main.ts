@@ -22,7 +22,7 @@ async function waitForDb(retries = 5) {
       console.log("Connected to database.");
       return;
     } catch (err) {
-      console.log("Database not ready yet, retrying in 2 seconds...");
+      console.log("Database not ready yet, retrying in 2 seconds...", err);
       retries--;
       await new Promise((res) => setTimeout(res, 2000));
     }
