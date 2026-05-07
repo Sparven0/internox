@@ -83,6 +83,7 @@ export type Mutation = {
   login: AuthPayload;
   loginSuperAdmin: SuperAdminAuthPayload;
   onboardCompany: OnboardResult;
+  removeCompany: Scalars['String']['output'];
   saveFortnoxTokens: Scalars['String']['output'];
 };
 
@@ -139,6 +140,11 @@ export type MutationLoginSuperAdminArgs = {
 export type MutationOnboardCompanyArgs = {
   domain: Scalars['String']['input'];
   name: Scalars['String']['input'];
+};
+
+
+export type MutationRemoveCompanyArgs = {
+  companyId: Scalars['ID']['input'];
 };
 
 
@@ -421,6 +427,7 @@ export type MutationResolvers<ContextType = GraphQLContext, ParentType extends R
   login?: Resolver<ResolversTypes['AuthPayload'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'companyDomain' | 'email' | 'password'>>;
   loginSuperAdmin?: Resolver<ResolversTypes['SuperAdminAuthPayload'], ParentType, ContextType, RequireFields<MutationLoginSuperAdminArgs, 'password' | 'userName'>>;
   onboardCompany?: Resolver<ResolversTypes['OnboardResult'], ParentType, ContextType, RequireFields<MutationOnboardCompanyArgs, 'domain' | 'name'>>;
+  removeCompany?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationRemoveCompanyArgs, 'companyId'>>;
   saveFortnoxTokens?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationSaveFortnoxTokensArgs, 'accessToken' | 'companyName' | 'service'>>;
 };
 

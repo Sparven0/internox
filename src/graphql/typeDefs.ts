@@ -106,6 +106,7 @@ const typeDefs = `
     createAdmin(userName: String!, password: String!): String!
     addImapCredentials(companyDomain: String!, userEmail: String!, imapHost: String!, imapPort: Int, emailAddress: String!, password: String!): ImapCredentialResult!
     saveFortnoxTokens(companyName: String!, service: String!, accessToken: String!, refreshToken: String, expiresAt: String): String!
+    removeCompany(companyId: ID!): String!
   }
 `;
 
