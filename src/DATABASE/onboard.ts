@@ -1,4 +1,3 @@
-import { execSync } from 'child_process';
 import { v4 as uuidv4 } from 'uuid';
 
 import masterPool from './masterpool';
@@ -14,16 +13,8 @@ export async function onboardCompany(name: string, domain: string): Promise<stri
     [companyId, name, domain, dbName]
   );
 
-  await masterPool.query(`CREATE DATABASE "${dbName}"`);
-
-  // Build the URL for this specific company DB and apply all migrations
-  const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT } = process.env;
-  const companyDbUrl = `postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${dbName}`;
-
-  execSync('npx prisma migrate deploy --config=prisma/company/prisma.config.ts', {
-    env: { ...process.env, COMPANY_DATABASE_URL: companyDbUrl },
-    stdio: 'pipe',
-  });
+  // Clone company_dev (fully migrated template) — no migrate deploy needed
+  await masterPool.query(`CREATE DATABASE "${dbName}" TEMPLATE company_dev`);
 
   // Seed the company record into the new company DB (required for FK constraints on users etc.)
   const pool = getCompanyPool(dbName);

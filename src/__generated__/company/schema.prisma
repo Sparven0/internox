@@ -75,6 +75,7 @@ model Customer {
   id                    String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   fortnoxCustomerNumber String?            @map("fortnox_customer_number")
   name                  String
+  email                 String?
   domain                String?
   companyId             String             @map("company_id") @db.Uuid
   createdAt             DateTime           @default(now()) @map("created_at") @db.Timestamp(6)

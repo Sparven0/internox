@@ -6894,6 +6894,7 @@ export namespace Prisma {
     id: string | null
     fortnoxCustomerNumber: string | null
     name: string | null
+    email: string | null
     domain: string | null
     companyId: string | null
     createdAt: Date | null
@@ -6903,6 +6904,7 @@ export namespace Prisma {
     id: string | null
     fortnoxCustomerNumber: string | null
     name: string | null
+    email: string | null
     domain: string | null
     companyId: string | null
     createdAt: Date | null
@@ -6912,6 +6914,7 @@ export namespace Prisma {
     id: number
     fortnoxCustomerNumber: number
     name: number
+    email: number
     domain: number
     companyId: number
     createdAt: number
@@ -6923,6 +6926,7 @@ export namespace Prisma {
     id?: true
     fortnoxCustomerNumber?: true
     name?: true
+    email?: true
     domain?: true
     companyId?: true
     createdAt?: true
@@ -6932,6 +6936,7 @@ export namespace Prisma {
     id?: true
     fortnoxCustomerNumber?: true
     name?: true
+    email?: true
     domain?: true
     companyId?: true
     createdAt?: true
@@ -6941,6 +6946,7 @@ export namespace Prisma {
     id?: true
     fortnoxCustomerNumber?: true
     name?: true
+    email?: true
     domain?: true
     companyId?: true
     createdAt?: true
@@ -7023,6 +7029,7 @@ export namespace Prisma {
     id: string
     fortnoxCustomerNumber: string | null
     name: string
+    email: string | null
     domain: string | null
     companyId: string
     createdAt: Date
@@ -7049,6 +7056,7 @@ export namespace Prisma {
     id?: boolean
     fortnoxCustomerNumber?: boolean
     name?: boolean
+    email?: boolean
     domain?: boolean
     companyId?: boolean
     createdAt?: boolean
@@ -7066,6 +7074,7 @@ export namespace Prisma {
     id?: boolean
     fortnoxCustomerNumber?: boolean
     name?: boolean
+    email?: boolean
     domain?: boolean
     companyId?: boolean
     createdAt?: boolean
@@ -7076,6 +7085,7 @@ export namespace Prisma {
     id?: boolean
     fortnoxCustomerNumber?: boolean
     name?: boolean
+    email?: boolean
     domain?: boolean
     companyId?: boolean
     createdAt?: boolean
@@ -7086,12 +7096,13 @@ export namespace Prisma {
     id?: boolean
     fortnoxCustomerNumber?: boolean
     name?: boolean
+    email?: boolean
     domain?: boolean
     companyId?: boolean
     createdAt?: boolean
   }
 
-  export type CustomerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fortnoxCustomerNumber" | "name" | "domain" | "companyId" | "createdAt", ExtArgs["result"]["customer"]>
+  export type CustomerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fortnoxCustomerNumber" | "name" | "email" | "domain" | "companyId" | "createdAt", ExtArgs["result"]["customer"]>
   export type CustomerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     company?: boolean | CompanyDefaultArgs<ExtArgs>
     employeeCustomers?: boolean | Customer$employeeCustomersArgs<ExtArgs>
@@ -7124,6 +7135,7 @@ export namespace Prisma {
       id: string
       fortnoxCustomerNumber: string | null
       name: string
+      email: string | null
       domain: string | null
       companyId: string
       createdAt: Date
@@ -7560,6 +7572,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Customer", 'String'>
     readonly fortnoxCustomerNumber: FieldRef<"Customer", 'String'>
     readonly name: FieldRef<"Customer", 'String'>
+    readonly email: FieldRef<"Customer", 'String'>
     readonly domain: FieldRef<"Customer", 'String'>
     readonly companyId: FieldRef<"Customer", 'String'>
     readonly createdAt: FieldRef<"Customer", 'DateTime'>
@@ -17709,6 +17722,7 @@ export namespace Prisma {
     id: 'id',
     fortnoxCustomerNumber: 'fortnoxCustomerNumber',
     name: 'name',
+    email: 'email',
     domain: 'domain',
     companyId: 'companyId',
     createdAt: 'createdAt'
@@ -18283,6 +18297,7 @@ export namespace Prisma {
     id?: UuidFilter<"Customer"> | string
     fortnoxCustomerNumber?: StringNullableFilter<"Customer"> | string | null
     name?: StringFilter<"Customer"> | string
+    email?: StringNullableFilter<"Customer"> | string | null
     domain?: StringNullableFilter<"Customer"> | string | null
     companyId?: UuidFilter<"Customer"> | string
     createdAt?: DateTimeFilter<"Customer"> | Date | string
@@ -18299,6 +18314,7 @@ export namespace Prisma {
     id?: SortOrder
     fortnoxCustomerNumber?: SortOrderInput | SortOrder
     name?: SortOrder
+    email?: SortOrderInput | SortOrder
     domain?: SortOrderInput | SortOrder
     companyId?: SortOrder
     createdAt?: SortOrder
@@ -18318,6 +18334,7 @@ export namespace Prisma {
     NOT?: CustomerWhereInput | CustomerWhereInput[]
     fortnoxCustomerNumber?: StringNullableFilter<"Customer"> | string | null
     name?: StringFilter<"Customer"> | string
+    email?: StringNullableFilter<"Customer"> | string | null
     domain?: StringNullableFilter<"Customer"> | string | null
     companyId?: UuidFilter<"Customer"> | string
     createdAt?: DateTimeFilter<"Customer"> | Date | string
@@ -18334,6 +18351,7 @@ export namespace Prisma {
     id?: SortOrder
     fortnoxCustomerNumber?: SortOrderInput | SortOrder
     name?: SortOrder
+    email?: SortOrderInput | SortOrder
     domain?: SortOrderInput | SortOrder
     companyId?: SortOrder
     createdAt?: SortOrder
@@ -18349,6 +18367,7 @@ export namespace Prisma {
     id?: UuidWithAggregatesFilter<"Customer"> | string
     fortnoxCustomerNumber?: StringNullableWithAggregatesFilter<"Customer"> | string | null
     name?: StringWithAggregatesFilter<"Customer"> | string
+    email?: StringNullableWithAggregatesFilter<"Customer"> | string | null
     domain?: StringNullableWithAggregatesFilter<"Customer"> | string | null
     companyId?: UuidWithAggregatesFilter<"Customer"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Customer"> | Date | string
@@ -19371,6 +19390,7 @@ export namespace Prisma {
     id?: string
     fortnoxCustomerNumber?: string | null
     name: string
+    email?: string | null
     domain?: string | null
     createdAt?: Date | string
     company: CompanyCreateNestedOneWithoutCustomersInput
@@ -19386,6 +19406,7 @@ export namespace Prisma {
     id?: string
     fortnoxCustomerNumber?: string | null
     name: string
+    email?: string | null
     domain?: string | null
     companyId: string
     createdAt?: Date | string
@@ -19401,6 +19422,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: CompanyUpdateOneRequiredWithoutCustomersNestedInput
@@ -19416,6 +19438,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     companyId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19431,6 +19454,7 @@ export namespace Prisma {
     id?: string
     fortnoxCustomerNumber?: string | null
     name: string
+    email?: string | null
     domain?: string | null
     companyId: string
     createdAt?: Date | string
@@ -19440,6 +19464,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -19448,6 +19473,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     companyId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20696,6 +20722,7 @@ export namespace Prisma {
     id?: SortOrder
     fortnoxCustomerNumber?: SortOrder
     name?: SortOrder
+    email?: SortOrder
     domain?: SortOrder
     companyId?: SortOrder
     createdAt?: SortOrder
@@ -20705,6 +20732,7 @@ export namespace Prisma {
     id?: SortOrder
     fortnoxCustomerNumber?: SortOrder
     name?: SortOrder
+    email?: SortOrder
     domain?: SortOrder
     companyId?: SortOrder
     createdAt?: SortOrder
@@ -20714,6 +20742,7 @@ export namespace Prisma {
     id?: SortOrder
     fortnoxCustomerNumber?: SortOrder
     name?: SortOrder
+    email?: SortOrder
     domain?: SortOrder
     companyId?: SortOrder
     createdAt?: SortOrder
@@ -22798,6 +22827,7 @@ export namespace Prisma {
     id?: string
     fortnoxCustomerNumber?: string | null
     name: string
+    email?: string | null
     domain?: string | null
     createdAt?: Date | string
     employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutCustomerInput
@@ -22812,6 +22842,7 @@ export namespace Prisma {
     id?: string
     fortnoxCustomerNumber?: string | null
     name: string
+    email?: string | null
     domain?: string | null
     createdAt?: Date | string
     employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutCustomerInput
@@ -22934,6 +22965,7 @@ export namespace Prisma {
     id?: UuidFilter<"Customer"> | string
     fortnoxCustomerNumber?: StringNullableFilter<"Customer"> | string | null
     name?: StringFilter<"Customer"> | string
+    email?: StringNullableFilter<"Customer"> | string | null
     domain?: StringNullableFilter<"Customer"> | string | null
     companyId?: UuidFilter<"Customer"> | string
     createdAt?: DateTimeFilter<"Customer"> | Date | string
@@ -24032,6 +24064,7 @@ export namespace Prisma {
     id?: string
     fortnoxCustomerNumber?: string | null
     name: string
+    email?: string | null
     domain?: string | null
     createdAt?: Date | string
     company: CompanyCreateNestedOneWithoutCustomersInput
@@ -24046,6 +24079,7 @@ export namespace Prisma {
     id?: string
     fortnoxCustomerNumber?: string | null
     name: string
+    email?: string | null
     domain?: string | null
     companyId: string
     createdAt?: Date | string
@@ -24113,6 +24147,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: CompanyUpdateOneRequiredWithoutCustomersNestedInput
@@ -24127,6 +24162,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     companyId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24172,6 +24208,7 @@ export namespace Prisma {
     id?: string
     fortnoxCustomerNumber?: string | null
     name: string
+    email?: string | null
     domain?: string | null
     createdAt?: Date | string
     company: CompanyCreateNestedOneWithoutCustomersInput
@@ -24186,6 +24223,7 @@ export namespace Prisma {
     id?: string
     fortnoxCustomerNumber?: string | null
     name: string
+    email?: string | null
     domain?: string | null
     companyId: string
     createdAt?: Date | string
@@ -24253,6 +24291,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: CompanyUpdateOneRequiredWithoutCustomersNestedInput
@@ -24267,6 +24306,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     companyId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24312,6 +24352,7 @@ export namespace Prisma {
     id?: string
     fortnoxCustomerNumber?: string | null
     name: string
+    email?: string | null
     domain?: string | null
     createdAt?: Date | string
     company: CompanyCreateNestedOneWithoutCustomersInput
@@ -24326,6 +24367,7 @@ export namespace Prisma {
     id?: string
     fortnoxCustomerNumber?: string | null
     name: string
+    email?: string | null
     domain?: string | null
     companyId: string
     createdAt?: Date | string
@@ -24393,6 +24435,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: CompanyUpdateOneRequiredWithoutCustomersNestedInput
@@ -24407,6 +24450,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     companyId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24479,6 +24523,7 @@ export namespace Prisma {
     id?: string
     fortnoxCustomerNumber?: string | null
     name: string
+    email?: string | null
     domain?: string | null
     createdAt?: Date | string
     company: CompanyCreateNestedOneWithoutCustomersInput
@@ -24493,6 +24538,7 @@ export namespace Prisma {
     id?: string
     fortnoxCustomerNumber?: string | null
     name: string
+    email?: string | null
     domain?: string | null
     companyId: string
     createdAt?: Date | string
@@ -24593,6 +24639,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: CompanyUpdateOneRequiredWithoutCustomersNestedInput
@@ -24607,6 +24654,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     companyId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24621,6 +24669,7 @@ export namespace Prisma {
     id?: string
     fortnoxCustomerNumber?: string | null
     name: string
+    email?: string | null
     domain?: string | null
     createdAt?: Date | string
     company: CompanyCreateNestedOneWithoutCustomersInput
@@ -24635,6 +24684,7 @@ export namespace Prisma {
     id?: string
     fortnoxCustomerNumber?: string | null
     name: string
+    email?: string | null
     domain?: string | null
     companyId: string
     createdAt?: Date | string
@@ -24713,6 +24763,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: CompanyUpdateOneRequiredWithoutCustomersNestedInput
@@ -24727,6 +24778,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     companyId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24800,6 +24852,7 @@ export namespace Prisma {
     id?: string
     fortnoxCustomerNumber?: string | null
     name: string
+    email?: string | null
     domain?: string | null
     createdAt?: Date | string
     company: CompanyCreateNestedOneWithoutCustomersInput
@@ -24814,6 +24867,7 @@ export namespace Prisma {
     id?: string
     fortnoxCustomerNumber?: string | null
     name: string
+    email?: string | null
     domain?: string | null
     companyId: string
     createdAt?: Date | string
@@ -24925,6 +24979,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: CompanyUpdateOneRequiredWithoutCustomersNestedInput
@@ -24939,6 +24994,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     companyId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25149,6 +25205,7 @@ export namespace Prisma {
     id?: string
     fortnoxCustomerNumber?: string | null
     name: string
+    email?: string | null
     domain?: string | null
     createdAt?: Date | string
   }
@@ -25224,6 +25281,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeCustomers?: EmployeeCustomerUpdateManyWithoutCustomerNestedInput
@@ -25238,6 +25296,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutCustomerNestedInput
@@ -25252,6 +25311,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

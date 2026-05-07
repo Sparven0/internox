@@ -45,20 +45,53 @@ export async function saveEmailsToDB(
 
   for (const email of emails) {
     try {
-      // Resolve customer_id by matching recipient domains → customers.domain
+      // Resolve customer_id: match recipient email address first, then domain
       let customerId: string | null = null;
-      const recipientDomains = [...email.toAddresses, ...email.ccAddresses]
-        .map((a) => a.address.split('@')[1]?.toLowerCase())
-        .filter((d): d is string => Boolean(d) && d !== '');
+      const recipients = [...email.toAddresses, ...email.ccAddresses];
 
-      for (const domain of recipientDomains) {
+      // 1. Exact email match
+      for (const { address } of recipients) {
+        const normalised = address.toLowerCase();
         const customer = await client.customer.findFirst({
-          where: { domain },
+          where: { email: normalised },
           select: { id: true },
         });
         if (customer) {
           customerId = customer.id;
           break;
+        }
+      }
+
+      // 2. Fallback: domain match
+      if (!customerId) {
+        const recipientDomains = recipients
+          .map((a) => a.address.split('@')[1]?.toLowerCase())
+          .filter((d): d is string => Boolean(d) && d !== '');
+
+        for (const domain of recipientDomains) {
+          const customer = await client.customer.findFirst({
+            where: { domain },
+            select: { id: true },
+          });
+          if (customer) {
+            customerId = customer.id;
+            break;
+          }
+        }
+      }
+
+      // 3. Auto-link employee ↔ customer via EmployeeCustomer junction
+      if (customerId && email.imapCredentialId) {
+        const cred = await client.imapCredential.findUnique({
+          where: { id: email.imapCredentialId },
+          select: { userId: true },
+        });
+        if (cred?.userId) {
+          await client.employeeCustomer.upsert({
+            where: { userId_customerId: { userId: cred.userId, customerId } },
+            create: { userId: cred.userId, customerId },
+            update: {},
+          });
         }
       }
 

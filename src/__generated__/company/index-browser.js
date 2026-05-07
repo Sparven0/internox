@@ -161,6 +161,7 @@ exports.Prisma.CustomerScalarFieldEnum = {
   id: 'id',
   fortnoxCustomerNumber: 'fortnoxCustomerNumber',
   name: 'name',
+  email: 'email',
   domain: 'domain',
   companyId: 'companyId',
   createdAt: 'createdAt'
