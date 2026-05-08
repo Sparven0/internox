@@ -1,0 +1,11 @@
+import { masterClient } from '../masterpool';
+import { getCompanyClient } from '../connectionManager';
+
+export async function extractUserByEmail(companyName: string, email: string) {
+  const company = await masterClient.company.findFirst({ where: { name: companyName } });
+  if (!company) throw new Error('Company not found');
+  return getCompanyClient(company.dbName).user.findUnique({
+    where: { email },
+    select: { id: true, email: true, role: true },
+  });
+}

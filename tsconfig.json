@@ -1,12 +1,16 @@
 {
   "compilerOptions": {
     "typeRoots": ["./node_modules/@types", "./src/types"],
+    "types": ["node"],
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "outDir": "dist", // BEGIN: added outDir setting,
-    "rootDir":"."
+    "outDir": "dist",
+    "rootDir": ".",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ES2022"
   },
-  "include": ["src/**/*", "migrations/migrate.ts"],
+  "include": ["src/**/*", "migrations/migrate.ts", "prisma/**/*.ts"],
   "exclude": ["node_modules"]
 }

@@ -1,84 +1,136 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import masterPool from './DATABASE/masterpool';
-import onboardRoute from './routes/onboardingRoute';
-import userRouter from './routes/newUserRoute';
-import extractUserRouter from './routes/extractUsersRoute';
-// import companyRouter from './routes/newCompanyRoute';
-import extractCompany from './routes/CompanyRoute';
-import newToken from './routes/newCredentialsRoute';
-import newImapCreds from './routes/newImapCredentialsRoute'
-import createAdmin from './routes/createAdminRoute';
-import loginRoute from './routes/loginRoute';
-import createCompanyAdmin from './routes/createCompanyAdminRoute';
-import fortnox from './routes/fortnoxCallbackRoute';
-import fortnoxDataRoute from './routes/fortnoxDataRoute';
-import getAllUsers from './routes/getAllUsersRoute';
-import getImapRoute from './routes/getImapRoute';
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import jwt, { JwtPayload } from "jsonwebtoken";
+import { ApolloServer } from "@apollo/server";
+import { expressMiddleware } from "@as-integrations/express5";
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import { execSync } from "child_process";
+import typeDefs from "./graphql/typeDefs";
+import resolvers from "./graphql/resolvers";
+import masterPool, { masterClient } from "./DATABASE/masterpool";
+import fortnoxOAuth from "./routes/fortnoxCallbackRoute";
+import bcrypt from "bcrypt";
+import { startScheduler } from "./scheduler";
 
 dotenv.config();
 
 async function waitForDb(retries = 5) {
   while (retries) {
     try {
-      await masterPool.query('SELECT 1');
-      console.log('Connected to database.');
+      await masterPool.query("SELECT 1");
+      console.log("Connected to database.");
       return;
     } catch (err) {
-      console.log('Database not ready yet, retrying in 2 seconds...');
+      console.log("Database not ready yet, retrying in 2 seconds...", err);
       retries--;
-      await new Promise(res => setTimeout(res, 2000));
+      await new Promise((res) => setTimeout(res, 2000));
     }
   }
-  throw new Error('Could not connect to the database.');
+  throw new Error("Could not connect to the database.");
 }
 
+const app = express();
 
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
 
-const server = express();
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://internox.duckdns.org",
+      "http://localhost:5173",
+      "https://studio.apollographql.com",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  }),
+);
 
-server.use(cors({
-  origin: [
-    "http://localhost:3000",
-    "https://internox.duckdns.org"
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true
-}));
+app.use(express.json());
+app.use(cookieParser());
 
+// OAuth routes must stay as REST (browser redirects + cookies)
+app.use("/", fortnoxOAuth);
 
+async function seedSuperAdmin() {
+  const existing = await masterClient.user.findFirst({
+    where: { role: "super_admin" },
+  });
+  if (existing) return;
 
-server.use(express.json());
-server.use('/new-user', userRouter);
-server.use('/users', extractUserRouter);
-// server.use('/new-company', companyRouter);
-server.use('/company', extractCompany); 
-server.use('/onboarding',onboardRoute);
-server.use('/new-credentials', newToken);
-server.use('/new-imap-credentials', newImapCreds);
-server.use('/login', loginRoute);
-server.use('/create-admin', createAdmin);
-server.use('/create-company-admin', createCompanyAdmin);
-server.use('/', fortnox);
-server.use('/fortnox-data', fortnoxDataRoute);
-server.use('/get-all-users', getAllUsers);
-server.use('/get-imap', getImapRoute);
+  const userName = process.env.SUPER_ADMIN_USERNAME;
+  const password = process.env.SUPER_ADMIN_PASSWORD;
+  if (!userName || !password) {
+    throw new Error(
+      "SUPER_ADMIN_USERNAME and SUPER_ADMIN_PASSWORD must be set in .env to seed the first super admin.",
+    );
+  }
 
-server.get('/fortnox-callback', async (req, res) => {
-res.json('Success')
-})
+  const hashed = await bcrypt.hash(password, 12);
+  await masterClient.user.create({
+    data: { userName, password: hashed, role: "super_admin" },
+  });
+  console.log(`Super admin "${userName}" created.`);
+}
 
+async function migrateAllCompanyDatabases() {
+  const companies = await masterClient.company.findMany({
+    select: { dbName: true },
+  });
+  const base = process.env.COMPANY_DATABASE_URL!.replace(/\/[^\/]+$/, "");
+  for (const { dbName } of companies) {
+    const dbUrl = `${base}/${dbName}`;
+    try {
+      execSync(
+        `npx prisma migrate deploy --config prisma/company/prisma.config.ts`,
+        {
+          env: { ...process.env, COMPANY_DATABASE_URL: dbUrl },
+          stdio: "inherit",
+        },
+      );
+    } catch (err) {
+      console.error(`Migration failed for ${dbName}:`, err);
+    }
+  }
+}
 
 async function startServer() {
   try {
     await waitForDb();
+    await migrateAllCompanyDatabases();
+    await seedSuperAdmin();
+    await server.start();
+    startScheduler();
 
-    const port =  1222;
-const host = '0.0.0.0';
-    server.listen(port, host, () => {
+    app.use(
+      "/graphql",
+      cors<cors.CorsRequest>(),
+      bodyParser.json(),
+      expressMiddleware(server, {
+        context: async ({ req, res }) => {
+          const token = req.headers.authorization?.split(" ")[1];
+          let user: JwtPayload | undefined;
+          if (token) {
+            try {
+              user = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
+            } catch {}
+          }
+          return { req, res, user };
+        },
+      }),
+    );
+
+    const port = 1222;
+    const host = "0.0.0.0";
+    app.listen(port, host, () => {
       console.log(`Server is running on ${host}, port ${port}`);
+      console.log(`GraphQL endpoint: http://${host}:${port}/graphql`);
     });
   } catch (err) {
     console.error(err);
@@ -87,5 +139,3 @@ const host = '0.0.0.0';
 }
 
 startServer();
-
-

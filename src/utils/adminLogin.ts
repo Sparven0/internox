@@ -5,10 +5,10 @@ import { Request, Response } from 'express'; // Ensure these are imported
 
 export async function login(req: Request, res: Response): Promise<any> {
   try {
-    const {user_name, password} = req.body;
+    const {user_name, password, company} = req.body;
 
     // Validate input
-    if (!user_name || !password) {
+    if (!user_name || !password || !company) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
@@ -35,7 +35,8 @@ export async function login(req: Request, res: Response): Promise<any> {
       {
         id: user.id,
         email: user.email,
-        role: user.role
+        role: user.role,
+        company: user.company
       },
       process.env.JWT_SECRET!, // Ensure JWT_SECRET is defined in your environment variables
       { expiresIn: '1h' }

@@ -1,37 +1,40 @@
-import { getCompanyPool } from "../connectionManager";
-import { extractCompany } from "../COMPANIES/extractCompanyFunc";
+import { masterClient } from '../masterpool';
+import { getCompanyClient } from '../connectionManager';
 
-/**
- * Inserts tokens into the specified company's database.
- * @param companyName - The name of the company
- * @param tokens - An object containing token details (service, access_token, refresh_token, expires_at)
- * @returns A promise that resolves when the tokens are inserted
- */
 export async function insertToken(
   companyName: string,
   tokens: { service: string; access_token: string; refresh_token?: string; expires_at?: string }
 ): Promise<void> {
-  const companyInfo = await extractCompany(companyName);
-  const companyId = companyInfo.rows[0].id;
-  const dbName = `company_${companyId.replace(/-/g, '_')}`;
-  const pool = getCompanyPool(dbName);
-  const client = await pool.connect();
-  const { service, access_token, refresh_token, expires_at } = tokens;
+  const company = await masterClient.company.findFirst({ where: { name: companyName } });
+  if (!company) throw new Error(`Company not found: ${companyName}`);
 
-  const query = `
-    INSERT INTO company_integrations (company_id, service, access_token, refresh_token, expires_at)
-    VALUES ($1, $2, $3, $4, $5)
-  `;
-
-  const values = [companyId, service, access_token, refresh_token || null, expires_at || null];
-
-  try {
-    await client.query(query, values);
-    console.log("Tokens inserted successfully");
-  } catch (error) {
-    console.error("Error inserting tokens:", error);
-    throw error;
-  } finally {
-    client.release(); // Release the client back to the pool
-  }
+  await getCompanyClient(company.dbName).companyIntegration.create({
+    data: {
+      companyId: company.id,
+      service: tokens.service,
+      accessToken: tokens.access_token,
+      refreshToken: tokens.refresh_token ?? null,
+      expiresAt: tokens.expires_at ? new Date(tokens.expires_at) : null,
+    },
+  });
 }
+
+export async function updateTokens(
+  companyId: string,
+  service: string,
+  tokens: { access_token?: string; refresh_token?: string; expires_at?: string }
+): Promise<void> {
+  const company = await masterClient.company.findUnique({ where: { id: companyId } });
+  if (!company) throw new Error('Company not found');
+
+  await getCompanyClient(company.dbName).companyIntegration.updateMany({
+    where: { companyId, service: { equals: service, mode: 'insensitive' } },
+    data: {
+      ...(tokens.access_token ? { accessToken: tokens.access_token } : {}),
+      ...(tokens.refresh_token ? { refreshToken: tokens.refresh_token } : {}),
+      ...(tokens.expires_at ? { expiresAt: new Date(tokens.expires_at) } : {}),
+    },
+  });
+}
+
+export default { insertToken, updateTokens };

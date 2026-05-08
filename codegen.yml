@@ -1,0 +1,10 @@
+schema: ./src/graphql/typeDefs.ts
+require:
+  - ts-node/register
+generates:
+  ./src/__generated__/resolvers-types.ts:
+    plugins:
+      - typescript
+      - typescript-resolvers
+    config:
+      contextType: ../graphql/context#GraphQLContext

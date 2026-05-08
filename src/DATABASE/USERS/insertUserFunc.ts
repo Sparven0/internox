@@ -1,29 +1,24 @@
 import { hashPassword } from '../../utils/encryptPassword';
-import masterPool from '../masterpool';
-import { getCompanyPool } from '../connectionManager';
+import { masterClient } from '../masterpool';
+import { getCompanyClient } from '../connectionManager';
+import { Prisma } from '../../__generated__/master';
 
+export async function createUser(email: string, companyDomain: string, password: string) {
+  const company = await masterClient.company.findUnique({ where: { domain: companyDomain } });
+  if (!company) throw new Error('Company not found');
 
-export async function createUser(email: string, companyDomain: string, password:string) {
-  // Step 1: Resolve company DB name from master DB
-  const result = await masterPool.query(
-    'SELECT id, db_name FROM companies WHERE domain = $1',
-    [companyDomain]
-  );
+  // Borttagen: e-postdomän-validering — ni använder Gmail-adresser
 
-  if (result.rowCount === 0) {
-    throw new Error('Company not found');
+  const encryptedPassword = await hashPassword(password);
+  
+  try {
+    await getCompanyClient(company.dbName).user.create({
+      data: { email, companyId: company.id, password: encryptedPassword, role: 'employee' },
+    });
+  } catch (err) {
+    if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002') {
+      return; // Användaren finns redan — det är ok, fortsätt
+    }
+    throw err; // Kasta vidare alla andra fel
   }
-
-  const { id: companyId, db_name: dbName } = result.rows[0];
-  if (!email.endsWith('@' + companyDomain)) {
-    throw new Error('Company domain does not match email domain');
-  }
-  const companyPool = getCompanyPool(dbName);
-  const encryptedPassword =  await hashPassword(password);
-console.log(encryptedPassword)
-
-  await companyPool.query(
-    `INSERT INTO users (email, company_id, password, role) VALUES ($1, $2, $3, $4)`,
-    [email, companyId, encryptedPassword, 'employee']
-  );
 }

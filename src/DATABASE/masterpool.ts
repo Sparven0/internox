@@ -1,14 +1,16 @@
 import { Pool } from 'pg';
+import { PrismaPg } from '@prisma/adapter-pg';
+import { PrismaClient } from '../__generated__/master';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-const masterPool = new Pool({
-  host: process.env.POSTGRES_HOST,
-  user: process.env.POSTGRES_USER,
-  password: process.env.POSTGRES_PASSWORD,
-  database: process.env.POSTGRES_DB, // this should be in your .env
-  port: process.env.POSTGRES_PORT ? parseInt(process.env.POSTGRES_PORT) : 5432,
+// Raw pool — still needed for DDL (CREATE DATABASE) in onboard.ts and DB health checks
+export const masterPool = new Pool({ connectionString: process.env.DATABASE_URL });
+
+// Prisma client for all master DB queries
+export const masterClient = new PrismaClient({
+  adapter: new PrismaPg(masterPool),
 });
 
 export default masterPool;
