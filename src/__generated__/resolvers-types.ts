@@ -34,6 +34,57 @@ export type Company = {
   name: Scalars['String']['output'];
 };
 
+export type FortnoxAccount = {
+  __typename?: 'FortnoxAccount';
+  accountNumber: Scalars['Int']['output'];
+  active: Scalars['Boolean']['output'];
+  balanceBroughtForward?: Maybe<Scalars['Float']['output']>;
+  balanceCarriedForward?: Maybe<Scalars['Float']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  vatCode?: Maybe<Scalars['String']['output']>;
+};
+
+export type FortnoxFinancialYear = {
+  __typename?: 'FortnoxFinancialYear';
+  accountChartType?: Maybe<Scalars['String']['output']>;
+  accountingMethod?: Maybe<Scalars['String']['output']>;
+  fortnoxId: Scalars['Int']['output'];
+  fromDate: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  toDate: Scalars['String']['output'];
+};
+
+export type FortnoxVoucher = {
+  __typename?: 'FortnoxVoucher';
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  referenceNumber?: Maybe<Scalars['String']['output']>;
+  referenceType?: Maybe<Scalars['String']['output']>;
+  transactionDate: Scalars['String']['output'];
+  voucherNumber: Scalars['Int']['output'];
+  voucherSeries: Scalars['String']['output'];
+};
+
+export type FortnoxVoucherDetail = {
+  __typename?: 'FortnoxVoucherDetail';
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  referenceNumber?: Maybe<Scalars['String']['output']>;
+  referenceType?: Maybe<Scalars['String']['output']>;
+  rows: Array<FortnoxVoucherRow>;
+  transactionDate: Scalars['String']['output'];
+  voucherNumber: Scalars['Int']['output'];
+  voucherSeries: Scalars['String']['output'];
+};
+
+export type FortnoxVoucherRow = {
+  __typename?: 'FortnoxVoucherRow';
+  accountNumber: Scalars['Int']['output'];
+  credit?: Maybe<Scalars['Float']['output']>;
+  debit?: Maybe<Scalars['Float']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+};
+
 export type ImapCredential = {
   __typename?: 'ImapCredential';
   email_address: Scalars['String']['output'];
@@ -171,9 +222,11 @@ export type OnboardingStatus = {
 
 export type Query = {
   __typename?: 'Query';
+  getAccounts: Array<FortnoxAccount>;
   getAllCompanies?: Maybe<Array<Maybe<Company>>>;
   getCompanyById?: Maybe<Company>;
   getCompanyByName?: Maybe<Company>;
+  getFinancialYears: Array<FortnoxFinancialYear>;
   getFortnoxData?: Maybe<Scalars['JSON']['output']>;
   getImapCredentials?: Maybe<Array<Maybe<ImapCredential>>>;
   getInitPageData: InitPageData;
@@ -182,6 +235,13 @@ export type Query = {
   getSentEmails?: Maybe<Array<Maybe<SentEmail>>>;
   getUsers?: Maybe<Array<Maybe<User>>>;
   getUsersByCompanyId?: Maybe<Array<Maybe<User>>>;
+  getVoucherDetail?: Maybe<FortnoxVoucherDetail>;
+  getVouchers: Array<FortnoxVoucher>;
+};
+
+
+export type QueryGetAccountsArgs = {
+  financialYearId: Scalars['ID']['input'];
 };
 
 
@@ -220,6 +280,18 @@ export type QueryGetUsersArgs = {
 
 export type QueryGetUsersByCompanyIdArgs = {
   companyId: Scalars['String']['input'];
+};
+
+
+export type QueryGetVoucherDetailArgs = {
+  voucherId: Scalars['ID']['input'];
+};
+
+
+export type QueryGetVouchersArgs = {
+  financialYearId: Scalars['ID']['input'];
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type SentEmail = {
@@ -324,6 +396,12 @@ export type ResolversTypes = {
   AuthPayload: ResolverTypeWrapper<AuthPayload>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Company: ResolverTypeWrapper<Company>;
+  Float: ResolverTypeWrapper<Scalars['Float']['output']>;
+  FortnoxAccount: ResolverTypeWrapper<FortnoxAccount>;
+  FortnoxFinancialYear: ResolverTypeWrapper<FortnoxFinancialYear>;
+  FortnoxVoucher: ResolverTypeWrapper<FortnoxVoucher>;
+  FortnoxVoucherDetail: ResolverTypeWrapper<FortnoxVoucherDetail>;
+  FortnoxVoucherRow: ResolverTypeWrapper<FortnoxVoucherRow>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   ImapCredential: ResolverTypeWrapper<ImapCredential>;
   ImapCredentialResult: ResolverTypeWrapper<ImapCredentialResult>;
@@ -348,6 +426,12 @@ export type ResolversParentTypes = {
   AuthPayload: AuthPayload;
   Boolean: Scalars['Boolean']['output'];
   Company: Company;
+  Float: Scalars['Float']['output'];
+  FortnoxAccount: FortnoxAccount;
+  FortnoxFinancialYear: FortnoxFinancialYear;
+  FortnoxVoucher: FortnoxVoucher;
+  FortnoxVoucherDetail: FortnoxVoucherDetail;
+  FortnoxVoucherRow: FortnoxVoucherRow;
   ID: Scalars['ID']['output'];
   ImapCredential: ImapCredential;
   ImapCredentialResult: ImapCredentialResult;
@@ -379,6 +463,52 @@ export type CompanyResolvers<ContextType = GraphQLContext, ParentType extends Re
   domain?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+};
+
+export type FortnoxAccountResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['FortnoxAccount'] = ResolversParentTypes['FortnoxAccount']> = {
+  accountNumber?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  active?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  balanceBroughtForward?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  balanceCarriedForward?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  vatCode?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+};
+
+export type FortnoxFinancialYearResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['FortnoxFinancialYear'] = ResolversParentTypes['FortnoxFinancialYear']> = {
+  accountChartType?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  accountingMethod?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  fortnoxId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  fromDate?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  toDate?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+};
+
+export type FortnoxVoucherResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['FortnoxVoucher'] = ResolversParentTypes['FortnoxVoucher']> = {
+  description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  referenceNumber?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  referenceType?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  transactionDate?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  voucherNumber?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  voucherSeries?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+};
+
+export type FortnoxVoucherDetailResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['FortnoxVoucherDetail'] = ResolversParentTypes['FortnoxVoucherDetail']> = {
+  description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  referenceNumber?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  referenceType?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  rows?: Resolver<Array<ResolversTypes['FortnoxVoucherRow']>, ParentType, ContextType>;
+  transactionDate?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  voucherNumber?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  voucherSeries?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+};
+
+export type FortnoxVoucherRowResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['FortnoxVoucherRow'] = ResolversParentTypes['FortnoxVoucherRow']> = {
+  accountNumber?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  credit?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  debit?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
 };
 
 export type ImapCredentialResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['ImapCredential'] = ResolversParentTypes['ImapCredential']> = {
@@ -443,9 +573,11 @@ export type OnboardingStatusResolvers<ContextType = GraphQLContext, ParentType e
 };
 
 export type QueryResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  getAccounts?: Resolver<Array<ResolversTypes['FortnoxAccount']>, ParentType, ContextType, RequireFields<QueryGetAccountsArgs, 'financialYearId'>>;
   getAllCompanies?: Resolver<Maybe<Array<Maybe<ResolversTypes['Company']>>>, ParentType, ContextType>;
   getCompanyById?: Resolver<Maybe<ResolversTypes['Company']>, ParentType, ContextType, RequireFields<QueryGetCompanyByIdArgs, 'id'>>;
   getCompanyByName?: Resolver<Maybe<ResolversTypes['Company']>, ParentType, ContextType, RequireFields<QueryGetCompanyByNameArgs, 'name'>>;
+  getFinancialYears?: Resolver<Array<ResolversTypes['FortnoxFinancialYear']>, ParentType, ContextType>;
   getFortnoxData?: Resolver<Maybe<ResolversTypes['JSON']>, ParentType, ContextType, RequireFields<QueryGetFortnoxDataArgs, 'companyId'>>;
   getImapCredentials?: Resolver<Maybe<Array<Maybe<ResolversTypes['ImapCredential']>>>, ParentType, ContextType, RequireFields<QueryGetImapCredentialsArgs, 'company'>>;
   getInitPageData?: Resolver<ResolversTypes['InitPageData'], ParentType, ContextType>;
@@ -454,6 +586,8 @@ export type QueryResolvers<ContextType = GraphQLContext, ParentType extends Reso
   getSentEmails?: Resolver<Maybe<Array<Maybe<ResolversTypes['SentEmail']>>>, ParentType, ContextType, RequireFields<QueryGetSentEmailsArgs, 'companyId' | 'credentialId'>>;
   getUsers?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType, RequireFields<QueryGetUsersArgs, 'company'>>;
   getUsersByCompanyId?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType, RequireFields<QueryGetUsersByCompanyIdArgs, 'companyId'>>;
+  getVoucherDetail?: Resolver<Maybe<ResolversTypes['FortnoxVoucherDetail']>, ParentType, ContextType, RequireFields<QueryGetVoucherDetailArgs, 'voucherId'>>;
+  getVouchers?: Resolver<Array<ResolversTypes['FortnoxVoucher']>, ParentType, ContextType, RequireFields<QueryGetVouchersArgs, 'financialYearId'>>;
 };
 
 export type SentEmailResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['SentEmail'] = ResolversParentTypes['SentEmail']> = {
@@ -482,6 +616,11 @@ export type UserResolvers<ContextType = GraphQLContext, ParentType extends Resol
 export type Resolvers<ContextType = GraphQLContext> = {
   AuthPayload?: AuthPayloadResolvers<ContextType>;
   Company?: CompanyResolvers<ContextType>;
+  FortnoxAccount?: FortnoxAccountResolvers<ContextType>;
+  FortnoxFinancialYear?: FortnoxFinancialYearResolvers<ContextType>;
+  FortnoxVoucher?: FortnoxVoucherResolvers<ContextType>;
+  FortnoxVoucherDetail?: FortnoxVoucherDetailResolvers<ContextType>;
+  FortnoxVoucherRow?: FortnoxVoucherRowResolvers<ContextType>;
   ImapCredential?: ImapCredentialResolvers<ContextType>;
   ImapCredentialResult?: ImapCredentialResultResolvers<ContextType>;
   InitPageCompany?: InitPageCompanyResolvers<ContextType>;

@@ -81,6 +81,72 @@ const resolvers: Resolvers = {
       );
       return emails as any[];
     },
+    getFinancialYears: async (_parent, _args, { user }) => {
+      if (!user) throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
+      const companyId = (user as any).companyId;
+      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      if (!company) throw new GraphQLError("Company not found");
+      const client = getCompanyClient(company.dbName);
+      const rows = await client.fortnoxFinancialYear.findMany({ orderBy: { fromDate: "desc" } });
+      return rows.map((r) => ({
+        ...r,
+        fromDate: r.fromDate.toISOString(),
+        toDate: r.toDate.toISOString(),
+      }));
+    },
+    getAccounts: async (_parent, args, { user }) => {
+      if (!user) throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
+      const companyId = (user as any).companyId;
+      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      if (!company) throw new GraphQLError("Company not found");
+      const client = getCompanyClient(company.dbName);
+      const rows = await client.fortnoxAccount.findMany({
+        where: { financialYearId: args.financialYearId },
+        orderBy: { accountNumber: "asc" },
+      });
+      return rows.map((r) => ({
+        ...r,
+        balanceBroughtForward: r.balanceBroughtForward != null ? Number(r.balanceBroughtForward) : null,
+        balanceCarriedForward: r.balanceCarriedForward != null ? Number(r.balanceCarriedForward) : null,
+      }));
+    },
+    getVouchers: async (_parent, args, { user }) => {
+      if (!user) throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
+      const companyId = (user as any).companyId;
+      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      if (!company) throw new GraphQLError("Company not found");
+      const client = getCompanyClient(company.dbName);
+      const page = args.page ?? 1;
+      const limit = args.limit ?? 50;
+      const rows = await client.fortnoxVoucher.findMany({
+        where: { financialYearId: args.financialYearId },
+        orderBy: { transactionDate: "desc" },
+        skip: (page - 1) * limit,
+        take: limit,
+      });
+      return rows.map((r) => ({ ...r, transactionDate: r.transactionDate.toISOString() }));
+    },
+    getVoucherDetail: async (_parent, args, { user }) => {
+      if (!user) throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
+      const companyId = (user as any).companyId;
+      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      if (!company) throw new GraphQLError("Company not found");
+      const client = getCompanyClient(company.dbName);
+      const v = await client.fortnoxVoucher.findUnique({
+        where: { id: args.voucherId },
+        include: { rows: true },
+      });
+      if (!v) return null;
+      return {
+        ...v,
+        transactionDate: v.transactionDate.toISOString(),
+        rows: v.rows.map((r) => ({
+          ...r,
+          debit: r.debit != null ? Number(r.debit) : null,
+          credit: r.credit != null ? Number(r.credit) : null,
+        })),
+      };
+    },
     getOnboardingStatus: async (_parent, _args, { user }) => {
       if (!user) throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
 

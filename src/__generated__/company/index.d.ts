@@ -78,6 +78,26 @@ export type FortnoxInvoiceRow = $Result.DefaultSelection<Prisma.$FortnoxInvoiceR
  * 
  */
 export type FortnoxSyncLog = $Result.DefaultSelection<Prisma.$FortnoxSyncLogPayload>
+/**
+ * Model FortnoxFinancialYear
+ * 
+ */
+export type FortnoxFinancialYear = $Result.DefaultSelection<Prisma.$FortnoxFinancialYearPayload>
+/**
+ * Model FortnoxAccount
+ * 
+ */
+export type FortnoxAccount = $Result.DefaultSelection<Prisma.$FortnoxAccountPayload>
+/**
+ * Model FortnoxVoucher
+ * 
+ */
+export type FortnoxVoucher = $Result.DefaultSelection<Prisma.$FortnoxVoucherPayload>
+/**
+ * Model FortnoxVoucherRow
+ * 
+ */
+export type FortnoxVoucherRow = $Result.DefaultSelection<Prisma.$FortnoxVoucherRowPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -329,6 +349,46 @@ export class PrismaClient<
     * ```
     */
   get fortnoxSyncLog(): Prisma.FortnoxSyncLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.fortnoxFinancialYear`: Exposes CRUD operations for the **FortnoxFinancialYear** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FortnoxFinancialYears
+    * const fortnoxFinancialYears = await prisma.fortnoxFinancialYear.findMany()
+    * ```
+    */
+  get fortnoxFinancialYear(): Prisma.FortnoxFinancialYearDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.fortnoxAccount`: Exposes CRUD operations for the **FortnoxAccount** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FortnoxAccounts
+    * const fortnoxAccounts = await prisma.fortnoxAccount.findMany()
+    * ```
+    */
+  get fortnoxAccount(): Prisma.FortnoxAccountDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.fortnoxVoucher`: Exposes CRUD operations for the **FortnoxVoucher** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FortnoxVouchers
+    * const fortnoxVouchers = await prisma.fortnoxVoucher.findMany()
+    * ```
+    */
+  get fortnoxVoucher(): Prisma.FortnoxVoucherDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.fortnoxVoucherRow`: Exposes CRUD operations for the **FortnoxVoucherRow** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FortnoxVoucherRows
+    * const fortnoxVoucherRows = await prisma.fortnoxVoucherRow.findMany()
+    * ```
+    */
+  get fortnoxVoucherRow(): Prisma.FortnoxVoucherRowDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -775,7 +835,11 @@ export namespace Prisma {
     FortnoxCustomer: 'FortnoxCustomer',
     FortnoxInvoice: 'FortnoxInvoice',
     FortnoxInvoiceRow: 'FortnoxInvoiceRow',
-    FortnoxSyncLog: 'FortnoxSyncLog'
+    FortnoxSyncLog: 'FortnoxSyncLog',
+    FortnoxFinancialYear: 'FortnoxFinancialYear',
+    FortnoxAccount: 'FortnoxAccount',
+    FortnoxVoucher: 'FortnoxVoucher',
+    FortnoxVoucherRow: 'FortnoxVoucherRow'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -791,7 +855,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "company" | "user" | "companyIntegration" | "imapCredential" | "customer" | "employeeCustomer" | "timeEntry" | "emailActivity" | "email" | "fortnoxCustomer" | "fortnoxInvoice" | "fortnoxInvoiceRow" | "fortnoxSyncLog"
+      modelProps: "company" | "user" | "companyIntegration" | "imapCredential" | "customer" | "employeeCustomer" | "timeEntry" | "emailActivity" | "email" | "fortnoxCustomer" | "fortnoxInvoice" | "fortnoxInvoiceRow" | "fortnoxSyncLog" | "fortnoxFinancialYear" | "fortnoxAccount" | "fortnoxVoucher" | "fortnoxVoucherRow"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1757,6 +1821,302 @@ export namespace Prisma {
           }
         }
       }
+      FortnoxFinancialYear: {
+        payload: Prisma.$FortnoxFinancialYearPayload<ExtArgs>
+        fields: Prisma.FortnoxFinancialYearFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FortnoxFinancialYearFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxFinancialYearPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FortnoxFinancialYearFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxFinancialYearPayload>
+          }
+          findFirst: {
+            args: Prisma.FortnoxFinancialYearFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxFinancialYearPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FortnoxFinancialYearFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxFinancialYearPayload>
+          }
+          findMany: {
+            args: Prisma.FortnoxFinancialYearFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxFinancialYearPayload>[]
+          }
+          create: {
+            args: Prisma.FortnoxFinancialYearCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxFinancialYearPayload>
+          }
+          createMany: {
+            args: Prisma.FortnoxFinancialYearCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FortnoxFinancialYearCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxFinancialYearPayload>[]
+          }
+          delete: {
+            args: Prisma.FortnoxFinancialYearDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxFinancialYearPayload>
+          }
+          update: {
+            args: Prisma.FortnoxFinancialYearUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxFinancialYearPayload>
+          }
+          deleteMany: {
+            args: Prisma.FortnoxFinancialYearDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FortnoxFinancialYearUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FortnoxFinancialYearUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxFinancialYearPayload>[]
+          }
+          upsert: {
+            args: Prisma.FortnoxFinancialYearUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxFinancialYearPayload>
+          }
+          aggregate: {
+            args: Prisma.FortnoxFinancialYearAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFortnoxFinancialYear>
+          }
+          groupBy: {
+            args: Prisma.FortnoxFinancialYearGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FortnoxFinancialYearGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FortnoxFinancialYearCountArgs<ExtArgs>
+            result: $Utils.Optional<FortnoxFinancialYearCountAggregateOutputType> | number
+          }
+        }
+      }
+      FortnoxAccount: {
+        payload: Prisma.$FortnoxAccountPayload<ExtArgs>
+        fields: Prisma.FortnoxAccountFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FortnoxAccountFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxAccountPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FortnoxAccountFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxAccountPayload>
+          }
+          findFirst: {
+            args: Prisma.FortnoxAccountFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxAccountPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FortnoxAccountFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxAccountPayload>
+          }
+          findMany: {
+            args: Prisma.FortnoxAccountFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxAccountPayload>[]
+          }
+          create: {
+            args: Prisma.FortnoxAccountCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxAccountPayload>
+          }
+          createMany: {
+            args: Prisma.FortnoxAccountCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FortnoxAccountCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxAccountPayload>[]
+          }
+          delete: {
+            args: Prisma.FortnoxAccountDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxAccountPayload>
+          }
+          update: {
+            args: Prisma.FortnoxAccountUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxAccountPayload>
+          }
+          deleteMany: {
+            args: Prisma.FortnoxAccountDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FortnoxAccountUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FortnoxAccountUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxAccountPayload>[]
+          }
+          upsert: {
+            args: Prisma.FortnoxAccountUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxAccountPayload>
+          }
+          aggregate: {
+            args: Prisma.FortnoxAccountAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFortnoxAccount>
+          }
+          groupBy: {
+            args: Prisma.FortnoxAccountGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FortnoxAccountGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FortnoxAccountCountArgs<ExtArgs>
+            result: $Utils.Optional<FortnoxAccountCountAggregateOutputType> | number
+          }
+        }
+      }
+      FortnoxVoucher: {
+        payload: Prisma.$FortnoxVoucherPayload<ExtArgs>
+        fields: Prisma.FortnoxVoucherFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FortnoxVoucherFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FortnoxVoucherFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherPayload>
+          }
+          findFirst: {
+            args: Prisma.FortnoxVoucherFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FortnoxVoucherFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherPayload>
+          }
+          findMany: {
+            args: Prisma.FortnoxVoucherFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherPayload>[]
+          }
+          create: {
+            args: Prisma.FortnoxVoucherCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherPayload>
+          }
+          createMany: {
+            args: Prisma.FortnoxVoucherCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FortnoxVoucherCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherPayload>[]
+          }
+          delete: {
+            args: Prisma.FortnoxVoucherDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherPayload>
+          }
+          update: {
+            args: Prisma.FortnoxVoucherUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherPayload>
+          }
+          deleteMany: {
+            args: Prisma.FortnoxVoucherDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FortnoxVoucherUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FortnoxVoucherUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherPayload>[]
+          }
+          upsert: {
+            args: Prisma.FortnoxVoucherUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherPayload>
+          }
+          aggregate: {
+            args: Prisma.FortnoxVoucherAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFortnoxVoucher>
+          }
+          groupBy: {
+            args: Prisma.FortnoxVoucherGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FortnoxVoucherGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FortnoxVoucherCountArgs<ExtArgs>
+            result: $Utils.Optional<FortnoxVoucherCountAggregateOutputType> | number
+          }
+        }
+      }
+      FortnoxVoucherRow: {
+        payload: Prisma.$FortnoxVoucherRowPayload<ExtArgs>
+        fields: Prisma.FortnoxVoucherRowFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FortnoxVoucherRowFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherRowPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FortnoxVoucherRowFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherRowPayload>
+          }
+          findFirst: {
+            args: Prisma.FortnoxVoucherRowFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherRowPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FortnoxVoucherRowFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherRowPayload>
+          }
+          findMany: {
+            args: Prisma.FortnoxVoucherRowFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherRowPayload>[]
+          }
+          create: {
+            args: Prisma.FortnoxVoucherRowCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherRowPayload>
+          }
+          createMany: {
+            args: Prisma.FortnoxVoucherRowCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FortnoxVoucherRowCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherRowPayload>[]
+          }
+          delete: {
+            args: Prisma.FortnoxVoucherRowDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherRowPayload>
+          }
+          update: {
+            args: Prisma.FortnoxVoucherRowUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherRowPayload>
+          }
+          deleteMany: {
+            args: Prisma.FortnoxVoucherRowDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FortnoxVoucherRowUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FortnoxVoucherRowUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherRowPayload>[]
+          }
+          upsert: {
+            args: Prisma.FortnoxVoucherRowUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FortnoxVoucherRowPayload>
+          }
+          aggregate: {
+            args: Prisma.FortnoxVoucherRowAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFortnoxVoucherRow>
+          }
+          groupBy: {
+            args: Prisma.FortnoxVoucherRowGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FortnoxVoucherRowGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FortnoxVoucherRowCountArgs<ExtArgs>
+            result: $Utils.Optional<FortnoxVoucherRowCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1878,6 +2238,10 @@ export namespace Prisma {
     fortnoxInvoice?: FortnoxInvoiceOmit
     fortnoxInvoiceRow?: FortnoxInvoiceRowOmit
     fortnoxSyncLog?: FortnoxSyncLogOmit
+    fortnoxFinancialYear?: FortnoxFinancialYearOmit
+    fortnoxAccount?: FortnoxAccountOmit
+    fortnoxVoucher?: FortnoxVoucherOmit
+    fortnoxVoucherRow?: FortnoxVoucherRowOmit
   }
 
   /* Types for Logging */
@@ -2235,6 +2599,77 @@ export namespace Prisma {
    */
   export type FortnoxInvoiceCountOutputTypeCountRowsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FortnoxInvoiceRowWhereInput
+  }
+
+
+  /**
+   * Count Type FortnoxFinancialYearCountOutputType
+   */
+
+  export type FortnoxFinancialYearCountOutputType = {
+    accounts: number
+    vouchers: number
+  }
+
+  export type FortnoxFinancialYearCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    accounts?: boolean | FortnoxFinancialYearCountOutputTypeCountAccountsArgs
+    vouchers?: boolean | FortnoxFinancialYearCountOutputTypeCountVouchersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FortnoxFinancialYearCountOutputType without action
+   */
+  export type FortnoxFinancialYearCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxFinancialYearCountOutputType
+     */
+    select?: FortnoxFinancialYearCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FortnoxFinancialYearCountOutputType without action
+   */
+  export type FortnoxFinancialYearCountOutputTypeCountAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FortnoxAccountWhereInput
+  }
+
+  /**
+   * FortnoxFinancialYearCountOutputType without action
+   */
+  export type FortnoxFinancialYearCountOutputTypeCountVouchersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FortnoxVoucherWhereInput
+  }
+
+
+  /**
+   * Count Type FortnoxVoucherCountOutputType
+   */
+
+  export type FortnoxVoucherCountOutputType = {
+    rows: number
+  }
+
+  export type FortnoxVoucherCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    rows?: boolean | FortnoxVoucherCountOutputTypeCountRowsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FortnoxVoucherCountOutputType without action
+   */
+  export type FortnoxVoucherCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucherCountOutputType
+     */
+    select?: FortnoxVoucherCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FortnoxVoucherCountOutputType without action
+   */
+  export type FortnoxVoucherCountOutputTypeCountRowsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FortnoxVoucherRowWhereInput
   }
 
 
@@ -17656,6 +18091,4781 @@ export namespace Prisma {
 
 
   /**
+   * Model FortnoxFinancialYear
+   */
+
+  export type AggregateFortnoxFinancialYear = {
+    _count: FortnoxFinancialYearCountAggregateOutputType | null
+    _avg: FortnoxFinancialYearAvgAggregateOutputType | null
+    _sum: FortnoxFinancialYearSumAggregateOutputType | null
+    _min: FortnoxFinancialYearMinAggregateOutputType | null
+    _max: FortnoxFinancialYearMaxAggregateOutputType | null
+  }
+
+  export type FortnoxFinancialYearAvgAggregateOutputType = {
+    fortnoxId: number | null
+  }
+
+  export type FortnoxFinancialYearSumAggregateOutputType = {
+    fortnoxId: number | null
+  }
+
+  export type FortnoxFinancialYearMinAggregateOutputType = {
+    id: string | null
+    fortnoxId: number | null
+    fromDate: Date | null
+    toDate: Date | null
+    accountChartType: string | null
+    accountingMethod: string | null
+    syncedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type FortnoxFinancialYearMaxAggregateOutputType = {
+    id: string | null
+    fortnoxId: number | null
+    fromDate: Date | null
+    toDate: Date | null
+    accountChartType: string | null
+    accountingMethod: string | null
+    syncedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type FortnoxFinancialYearCountAggregateOutputType = {
+    id: number
+    fortnoxId: number
+    fromDate: number
+    toDate: number
+    accountChartType: number
+    accountingMethod: number
+    rawData: number
+    syncedAt: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type FortnoxFinancialYearAvgAggregateInputType = {
+    fortnoxId?: true
+  }
+
+  export type FortnoxFinancialYearSumAggregateInputType = {
+    fortnoxId?: true
+  }
+
+  export type FortnoxFinancialYearMinAggregateInputType = {
+    id?: true
+    fortnoxId?: true
+    fromDate?: true
+    toDate?: true
+    accountChartType?: true
+    accountingMethod?: true
+    syncedAt?: true
+    createdAt?: true
+  }
+
+  export type FortnoxFinancialYearMaxAggregateInputType = {
+    id?: true
+    fortnoxId?: true
+    fromDate?: true
+    toDate?: true
+    accountChartType?: true
+    accountingMethod?: true
+    syncedAt?: true
+    createdAt?: true
+  }
+
+  export type FortnoxFinancialYearCountAggregateInputType = {
+    id?: true
+    fortnoxId?: true
+    fromDate?: true
+    toDate?: true
+    accountChartType?: true
+    accountingMethod?: true
+    rawData?: true
+    syncedAt?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type FortnoxFinancialYearAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FortnoxFinancialYear to aggregate.
+     */
+    where?: FortnoxFinancialYearWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxFinancialYears to fetch.
+     */
+    orderBy?: FortnoxFinancialYearOrderByWithRelationInput | FortnoxFinancialYearOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FortnoxFinancialYearWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxFinancialYears from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxFinancialYears.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FortnoxFinancialYears
+    **/
+    _count?: true | FortnoxFinancialYearCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FortnoxFinancialYearAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FortnoxFinancialYearSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FortnoxFinancialYearMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FortnoxFinancialYearMaxAggregateInputType
+  }
+
+  export type GetFortnoxFinancialYearAggregateType<T extends FortnoxFinancialYearAggregateArgs> = {
+        [P in keyof T & keyof AggregateFortnoxFinancialYear]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFortnoxFinancialYear[P]>
+      : GetScalarType<T[P], AggregateFortnoxFinancialYear[P]>
+  }
+
+
+
+
+  export type FortnoxFinancialYearGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FortnoxFinancialYearWhereInput
+    orderBy?: FortnoxFinancialYearOrderByWithAggregationInput | FortnoxFinancialYearOrderByWithAggregationInput[]
+    by: FortnoxFinancialYearScalarFieldEnum[] | FortnoxFinancialYearScalarFieldEnum
+    having?: FortnoxFinancialYearScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FortnoxFinancialYearCountAggregateInputType | true
+    _avg?: FortnoxFinancialYearAvgAggregateInputType
+    _sum?: FortnoxFinancialYearSumAggregateInputType
+    _min?: FortnoxFinancialYearMinAggregateInputType
+    _max?: FortnoxFinancialYearMaxAggregateInputType
+  }
+
+  export type FortnoxFinancialYearGroupByOutputType = {
+    id: string
+    fortnoxId: number
+    fromDate: Date
+    toDate: Date
+    accountChartType: string | null
+    accountingMethod: string | null
+    rawData: JsonValue | null
+    syncedAt: Date
+    createdAt: Date
+    _count: FortnoxFinancialYearCountAggregateOutputType | null
+    _avg: FortnoxFinancialYearAvgAggregateOutputType | null
+    _sum: FortnoxFinancialYearSumAggregateOutputType | null
+    _min: FortnoxFinancialYearMinAggregateOutputType | null
+    _max: FortnoxFinancialYearMaxAggregateOutputType | null
+  }
+
+  type GetFortnoxFinancialYearGroupByPayload<T extends FortnoxFinancialYearGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FortnoxFinancialYearGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FortnoxFinancialYearGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FortnoxFinancialYearGroupByOutputType[P]>
+            : GetScalarType<T[P], FortnoxFinancialYearGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FortnoxFinancialYearSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fortnoxId?: boolean
+    fromDate?: boolean
+    toDate?: boolean
+    accountChartType?: boolean
+    accountingMethod?: boolean
+    rawData?: boolean
+    syncedAt?: boolean
+    createdAt?: boolean
+    accounts?: boolean | FortnoxFinancialYear$accountsArgs<ExtArgs>
+    vouchers?: boolean | FortnoxFinancialYear$vouchersArgs<ExtArgs>
+    _count?: boolean | FortnoxFinancialYearCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxFinancialYear"]>
+
+  export type FortnoxFinancialYearSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fortnoxId?: boolean
+    fromDate?: boolean
+    toDate?: boolean
+    accountChartType?: boolean
+    accountingMethod?: boolean
+    rawData?: boolean
+    syncedAt?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["fortnoxFinancialYear"]>
+
+  export type FortnoxFinancialYearSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fortnoxId?: boolean
+    fromDate?: boolean
+    toDate?: boolean
+    accountChartType?: boolean
+    accountingMethod?: boolean
+    rawData?: boolean
+    syncedAt?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["fortnoxFinancialYear"]>
+
+  export type FortnoxFinancialYearSelectScalar = {
+    id?: boolean
+    fortnoxId?: boolean
+    fromDate?: boolean
+    toDate?: boolean
+    accountChartType?: boolean
+    accountingMethod?: boolean
+    rawData?: boolean
+    syncedAt?: boolean
+    createdAt?: boolean
+  }
+
+  export type FortnoxFinancialYearOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fortnoxId" | "fromDate" | "toDate" | "accountChartType" | "accountingMethod" | "rawData" | "syncedAt" | "createdAt", ExtArgs["result"]["fortnoxFinancialYear"]>
+  export type FortnoxFinancialYearInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    accounts?: boolean | FortnoxFinancialYear$accountsArgs<ExtArgs>
+    vouchers?: boolean | FortnoxFinancialYear$vouchersArgs<ExtArgs>
+    _count?: boolean | FortnoxFinancialYearCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FortnoxFinancialYearIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type FortnoxFinancialYearIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $FortnoxFinancialYearPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FortnoxFinancialYear"
+    objects: {
+      accounts: Prisma.$FortnoxAccountPayload<ExtArgs>[]
+      vouchers: Prisma.$FortnoxVoucherPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      /**
+       * The integer ID returned by the Fortnox API (used as query param for accounts/vouchers)
+       */
+      fortnoxId: number
+      fromDate: Date
+      toDate: Date
+      accountChartType: string | null
+      /**
+       * 'ACCRUAL' | 'CASH'
+       */
+      accountingMethod: string | null
+      rawData: Prisma.JsonValue | null
+      syncedAt: Date
+      createdAt: Date
+    }, ExtArgs["result"]["fortnoxFinancialYear"]>
+    composites: {}
+  }
+
+  type FortnoxFinancialYearGetPayload<S extends boolean | null | undefined | FortnoxFinancialYearDefaultArgs> = $Result.GetResult<Prisma.$FortnoxFinancialYearPayload, S>
+
+  type FortnoxFinancialYearCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FortnoxFinancialYearFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FortnoxFinancialYearCountAggregateInputType | true
+    }
+
+  export interface FortnoxFinancialYearDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FortnoxFinancialYear'], meta: { name: 'FortnoxFinancialYear' } }
+    /**
+     * Find zero or one FortnoxFinancialYear that matches the filter.
+     * @param {FortnoxFinancialYearFindUniqueArgs} args - Arguments to find a FortnoxFinancialYear
+     * @example
+     * // Get one FortnoxFinancialYear
+     * const fortnoxFinancialYear = await prisma.fortnoxFinancialYear.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FortnoxFinancialYearFindUniqueArgs>(args: SelectSubset<T, FortnoxFinancialYearFindUniqueArgs<ExtArgs>>): Prisma__FortnoxFinancialYearClient<$Result.GetResult<Prisma.$FortnoxFinancialYearPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FortnoxFinancialYear that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FortnoxFinancialYearFindUniqueOrThrowArgs} args - Arguments to find a FortnoxFinancialYear
+     * @example
+     * // Get one FortnoxFinancialYear
+     * const fortnoxFinancialYear = await prisma.fortnoxFinancialYear.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FortnoxFinancialYearFindUniqueOrThrowArgs>(args: SelectSubset<T, FortnoxFinancialYearFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FortnoxFinancialYearClient<$Result.GetResult<Prisma.$FortnoxFinancialYearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FortnoxFinancialYear that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxFinancialYearFindFirstArgs} args - Arguments to find a FortnoxFinancialYear
+     * @example
+     * // Get one FortnoxFinancialYear
+     * const fortnoxFinancialYear = await prisma.fortnoxFinancialYear.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FortnoxFinancialYearFindFirstArgs>(args?: SelectSubset<T, FortnoxFinancialYearFindFirstArgs<ExtArgs>>): Prisma__FortnoxFinancialYearClient<$Result.GetResult<Prisma.$FortnoxFinancialYearPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FortnoxFinancialYear that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxFinancialYearFindFirstOrThrowArgs} args - Arguments to find a FortnoxFinancialYear
+     * @example
+     * // Get one FortnoxFinancialYear
+     * const fortnoxFinancialYear = await prisma.fortnoxFinancialYear.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FortnoxFinancialYearFindFirstOrThrowArgs>(args?: SelectSubset<T, FortnoxFinancialYearFindFirstOrThrowArgs<ExtArgs>>): Prisma__FortnoxFinancialYearClient<$Result.GetResult<Prisma.$FortnoxFinancialYearPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FortnoxFinancialYears that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxFinancialYearFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FortnoxFinancialYears
+     * const fortnoxFinancialYears = await prisma.fortnoxFinancialYear.findMany()
+     * 
+     * // Get first 10 FortnoxFinancialYears
+     * const fortnoxFinancialYears = await prisma.fortnoxFinancialYear.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const fortnoxFinancialYearWithIdOnly = await prisma.fortnoxFinancialYear.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FortnoxFinancialYearFindManyArgs>(args?: SelectSubset<T, FortnoxFinancialYearFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxFinancialYearPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FortnoxFinancialYear.
+     * @param {FortnoxFinancialYearCreateArgs} args - Arguments to create a FortnoxFinancialYear.
+     * @example
+     * // Create one FortnoxFinancialYear
+     * const FortnoxFinancialYear = await prisma.fortnoxFinancialYear.create({
+     *   data: {
+     *     // ... data to create a FortnoxFinancialYear
+     *   }
+     * })
+     * 
+     */
+    create<T extends FortnoxFinancialYearCreateArgs>(args: SelectSubset<T, FortnoxFinancialYearCreateArgs<ExtArgs>>): Prisma__FortnoxFinancialYearClient<$Result.GetResult<Prisma.$FortnoxFinancialYearPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FortnoxFinancialYears.
+     * @param {FortnoxFinancialYearCreateManyArgs} args - Arguments to create many FortnoxFinancialYears.
+     * @example
+     * // Create many FortnoxFinancialYears
+     * const fortnoxFinancialYear = await prisma.fortnoxFinancialYear.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FortnoxFinancialYearCreateManyArgs>(args?: SelectSubset<T, FortnoxFinancialYearCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FortnoxFinancialYears and returns the data saved in the database.
+     * @param {FortnoxFinancialYearCreateManyAndReturnArgs} args - Arguments to create many FortnoxFinancialYears.
+     * @example
+     * // Create many FortnoxFinancialYears
+     * const fortnoxFinancialYear = await prisma.fortnoxFinancialYear.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FortnoxFinancialYears and only return the `id`
+     * const fortnoxFinancialYearWithIdOnly = await prisma.fortnoxFinancialYear.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FortnoxFinancialYearCreateManyAndReturnArgs>(args?: SelectSubset<T, FortnoxFinancialYearCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxFinancialYearPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FortnoxFinancialYear.
+     * @param {FortnoxFinancialYearDeleteArgs} args - Arguments to delete one FortnoxFinancialYear.
+     * @example
+     * // Delete one FortnoxFinancialYear
+     * const FortnoxFinancialYear = await prisma.fortnoxFinancialYear.delete({
+     *   where: {
+     *     // ... filter to delete one FortnoxFinancialYear
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FortnoxFinancialYearDeleteArgs>(args: SelectSubset<T, FortnoxFinancialYearDeleteArgs<ExtArgs>>): Prisma__FortnoxFinancialYearClient<$Result.GetResult<Prisma.$FortnoxFinancialYearPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FortnoxFinancialYear.
+     * @param {FortnoxFinancialYearUpdateArgs} args - Arguments to update one FortnoxFinancialYear.
+     * @example
+     * // Update one FortnoxFinancialYear
+     * const fortnoxFinancialYear = await prisma.fortnoxFinancialYear.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FortnoxFinancialYearUpdateArgs>(args: SelectSubset<T, FortnoxFinancialYearUpdateArgs<ExtArgs>>): Prisma__FortnoxFinancialYearClient<$Result.GetResult<Prisma.$FortnoxFinancialYearPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FortnoxFinancialYears.
+     * @param {FortnoxFinancialYearDeleteManyArgs} args - Arguments to filter FortnoxFinancialYears to delete.
+     * @example
+     * // Delete a few FortnoxFinancialYears
+     * const { count } = await prisma.fortnoxFinancialYear.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FortnoxFinancialYearDeleteManyArgs>(args?: SelectSubset<T, FortnoxFinancialYearDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FortnoxFinancialYears.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxFinancialYearUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FortnoxFinancialYears
+     * const fortnoxFinancialYear = await prisma.fortnoxFinancialYear.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FortnoxFinancialYearUpdateManyArgs>(args: SelectSubset<T, FortnoxFinancialYearUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FortnoxFinancialYears and returns the data updated in the database.
+     * @param {FortnoxFinancialYearUpdateManyAndReturnArgs} args - Arguments to update many FortnoxFinancialYears.
+     * @example
+     * // Update many FortnoxFinancialYears
+     * const fortnoxFinancialYear = await prisma.fortnoxFinancialYear.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FortnoxFinancialYears and only return the `id`
+     * const fortnoxFinancialYearWithIdOnly = await prisma.fortnoxFinancialYear.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FortnoxFinancialYearUpdateManyAndReturnArgs>(args: SelectSubset<T, FortnoxFinancialYearUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxFinancialYearPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FortnoxFinancialYear.
+     * @param {FortnoxFinancialYearUpsertArgs} args - Arguments to update or create a FortnoxFinancialYear.
+     * @example
+     * // Update or create a FortnoxFinancialYear
+     * const fortnoxFinancialYear = await prisma.fortnoxFinancialYear.upsert({
+     *   create: {
+     *     // ... data to create a FortnoxFinancialYear
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FortnoxFinancialYear we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FortnoxFinancialYearUpsertArgs>(args: SelectSubset<T, FortnoxFinancialYearUpsertArgs<ExtArgs>>): Prisma__FortnoxFinancialYearClient<$Result.GetResult<Prisma.$FortnoxFinancialYearPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FortnoxFinancialYears.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxFinancialYearCountArgs} args - Arguments to filter FortnoxFinancialYears to count.
+     * @example
+     * // Count the number of FortnoxFinancialYears
+     * const count = await prisma.fortnoxFinancialYear.count({
+     *   where: {
+     *     // ... the filter for the FortnoxFinancialYears we want to count
+     *   }
+     * })
+    **/
+    count<T extends FortnoxFinancialYearCountArgs>(
+      args?: Subset<T, FortnoxFinancialYearCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FortnoxFinancialYearCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FortnoxFinancialYear.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxFinancialYearAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FortnoxFinancialYearAggregateArgs>(args: Subset<T, FortnoxFinancialYearAggregateArgs>): Prisma.PrismaPromise<GetFortnoxFinancialYearAggregateType<T>>
+
+    /**
+     * Group by FortnoxFinancialYear.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxFinancialYearGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FortnoxFinancialYearGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FortnoxFinancialYearGroupByArgs['orderBy'] }
+        : { orderBy?: FortnoxFinancialYearGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FortnoxFinancialYearGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFortnoxFinancialYearGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FortnoxFinancialYear model
+   */
+  readonly fields: FortnoxFinancialYearFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FortnoxFinancialYear.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FortnoxFinancialYearClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    accounts<T extends FortnoxFinancialYear$accountsArgs<ExtArgs> = {}>(args?: Subset<T, FortnoxFinancialYear$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    vouchers<T extends FortnoxFinancialYear$vouchersArgs<ExtArgs> = {}>(args?: Subset<T, FortnoxFinancialYear$vouchersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxVoucherPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FortnoxFinancialYear model
+   */
+  interface FortnoxFinancialYearFieldRefs {
+    readonly id: FieldRef<"FortnoxFinancialYear", 'String'>
+    readonly fortnoxId: FieldRef<"FortnoxFinancialYear", 'Int'>
+    readonly fromDate: FieldRef<"FortnoxFinancialYear", 'DateTime'>
+    readonly toDate: FieldRef<"FortnoxFinancialYear", 'DateTime'>
+    readonly accountChartType: FieldRef<"FortnoxFinancialYear", 'String'>
+    readonly accountingMethod: FieldRef<"FortnoxFinancialYear", 'String'>
+    readonly rawData: FieldRef<"FortnoxFinancialYear", 'Json'>
+    readonly syncedAt: FieldRef<"FortnoxFinancialYear", 'DateTime'>
+    readonly createdAt: FieldRef<"FortnoxFinancialYear", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FortnoxFinancialYear findUnique
+   */
+  export type FortnoxFinancialYearFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxFinancialYear
+     */
+    select?: FortnoxFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxFinancialYear
+     */
+    omit?: FortnoxFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxFinancialYearInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxFinancialYear to fetch.
+     */
+    where: FortnoxFinancialYearWhereUniqueInput
+  }
+
+  /**
+   * FortnoxFinancialYear findUniqueOrThrow
+   */
+  export type FortnoxFinancialYearFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxFinancialYear
+     */
+    select?: FortnoxFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxFinancialYear
+     */
+    omit?: FortnoxFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxFinancialYearInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxFinancialYear to fetch.
+     */
+    where: FortnoxFinancialYearWhereUniqueInput
+  }
+
+  /**
+   * FortnoxFinancialYear findFirst
+   */
+  export type FortnoxFinancialYearFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxFinancialYear
+     */
+    select?: FortnoxFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxFinancialYear
+     */
+    omit?: FortnoxFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxFinancialYearInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxFinancialYear to fetch.
+     */
+    where?: FortnoxFinancialYearWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxFinancialYears to fetch.
+     */
+    orderBy?: FortnoxFinancialYearOrderByWithRelationInput | FortnoxFinancialYearOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FortnoxFinancialYears.
+     */
+    cursor?: FortnoxFinancialYearWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxFinancialYears from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxFinancialYears.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxFinancialYears.
+     */
+    distinct?: FortnoxFinancialYearScalarFieldEnum | FortnoxFinancialYearScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxFinancialYear findFirstOrThrow
+   */
+  export type FortnoxFinancialYearFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxFinancialYear
+     */
+    select?: FortnoxFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxFinancialYear
+     */
+    omit?: FortnoxFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxFinancialYearInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxFinancialYear to fetch.
+     */
+    where?: FortnoxFinancialYearWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxFinancialYears to fetch.
+     */
+    orderBy?: FortnoxFinancialYearOrderByWithRelationInput | FortnoxFinancialYearOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FortnoxFinancialYears.
+     */
+    cursor?: FortnoxFinancialYearWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxFinancialYears from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxFinancialYears.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxFinancialYears.
+     */
+    distinct?: FortnoxFinancialYearScalarFieldEnum | FortnoxFinancialYearScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxFinancialYear findMany
+   */
+  export type FortnoxFinancialYearFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxFinancialYear
+     */
+    select?: FortnoxFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxFinancialYear
+     */
+    omit?: FortnoxFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxFinancialYearInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxFinancialYears to fetch.
+     */
+    where?: FortnoxFinancialYearWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxFinancialYears to fetch.
+     */
+    orderBy?: FortnoxFinancialYearOrderByWithRelationInput | FortnoxFinancialYearOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FortnoxFinancialYears.
+     */
+    cursor?: FortnoxFinancialYearWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxFinancialYears from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxFinancialYears.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxFinancialYears.
+     */
+    distinct?: FortnoxFinancialYearScalarFieldEnum | FortnoxFinancialYearScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxFinancialYear create
+   */
+  export type FortnoxFinancialYearCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxFinancialYear
+     */
+    select?: FortnoxFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxFinancialYear
+     */
+    omit?: FortnoxFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxFinancialYearInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FortnoxFinancialYear.
+     */
+    data: XOR<FortnoxFinancialYearCreateInput, FortnoxFinancialYearUncheckedCreateInput>
+  }
+
+  /**
+   * FortnoxFinancialYear createMany
+   */
+  export type FortnoxFinancialYearCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FortnoxFinancialYears.
+     */
+    data: FortnoxFinancialYearCreateManyInput | FortnoxFinancialYearCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FortnoxFinancialYear createManyAndReturn
+   */
+  export type FortnoxFinancialYearCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxFinancialYear
+     */
+    select?: FortnoxFinancialYearSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxFinancialYear
+     */
+    omit?: FortnoxFinancialYearOmit<ExtArgs> | null
+    /**
+     * The data used to create many FortnoxFinancialYears.
+     */
+    data: FortnoxFinancialYearCreateManyInput | FortnoxFinancialYearCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FortnoxFinancialYear update
+   */
+  export type FortnoxFinancialYearUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxFinancialYear
+     */
+    select?: FortnoxFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxFinancialYear
+     */
+    omit?: FortnoxFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxFinancialYearInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FortnoxFinancialYear.
+     */
+    data: XOR<FortnoxFinancialYearUpdateInput, FortnoxFinancialYearUncheckedUpdateInput>
+    /**
+     * Choose, which FortnoxFinancialYear to update.
+     */
+    where: FortnoxFinancialYearWhereUniqueInput
+  }
+
+  /**
+   * FortnoxFinancialYear updateMany
+   */
+  export type FortnoxFinancialYearUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FortnoxFinancialYears.
+     */
+    data: XOR<FortnoxFinancialYearUpdateManyMutationInput, FortnoxFinancialYearUncheckedUpdateManyInput>
+    /**
+     * Filter which FortnoxFinancialYears to update
+     */
+    where?: FortnoxFinancialYearWhereInput
+    /**
+     * Limit how many FortnoxFinancialYears to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FortnoxFinancialYear updateManyAndReturn
+   */
+  export type FortnoxFinancialYearUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxFinancialYear
+     */
+    select?: FortnoxFinancialYearSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxFinancialYear
+     */
+    omit?: FortnoxFinancialYearOmit<ExtArgs> | null
+    /**
+     * The data used to update FortnoxFinancialYears.
+     */
+    data: XOR<FortnoxFinancialYearUpdateManyMutationInput, FortnoxFinancialYearUncheckedUpdateManyInput>
+    /**
+     * Filter which FortnoxFinancialYears to update
+     */
+    where?: FortnoxFinancialYearWhereInput
+    /**
+     * Limit how many FortnoxFinancialYears to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FortnoxFinancialYear upsert
+   */
+  export type FortnoxFinancialYearUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxFinancialYear
+     */
+    select?: FortnoxFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxFinancialYear
+     */
+    omit?: FortnoxFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxFinancialYearInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FortnoxFinancialYear to update in case it exists.
+     */
+    where: FortnoxFinancialYearWhereUniqueInput
+    /**
+     * In case the FortnoxFinancialYear found by the `where` argument doesn't exist, create a new FortnoxFinancialYear with this data.
+     */
+    create: XOR<FortnoxFinancialYearCreateInput, FortnoxFinancialYearUncheckedCreateInput>
+    /**
+     * In case the FortnoxFinancialYear was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FortnoxFinancialYearUpdateInput, FortnoxFinancialYearUncheckedUpdateInput>
+  }
+
+  /**
+   * FortnoxFinancialYear delete
+   */
+  export type FortnoxFinancialYearDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxFinancialYear
+     */
+    select?: FortnoxFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxFinancialYear
+     */
+    omit?: FortnoxFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxFinancialYearInclude<ExtArgs> | null
+    /**
+     * Filter which FortnoxFinancialYear to delete.
+     */
+    where: FortnoxFinancialYearWhereUniqueInput
+  }
+
+  /**
+   * FortnoxFinancialYear deleteMany
+   */
+  export type FortnoxFinancialYearDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FortnoxFinancialYears to delete
+     */
+    where?: FortnoxFinancialYearWhereInput
+    /**
+     * Limit how many FortnoxFinancialYears to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FortnoxFinancialYear.accounts
+   */
+  export type FortnoxFinancialYear$accountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxAccount
+     */
+    select?: FortnoxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxAccount
+     */
+    omit?: FortnoxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxAccountInclude<ExtArgs> | null
+    where?: FortnoxAccountWhereInput
+    orderBy?: FortnoxAccountOrderByWithRelationInput | FortnoxAccountOrderByWithRelationInput[]
+    cursor?: FortnoxAccountWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FortnoxAccountScalarFieldEnum | FortnoxAccountScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxFinancialYear.vouchers
+   */
+  export type FortnoxFinancialYear$vouchersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucher
+     */
+    select?: FortnoxVoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucher
+     */
+    omit?: FortnoxVoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherInclude<ExtArgs> | null
+    where?: FortnoxVoucherWhereInput
+    orderBy?: FortnoxVoucherOrderByWithRelationInput | FortnoxVoucherOrderByWithRelationInput[]
+    cursor?: FortnoxVoucherWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FortnoxVoucherScalarFieldEnum | FortnoxVoucherScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxFinancialYear without action
+   */
+  export type FortnoxFinancialYearDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxFinancialYear
+     */
+    select?: FortnoxFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxFinancialYear
+     */
+    omit?: FortnoxFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxFinancialYearInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FortnoxAccount
+   */
+
+  export type AggregateFortnoxAccount = {
+    _count: FortnoxAccountCountAggregateOutputType | null
+    _avg: FortnoxAccountAvgAggregateOutputType | null
+    _sum: FortnoxAccountSumAggregateOutputType | null
+    _min: FortnoxAccountMinAggregateOutputType | null
+    _max: FortnoxAccountMaxAggregateOutputType | null
+  }
+
+  export type FortnoxAccountAvgAggregateOutputType = {
+    accountNumber: number | null
+    balanceBroughtForward: Decimal | null
+    balanceCarriedForward: Decimal | null
+    sru: number | null
+  }
+
+  export type FortnoxAccountSumAggregateOutputType = {
+    accountNumber: number | null
+    balanceBroughtForward: Decimal | null
+    balanceCarriedForward: Decimal | null
+    sru: number | null
+  }
+
+  export type FortnoxAccountMinAggregateOutputType = {
+    id: string | null
+    accountNumber: number | null
+    financialYearId: string | null
+    description: string | null
+    active: boolean | null
+    balanceBroughtForward: Decimal | null
+    balanceCarriedForward: Decimal | null
+    vatCode: string | null
+    sru: number | null
+    syncedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type FortnoxAccountMaxAggregateOutputType = {
+    id: string | null
+    accountNumber: number | null
+    financialYearId: string | null
+    description: string | null
+    active: boolean | null
+    balanceBroughtForward: Decimal | null
+    balanceCarriedForward: Decimal | null
+    vatCode: string | null
+    sru: number | null
+    syncedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type FortnoxAccountCountAggregateOutputType = {
+    id: number
+    accountNumber: number
+    financialYearId: number
+    description: number
+    active: number
+    balanceBroughtForward: number
+    balanceCarriedForward: number
+    vatCode: number
+    sru: number
+    rawData: number
+    syncedAt: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type FortnoxAccountAvgAggregateInputType = {
+    accountNumber?: true
+    balanceBroughtForward?: true
+    balanceCarriedForward?: true
+    sru?: true
+  }
+
+  export type FortnoxAccountSumAggregateInputType = {
+    accountNumber?: true
+    balanceBroughtForward?: true
+    balanceCarriedForward?: true
+    sru?: true
+  }
+
+  export type FortnoxAccountMinAggregateInputType = {
+    id?: true
+    accountNumber?: true
+    financialYearId?: true
+    description?: true
+    active?: true
+    balanceBroughtForward?: true
+    balanceCarriedForward?: true
+    vatCode?: true
+    sru?: true
+    syncedAt?: true
+    createdAt?: true
+  }
+
+  export type FortnoxAccountMaxAggregateInputType = {
+    id?: true
+    accountNumber?: true
+    financialYearId?: true
+    description?: true
+    active?: true
+    balanceBroughtForward?: true
+    balanceCarriedForward?: true
+    vatCode?: true
+    sru?: true
+    syncedAt?: true
+    createdAt?: true
+  }
+
+  export type FortnoxAccountCountAggregateInputType = {
+    id?: true
+    accountNumber?: true
+    financialYearId?: true
+    description?: true
+    active?: true
+    balanceBroughtForward?: true
+    balanceCarriedForward?: true
+    vatCode?: true
+    sru?: true
+    rawData?: true
+    syncedAt?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type FortnoxAccountAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FortnoxAccount to aggregate.
+     */
+    where?: FortnoxAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxAccounts to fetch.
+     */
+    orderBy?: FortnoxAccountOrderByWithRelationInput | FortnoxAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FortnoxAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FortnoxAccounts
+    **/
+    _count?: true | FortnoxAccountCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FortnoxAccountAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FortnoxAccountSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FortnoxAccountMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FortnoxAccountMaxAggregateInputType
+  }
+
+  export type GetFortnoxAccountAggregateType<T extends FortnoxAccountAggregateArgs> = {
+        [P in keyof T & keyof AggregateFortnoxAccount]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFortnoxAccount[P]>
+      : GetScalarType<T[P], AggregateFortnoxAccount[P]>
+  }
+
+
+
+
+  export type FortnoxAccountGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FortnoxAccountWhereInput
+    orderBy?: FortnoxAccountOrderByWithAggregationInput | FortnoxAccountOrderByWithAggregationInput[]
+    by: FortnoxAccountScalarFieldEnum[] | FortnoxAccountScalarFieldEnum
+    having?: FortnoxAccountScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FortnoxAccountCountAggregateInputType | true
+    _avg?: FortnoxAccountAvgAggregateInputType
+    _sum?: FortnoxAccountSumAggregateInputType
+    _min?: FortnoxAccountMinAggregateInputType
+    _max?: FortnoxAccountMaxAggregateInputType
+  }
+
+  export type FortnoxAccountGroupByOutputType = {
+    id: string
+    accountNumber: number
+    financialYearId: string
+    description: string | null
+    active: boolean
+    balanceBroughtForward: Decimal | null
+    balanceCarriedForward: Decimal | null
+    vatCode: string | null
+    sru: number | null
+    rawData: JsonValue | null
+    syncedAt: Date
+    createdAt: Date
+    _count: FortnoxAccountCountAggregateOutputType | null
+    _avg: FortnoxAccountAvgAggregateOutputType | null
+    _sum: FortnoxAccountSumAggregateOutputType | null
+    _min: FortnoxAccountMinAggregateOutputType | null
+    _max: FortnoxAccountMaxAggregateOutputType | null
+  }
+
+  type GetFortnoxAccountGroupByPayload<T extends FortnoxAccountGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FortnoxAccountGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FortnoxAccountGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FortnoxAccountGroupByOutputType[P]>
+            : GetScalarType<T[P], FortnoxAccountGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FortnoxAccountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    accountNumber?: boolean
+    financialYearId?: boolean
+    description?: boolean
+    active?: boolean
+    balanceBroughtForward?: boolean
+    balanceCarriedForward?: boolean
+    vatCode?: boolean
+    sru?: boolean
+    rawData?: boolean
+    syncedAt?: boolean
+    createdAt?: boolean
+    financialYear?: boolean | FortnoxFinancialYearDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxAccount"]>
+
+  export type FortnoxAccountSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    accountNumber?: boolean
+    financialYearId?: boolean
+    description?: boolean
+    active?: boolean
+    balanceBroughtForward?: boolean
+    balanceCarriedForward?: boolean
+    vatCode?: boolean
+    sru?: boolean
+    rawData?: boolean
+    syncedAt?: boolean
+    createdAt?: boolean
+    financialYear?: boolean | FortnoxFinancialYearDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxAccount"]>
+
+  export type FortnoxAccountSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    accountNumber?: boolean
+    financialYearId?: boolean
+    description?: boolean
+    active?: boolean
+    balanceBroughtForward?: boolean
+    balanceCarriedForward?: boolean
+    vatCode?: boolean
+    sru?: boolean
+    rawData?: boolean
+    syncedAt?: boolean
+    createdAt?: boolean
+    financialYear?: boolean | FortnoxFinancialYearDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxAccount"]>
+
+  export type FortnoxAccountSelectScalar = {
+    id?: boolean
+    accountNumber?: boolean
+    financialYearId?: boolean
+    description?: boolean
+    active?: boolean
+    balanceBroughtForward?: boolean
+    balanceCarriedForward?: boolean
+    vatCode?: boolean
+    sru?: boolean
+    rawData?: boolean
+    syncedAt?: boolean
+    createdAt?: boolean
+  }
+
+  export type FortnoxAccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "accountNumber" | "financialYearId" | "description" | "active" | "balanceBroughtForward" | "balanceCarriedForward" | "vatCode" | "sru" | "rawData" | "syncedAt" | "createdAt", ExtArgs["result"]["fortnoxAccount"]>
+  export type FortnoxAccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    financialYear?: boolean | FortnoxFinancialYearDefaultArgs<ExtArgs>
+  }
+  export type FortnoxAccountIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    financialYear?: boolean | FortnoxFinancialYearDefaultArgs<ExtArgs>
+  }
+  export type FortnoxAccountIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    financialYear?: boolean | FortnoxFinancialYearDefaultArgs<ExtArgs>
+  }
+
+  export type $FortnoxAccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FortnoxAccount"
+    objects: {
+      financialYear: Prisma.$FortnoxFinancialYearPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      accountNumber: number
+      financialYearId: string
+      description: string | null
+      active: boolean
+      balanceBroughtForward: Prisma.Decimal | null
+      balanceCarriedForward: Prisma.Decimal | null
+      vatCode: string | null
+      sru: number | null
+      rawData: Prisma.JsonValue | null
+      syncedAt: Date
+      createdAt: Date
+    }, ExtArgs["result"]["fortnoxAccount"]>
+    composites: {}
+  }
+
+  type FortnoxAccountGetPayload<S extends boolean | null | undefined | FortnoxAccountDefaultArgs> = $Result.GetResult<Prisma.$FortnoxAccountPayload, S>
+
+  type FortnoxAccountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FortnoxAccountFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FortnoxAccountCountAggregateInputType | true
+    }
+
+  export interface FortnoxAccountDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FortnoxAccount'], meta: { name: 'FortnoxAccount' } }
+    /**
+     * Find zero or one FortnoxAccount that matches the filter.
+     * @param {FortnoxAccountFindUniqueArgs} args - Arguments to find a FortnoxAccount
+     * @example
+     * // Get one FortnoxAccount
+     * const fortnoxAccount = await prisma.fortnoxAccount.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FortnoxAccountFindUniqueArgs>(args: SelectSubset<T, FortnoxAccountFindUniqueArgs<ExtArgs>>): Prisma__FortnoxAccountClient<$Result.GetResult<Prisma.$FortnoxAccountPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FortnoxAccount that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FortnoxAccountFindUniqueOrThrowArgs} args - Arguments to find a FortnoxAccount
+     * @example
+     * // Get one FortnoxAccount
+     * const fortnoxAccount = await prisma.fortnoxAccount.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FortnoxAccountFindUniqueOrThrowArgs>(args: SelectSubset<T, FortnoxAccountFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FortnoxAccountClient<$Result.GetResult<Prisma.$FortnoxAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FortnoxAccount that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxAccountFindFirstArgs} args - Arguments to find a FortnoxAccount
+     * @example
+     * // Get one FortnoxAccount
+     * const fortnoxAccount = await prisma.fortnoxAccount.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FortnoxAccountFindFirstArgs>(args?: SelectSubset<T, FortnoxAccountFindFirstArgs<ExtArgs>>): Prisma__FortnoxAccountClient<$Result.GetResult<Prisma.$FortnoxAccountPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FortnoxAccount that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxAccountFindFirstOrThrowArgs} args - Arguments to find a FortnoxAccount
+     * @example
+     * // Get one FortnoxAccount
+     * const fortnoxAccount = await prisma.fortnoxAccount.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FortnoxAccountFindFirstOrThrowArgs>(args?: SelectSubset<T, FortnoxAccountFindFirstOrThrowArgs<ExtArgs>>): Prisma__FortnoxAccountClient<$Result.GetResult<Prisma.$FortnoxAccountPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FortnoxAccounts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxAccountFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FortnoxAccounts
+     * const fortnoxAccounts = await prisma.fortnoxAccount.findMany()
+     * 
+     * // Get first 10 FortnoxAccounts
+     * const fortnoxAccounts = await prisma.fortnoxAccount.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const fortnoxAccountWithIdOnly = await prisma.fortnoxAccount.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FortnoxAccountFindManyArgs>(args?: SelectSubset<T, FortnoxAccountFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FortnoxAccount.
+     * @param {FortnoxAccountCreateArgs} args - Arguments to create a FortnoxAccount.
+     * @example
+     * // Create one FortnoxAccount
+     * const FortnoxAccount = await prisma.fortnoxAccount.create({
+     *   data: {
+     *     // ... data to create a FortnoxAccount
+     *   }
+     * })
+     * 
+     */
+    create<T extends FortnoxAccountCreateArgs>(args: SelectSubset<T, FortnoxAccountCreateArgs<ExtArgs>>): Prisma__FortnoxAccountClient<$Result.GetResult<Prisma.$FortnoxAccountPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FortnoxAccounts.
+     * @param {FortnoxAccountCreateManyArgs} args - Arguments to create many FortnoxAccounts.
+     * @example
+     * // Create many FortnoxAccounts
+     * const fortnoxAccount = await prisma.fortnoxAccount.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FortnoxAccountCreateManyArgs>(args?: SelectSubset<T, FortnoxAccountCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FortnoxAccounts and returns the data saved in the database.
+     * @param {FortnoxAccountCreateManyAndReturnArgs} args - Arguments to create many FortnoxAccounts.
+     * @example
+     * // Create many FortnoxAccounts
+     * const fortnoxAccount = await prisma.fortnoxAccount.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FortnoxAccounts and only return the `id`
+     * const fortnoxAccountWithIdOnly = await prisma.fortnoxAccount.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FortnoxAccountCreateManyAndReturnArgs>(args?: SelectSubset<T, FortnoxAccountCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxAccountPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FortnoxAccount.
+     * @param {FortnoxAccountDeleteArgs} args - Arguments to delete one FortnoxAccount.
+     * @example
+     * // Delete one FortnoxAccount
+     * const FortnoxAccount = await prisma.fortnoxAccount.delete({
+     *   where: {
+     *     // ... filter to delete one FortnoxAccount
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FortnoxAccountDeleteArgs>(args: SelectSubset<T, FortnoxAccountDeleteArgs<ExtArgs>>): Prisma__FortnoxAccountClient<$Result.GetResult<Prisma.$FortnoxAccountPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FortnoxAccount.
+     * @param {FortnoxAccountUpdateArgs} args - Arguments to update one FortnoxAccount.
+     * @example
+     * // Update one FortnoxAccount
+     * const fortnoxAccount = await prisma.fortnoxAccount.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FortnoxAccountUpdateArgs>(args: SelectSubset<T, FortnoxAccountUpdateArgs<ExtArgs>>): Prisma__FortnoxAccountClient<$Result.GetResult<Prisma.$FortnoxAccountPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FortnoxAccounts.
+     * @param {FortnoxAccountDeleteManyArgs} args - Arguments to filter FortnoxAccounts to delete.
+     * @example
+     * // Delete a few FortnoxAccounts
+     * const { count } = await prisma.fortnoxAccount.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FortnoxAccountDeleteManyArgs>(args?: SelectSubset<T, FortnoxAccountDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FortnoxAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxAccountUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FortnoxAccounts
+     * const fortnoxAccount = await prisma.fortnoxAccount.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FortnoxAccountUpdateManyArgs>(args: SelectSubset<T, FortnoxAccountUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FortnoxAccounts and returns the data updated in the database.
+     * @param {FortnoxAccountUpdateManyAndReturnArgs} args - Arguments to update many FortnoxAccounts.
+     * @example
+     * // Update many FortnoxAccounts
+     * const fortnoxAccount = await prisma.fortnoxAccount.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FortnoxAccounts and only return the `id`
+     * const fortnoxAccountWithIdOnly = await prisma.fortnoxAccount.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FortnoxAccountUpdateManyAndReturnArgs>(args: SelectSubset<T, FortnoxAccountUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxAccountPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FortnoxAccount.
+     * @param {FortnoxAccountUpsertArgs} args - Arguments to update or create a FortnoxAccount.
+     * @example
+     * // Update or create a FortnoxAccount
+     * const fortnoxAccount = await prisma.fortnoxAccount.upsert({
+     *   create: {
+     *     // ... data to create a FortnoxAccount
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FortnoxAccount we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FortnoxAccountUpsertArgs>(args: SelectSubset<T, FortnoxAccountUpsertArgs<ExtArgs>>): Prisma__FortnoxAccountClient<$Result.GetResult<Prisma.$FortnoxAccountPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FortnoxAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxAccountCountArgs} args - Arguments to filter FortnoxAccounts to count.
+     * @example
+     * // Count the number of FortnoxAccounts
+     * const count = await prisma.fortnoxAccount.count({
+     *   where: {
+     *     // ... the filter for the FortnoxAccounts we want to count
+     *   }
+     * })
+    **/
+    count<T extends FortnoxAccountCountArgs>(
+      args?: Subset<T, FortnoxAccountCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FortnoxAccountCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FortnoxAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxAccountAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FortnoxAccountAggregateArgs>(args: Subset<T, FortnoxAccountAggregateArgs>): Prisma.PrismaPromise<GetFortnoxAccountAggregateType<T>>
+
+    /**
+     * Group by FortnoxAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxAccountGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FortnoxAccountGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FortnoxAccountGroupByArgs['orderBy'] }
+        : { orderBy?: FortnoxAccountGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FortnoxAccountGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFortnoxAccountGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FortnoxAccount model
+   */
+  readonly fields: FortnoxAccountFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FortnoxAccount.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FortnoxAccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    financialYear<T extends FortnoxFinancialYearDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FortnoxFinancialYearDefaultArgs<ExtArgs>>): Prisma__FortnoxFinancialYearClient<$Result.GetResult<Prisma.$FortnoxFinancialYearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FortnoxAccount model
+   */
+  interface FortnoxAccountFieldRefs {
+    readonly id: FieldRef<"FortnoxAccount", 'String'>
+    readonly accountNumber: FieldRef<"FortnoxAccount", 'Int'>
+    readonly financialYearId: FieldRef<"FortnoxAccount", 'String'>
+    readonly description: FieldRef<"FortnoxAccount", 'String'>
+    readonly active: FieldRef<"FortnoxAccount", 'Boolean'>
+    readonly balanceBroughtForward: FieldRef<"FortnoxAccount", 'Decimal'>
+    readonly balanceCarriedForward: FieldRef<"FortnoxAccount", 'Decimal'>
+    readonly vatCode: FieldRef<"FortnoxAccount", 'String'>
+    readonly sru: FieldRef<"FortnoxAccount", 'Int'>
+    readonly rawData: FieldRef<"FortnoxAccount", 'Json'>
+    readonly syncedAt: FieldRef<"FortnoxAccount", 'DateTime'>
+    readonly createdAt: FieldRef<"FortnoxAccount", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FortnoxAccount findUnique
+   */
+  export type FortnoxAccountFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxAccount
+     */
+    select?: FortnoxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxAccount
+     */
+    omit?: FortnoxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxAccount to fetch.
+     */
+    where: FortnoxAccountWhereUniqueInput
+  }
+
+  /**
+   * FortnoxAccount findUniqueOrThrow
+   */
+  export type FortnoxAccountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxAccount
+     */
+    select?: FortnoxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxAccount
+     */
+    omit?: FortnoxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxAccount to fetch.
+     */
+    where: FortnoxAccountWhereUniqueInput
+  }
+
+  /**
+   * FortnoxAccount findFirst
+   */
+  export type FortnoxAccountFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxAccount
+     */
+    select?: FortnoxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxAccount
+     */
+    omit?: FortnoxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxAccount to fetch.
+     */
+    where?: FortnoxAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxAccounts to fetch.
+     */
+    orderBy?: FortnoxAccountOrderByWithRelationInput | FortnoxAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FortnoxAccounts.
+     */
+    cursor?: FortnoxAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxAccounts.
+     */
+    distinct?: FortnoxAccountScalarFieldEnum | FortnoxAccountScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxAccount findFirstOrThrow
+   */
+  export type FortnoxAccountFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxAccount
+     */
+    select?: FortnoxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxAccount
+     */
+    omit?: FortnoxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxAccount to fetch.
+     */
+    where?: FortnoxAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxAccounts to fetch.
+     */
+    orderBy?: FortnoxAccountOrderByWithRelationInput | FortnoxAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FortnoxAccounts.
+     */
+    cursor?: FortnoxAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxAccounts.
+     */
+    distinct?: FortnoxAccountScalarFieldEnum | FortnoxAccountScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxAccount findMany
+   */
+  export type FortnoxAccountFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxAccount
+     */
+    select?: FortnoxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxAccount
+     */
+    omit?: FortnoxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxAccounts to fetch.
+     */
+    where?: FortnoxAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxAccounts to fetch.
+     */
+    orderBy?: FortnoxAccountOrderByWithRelationInput | FortnoxAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FortnoxAccounts.
+     */
+    cursor?: FortnoxAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxAccounts.
+     */
+    distinct?: FortnoxAccountScalarFieldEnum | FortnoxAccountScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxAccount create
+   */
+  export type FortnoxAccountCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxAccount
+     */
+    select?: FortnoxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxAccount
+     */
+    omit?: FortnoxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxAccountInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FortnoxAccount.
+     */
+    data: XOR<FortnoxAccountCreateInput, FortnoxAccountUncheckedCreateInput>
+  }
+
+  /**
+   * FortnoxAccount createMany
+   */
+  export type FortnoxAccountCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FortnoxAccounts.
+     */
+    data: FortnoxAccountCreateManyInput | FortnoxAccountCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FortnoxAccount createManyAndReturn
+   */
+  export type FortnoxAccountCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxAccount
+     */
+    select?: FortnoxAccountSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxAccount
+     */
+    omit?: FortnoxAccountOmit<ExtArgs> | null
+    /**
+     * The data used to create many FortnoxAccounts.
+     */
+    data: FortnoxAccountCreateManyInput | FortnoxAccountCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxAccountIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FortnoxAccount update
+   */
+  export type FortnoxAccountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxAccount
+     */
+    select?: FortnoxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxAccount
+     */
+    omit?: FortnoxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxAccountInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FortnoxAccount.
+     */
+    data: XOR<FortnoxAccountUpdateInput, FortnoxAccountUncheckedUpdateInput>
+    /**
+     * Choose, which FortnoxAccount to update.
+     */
+    where: FortnoxAccountWhereUniqueInput
+  }
+
+  /**
+   * FortnoxAccount updateMany
+   */
+  export type FortnoxAccountUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FortnoxAccounts.
+     */
+    data: XOR<FortnoxAccountUpdateManyMutationInput, FortnoxAccountUncheckedUpdateManyInput>
+    /**
+     * Filter which FortnoxAccounts to update
+     */
+    where?: FortnoxAccountWhereInput
+    /**
+     * Limit how many FortnoxAccounts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FortnoxAccount updateManyAndReturn
+   */
+  export type FortnoxAccountUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxAccount
+     */
+    select?: FortnoxAccountSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxAccount
+     */
+    omit?: FortnoxAccountOmit<ExtArgs> | null
+    /**
+     * The data used to update FortnoxAccounts.
+     */
+    data: XOR<FortnoxAccountUpdateManyMutationInput, FortnoxAccountUncheckedUpdateManyInput>
+    /**
+     * Filter which FortnoxAccounts to update
+     */
+    where?: FortnoxAccountWhereInput
+    /**
+     * Limit how many FortnoxAccounts to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxAccountIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FortnoxAccount upsert
+   */
+  export type FortnoxAccountUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxAccount
+     */
+    select?: FortnoxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxAccount
+     */
+    omit?: FortnoxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxAccountInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FortnoxAccount to update in case it exists.
+     */
+    where: FortnoxAccountWhereUniqueInput
+    /**
+     * In case the FortnoxAccount found by the `where` argument doesn't exist, create a new FortnoxAccount with this data.
+     */
+    create: XOR<FortnoxAccountCreateInput, FortnoxAccountUncheckedCreateInput>
+    /**
+     * In case the FortnoxAccount was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FortnoxAccountUpdateInput, FortnoxAccountUncheckedUpdateInput>
+  }
+
+  /**
+   * FortnoxAccount delete
+   */
+  export type FortnoxAccountDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxAccount
+     */
+    select?: FortnoxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxAccount
+     */
+    omit?: FortnoxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxAccountInclude<ExtArgs> | null
+    /**
+     * Filter which FortnoxAccount to delete.
+     */
+    where: FortnoxAccountWhereUniqueInput
+  }
+
+  /**
+   * FortnoxAccount deleteMany
+   */
+  export type FortnoxAccountDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FortnoxAccounts to delete
+     */
+    where?: FortnoxAccountWhereInput
+    /**
+     * Limit how many FortnoxAccounts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FortnoxAccount without action
+   */
+  export type FortnoxAccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxAccount
+     */
+    select?: FortnoxAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxAccount
+     */
+    omit?: FortnoxAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxAccountInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FortnoxVoucher
+   */
+
+  export type AggregateFortnoxVoucher = {
+    _count: FortnoxVoucherCountAggregateOutputType | null
+    _avg: FortnoxVoucherAvgAggregateOutputType | null
+    _sum: FortnoxVoucherSumAggregateOutputType | null
+    _min: FortnoxVoucherMinAggregateOutputType | null
+    _max: FortnoxVoucherMaxAggregateOutputType | null
+  }
+
+  export type FortnoxVoucherAvgAggregateOutputType = {
+    voucherNumber: number | null
+    approvalState: number | null
+  }
+
+  export type FortnoxVoucherSumAggregateOutputType = {
+    voucherNumber: number | null
+    approvalState: number | null
+  }
+
+  export type FortnoxVoucherMinAggregateOutputType = {
+    id: string | null
+    voucherSeries: string | null
+    voucherNumber: number | null
+    financialYearId: string | null
+    transactionDate: Date | null
+    description: string | null
+    referenceType: string | null
+    referenceNumber: string | null
+    costCenter: string | null
+    project: string | null
+    approvalState: number | null
+    syncedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type FortnoxVoucherMaxAggregateOutputType = {
+    id: string | null
+    voucherSeries: string | null
+    voucherNumber: number | null
+    financialYearId: string | null
+    transactionDate: Date | null
+    description: string | null
+    referenceType: string | null
+    referenceNumber: string | null
+    costCenter: string | null
+    project: string | null
+    approvalState: number | null
+    syncedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type FortnoxVoucherCountAggregateOutputType = {
+    id: number
+    voucherSeries: number
+    voucherNumber: number
+    financialYearId: number
+    transactionDate: number
+    description: number
+    referenceType: number
+    referenceNumber: number
+    costCenter: number
+    project: number
+    approvalState: number
+    rawData: number
+    syncedAt: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type FortnoxVoucherAvgAggregateInputType = {
+    voucherNumber?: true
+    approvalState?: true
+  }
+
+  export type FortnoxVoucherSumAggregateInputType = {
+    voucherNumber?: true
+    approvalState?: true
+  }
+
+  export type FortnoxVoucherMinAggregateInputType = {
+    id?: true
+    voucherSeries?: true
+    voucherNumber?: true
+    financialYearId?: true
+    transactionDate?: true
+    description?: true
+    referenceType?: true
+    referenceNumber?: true
+    costCenter?: true
+    project?: true
+    approvalState?: true
+    syncedAt?: true
+    createdAt?: true
+  }
+
+  export type FortnoxVoucherMaxAggregateInputType = {
+    id?: true
+    voucherSeries?: true
+    voucherNumber?: true
+    financialYearId?: true
+    transactionDate?: true
+    description?: true
+    referenceType?: true
+    referenceNumber?: true
+    costCenter?: true
+    project?: true
+    approvalState?: true
+    syncedAt?: true
+    createdAt?: true
+  }
+
+  export type FortnoxVoucherCountAggregateInputType = {
+    id?: true
+    voucherSeries?: true
+    voucherNumber?: true
+    financialYearId?: true
+    transactionDate?: true
+    description?: true
+    referenceType?: true
+    referenceNumber?: true
+    costCenter?: true
+    project?: true
+    approvalState?: true
+    rawData?: true
+    syncedAt?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type FortnoxVoucherAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FortnoxVoucher to aggregate.
+     */
+    where?: FortnoxVoucherWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxVouchers to fetch.
+     */
+    orderBy?: FortnoxVoucherOrderByWithRelationInput | FortnoxVoucherOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FortnoxVoucherWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxVouchers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxVouchers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FortnoxVouchers
+    **/
+    _count?: true | FortnoxVoucherCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FortnoxVoucherAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FortnoxVoucherSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FortnoxVoucherMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FortnoxVoucherMaxAggregateInputType
+  }
+
+  export type GetFortnoxVoucherAggregateType<T extends FortnoxVoucherAggregateArgs> = {
+        [P in keyof T & keyof AggregateFortnoxVoucher]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFortnoxVoucher[P]>
+      : GetScalarType<T[P], AggregateFortnoxVoucher[P]>
+  }
+
+
+
+
+  export type FortnoxVoucherGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FortnoxVoucherWhereInput
+    orderBy?: FortnoxVoucherOrderByWithAggregationInput | FortnoxVoucherOrderByWithAggregationInput[]
+    by: FortnoxVoucherScalarFieldEnum[] | FortnoxVoucherScalarFieldEnum
+    having?: FortnoxVoucherScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FortnoxVoucherCountAggregateInputType | true
+    _avg?: FortnoxVoucherAvgAggregateInputType
+    _sum?: FortnoxVoucherSumAggregateInputType
+    _min?: FortnoxVoucherMinAggregateInputType
+    _max?: FortnoxVoucherMaxAggregateInputType
+  }
+
+  export type FortnoxVoucherGroupByOutputType = {
+    id: string
+    voucherSeries: string
+    voucherNumber: number
+    financialYearId: string
+    transactionDate: Date
+    description: string | null
+    referenceType: string | null
+    referenceNumber: string | null
+    costCenter: string | null
+    project: string | null
+    approvalState: number | null
+    rawData: JsonValue | null
+    syncedAt: Date
+    createdAt: Date
+    _count: FortnoxVoucherCountAggregateOutputType | null
+    _avg: FortnoxVoucherAvgAggregateOutputType | null
+    _sum: FortnoxVoucherSumAggregateOutputType | null
+    _min: FortnoxVoucherMinAggregateOutputType | null
+    _max: FortnoxVoucherMaxAggregateOutputType | null
+  }
+
+  type GetFortnoxVoucherGroupByPayload<T extends FortnoxVoucherGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FortnoxVoucherGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FortnoxVoucherGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FortnoxVoucherGroupByOutputType[P]>
+            : GetScalarType<T[P], FortnoxVoucherGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FortnoxVoucherSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    voucherSeries?: boolean
+    voucherNumber?: boolean
+    financialYearId?: boolean
+    transactionDate?: boolean
+    description?: boolean
+    referenceType?: boolean
+    referenceNumber?: boolean
+    costCenter?: boolean
+    project?: boolean
+    approvalState?: boolean
+    rawData?: boolean
+    syncedAt?: boolean
+    createdAt?: boolean
+    financialYear?: boolean | FortnoxFinancialYearDefaultArgs<ExtArgs>
+    rows?: boolean | FortnoxVoucher$rowsArgs<ExtArgs>
+    _count?: boolean | FortnoxVoucherCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxVoucher"]>
+
+  export type FortnoxVoucherSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    voucherSeries?: boolean
+    voucherNumber?: boolean
+    financialYearId?: boolean
+    transactionDate?: boolean
+    description?: boolean
+    referenceType?: boolean
+    referenceNumber?: boolean
+    costCenter?: boolean
+    project?: boolean
+    approvalState?: boolean
+    rawData?: boolean
+    syncedAt?: boolean
+    createdAt?: boolean
+    financialYear?: boolean | FortnoxFinancialYearDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxVoucher"]>
+
+  export type FortnoxVoucherSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    voucherSeries?: boolean
+    voucherNumber?: boolean
+    financialYearId?: boolean
+    transactionDate?: boolean
+    description?: boolean
+    referenceType?: boolean
+    referenceNumber?: boolean
+    costCenter?: boolean
+    project?: boolean
+    approvalState?: boolean
+    rawData?: boolean
+    syncedAt?: boolean
+    createdAt?: boolean
+    financialYear?: boolean | FortnoxFinancialYearDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxVoucher"]>
+
+  export type FortnoxVoucherSelectScalar = {
+    id?: boolean
+    voucherSeries?: boolean
+    voucherNumber?: boolean
+    financialYearId?: boolean
+    transactionDate?: boolean
+    description?: boolean
+    referenceType?: boolean
+    referenceNumber?: boolean
+    costCenter?: boolean
+    project?: boolean
+    approvalState?: boolean
+    rawData?: boolean
+    syncedAt?: boolean
+    createdAt?: boolean
+  }
+
+  export type FortnoxVoucherOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "voucherSeries" | "voucherNumber" | "financialYearId" | "transactionDate" | "description" | "referenceType" | "referenceNumber" | "costCenter" | "project" | "approvalState" | "rawData" | "syncedAt" | "createdAt", ExtArgs["result"]["fortnoxVoucher"]>
+  export type FortnoxVoucherInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    financialYear?: boolean | FortnoxFinancialYearDefaultArgs<ExtArgs>
+    rows?: boolean | FortnoxVoucher$rowsArgs<ExtArgs>
+    _count?: boolean | FortnoxVoucherCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FortnoxVoucherIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    financialYear?: boolean | FortnoxFinancialYearDefaultArgs<ExtArgs>
+  }
+  export type FortnoxVoucherIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    financialYear?: boolean | FortnoxFinancialYearDefaultArgs<ExtArgs>
+  }
+
+  export type $FortnoxVoucherPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FortnoxVoucher"
+    objects: {
+      financialYear: Prisma.$FortnoxFinancialYearPayload<ExtArgs>
+      rows: Prisma.$FortnoxVoucherRowPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      voucherSeries: string
+      voucherNumber: number
+      financialYearId: string
+      transactionDate: Date
+      description: string | null
+      referenceType: string | null
+      referenceNumber: string | null
+      costCenter: string | null
+      project: string | null
+      approvalState: number | null
+      rawData: Prisma.JsonValue | null
+      syncedAt: Date
+      createdAt: Date
+    }, ExtArgs["result"]["fortnoxVoucher"]>
+    composites: {}
+  }
+
+  type FortnoxVoucherGetPayload<S extends boolean | null | undefined | FortnoxVoucherDefaultArgs> = $Result.GetResult<Prisma.$FortnoxVoucherPayload, S>
+
+  type FortnoxVoucherCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FortnoxVoucherFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FortnoxVoucherCountAggregateInputType | true
+    }
+
+  export interface FortnoxVoucherDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FortnoxVoucher'], meta: { name: 'FortnoxVoucher' } }
+    /**
+     * Find zero or one FortnoxVoucher that matches the filter.
+     * @param {FortnoxVoucherFindUniqueArgs} args - Arguments to find a FortnoxVoucher
+     * @example
+     * // Get one FortnoxVoucher
+     * const fortnoxVoucher = await prisma.fortnoxVoucher.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FortnoxVoucherFindUniqueArgs>(args: SelectSubset<T, FortnoxVoucherFindUniqueArgs<ExtArgs>>): Prisma__FortnoxVoucherClient<$Result.GetResult<Prisma.$FortnoxVoucherPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FortnoxVoucher that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FortnoxVoucherFindUniqueOrThrowArgs} args - Arguments to find a FortnoxVoucher
+     * @example
+     * // Get one FortnoxVoucher
+     * const fortnoxVoucher = await prisma.fortnoxVoucher.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FortnoxVoucherFindUniqueOrThrowArgs>(args: SelectSubset<T, FortnoxVoucherFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FortnoxVoucherClient<$Result.GetResult<Prisma.$FortnoxVoucherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FortnoxVoucher that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxVoucherFindFirstArgs} args - Arguments to find a FortnoxVoucher
+     * @example
+     * // Get one FortnoxVoucher
+     * const fortnoxVoucher = await prisma.fortnoxVoucher.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FortnoxVoucherFindFirstArgs>(args?: SelectSubset<T, FortnoxVoucherFindFirstArgs<ExtArgs>>): Prisma__FortnoxVoucherClient<$Result.GetResult<Prisma.$FortnoxVoucherPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FortnoxVoucher that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxVoucherFindFirstOrThrowArgs} args - Arguments to find a FortnoxVoucher
+     * @example
+     * // Get one FortnoxVoucher
+     * const fortnoxVoucher = await prisma.fortnoxVoucher.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FortnoxVoucherFindFirstOrThrowArgs>(args?: SelectSubset<T, FortnoxVoucherFindFirstOrThrowArgs<ExtArgs>>): Prisma__FortnoxVoucherClient<$Result.GetResult<Prisma.$FortnoxVoucherPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FortnoxVouchers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxVoucherFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FortnoxVouchers
+     * const fortnoxVouchers = await prisma.fortnoxVoucher.findMany()
+     * 
+     * // Get first 10 FortnoxVouchers
+     * const fortnoxVouchers = await prisma.fortnoxVoucher.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const fortnoxVoucherWithIdOnly = await prisma.fortnoxVoucher.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FortnoxVoucherFindManyArgs>(args?: SelectSubset<T, FortnoxVoucherFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxVoucherPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FortnoxVoucher.
+     * @param {FortnoxVoucherCreateArgs} args - Arguments to create a FortnoxVoucher.
+     * @example
+     * // Create one FortnoxVoucher
+     * const FortnoxVoucher = await prisma.fortnoxVoucher.create({
+     *   data: {
+     *     // ... data to create a FortnoxVoucher
+     *   }
+     * })
+     * 
+     */
+    create<T extends FortnoxVoucherCreateArgs>(args: SelectSubset<T, FortnoxVoucherCreateArgs<ExtArgs>>): Prisma__FortnoxVoucherClient<$Result.GetResult<Prisma.$FortnoxVoucherPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FortnoxVouchers.
+     * @param {FortnoxVoucherCreateManyArgs} args - Arguments to create many FortnoxVouchers.
+     * @example
+     * // Create many FortnoxVouchers
+     * const fortnoxVoucher = await prisma.fortnoxVoucher.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FortnoxVoucherCreateManyArgs>(args?: SelectSubset<T, FortnoxVoucherCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FortnoxVouchers and returns the data saved in the database.
+     * @param {FortnoxVoucherCreateManyAndReturnArgs} args - Arguments to create many FortnoxVouchers.
+     * @example
+     * // Create many FortnoxVouchers
+     * const fortnoxVoucher = await prisma.fortnoxVoucher.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FortnoxVouchers and only return the `id`
+     * const fortnoxVoucherWithIdOnly = await prisma.fortnoxVoucher.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FortnoxVoucherCreateManyAndReturnArgs>(args?: SelectSubset<T, FortnoxVoucherCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxVoucherPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FortnoxVoucher.
+     * @param {FortnoxVoucherDeleteArgs} args - Arguments to delete one FortnoxVoucher.
+     * @example
+     * // Delete one FortnoxVoucher
+     * const FortnoxVoucher = await prisma.fortnoxVoucher.delete({
+     *   where: {
+     *     // ... filter to delete one FortnoxVoucher
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FortnoxVoucherDeleteArgs>(args: SelectSubset<T, FortnoxVoucherDeleteArgs<ExtArgs>>): Prisma__FortnoxVoucherClient<$Result.GetResult<Prisma.$FortnoxVoucherPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FortnoxVoucher.
+     * @param {FortnoxVoucherUpdateArgs} args - Arguments to update one FortnoxVoucher.
+     * @example
+     * // Update one FortnoxVoucher
+     * const fortnoxVoucher = await prisma.fortnoxVoucher.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FortnoxVoucherUpdateArgs>(args: SelectSubset<T, FortnoxVoucherUpdateArgs<ExtArgs>>): Prisma__FortnoxVoucherClient<$Result.GetResult<Prisma.$FortnoxVoucherPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FortnoxVouchers.
+     * @param {FortnoxVoucherDeleteManyArgs} args - Arguments to filter FortnoxVouchers to delete.
+     * @example
+     * // Delete a few FortnoxVouchers
+     * const { count } = await prisma.fortnoxVoucher.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FortnoxVoucherDeleteManyArgs>(args?: SelectSubset<T, FortnoxVoucherDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FortnoxVouchers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxVoucherUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FortnoxVouchers
+     * const fortnoxVoucher = await prisma.fortnoxVoucher.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FortnoxVoucherUpdateManyArgs>(args: SelectSubset<T, FortnoxVoucherUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FortnoxVouchers and returns the data updated in the database.
+     * @param {FortnoxVoucherUpdateManyAndReturnArgs} args - Arguments to update many FortnoxVouchers.
+     * @example
+     * // Update many FortnoxVouchers
+     * const fortnoxVoucher = await prisma.fortnoxVoucher.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FortnoxVouchers and only return the `id`
+     * const fortnoxVoucherWithIdOnly = await prisma.fortnoxVoucher.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FortnoxVoucherUpdateManyAndReturnArgs>(args: SelectSubset<T, FortnoxVoucherUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxVoucherPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FortnoxVoucher.
+     * @param {FortnoxVoucherUpsertArgs} args - Arguments to update or create a FortnoxVoucher.
+     * @example
+     * // Update or create a FortnoxVoucher
+     * const fortnoxVoucher = await prisma.fortnoxVoucher.upsert({
+     *   create: {
+     *     // ... data to create a FortnoxVoucher
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FortnoxVoucher we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FortnoxVoucherUpsertArgs>(args: SelectSubset<T, FortnoxVoucherUpsertArgs<ExtArgs>>): Prisma__FortnoxVoucherClient<$Result.GetResult<Prisma.$FortnoxVoucherPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FortnoxVouchers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxVoucherCountArgs} args - Arguments to filter FortnoxVouchers to count.
+     * @example
+     * // Count the number of FortnoxVouchers
+     * const count = await prisma.fortnoxVoucher.count({
+     *   where: {
+     *     // ... the filter for the FortnoxVouchers we want to count
+     *   }
+     * })
+    **/
+    count<T extends FortnoxVoucherCountArgs>(
+      args?: Subset<T, FortnoxVoucherCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FortnoxVoucherCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FortnoxVoucher.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxVoucherAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FortnoxVoucherAggregateArgs>(args: Subset<T, FortnoxVoucherAggregateArgs>): Prisma.PrismaPromise<GetFortnoxVoucherAggregateType<T>>
+
+    /**
+     * Group by FortnoxVoucher.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxVoucherGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FortnoxVoucherGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FortnoxVoucherGroupByArgs['orderBy'] }
+        : { orderBy?: FortnoxVoucherGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FortnoxVoucherGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFortnoxVoucherGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FortnoxVoucher model
+   */
+  readonly fields: FortnoxVoucherFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FortnoxVoucher.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FortnoxVoucherClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    financialYear<T extends FortnoxFinancialYearDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FortnoxFinancialYearDefaultArgs<ExtArgs>>): Prisma__FortnoxFinancialYearClient<$Result.GetResult<Prisma.$FortnoxFinancialYearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    rows<T extends FortnoxVoucher$rowsArgs<ExtArgs> = {}>(args?: Subset<T, FortnoxVoucher$rowsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxVoucherRowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FortnoxVoucher model
+   */
+  interface FortnoxVoucherFieldRefs {
+    readonly id: FieldRef<"FortnoxVoucher", 'String'>
+    readonly voucherSeries: FieldRef<"FortnoxVoucher", 'String'>
+    readonly voucherNumber: FieldRef<"FortnoxVoucher", 'Int'>
+    readonly financialYearId: FieldRef<"FortnoxVoucher", 'String'>
+    readonly transactionDate: FieldRef<"FortnoxVoucher", 'DateTime'>
+    readonly description: FieldRef<"FortnoxVoucher", 'String'>
+    readonly referenceType: FieldRef<"FortnoxVoucher", 'String'>
+    readonly referenceNumber: FieldRef<"FortnoxVoucher", 'String'>
+    readonly costCenter: FieldRef<"FortnoxVoucher", 'String'>
+    readonly project: FieldRef<"FortnoxVoucher", 'String'>
+    readonly approvalState: FieldRef<"FortnoxVoucher", 'Int'>
+    readonly rawData: FieldRef<"FortnoxVoucher", 'Json'>
+    readonly syncedAt: FieldRef<"FortnoxVoucher", 'DateTime'>
+    readonly createdAt: FieldRef<"FortnoxVoucher", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FortnoxVoucher findUnique
+   */
+  export type FortnoxVoucherFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucher
+     */
+    select?: FortnoxVoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucher
+     */
+    omit?: FortnoxVoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxVoucher to fetch.
+     */
+    where: FortnoxVoucherWhereUniqueInput
+  }
+
+  /**
+   * FortnoxVoucher findUniqueOrThrow
+   */
+  export type FortnoxVoucherFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucher
+     */
+    select?: FortnoxVoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucher
+     */
+    omit?: FortnoxVoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxVoucher to fetch.
+     */
+    where: FortnoxVoucherWhereUniqueInput
+  }
+
+  /**
+   * FortnoxVoucher findFirst
+   */
+  export type FortnoxVoucherFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucher
+     */
+    select?: FortnoxVoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucher
+     */
+    omit?: FortnoxVoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxVoucher to fetch.
+     */
+    where?: FortnoxVoucherWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxVouchers to fetch.
+     */
+    orderBy?: FortnoxVoucherOrderByWithRelationInput | FortnoxVoucherOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FortnoxVouchers.
+     */
+    cursor?: FortnoxVoucherWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxVouchers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxVouchers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxVouchers.
+     */
+    distinct?: FortnoxVoucherScalarFieldEnum | FortnoxVoucherScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxVoucher findFirstOrThrow
+   */
+  export type FortnoxVoucherFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucher
+     */
+    select?: FortnoxVoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucher
+     */
+    omit?: FortnoxVoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxVoucher to fetch.
+     */
+    where?: FortnoxVoucherWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxVouchers to fetch.
+     */
+    orderBy?: FortnoxVoucherOrderByWithRelationInput | FortnoxVoucherOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FortnoxVouchers.
+     */
+    cursor?: FortnoxVoucherWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxVouchers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxVouchers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxVouchers.
+     */
+    distinct?: FortnoxVoucherScalarFieldEnum | FortnoxVoucherScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxVoucher findMany
+   */
+  export type FortnoxVoucherFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucher
+     */
+    select?: FortnoxVoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucher
+     */
+    omit?: FortnoxVoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxVouchers to fetch.
+     */
+    where?: FortnoxVoucherWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxVouchers to fetch.
+     */
+    orderBy?: FortnoxVoucherOrderByWithRelationInput | FortnoxVoucherOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FortnoxVouchers.
+     */
+    cursor?: FortnoxVoucherWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxVouchers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxVouchers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxVouchers.
+     */
+    distinct?: FortnoxVoucherScalarFieldEnum | FortnoxVoucherScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxVoucher create
+   */
+  export type FortnoxVoucherCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucher
+     */
+    select?: FortnoxVoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucher
+     */
+    omit?: FortnoxVoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FortnoxVoucher.
+     */
+    data: XOR<FortnoxVoucherCreateInput, FortnoxVoucherUncheckedCreateInput>
+  }
+
+  /**
+   * FortnoxVoucher createMany
+   */
+  export type FortnoxVoucherCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FortnoxVouchers.
+     */
+    data: FortnoxVoucherCreateManyInput | FortnoxVoucherCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FortnoxVoucher createManyAndReturn
+   */
+  export type FortnoxVoucherCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucher
+     */
+    select?: FortnoxVoucherSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucher
+     */
+    omit?: FortnoxVoucherOmit<ExtArgs> | null
+    /**
+     * The data used to create many FortnoxVouchers.
+     */
+    data: FortnoxVoucherCreateManyInput | FortnoxVoucherCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FortnoxVoucher update
+   */
+  export type FortnoxVoucherUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucher
+     */
+    select?: FortnoxVoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucher
+     */
+    omit?: FortnoxVoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FortnoxVoucher.
+     */
+    data: XOR<FortnoxVoucherUpdateInput, FortnoxVoucherUncheckedUpdateInput>
+    /**
+     * Choose, which FortnoxVoucher to update.
+     */
+    where: FortnoxVoucherWhereUniqueInput
+  }
+
+  /**
+   * FortnoxVoucher updateMany
+   */
+  export type FortnoxVoucherUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FortnoxVouchers.
+     */
+    data: XOR<FortnoxVoucherUpdateManyMutationInput, FortnoxVoucherUncheckedUpdateManyInput>
+    /**
+     * Filter which FortnoxVouchers to update
+     */
+    where?: FortnoxVoucherWhereInput
+    /**
+     * Limit how many FortnoxVouchers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FortnoxVoucher updateManyAndReturn
+   */
+  export type FortnoxVoucherUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucher
+     */
+    select?: FortnoxVoucherSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucher
+     */
+    omit?: FortnoxVoucherOmit<ExtArgs> | null
+    /**
+     * The data used to update FortnoxVouchers.
+     */
+    data: XOR<FortnoxVoucherUpdateManyMutationInput, FortnoxVoucherUncheckedUpdateManyInput>
+    /**
+     * Filter which FortnoxVouchers to update
+     */
+    where?: FortnoxVoucherWhereInput
+    /**
+     * Limit how many FortnoxVouchers to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FortnoxVoucher upsert
+   */
+  export type FortnoxVoucherUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucher
+     */
+    select?: FortnoxVoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucher
+     */
+    omit?: FortnoxVoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FortnoxVoucher to update in case it exists.
+     */
+    where: FortnoxVoucherWhereUniqueInput
+    /**
+     * In case the FortnoxVoucher found by the `where` argument doesn't exist, create a new FortnoxVoucher with this data.
+     */
+    create: XOR<FortnoxVoucherCreateInput, FortnoxVoucherUncheckedCreateInput>
+    /**
+     * In case the FortnoxVoucher was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FortnoxVoucherUpdateInput, FortnoxVoucherUncheckedUpdateInput>
+  }
+
+  /**
+   * FortnoxVoucher delete
+   */
+  export type FortnoxVoucherDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucher
+     */
+    select?: FortnoxVoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucher
+     */
+    omit?: FortnoxVoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherInclude<ExtArgs> | null
+    /**
+     * Filter which FortnoxVoucher to delete.
+     */
+    where: FortnoxVoucherWhereUniqueInput
+  }
+
+  /**
+   * FortnoxVoucher deleteMany
+   */
+  export type FortnoxVoucherDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FortnoxVouchers to delete
+     */
+    where?: FortnoxVoucherWhereInput
+    /**
+     * Limit how many FortnoxVouchers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FortnoxVoucher.rows
+   */
+  export type FortnoxVoucher$rowsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucherRow
+     */
+    select?: FortnoxVoucherRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucherRow
+     */
+    omit?: FortnoxVoucherRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherRowInclude<ExtArgs> | null
+    where?: FortnoxVoucherRowWhereInput
+    orderBy?: FortnoxVoucherRowOrderByWithRelationInput | FortnoxVoucherRowOrderByWithRelationInput[]
+    cursor?: FortnoxVoucherRowWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FortnoxVoucherRowScalarFieldEnum | FortnoxVoucherRowScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxVoucher without action
+   */
+  export type FortnoxVoucherDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucher
+     */
+    select?: FortnoxVoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucher
+     */
+    omit?: FortnoxVoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FortnoxVoucherRow
+   */
+
+  export type AggregateFortnoxVoucherRow = {
+    _count: FortnoxVoucherRowCountAggregateOutputType | null
+    _avg: FortnoxVoucherRowAvgAggregateOutputType | null
+    _sum: FortnoxVoucherRowSumAggregateOutputType | null
+    _min: FortnoxVoucherRowMinAggregateOutputType | null
+    _max: FortnoxVoucherRowMaxAggregateOutputType | null
+  }
+
+  export type FortnoxVoucherRowAvgAggregateOutputType = {
+    accountNumber: number | null
+    debit: Decimal | null
+    credit: Decimal | null
+  }
+
+  export type FortnoxVoucherRowSumAggregateOutputType = {
+    accountNumber: number | null
+    debit: Decimal | null
+    credit: Decimal | null
+  }
+
+  export type FortnoxVoucherRowMinAggregateOutputType = {
+    id: string | null
+    voucherId: string | null
+    accountNumber: number | null
+    debit: Decimal | null
+    credit: Decimal | null
+    description: string | null
+    costCenter: string | null
+    project: string | null
+  }
+
+  export type FortnoxVoucherRowMaxAggregateOutputType = {
+    id: string | null
+    voucherId: string | null
+    accountNumber: number | null
+    debit: Decimal | null
+    credit: Decimal | null
+    description: string | null
+    costCenter: string | null
+    project: string | null
+  }
+
+  export type FortnoxVoucherRowCountAggregateOutputType = {
+    id: number
+    voucherId: number
+    accountNumber: number
+    debit: number
+    credit: number
+    description: number
+    costCenter: number
+    project: number
+    _all: number
+  }
+
+
+  export type FortnoxVoucherRowAvgAggregateInputType = {
+    accountNumber?: true
+    debit?: true
+    credit?: true
+  }
+
+  export type FortnoxVoucherRowSumAggregateInputType = {
+    accountNumber?: true
+    debit?: true
+    credit?: true
+  }
+
+  export type FortnoxVoucherRowMinAggregateInputType = {
+    id?: true
+    voucherId?: true
+    accountNumber?: true
+    debit?: true
+    credit?: true
+    description?: true
+    costCenter?: true
+    project?: true
+  }
+
+  export type FortnoxVoucherRowMaxAggregateInputType = {
+    id?: true
+    voucherId?: true
+    accountNumber?: true
+    debit?: true
+    credit?: true
+    description?: true
+    costCenter?: true
+    project?: true
+  }
+
+  export type FortnoxVoucherRowCountAggregateInputType = {
+    id?: true
+    voucherId?: true
+    accountNumber?: true
+    debit?: true
+    credit?: true
+    description?: true
+    costCenter?: true
+    project?: true
+    _all?: true
+  }
+
+  export type FortnoxVoucherRowAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FortnoxVoucherRow to aggregate.
+     */
+    where?: FortnoxVoucherRowWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxVoucherRows to fetch.
+     */
+    orderBy?: FortnoxVoucherRowOrderByWithRelationInput | FortnoxVoucherRowOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FortnoxVoucherRowWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxVoucherRows from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxVoucherRows.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FortnoxVoucherRows
+    **/
+    _count?: true | FortnoxVoucherRowCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FortnoxVoucherRowAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FortnoxVoucherRowSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FortnoxVoucherRowMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FortnoxVoucherRowMaxAggregateInputType
+  }
+
+  export type GetFortnoxVoucherRowAggregateType<T extends FortnoxVoucherRowAggregateArgs> = {
+        [P in keyof T & keyof AggregateFortnoxVoucherRow]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFortnoxVoucherRow[P]>
+      : GetScalarType<T[P], AggregateFortnoxVoucherRow[P]>
+  }
+
+
+
+
+  export type FortnoxVoucherRowGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FortnoxVoucherRowWhereInput
+    orderBy?: FortnoxVoucherRowOrderByWithAggregationInput | FortnoxVoucherRowOrderByWithAggregationInput[]
+    by: FortnoxVoucherRowScalarFieldEnum[] | FortnoxVoucherRowScalarFieldEnum
+    having?: FortnoxVoucherRowScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FortnoxVoucherRowCountAggregateInputType | true
+    _avg?: FortnoxVoucherRowAvgAggregateInputType
+    _sum?: FortnoxVoucherRowSumAggregateInputType
+    _min?: FortnoxVoucherRowMinAggregateInputType
+    _max?: FortnoxVoucherRowMaxAggregateInputType
+  }
+
+  export type FortnoxVoucherRowGroupByOutputType = {
+    id: string
+    voucherId: string
+    accountNumber: number
+    debit: Decimal | null
+    credit: Decimal | null
+    description: string | null
+    costCenter: string | null
+    project: string | null
+    _count: FortnoxVoucherRowCountAggregateOutputType | null
+    _avg: FortnoxVoucherRowAvgAggregateOutputType | null
+    _sum: FortnoxVoucherRowSumAggregateOutputType | null
+    _min: FortnoxVoucherRowMinAggregateOutputType | null
+    _max: FortnoxVoucherRowMaxAggregateOutputType | null
+  }
+
+  type GetFortnoxVoucherRowGroupByPayload<T extends FortnoxVoucherRowGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FortnoxVoucherRowGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FortnoxVoucherRowGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FortnoxVoucherRowGroupByOutputType[P]>
+            : GetScalarType<T[P], FortnoxVoucherRowGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FortnoxVoucherRowSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    voucherId?: boolean
+    accountNumber?: boolean
+    debit?: boolean
+    credit?: boolean
+    description?: boolean
+    costCenter?: boolean
+    project?: boolean
+    voucher?: boolean | FortnoxVoucherDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxVoucherRow"]>
+
+  export type FortnoxVoucherRowSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    voucherId?: boolean
+    accountNumber?: boolean
+    debit?: boolean
+    credit?: boolean
+    description?: boolean
+    costCenter?: boolean
+    project?: boolean
+    voucher?: boolean | FortnoxVoucherDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxVoucherRow"]>
+
+  export type FortnoxVoucherRowSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    voucherId?: boolean
+    accountNumber?: boolean
+    debit?: boolean
+    credit?: boolean
+    description?: boolean
+    costCenter?: boolean
+    project?: boolean
+    voucher?: boolean | FortnoxVoucherDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fortnoxVoucherRow"]>
+
+  export type FortnoxVoucherRowSelectScalar = {
+    id?: boolean
+    voucherId?: boolean
+    accountNumber?: boolean
+    debit?: boolean
+    credit?: boolean
+    description?: boolean
+    costCenter?: boolean
+    project?: boolean
+  }
+
+  export type FortnoxVoucherRowOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "voucherId" | "accountNumber" | "debit" | "credit" | "description" | "costCenter" | "project", ExtArgs["result"]["fortnoxVoucherRow"]>
+  export type FortnoxVoucherRowInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    voucher?: boolean | FortnoxVoucherDefaultArgs<ExtArgs>
+  }
+  export type FortnoxVoucherRowIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    voucher?: boolean | FortnoxVoucherDefaultArgs<ExtArgs>
+  }
+  export type FortnoxVoucherRowIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    voucher?: boolean | FortnoxVoucherDefaultArgs<ExtArgs>
+  }
+
+  export type $FortnoxVoucherRowPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FortnoxVoucherRow"
+    objects: {
+      voucher: Prisma.$FortnoxVoucherPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      voucherId: string
+      accountNumber: number
+      debit: Prisma.Decimal | null
+      credit: Prisma.Decimal | null
+      description: string | null
+      costCenter: string | null
+      project: string | null
+    }, ExtArgs["result"]["fortnoxVoucherRow"]>
+    composites: {}
+  }
+
+  type FortnoxVoucherRowGetPayload<S extends boolean | null | undefined | FortnoxVoucherRowDefaultArgs> = $Result.GetResult<Prisma.$FortnoxVoucherRowPayload, S>
+
+  type FortnoxVoucherRowCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FortnoxVoucherRowFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FortnoxVoucherRowCountAggregateInputType | true
+    }
+
+  export interface FortnoxVoucherRowDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FortnoxVoucherRow'], meta: { name: 'FortnoxVoucherRow' } }
+    /**
+     * Find zero or one FortnoxVoucherRow that matches the filter.
+     * @param {FortnoxVoucherRowFindUniqueArgs} args - Arguments to find a FortnoxVoucherRow
+     * @example
+     * // Get one FortnoxVoucherRow
+     * const fortnoxVoucherRow = await prisma.fortnoxVoucherRow.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FortnoxVoucherRowFindUniqueArgs>(args: SelectSubset<T, FortnoxVoucherRowFindUniqueArgs<ExtArgs>>): Prisma__FortnoxVoucherRowClient<$Result.GetResult<Prisma.$FortnoxVoucherRowPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FortnoxVoucherRow that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FortnoxVoucherRowFindUniqueOrThrowArgs} args - Arguments to find a FortnoxVoucherRow
+     * @example
+     * // Get one FortnoxVoucherRow
+     * const fortnoxVoucherRow = await prisma.fortnoxVoucherRow.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FortnoxVoucherRowFindUniqueOrThrowArgs>(args: SelectSubset<T, FortnoxVoucherRowFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FortnoxVoucherRowClient<$Result.GetResult<Prisma.$FortnoxVoucherRowPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FortnoxVoucherRow that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxVoucherRowFindFirstArgs} args - Arguments to find a FortnoxVoucherRow
+     * @example
+     * // Get one FortnoxVoucherRow
+     * const fortnoxVoucherRow = await prisma.fortnoxVoucherRow.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FortnoxVoucherRowFindFirstArgs>(args?: SelectSubset<T, FortnoxVoucherRowFindFirstArgs<ExtArgs>>): Prisma__FortnoxVoucherRowClient<$Result.GetResult<Prisma.$FortnoxVoucherRowPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FortnoxVoucherRow that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxVoucherRowFindFirstOrThrowArgs} args - Arguments to find a FortnoxVoucherRow
+     * @example
+     * // Get one FortnoxVoucherRow
+     * const fortnoxVoucherRow = await prisma.fortnoxVoucherRow.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FortnoxVoucherRowFindFirstOrThrowArgs>(args?: SelectSubset<T, FortnoxVoucherRowFindFirstOrThrowArgs<ExtArgs>>): Prisma__FortnoxVoucherRowClient<$Result.GetResult<Prisma.$FortnoxVoucherRowPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FortnoxVoucherRows that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxVoucherRowFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FortnoxVoucherRows
+     * const fortnoxVoucherRows = await prisma.fortnoxVoucherRow.findMany()
+     * 
+     * // Get first 10 FortnoxVoucherRows
+     * const fortnoxVoucherRows = await prisma.fortnoxVoucherRow.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const fortnoxVoucherRowWithIdOnly = await prisma.fortnoxVoucherRow.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FortnoxVoucherRowFindManyArgs>(args?: SelectSubset<T, FortnoxVoucherRowFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxVoucherRowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FortnoxVoucherRow.
+     * @param {FortnoxVoucherRowCreateArgs} args - Arguments to create a FortnoxVoucherRow.
+     * @example
+     * // Create one FortnoxVoucherRow
+     * const FortnoxVoucherRow = await prisma.fortnoxVoucherRow.create({
+     *   data: {
+     *     // ... data to create a FortnoxVoucherRow
+     *   }
+     * })
+     * 
+     */
+    create<T extends FortnoxVoucherRowCreateArgs>(args: SelectSubset<T, FortnoxVoucherRowCreateArgs<ExtArgs>>): Prisma__FortnoxVoucherRowClient<$Result.GetResult<Prisma.$FortnoxVoucherRowPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FortnoxVoucherRows.
+     * @param {FortnoxVoucherRowCreateManyArgs} args - Arguments to create many FortnoxVoucherRows.
+     * @example
+     * // Create many FortnoxVoucherRows
+     * const fortnoxVoucherRow = await prisma.fortnoxVoucherRow.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FortnoxVoucherRowCreateManyArgs>(args?: SelectSubset<T, FortnoxVoucherRowCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FortnoxVoucherRows and returns the data saved in the database.
+     * @param {FortnoxVoucherRowCreateManyAndReturnArgs} args - Arguments to create many FortnoxVoucherRows.
+     * @example
+     * // Create many FortnoxVoucherRows
+     * const fortnoxVoucherRow = await prisma.fortnoxVoucherRow.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FortnoxVoucherRows and only return the `id`
+     * const fortnoxVoucherRowWithIdOnly = await prisma.fortnoxVoucherRow.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FortnoxVoucherRowCreateManyAndReturnArgs>(args?: SelectSubset<T, FortnoxVoucherRowCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxVoucherRowPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FortnoxVoucherRow.
+     * @param {FortnoxVoucherRowDeleteArgs} args - Arguments to delete one FortnoxVoucherRow.
+     * @example
+     * // Delete one FortnoxVoucherRow
+     * const FortnoxVoucherRow = await prisma.fortnoxVoucherRow.delete({
+     *   where: {
+     *     // ... filter to delete one FortnoxVoucherRow
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FortnoxVoucherRowDeleteArgs>(args: SelectSubset<T, FortnoxVoucherRowDeleteArgs<ExtArgs>>): Prisma__FortnoxVoucherRowClient<$Result.GetResult<Prisma.$FortnoxVoucherRowPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FortnoxVoucherRow.
+     * @param {FortnoxVoucherRowUpdateArgs} args - Arguments to update one FortnoxVoucherRow.
+     * @example
+     * // Update one FortnoxVoucherRow
+     * const fortnoxVoucherRow = await prisma.fortnoxVoucherRow.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FortnoxVoucherRowUpdateArgs>(args: SelectSubset<T, FortnoxVoucherRowUpdateArgs<ExtArgs>>): Prisma__FortnoxVoucherRowClient<$Result.GetResult<Prisma.$FortnoxVoucherRowPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FortnoxVoucherRows.
+     * @param {FortnoxVoucherRowDeleteManyArgs} args - Arguments to filter FortnoxVoucherRows to delete.
+     * @example
+     * // Delete a few FortnoxVoucherRows
+     * const { count } = await prisma.fortnoxVoucherRow.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FortnoxVoucherRowDeleteManyArgs>(args?: SelectSubset<T, FortnoxVoucherRowDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FortnoxVoucherRows.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxVoucherRowUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FortnoxVoucherRows
+     * const fortnoxVoucherRow = await prisma.fortnoxVoucherRow.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FortnoxVoucherRowUpdateManyArgs>(args: SelectSubset<T, FortnoxVoucherRowUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FortnoxVoucherRows and returns the data updated in the database.
+     * @param {FortnoxVoucherRowUpdateManyAndReturnArgs} args - Arguments to update many FortnoxVoucherRows.
+     * @example
+     * // Update many FortnoxVoucherRows
+     * const fortnoxVoucherRow = await prisma.fortnoxVoucherRow.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FortnoxVoucherRows and only return the `id`
+     * const fortnoxVoucherRowWithIdOnly = await prisma.fortnoxVoucherRow.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FortnoxVoucherRowUpdateManyAndReturnArgs>(args: SelectSubset<T, FortnoxVoucherRowUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxVoucherRowPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FortnoxVoucherRow.
+     * @param {FortnoxVoucherRowUpsertArgs} args - Arguments to update or create a FortnoxVoucherRow.
+     * @example
+     * // Update or create a FortnoxVoucherRow
+     * const fortnoxVoucherRow = await prisma.fortnoxVoucherRow.upsert({
+     *   create: {
+     *     // ... data to create a FortnoxVoucherRow
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FortnoxVoucherRow we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FortnoxVoucherRowUpsertArgs>(args: SelectSubset<T, FortnoxVoucherRowUpsertArgs<ExtArgs>>): Prisma__FortnoxVoucherRowClient<$Result.GetResult<Prisma.$FortnoxVoucherRowPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FortnoxVoucherRows.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxVoucherRowCountArgs} args - Arguments to filter FortnoxVoucherRows to count.
+     * @example
+     * // Count the number of FortnoxVoucherRows
+     * const count = await prisma.fortnoxVoucherRow.count({
+     *   where: {
+     *     // ... the filter for the FortnoxVoucherRows we want to count
+     *   }
+     * })
+    **/
+    count<T extends FortnoxVoucherRowCountArgs>(
+      args?: Subset<T, FortnoxVoucherRowCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FortnoxVoucherRowCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FortnoxVoucherRow.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxVoucherRowAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FortnoxVoucherRowAggregateArgs>(args: Subset<T, FortnoxVoucherRowAggregateArgs>): Prisma.PrismaPromise<GetFortnoxVoucherRowAggregateType<T>>
+
+    /**
+     * Group by FortnoxVoucherRow.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FortnoxVoucherRowGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FortnoxVoucherRowGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FortnoxVoucherRowGroupByArgs['orderBy'] }
+        : { orderBy?: FortnoxVoucherRowGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FortnoxVoucherRowGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFortnoxVoucherRowGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FortnoxVoucherRow model
+   */
+  readonly fields: FortnoxVoucherRowFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FortnoxVoucherRow.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FortnoxVoucherRowClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    voucher<T extends FortnoxVoucherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FortnoxVoucherDefaultArgs<ExtArgs>>): Prisma__FortnoxVoucherClient<$Result.GetResult<Prisma.$FortnoxVoucherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FortnoxVoucherRow model
+   */
+  interface FortnoxVoucherRowFieldRefs {
+    readonly id: FieldRef<"FortnoxVoucherRow", 'String'>
+    readonly voucherId: FieldRef<"FortnoxVoucherRow", 'String'>
+    readonly accountNumber: FieldRef<"FortnoxVoucherRow", 'Int'>
+    readonly debit: FieldRef<"FortnoxVoucherRow", 'Decimal'>
+    readonly credit: FieldRef<"FortnoxVoucherRow", 'Decimal'>
+    readonly description: FieldRef<"FortnoxVoucherRow", 'String'>
+    readonly costCenter: FieldRef<"FortnoxVoucherRow", 'String'>
+    readonly project: FieldRef<"FortnoxVoucherRow", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FortnoxVoucherRow findUnique
+   */
+  export type FortnoxVoucherRowFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucherRow
+     */
+    select?: FortnoxVoucherRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucherRow
+     */
+    omit?: FortnoxVoucherRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherRowInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxVoucherRow to fetch.
+     */
+    where: FortnoxVoucherRowWhereUniqueInput
+  }
+
+  /**
+   * FortnoxVoucherRow findUniqueOrThrow
+   */
+  export type FortnoxVoucherRowFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucherRow
+     */
+    select?: FortnoxVoucherRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucherRow
+     */
+    omit?: FortnoxVoucherRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherRowInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxVoucherRow to fetch.
+     */
+    where: FortnoxVoucherRowWhereUniqueInput
+  }
+
+  /**
+   * FortnoxVoucherRow findFirst
+   */
+  export type FortnoxVoucherRowFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucherRow
+     */
+    select?: FortnoxVoucherRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucherRow
+     */
+    omit?: FortnoxVoucherRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherRowInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxVoucherRow to fetch.
+     */
+    where?: FortnoxVoucherRowWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxVoucherRows to fetch.
+     */
+    orderBy?: FortnoxVoucherRowOrderByWithRelationInput | FortnoxVoucherRowOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FortnoxVoucherRows.
+     */
+    cursor?: FortnoxVoucherRowWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxVoucherRows from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxVoucherRows.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxVoucherRows.
+     */
+    distinct?: FortnoxVoucherRowScalarFieldEnum | FortnoxVoucherRowScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxVoucherRow findFirstOrThrow
+   */
+  export type FortnoxVoucherRowFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucherRow
+     */
+    select?: FortnoxVoucherRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucherRow
+     */
+    omit?: FortnoxVoucherRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherRowInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxVoucherRow to fetch.
+     */
+    where?: FortnoxVoucherRowWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxVoucherRows to fetch.
+     */
+    orderBy?: FortnoxVoucherRowOrderByWithRelationInput | FortnoxVoucherRowOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FortnoxVoucherRows.
+     */
+    cursor?: FortnoxVoucherRowWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxVoucherRows from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxVoucherRows.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxVoucherRows.
+     */
+    distinct?: FortnoxVoucherRowScalarFieldEnum | FortnoxVoucherRowScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxVoucherRow findMany
+   */
+  export type FortnoxVoucherRowFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucherRow
+     */
+    select?: FortnoxVoucherRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucherRow
+     */
+    omit?: FortnoxVoucherRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherRowInclude<ExtArgs> | null
+    /**
+     * Filter, which FortnoxVoucherRows to fetch.
+     */
+    where?: FortnoxVoucherRowWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FortnoxVoucherRows to fetch.
+     */
+    orderBy?: FortnoxVoucherRowOrderByWithRelationInput | FortnoxVoucherRowOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FortnoxVoucherRows.
+     */
+    cursor?: FortnoxVoucherRowWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FortnoxVoucherRows from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FortnoxVoucherRows.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FortnoxVoucherRows.
+     */
+    distinct?: FortnoxVoucherRowScalarFieldEnum | FortnoxVoucherRowScalarFieldEnum[]
+  }
+
+  /**
+   * FortnoxVoucherRow create
+   */
+  export type FortnoxVoucherRowCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucherRow
+     */
+    select?: FortnoxVoucherRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucherRow
+     */
+    omit?: FortnoxVoucherRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherRowInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FortnoxVoucherRow.
+     */
+    data: XOR<FortnoxVoucherRowCreateInput, FortnoxVoucherRowUncheckedCreateInput>
+  }
+
+  /**
+   * FortnoxVoucherRow createMany
+   */
+  export type FortnoxVoucherRowCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FortnoxVoucherRows.
+     */
+    data: FortnoxVoucherRowCreateManyInput | FortnoxVoucherRowCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FortnoxVoucherRow createManyAndReturn
+   */
+  export type FortnoxVoucherRowCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucherRow
+     */
+    select?: FortnoxVoucherRowSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucherRow
+     */
+    omit?: FortnoxVoucherRowOmit<ExtArgs> | null
+    /**
+     * The data used to create many FortnoxVoucherRows.
+     */
+    data: FortnoxVoucherRowCreateManyInput | FortnoxVoucherRowCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherRowIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FortnoxVoucherRow update
+   */
+  export type FortnoxVoucherRowUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucherRow
+     */
+    select?: FortnoxVoucherRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucherRow
+     */
+    omit?: FortnoxVoucherRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherRowInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FortnoxVoucherRow.
+     */
+    data: XOR<FortnoxVoucherRowUpdateInput, FortnoxVoucherRowUncheckedUpdateInput>
+    /**
+     * Choose, which FortnoxVoucherRow to update.
+     */
+    where: FortnoxVoucherRowWhereUniqueInput
+  }
+
+  /**
+   * FortnoxVoucherRow updateMany
+   */
+  export type FortnoxVoucherRowUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FortnoxVoucherRows.
+     */
+    data: XOR<FortnoxVoucherRowUpdateManyMutationInput, FortnoxVoucherRowUncheckedUpdateManyInput>
+    /**
+     * Filter which FortnoxVoucherRows to update
+     */
+    where?: FortnoxVoucherRowWhereInput
+    /**
+     * Limit how many FortnoxVoucherRows to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FortnoxVoucherRow updateManyAndReturn
+   */
+  export type FortnoxVoucherRowUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucherRow
+     */
+    select?: FortnoxVoucherRowSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucherRow
+     */
+    omit?: FortnoxVoucherRowOmit<ExtArgs> | null
+    /**
+     * The data used to update FortnoxVoucherRows.
+     */
+    data: XOR<FortnoxVoucherRowUpdateManyMutationInput, FortnoxVoucherRowUncheckedUpdateManyInput>
+    /**
+     * Filter which FortnoxVoucherRows to update
+     */
+    where?: FortnoxVoucherRowWhereInput
+    /**
+     * Limit how many FortnoxVoucherRows to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherRowIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FortnoxVoucherRow upsert
+   */
+  export type FortnoxVoucherRowUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucherRow
+     */
+    select?: FortnoxVoucherRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucherRow
+     */
+    omit?: FortnoxVoucherRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherRowInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FortnoxVoucherRow to update in case it exists.
+     */
+    where: FortnoxVoucherRowWhereUniqueInput
+    /**
+     * In case the FortnoxVoucherRow found by the `where` argument doesn't exist, create a new FortnoxVoucherRow with this data.
+     */
+    create: XOR<FortnoxVoucherRowCreateInput, FortnoxVoucherRowUncheckedCreateInput>
+    /**
+     * In case the FortnoxVoucherRow was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FortnoxVoucherRowUpdateInput, FortnoxVoucherRowUncheckedUpdateInput>
+  }
+
+  /**
+   * FortnoxVoucherRow delete
+   */
+  export type FortnoxVoucherRowDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucherRow
+     */
+    select?: FortnoxVoucherRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucherRow
+     */
+    omit?: FortnoxVoucherRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherRowInclude<ExtArgs> | null
+    /**
+     * Filter which FortnoxVoucherRow to delete.
+     */
+    where: FortnoxVoucherRowWhereUniqueInput
+  }
+
+  /**
+   * FortnoxVoucherRow deleteMany
+   */
+  export type FortnoxVoucherRowDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FortnoxVoucherRows to delete
+     */
+    where?: FortnoxVoucherRowWhereInput
+    /**
+     * Limit how many FortnoxVoucherRows to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FortnoxVoucherRow without action
+   */
+  export type FortnoxVoucherRowDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FortnoxVoucherRow
+     */
+    select?: FortnoxVoucherRowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FortnoxVoucherRow
+     */
+    omit?: FortnoxVoucherRowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FortnoxVoucherRowInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -17866,6 +23076,73 @@ export namespace Prisma {
   };
 
   export type FortnoxSyncLogScalarFieldEnum = (typeof FortnoxSyncLogScalarFieldEnum)[keyof typeof FortnoxSyncLogScalarFieldEnum]
+
+
+  export const FortnoxFinancialYearScalarFieldEnum: {
+    id: 'id',
+    fortnoxId: 'fortnoxId',
+    fromDate: 'fromDate',
+    toDate: 'toDate',
+    accountChartType: 'accountChartType',
+    accountingMethod: 'accountingMethod',
+    rawData: 'rawData',
+    syncedAt: 'syncedAt',
+    createdAt: 'createdAt'
+  };
+
+  export type FortnoxFinancialYearScalarFieldEnum = (typeof FortnoxFinancialYearScalarFieldEnum)[keyof typeof FortnoxFinancialYearScalarFieldEnum]
+
+
+  export const FortnoxAccountScalarFieldEnum: {
+    id: 'id',
+    accountNumber: 'accountNumber',
+    financialYearId: 'financialYearId',
+    description: 'description',
+    active: 'active',
+    balanceBroughtForward: 'balanceBroughtForward',
+    balanceCarriedForward: 'balanceCarriedForward',
+    vatCode: 'vatCode',
+    sru: 'sru',
+    rawData: 'rawData',
+    syncedAt: 'syncedAt',
+    createdAt: 'createdAt'
+  };
+
+  export type FortnoxAccountScalarFieldEnum = (typeof FortnoxAccountScalarFieldEnum)[keyof typeof FortnoxAccountScalarFieldEnum]
+
+
+  export const FortnoxVoucherScalarFieldEnum: {
+    id: 'id',
+    voucherSeries: 'voucherSeries',
+    voucherNumber: 'voucherNumber',
+    financialYearId: 'financialYearId',
+    transactionDate: 'transactionDate',
+    description: 'description',
+    referenceType: 'referenceType',
+    referenceNumber: 'referenceNumber',
+    costCenter: 'costCenter',
+    project: 'project',
+    approvalState: 'approvalState',
+    rawData: 'rawData',
+    syncedAt: 'syncedAt',
+    createdAt: 'createdAt'
+  };
+
+  export type FortnoxVoucherScalarFieldEnum = (typeof FortnoxVoucherScalarFieldEnum)[keyof typeof FortnoxVoucherScalarFieldEnum]
+
+
+  export const FortnoxVoucherRowScalarFieldEnum: {
+    id: 'id',
+    voucherId: 'voucherId',
+    accountNumber: 'accountNumber',
+    debit: 'debit',
+    credit: 'credit',
+    description: 'description',
+    costCenter: 'costCenter',
+    project: 'project'
+  };
+
+  export type FortnoxVoucherRowScalarFieldEnum = (typeof FortnoxVoucherRowScalarFieldEnum)[keyof typeof FortnoxVoucherRowScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -19090,6 +24367,357 @@ export namespace Prisma {
     lastSyncedAt?: DateTimeWithAggregatesFilter<"FortnoxSyncLog"> | Date | string
   }
 
+  export type FortnoxFinancialYearWhereInput = {
+    AND?: FortnoxFinancialYearWhereInput | FortnoxFinancialYearWhereInput[]
+    OR?: FortnoxFinancialYearWhereInput[]
+    NOT?: FortnoxFinancialYearWhereInput | FortnoxFinancialYearWhereInput[]
+    id?: UuidFilter<"FortnoxFinancialYear"> | string
+    fortnoxId?: IntFilter<"FortnoxFinancialYear"> | number
+    fromDate?: DateTimeFilter<"FortnoxFinancialYear"> | Date | string
+    toDate?: DateTimeFilter<"FortnoxFinancialYear"> | Date | string
+    accountChartType?: StringNullableFilter<"FortnoxFinancialYear"> | string | null
+    accountingMethod?: StringNullableFilter<"FortnoxFinancialYear"> | string | null
+    rawData?: JsonNullableFilter<"FortnoxFinancialYear">
+    syncedAt?: DateTimeFilter<"FortnoxFinancialYear"> | Date | string
+    createdAt?: DateTimeFilter<"FortnoxFinancialYear"> | Date | string
+    accounts?: FortnoxAccountListRelationFilter
+    vouchers?: FortnoxVoucherListRelationFilter
+  }
+
+  export type FortnoxFinancialYearOrderByWithRelationInput = {
+    id?: SortOrder
+    fortnoxId?: SortOrder
+    fromDate?: SortOrder
+    toDate?: SortOrder
+    accountChartType?: SortOrderInput | SortOrder
+    accountingMethod?: SortOrderInput | SortOrder
+    rawData?: SortOrderInput | SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+    accounts?: FortnoxAccountOrderByRelationAggregateInput
+    vouchers?: FortnoxVoucherOrderByRelationAggregateInput
+  }
+
+  export type FortnoxFinancialYearWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    fortnoxId?: number
+    AND?: FortnoxFinancialYearWhereInput | FortnoxFinancialYearWhereInput[]
+    OR?: FortnoxFinancialYearWhereInput[]
+    NOT?: FortnoxFinancialYearWhereInput | FortnoxFinancialYearWhereInput[]
+    fromDate?: DateTimeFilter<"FortnoxFinancialYear"> | Date | string
+    toDate?: DateTimeFilter<"FortnoxFinancialYear"> | Date | string
+    accountChartType?: StringNullableFilter<"FortnoxFinancialYear"> | string | null
+    accountingMethod?: StringNullableFilter<"FortnoxFinancialYear"> | string | null
+    rawData?: JsonNullableFilter<"FortnoxFinancialYear">
+    syncedAt?: DateTimeFilter<"FortnoxFinancialYear"> | Date | string
+    createdAt?: DateTimeFilter<"FortnoxFinancialYear"> | Date | string
+    accounts?: FortnoxAccountListRelationFilter
+    vouchers?: FortnoxVoucherListRelationFilter
+  }, "id" | "fortnoxId">
+
+  export type FortnoxFinancialYearOrderByWithAggregationInput = {
+    id?: SortOrder
+    fortnoxId?: SortOrder
+    fromDate?: SortOrder
+    toDate?: SortOrder
+    accountChartType?: SortOrderInput | SortOrder
+    accountingMethod?: SortOrderInput | SortOrder
+    rawData?: SortOrderInput | SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+    _count?: FortnoxFinancialYearCountOrderByAggregateInput
+    _avg?: FortnoxFinancialYearAvgOrderByAggregateInput
+    _max?: FortnoxFinancialYearMaxOrderByAggregateInput
+    _min?: FortnoxFinancialYearMinOrderByAggregateInput
+    _sum?: FortnoxFinancialYearSumOrderByAggregateInput
+  }
+
+  export type FortnoxFinancialYearScalarWhereWithAggregatesInput = {
+    AND?: FortnoxFinancialYearScalarWhereWithAggregatesInput | FortnoxFinancialYearScalarWhereWithAggregatesInput[]
+    OR?: FortnoxFinancialYearScalarWhereWithAggregatesInput[]
+    NOT?: FortnoxFinancialYearScalarWhereWithAggregatesInput | FortnoxFinancialYearScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"FortnoxFinancialYear"> | string
+    fortnoxId?: IntWithAggregatesFilter<"FortnoxFinancialYear"> | number
+    fromDate?: DateTimeWithAggregatesFilter<"FortnoxFinancialYear"> | Date | string
+    toDate?: DateTimeWithAggregatesFilter<"FortnoxFinancialYear"> | Date | string
+    accountChartType?: StringNullableWithAggregatesFilter<"FortnoxFinancialYear"> | string | null
+    accountingMethod?: StringNullableWithAggregatesFilter<"FortnoxFinancialYear"> | string | null
+    rawData?: JsonNullableWithAggregatesFilter<"FortnoxFinancialYear">
+    syncedAt?: DateTimeWithAggregatesFilter<"FortnoxFinancialYear"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"FortnoxFinancialYear"> | Date | string
+  }
+
+  export type FortnoxAccountWhereInput = {
+    AND?: FortnoxAccountWhereInput | FortnoxAccountWhereInput[]
+    OR?: FortnoxAccountWhereInput[]
+    NOT?: FortnoxAccountWhereInput | FortnoxAccountWhereInput[]
+    id?: UuidFilter<"FortnoxAccount"> | string
+    accountNumber?: IntFilter<"FortnoxAccount"> | number
+    financialYearId?: UuidFilter<"FortnoxAccount"> | string
+    description?: StringNullableFilter<"FortnoxAccount"> | string | null
+    active?: BoolFilter<"FortnoxAccount"> | boolean
+    balanceBroughtForward?: DecimalNullableFilter<"FortnoxAccount"> | Decimal | DecimalJsLike | number | string | null
+    balanceCarriedForward?: DecimalNullableFilter<"FortnoxAccount"> | Decimal | DecimalJsLike | number | string | null
+    vatCode?: StringNullableFilter<"FortnoxAccount"> | string | null
+    sru?: IntNullableFilter<"FortnoxAccount"> | number | null
+    rawData?: JsonNullableFilter<"FortnoxAccount">
+    syncedAt?: DateTimeFilter<"FortnoxAccount"> | Date | string
+    createdAt?: DateTimeFilter<"FortnoxAccount"> | Date | string
+    financialYear?: XOR<FortnoxFinancialYearScalarRelationFilter, FortnoxFinancialYearWhereInput>
+  }
+
+  export type FortnoxAccountOrderByWithRelationInput = {
+    id?: SortOrder
+    accountNumber?: SortOrder
+    financialYearId?: SortOrder
+    description?: SortOrderInput | SortOrder
+    active?: SortOrder
+    balanceBroughtForward?: SortOrderInput | SortOrder
+    balanceCarriedForward?: SortOrderInput | SortOrder
+    vatCode?: SortOrderInput | SortOrder
+    sru?: SortOrderInput | SortOrder
+    rawData?: SortOrderInput | SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+    financialYear?: FortnoxFinancialYearOrderByWithRelationInput
+  }
+
+  export type FortnoxAccountWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    accountNumber_financialYearId?: FortnoxAccountAccountNumberFinancialYearIdCompoundUniqueInput
+    AND?: FortnoxAccountWhereInput | FortnoxAccountWhereInput[]
+    OR?: FortnoxAccountWhereInput[]
+    NOT?: FortnoxAccountWhereInput | FortnoxAccountWhereInput[]
+    accountNumber?: IntFilter<"FortnoxAccount"> | number
+    financialYearId?: UuidFilter<"FortnoxAccount"> | string
+    description?: StringNullableFilter<"FortnoxAccount"> | string | null
+    active?: BoolFilter<"FortnoxAccount"> | boolean
+    balanceBroughtForward?: DecimalNullableFilter<"FortnoxAccount"> | Decimal | DecimalJsLike | number | string | null
+    balanceCarriedForward?: DecimalNullableFilter<"FortnoxAccount"> | Decimal | DecimalJsLike | number | string | null
+    vatCode?: StringNullableFilter<"FortnoxAccount"> | string | null
+    sru?: IntNullableFilter<"FortnoxAccount"> | number | null
+    rawData?: JsonNullableFilter<"FortnoxAccount">
+    syncedAt?: DateTimeFilter<"FortnoxAccount"> | Date | string
+    createdAt?: DateTimeFilter<"FortnoxAccount"> | Date | string
+    financialYear?: XOR<FortnoxFinancialYearScalarRelationFilter, FortnoxFinancialYearWhereInput>
+  }, "id" | "accountNumber_financialYearId">
+
+  export type FortnoxAccountOrderByWithAggregationInput = {
+    id?: SortOrder
+    accountNumber?: SortOrder
+    financialYearId?: SortOrder
+    description?: SortOrderInput | SortOrder
+    active?: SortOrder
+    balanceBroughtForward?: SortOrderInput | SortOrder
+    balanceCarriedForward?: SortOrderInput | SortOrder
+    vatCode?: SortOrderInput | SortOrder
+    sru?: SortOrderInput | SortOrder
+    rawData?: SortOrderInput | SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+    _count?: FortnoxAccountCountOrderByAggregateInput
+    _avg?: FortnoxAccountAvgOrderByAggregateInput
+    _max?: FortnoxAccountMaxOrderByAggregateInput
+    _min?: FortnoxAccountMinOrderByAggregateInput
+    _sum?: FortnoxAccountSumOrderByAggregateInput
+  }
+
+  export type FortnoxAccountScalarWhereWithAggregatesInput = {
+    AND?: FortnoxAccountScalarWhereWithAggregatesInput | FortnoxAccountScalarWhereWithAggregatesInput[]
+    OR?: FortnoxAccountScalarWhereWithAggregatesInput[]
+    NOT?: FortnoxAccountScalarWhereWithAggregatesInput | FortnoxAccountScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"FortnoxAccount"> | string
+    accountNumber?: IntWithAggregatesFilter<"FortnoxAccount"> | number
+    financialYearId?: UuidWithAggregatesFilter<"FortnoxAccount"> | string
+    description?: StringNullableWithAggregatesFilter<"FortnoxAccount"> | string | null
+    active?: BoolWithAggregatesFilter<"FortnoxAccount"> | boolean
+    balanceBroughtForward?: DecimalNullableWithAggregatesFilter<"FortnoxAccount"> | Decimal | DecimalJsLike | number | string | null
+    balanceCarriedForward?: DecimalNullableWithAggregatesFilter<"FortnoxAccount"> | Decimal | DecimalJsLike | number | string | null
+    vatCode?: StringNullableWithAggregatesFilter<"FortnoxAccount"> | string | null
+    sru?: IntNullableWithAggregatesFilter<"FortnoxAccount"> | number | null
+    rawData?: JsonNullableWithAggregatesFilter<"FortnoxAccount">
+    syncedAt?: DateTimeWithAggregatesFilter<"FortnoxAccount"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"FortnoxAccount"> | Date | string
+  }
+
+  export type FortnoxVoucherWhereInput = {
+    AND?: FortnoxVoucherWhereInput | FortnoxVoucherWhereInput[]
+    OR?: FortnoxVoucherWhereInput[]
+    NOT?: FortnoxVoucherWhereInput | FortnoxVoucherWhereInput[]
+    id?: UuidFilter<"FortnoxVoucher"> | string
+    voucherSeries?: StringFilter<"FortnoxVoucher"> | string
+    voucherNumber?: IntFilter<"FortnoxVoucher"> | number
+    financialYearId?: UuidFilter<"FortnoxVoucher"> | string
+    transactionDate?: DateTimeFilter<"FortnoxVoucher"> | Date | string
+    description?: StringNullableFilter<"FortnoxVoucher"> | string | null
+    referenceType?: StringNullableFilter<"FortnoxVoucher"> | string | null
+    referenceNumber?: StringNullableFilter<"FortnoxVoucher"> | string | null
+    costCenter?: StringNullableFilter<"FortnoxVoucher"> | string | null
+    project?: StringNullableFilter<"FortnoxVoucher"> | string | null
+    approvalState?: IntNullableFilter<"FortnoxVoucher"> | number | null
+    rawData?: JsonNullableFilter<"FortnoxVoucher">
+    syncedAt?: DateTimeFilter<"FortnoxVoucher"> | Date | string
+    createdAt?: DateTimeFilter<"FortnoxVoucher"> | Date | string
+    financialYear?: XOR<FortnoxFinancialYearScalarRelationFilter, FortnoxFinancialYearWhereInput>
+    rows?: FortnoxVoucherRowListRelationFilter
+  }
+
+  export type FortnoxVoucherOrderByWithRelationInput = {
+    id?: SortOrder
+    voucherSeries?: SortOrder
+    voucherNumber?: SortOrder
+    financialYearId?: SortOrder
+    transactionDate?: SortOrder
+    description?: SortOrderInput | SortOrder
+    referenceType?: SortOrderInput | SortOrder
+    referenceNumber?: SortOrderInput | SortOrder
+    costCenter?: SortOrderInput | SortOrder
+    project?: SortOrderInput | SortOrder
+    approvalState?: SortOrderInput | SortOrder
+    rawData?: SortOrderInput | SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+    financialYear?: FortnoxFinancialYearOrderByWithRelationInput
+    rows?: FortnoxVoucherRowOrderByRelationAggregateInput
+  }
+
+  export type FortnoxVoucherWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    voucherSeries_voucherNumber_financialYearId?: FortnoxVoucherVoucherSeriesVoucherNumberFinancialYearIdCompoundUniqueInput
+    AND?: FortnoxVoucherWhereInput | FortnoxVoucherWhereInput[]
+    OR?: FortnoxVoucherWhereInput[]
+    NOT?: FortnoxVoucherWhereInput | FortnoxVoucherWhereInput[]
+    voucherSeries?: StringFilter<"FortnoxVoucher"> | string
+    voucherNumber?: IntFilter<"FortnoxVoucher"> | number
+    financialYearId?: UuidFilter<"FortnoxVoucher"> | string
+    transactionDate?: DateTimeFilter<"FortnoxVoucher"> | Date | string
+    description?: StringNullableFilter<"FortnoxVoucher"> | string | null
+    referenceType?: StringNullableFilter<"FortnoxVoucher"> | string | null
+    referenceNumber?: StringNullableFilter<"FortnoxVoucher"> | string | null
+    costCenter?: StringNullableFilter<"FortnoxVoucher"> | string | null
+    project?: StringNullableFilter<"FortnoxVoucher"> | string | null
+    approvalState?: IntNullableFilter<"FortnoxVoucher"> | number | null
+    rawData?: JsonNullableFilter<"FortnoxVoucher">
+    syncedAt?: DateTimeFilter<"FortnoxVoucher"> | Date | string
+    createdAt?: DateTimeFilter<"FortnoxVoucher"> | Date | string
+    financialYear?: XOR<FortnoxFinancialYearScalarRelationFilter, FortnoxFinancialYearWhereInput>
+    rows?: FortnoxVoucherRowListRelationFilter
+  }, "id" | "voucherSeries_voucherNumber_financialYearId">
+
+  export type FortnoxVoucherOrderByWithAggregationInput = {
+    id?: SortOrder
+    voucherSeries?: SortOrder
+    voucherNumber?: SortOrder
+    financialYearId?: SortOrder
+    transactionDate?: SortOrder
+    description?: SortOrderInput | SortOrder
+    referenceType?: SortOrderInput | SortOrder
+    referenceNumber?: SortOrderInput | SortOrder
+    costCenter?: SortOrderInput | SortOrder
+    project?: SortOrderInput | SortOrder
+    approvalState?: SortOrderInput | SortOrder
+    rawData?: SortOrderInput | SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+    _count?: FortnoxVoucherCountOrderByAggregateInput
+    _avg?: FortnoxVoucherAvgOrderByAggregateInput
+    _max?: FortnoxVoucherMaxOrderByAggregateInput
+    _min?: FortnoxVoucherMinOrderByAggregateInput
+    _sum?: FortnoxVoucherSumOrderByAggregateInput
+  }
+
+  export type FortnoxVoucherScalarWhereWithAggregatesInput = {
+    AND?: FortnoxVoucherScalarWhereWithAggregatesInput | FortnoxVoucherScalarWhereWithAggregatesInput[]
+    OR?: FortnoxVoucherScalarWhereWithAggregatesInput[]
+    NOT?: FortnoxVoucherScalarWhereWithAggregatesInput | FortnoxVoucherScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"FortnoxVoucher"> | string
+    voucherSeries?: StringWithAggregatesFilter<"FortnoxVoucher"> | string
+    voucherNumber?: IntWithAggregatesFilter<"FortnoxVoucher"> | number
+    financialYearId?: UuidWithAggregatesFilter<"FortnoxVoucher"> | string
+    transactionDate?: DateTimeWithAggregatesFilter<"FortnoxVoucher"> | Date | string
+    description?: StringNullableWithAggregatesFilter<"FortnoxVoucher"> | string | null
+    referenceType?: StringNullableWithAggregatesFilter<"FortnoxVoucher"> | string | null
+    referenceNumber?: StringNullableWithAggregatesFilter<"FortnoxVoucher"> | string | null
+    costCenter?: StringNullableWithAggregatesFilter<"FortnoxVoucher"> | string | null
+    project?: StringNullableWithAggregatesFilter<"FortnoxVoucher"> | string | null
+    approvalState?: IntNullableWithAggregatesFilter<"FortnoxVoucher"> | number | null
+    rawData?: JsonNullableWithAggregatesFilter<"FortnoxVoucher">
+    syncedAt?: DateTimeWithAggregatesFilter<"FortnoxVoucher"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"FortnoxVoucher"> | Date | string
+  }
+
+  export type FortnoxVoucherRowWhereInput = {
+    AND?: FortnoxVoucherRowWhereInput | FortnoxVoucherRowWhereInput[]
+    OR?: FortnoxVoucherRowWhereInput[]
+    NOT?: FortnoxVoucherRowWhereInput | FortnoxVoucherRowWhereInput[]
+    id?: UuidFilter<"FortnoxVoucherRow"> | string
+    voucherId?: UuidFilter<"FortnoxVoucherRow"> | string
+    accountNumber?: IntFilter<"FortnoxVoucherRow"> | number
+    debit?: DecimalNullableFilter<"FortnoxVoucherRow"> | Decimal | DecimalJsLike | number | string | null
+    credit?: DecimalNullableFilter<"FortnoxVoucherRow"> | Decimal | DecimalJsLike | number | string | null
+    description?: StringNullableFilter<"FortnoxVoucherRow"> | string | null
+    costCenter?: StringNullableFilter<"FortnoxVoucherRow"> | string | null
+    project?: StringNullableFilter<"FortnoxVoucherRow"> | string | null
+    voucher?: XOR<FortnoxVoucherScalarRelationFilter, FortnoxVoucherWhereInput>
+  }
+
+  export type FortnoxVoucherRowOrderByWithRelationInput = {
+    id?: SortOrder
+    voucherId?: SortOrder
+    accountNumber?: SortOrder
+    debit?: SortOrderInput | SortOrder
+    credit?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    costCenter?: SortOrderInput | SortOrder
+    project?: SortOrderInput | SortOrder
+    voucher?: FortnoxVoucherOrderByWithRelationInput
+  }
+
+  export type FortnoxVoucherRowWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FortnoxVoucherRowWhereInput | FortnoxVoucherRowWhereInput[]
+    OR?: FortnoxVoucherRowWhereInput[]
+    NOT?: FortnoxVoucherRowWhereInput | FortnoxVoucherRowWhereInput[]
+    voucherId?: UuidFilter<"FortnoxVoucherRow"> | string
+    accountNumber?: IntFilter<"FortnoxVoucherRow"> | number
+    debit?: DecimalNullableFilter<"FortnoxVoucherRow"> | Decimal | DecimalJsLike | number | string | null
+    credit?: DecimalNullableFilter<"FortnoxVoucherRow"> | Decimal | DecimalJsLike | number | string | null
+    description?: StringNullableFilter<"FortnoxVoucherRow"> | string | null
+    costCenter?: StringNullableFilter<"FortnoxVoucherRow"> | string | null
+    project?: StringNullableFilter<"FortnoxVoucherRow"> | string | null
+    voucher?: XOR<FortnoxVoucherScalarRelationFilter, FortnoxVoucherWhereInput>
+  }, "id">
+
+  export type FortnoxVoucherRowOrderByWithAggregationInput = {
+    id?: SortOrder
+    voucherId?: SortOrder
+    accountNumber?: SortOrder
+    debit?: SortOrderInput | SortOrder
+    credit?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    costCenter?: SortOrderInput | SortOrder
+    project?: SortOrderInput | SortOrder
+    _count?: FortnoxVoucherRowCountOrderByAggregateInput
+    _avg?: FortnoxVoucherRowAvgOrderByAggregateInput
+    _max?: FortnoxVoucherRowMaxOrderByAggregateInput
+    _min?: FortnoxVoucherRowMinOrderByAggregateInput
+    _sum?: FortnoxVoucherRowSumOrderByAggregateInput
+  }
+
+  export type FortnoxVoucherRowScalarWhereWithAggregatesInput = {
+    AND?: FortnoxVoucherRowScalarWhereWithAggregatesInput | FortnoxVoucherRowScalarWhereWithAggregatesInput[]
+    OR?: FortnoxVoucherRowScalarWhereWithAggregatesInput[]
+    NOT?: FortnoxVoucherRowScalarWhereWithAggregatesInput | FortnoxVoucherRowScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"FortnoxVoucherRow"> | string
+    voucherId?: UuidWithAggregatesFilter<"FortnoxVoucherRow"> | string
+    accountNumber?: IntWithAggregatesFilter<"FortnoxVoucherRow"> | number
+    debit?: DecimalNullableWithAggregatesFilter<"FortnoxVoucherRow"> | Decimal | DecimalJsLike | number | string | null
+    credit?: DecimalNullableWithAggregatesFilter<"FortnoxVoucherRow"> | Decimal | DecimalJsLike | number | string | null
+    description?: StringNullableWithAggregatesFilter<"FortnoxVoucherRow"> | string | null
+    costCenter?: StringNullableWithAggregatesFilter<"FortnoxVoucherRow"> | string | null
+    project?: StringNullableWithAggregatesFilter<"FortnoxVoucherRow"> | string | null
+  }
+
   export type CompanyCreateInput = {
     id?: string
     name: string
@@ -20264,6 +25892,400 @@ export namespace Prisma {
     lastSyncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type FortnoxFinancialYearCreateInput = {
+    id?: string
+    fortnoxId: number
+    fromDate: Date | string
+    toDate: Date | string
+    accountChartType?: string | null
+    accountingMethod?: string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    accounts?: FortnoxAccountCreateNestedManyWithoutFinancialYearInput
+    vouchers?: FortnoxVoucherCreateNestedManyWithoutFinancialYearInput
+  }
+
+  export type FortnoxFinancialYearUncheckedCreateInput = {
+    id?: string
+    fortnoxId: number
+    fromDate: Date | string
+    toDate: Date | string
+    accountChartType?: string | null
+    accountingMethod?: string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    accounts?: FortnoxAccountUncheckedCreateNestedManyWithoutFinancialYearInput
+    vouchers?: FortnoxVoucherUncheckedCreateNestedManyWithoutFinancialYearInput
+  }
+
+  export type FortnoxFinancialYearUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fortnoxId?: IntFieldUpdateOperationsInput | number
+    fromDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    toDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountChartType?: NullableStringFieldUpdateOperationsInput | string | null
+    accountingMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: FortnoxAccountUpdateManyWithoutFinancialYearNestedInput
+    vouchers?: FortnoxVoucherUpdateManyWithoutFinancialYearNestedInput
+  }
+
+  export type FortnoxFinancialYearUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fortnoxId?: IntFieldUpdateOperationsInput | number
+    fromDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    toDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountChartType?: NullableStringFieldUpdateOperationsInput | string | null
+    accountingMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: FortnoxAccountUncheckedUpdateManyWithoutFinancialYearNestedInput
+    vouchers?: FortnoxVoucherUncheckedUpdateManyWithoutFinancialYearNestedInput
+  }
+
+  export type FortnoxFinancialYearCreateManyInput = {
+    id?: string
+    fortnoxId: number
+    fromDate: Date | string
+    toDate: Date | string
+    accountChartType?: string | null
+    accountingMethod?: string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type FortnoxFinancialYearUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fortnoxId?: IntFieldUpdateOperationsInput | number
+    fromDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    toDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountChartType?: NullableStringFieldUpdateOperationsInput | string | null
+    accountingMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxFinancialYearUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fortnoxId?: IntFieldUpdateOperationsInput | number
+    fromDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    toDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountChartType?: NullableStringFieldUpdateOperationsInput | string | null
+    accountingMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxAccountCreateInput = {
+    id?: string
+    accountNumber: number
+    description?: string | null
+    active?: boolean
+    balanceBroughtForward?: Decimal | DecimalJsLike | number | string | null
+    balanceCarriedForward?: Decimal | DecimalJsLike | number | string | null
+    vatCode?: string | null
+    sru?: number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    financialYear: FortnoxFinancialYearCreateNestedOneWithoutAccountsInput
+  }
+
+  export type FortnoxAccountUncheckedCreateInput = {
+    id?: string
+    accountNumber: number
+    financialYearId: string
+    description?: string | null
+    active?: boolean
+    balanceBroughtForward?: Decimal | DecimalJsLike | number | string | null
+    balanceCarriedForward?: Decimal | DecimalJsLike | number | string | null
+    vatCode?: string | null
+    sru?: number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type FortnoxAccountUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountNumber?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    balanceBroughtForward?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    balanceCarriedForward?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vatCode?: NullableStringFieldUpdateOperationsInput | string | null
+    sru?: NullableIntFieldUpdateOperationsInput | number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    financialYear?: FortnoxFinancialYearUpdateOneRequiredWithoutAccountsNestedInput
+  }
+
+  export type FortnoxAccountUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountNumber?: IntFieldUpdateOperationsInput | number
+    financialYearId?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    balanceBroughtForward?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    balanceCarriedForward?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vatCode?: NullableStringFieldUpdateOperationsInput | string | null
+    sru?: NullableIntFieldUpdateOperationsInput | number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxAccountCreateManyInput = {
+    id?: string
+    accountNumber: number
+    financialYearId: string
+    description?: string | null
+    active?: boolean
+    balanceBroughtForward?: Decimal | DecimalJsLike | number | string | null
+    balanceCarriedForward?: Decimal | DecimalJsLike | number | string | null
+    vatCode?: string | null
+    sru?: number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type FortnoxAccountUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountNumber?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    balanceBroughtForward?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    balanceCarriedForward?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vatCode?: NullableStringFieldUpdateOperationsInput | string | null
+    sru?: NullableIntFieldUpdateOperationsInput | number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxAccountUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountNumber?: IntFieldUpdateOperationsInput | number
+    financialYearId?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    balanceBroughtForward?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    balanceCarriedForward?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vatCode?: NullableStringFieldUpdateOperationsInput | string | null
+    sru?: NullableIntFieldUpdateOperationsInput | number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxVoucherCreateInput = {
+    id?: string
+    voucherSeries: string
+    voucherNumber: number
+    transactionDate: Date | string
+    description?: string | null
+    referenceType?: string | null
+    referenceNumber?: string | null
+    costCenter?: string | null
+    project?: string | null
+    approvalState?: number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    financialYear: FortnoxFinancialYearCreateNestedOneWithoutVouchersInput
+    rows?: FortnoxVoucherRowCreateNestedManyWithoutVoucherInput
+  }
+
+  export type FortnoxVoucherUncheckedCreateInput = {
+    id?: string
+    voucherSeries: string
+    voucherNumber: number
+    financialYearId: string
+    transactionDate: Date | string
+    description?: string | null
+    referenceType?: string | null
+    referenceNumber?: string | null
+    costCenter?: string | null
+    project?: string | null
+    approvalState?: number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    rows?: FortnoxVoucherRowUncheckedCreateNestedManyWithoutVoucherInput
+  }
+
+  export type FortnoxVoucherUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    voucherSeries?: StringFieldUpdateOperationsInput | string
+    voucherNumber?: IntFieldUpdateOperationsInput | number
+    transactionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    costCenter?: NullableStringFieldUpdateOperationsInput | string | null
+    project?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalState?: NullableIntFieldUpdateOperationsInput | number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    financialYear?: FortnoxFinancialYearUpdateOneRequiredWithoutVouchersNestedInput
+    rows?: FortnoxVoucherRowUpdateManyWithoutVoucherNestedInput
+  }
+
+  export type FortnoxVoucherUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    voucherSeries?: StringFieldUpdateOperationsInput | string
+    voucherNumber?: IntFieldUpdateOperationsInput | number
+    financialYearId?: StringFieldUpdateOperationsInput | string
+    transactionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    costCenter?: NullableStringFieldUpdateOperationsInput | string | null
+    project?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalState?: NullableIntFieldUpdateOperationsInput | number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    rows?: FortnoxVoucherRowUncheckedUpdateManyWithoutVoucherNestedInput
+  }
+
+  export type FortnoxVoucherCreateManyInput = {
+    id?: string
+    voucherSeries: string
+    voucherNumber: number
+    financialYearId: string
+    transactionDate: Date | string
+    description?: string | null
+    referenceType?: string | null
+    referenceNumber?: string | null
+    costCenter?: string | null
+    project?: string | null
+    approvalState?: number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type FortnoxVoucherUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    voucherSeries?: StringFieldUpdateOperationsInput | string
+    voucherNumber?: IntFieldUpdateOperationsInput | number
+    transactionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    costCenter?: NullableStringFieldUpdateOperationsInput | string | null
+    project?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalState?: NullableIntFieldUpdateOperationsInput | number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxVoucherUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    voucherSeries?: StringFieldUpdateOperationsInput | string
+    voucherNumber?: IntFieldUpdateOperationsInput | number
+    financialYearId?: StringFieldUpdateOperationsInput | string
+    transactionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    costCenter?: NullableStringFieldUpdateOperationsInput | string | null
+    project?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalState?: NullableIntFieldUpdateOperationsInput | number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxVoucherRowCreateInput = {
+    id?: string
+    accountNumber: number
+    debit?: Decimal | DecimalJsLike | number | string | null
+    credit?: Decimal | DecimalJsLike | number | string | null
+    description?: string | null
+    costCenter?: string | null
+    project?: string | null
+    voucher: FortnoxVoucherCreateNestedOneWithoutRowsInput
+  }
+
+  export type FortnoxVoucherRowUncheckedCreateInput = {
+    id?: string
+    voucherId: string
+    accountNumber: number
+    debit?: Decimal | DecimalJsLike | number | string | null
+    credit?: Decimal | DecimalJsLike | number | string | null
+    description?: string | null
+    costCenter?: string | null
+    project?: string | null
+  }
+
+  export type FortnoxVoucherRowUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountNumber?: IntFieldUpdateOperationsInput | number
+    debit?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    credit?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    costCenter?: NullableStringFieldUpdateOperationsInput | string | null
+    project?: NullableStringFieldUpdateOperationsInput | string | null
+    voucher?: FortnoxVoucherUpdateOneRequiredWithoutRowsNestedInput
+  }
+
+  export type FortnoxVoucherRowUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    voucherId?: StringFieldUpdateOperationsInput | string
+    accountNumber?: IntFieldUpdateOperationsInput | number
+    debit?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    credit?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    costCenter?: NullableStringFieldUpdateOperationsInput | string | null
+    project?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FortnoxVoucherRowCreateManyInput = {
+    id?: string
+    voucherId: string
+    accountNumber: number
+    debit?: Decimal | DecimalJsLike | number | string | null
+    credit?: Decimal | DecimalJsLike | number | string | null
+    description?: string | null
+    costCenter?: string | null
+    project?: string | null
+  }
+
+  export type FortnoxVoucherRowUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountNumber?: IntFieldUpdateOperationsInput | number
+    debit?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    credit?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    costCenter?: NullableStringFieldUpdateOperationsInput | string | null
+    project?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FortnoxVoucherRowUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    voucherId?: StringFieldUpdateOperationsInput | string
+    accountNumber?: IntFieldUpdateOperationsInput | number
+    debit?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    credit?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    costCenter?: NullableStringFieldUpdateOperationsInput | string | null
+    project?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type UuidFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -21342,6 +27364,260 @@ export namespace Prisma {
     lastSyncedAt?: SortOrder
   }
 
+  export type FortnoxAccountListRelationFilter = {
+    every?: FortnoxAccountWhereInput
+    some?: FortnoxAccountWhereInput
+    none?: FortnoxAccountWhereInput
+  }
+
+  export type FortnoxVoucherListRelationFilter = {
+    every?: FortnoxVoucherWhereInput
+    some?: FortnoxVoucherWhereInput
+    none?: FortnoxVoucherWhereInput
+  }
+
+  export type FortnoxAccountOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FortnoxVoucherOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FortnoxFinancialYearCountOrderByAggregateInput = {
+    id?: SortOrder
+    fortnoxId?: SortOrder
+    fromDate?: SortOrder
+    toDate?: SortOrder
+    accountChartType?: SortOrder
+    accountingMethod?: SortOrder
+    rawData?: SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FortnoxFinancialYearAvgOrderByAggregateInput = {
+    fortnoxId?: SortOrder
+  }
+
+  export type FortnoxFinancialYearMaxOrderByAggregateInput = {
+    id?: SortOrder
+    fortnoxId?: SortOrder
+    fromDate?: SortOrder
+    toDate?: SortOrder
+    accountChartType?: SortOrder
+    accountingMethod?: SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FortnoxFinancialYearMinOrderByAggregateInput = {
+    id?: SortOrder
+    fortnoxId?: SortOrder
+    fromDate?: SortOrder
+    toDate?: SortOrder
+    accountChartType?: SortOrder
+    accountingMethod?: SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FortnoxFinancialYearSumOrderByAggregateInput = {
+    fortnoxId?: SortOrder
+  }
+
+  export type FortnoxFinancialYearScalarRelationFilter = {
+    is?: FortnoxFinancialYearWhereInput
+    isNot?: FortnoxFinancialYearWhereInput
+  }
+
+  export type FortnoxAccountAccountNumberFinancialYearIdCompoundUniqueInput = {
+    accountNumber: number
+    financialYearId: string
+  }
+
+  export type FortnoxAccountCountOrderByAggregateInput = {
+    id?: SortOrder
+    accountNumber?: SortOrder
+    financialYearId?: SortOrder
+    description?: SortOrder
+    active?: SortOrder
+    balanceBroughtForward?: SortOrder
+    balanceCarriedForward?: SortOrder
+    vatCode?: SortOrder
+    sru?: SortOrder
+    rawData?: SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FortnoxAccountAvgOrderByAggregateInput = {
+    accountNumber?: SortOrder
+    balanceBroughtForward?: SortOrder
+    balanceCarriedForward?: SortOrder
+    sru?: SortOrder
+  }
+
+  export type FortnoxAccountMaxOrderByAggregateInput = {
+    id?: SortOrder
+    accountNumber?: SortOrder
+    financialYearId?: SortOrder
+    description?: SortOrder
+    active?: SortOrder
+    balanceBroughtForward?: SortOrder
+    balanceCarriedForward?: SortOrder
+    vatCode?: SortOrder
+    sru?: SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FortnoxAccountMinOrderByAggregateInput = {
+    id?: SortOrder
+    accountNumber?: SortOrder
+    financialYearId?: SortOrder
+    description?: SortOrder
+    active?: SortOrder
+    balanceBroughtForward?: SortOrder
+    balanceCarriedForward?: SortOrder
+    vatCode?: SortOrder
+    sru?: SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FortnoxAccountSumOrderByAggregateInput = {
+    accountNumber?: SortOrder
+    balanceBroughtForward?: SortOrder
+    balanceCarriedForward?: SortOrder
+    sru?: SortOrder
+  }
+
+  export type FortnoxVoucherRowListRelationFilter = {
+    every?: FortnoxVoucherRowWhereInput
+    some?: FortnoxVoucherRowWhereInput
+    none?: FortnoxVoucherRowWhereInput
+  }
+
+  export type FortnoxVoucherRowOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FortnoxVoucherVoucherSeriesVoucherNumberFinancialYearIdCompoundUniqueInput = {
+    voucherSeries: string
+    voucherNumber: number
+    financialYearId: string
+  }
+
+  export type FortnoxVoucherCountOrderByAggregateInput = {
+    id?: SortOrder
+    voucherSeries?: SortOrder
+    voucherNumber?: SortOrder
+    financialYearId?: SortOrder
+    transactionDate?: SortOrder
+    description?: SortOrder
+    referenceType?: SortOrder
+    referenceNumber?: SortOrder
+    costCenter?: SortOrder
+    project?: SortOrder
+    approvalState?: SortOrder
+    rawData?: SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FortnoxVoucherAvgOrderByAggregateInput = {
+    voucherNumber?: SortOrder
+    approvalState?: SortOrder
+  }
+
+  export type FortnoxVoucherMaxOrderByAggregateInput = {
+    id?: SortOrder
+    voucherSeries?: SortOrder
+    voucherNumber?: SortOrder
+    financialYearId?: SortOrder
+    transactionDate?: SortOrder
+    description?: SortOrder
+    referenceType?: SortOrder
+    referenceNumber?: SortOrder
+    costCenter?: SortOrder
+    project?: SortOrder
+    approvalState?: SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FortnoxVoucherMinOrderByAggregateInput = {
+    id?: SortOrder
+    voucherSeries?: SortOrder
+    voucherNumber?: SortOrder
+    financialYearId?: SortOrder
+    transactionDate?: SortOrder
+    description?: SortOrder
+    referenceType?: SortOrder
+    referenceNumber?: SortOrder
+    costCenter?: SortOrder
+    project?: SortOrder
+    approvalState?: SortOrder
+    syncedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FortnoxVoucherSumOrderByAggregateInput = {
+    voucherNumber?: SortOrder
+    approvalState?: SortOrder
+  }
+
+  export type FortnoxVoucherScalarRelationFilter = {
+    is?: FortnoxVoucherWhereInput
+    isNot?: FortnoxVoucherWhereInput
+  }
+
+  export type FortnoxVoucherRowCountOrderByAggregateInput = {
+    id?: SortOrder
+    voucherId?: SortOrder
+    accountNumber?: SortOrder
+    debit?: SortOrder
+    credit?: SortOrder
+    description?: SortOrder
+    costCenter?: SortOrder
+    project?: SortOrder
+  }
+
+  export type FortnoxVoucherRowAvgOrderByAggregateInput = {
+    accountNumber?: SortOrder
+    debit?: SortOrder
+    credit?: SortOrder
+  }
+
+  export type FortnoxVoucherRowMaxOrderByAggregateInput = {
+    id?: SortOrder
+    voucherId?: SortOrder
+    accountNumber?: SortOrder
+    debit?: SortOrder
+    credit?: SortOrder
+    description?: SortOrder
+    costCenter?: SortOrder
+    project?: SortOrder
+  }
+
+  export type FortnoxVoucherRowMinOrderByAggregateInput = {
+    id?: SortOrder
+    voucherId?: SortOrder
+    accountNumber?: SortOrder
+    debit?: SortOrder
+    credit?: SortOrder
+    description?: SortOrder
+    costCenter?: SortOrder
+    project?: SortOrder
+  }
+
+  export type FortnoxVoucherRowSumOrderByAggregateInput = {
+    accountNumber?: SortOrder
+    debit?: SortOrder
+    credit?: SortOrder
+  }
+
   export type UserCreateNestedManyWithoutCompanyInput = {
     create?: XOR<UserCreateWithoutCompanyInput, UserUncheckedCreateWithoutCompanyInput> | UserCreateWithoutCompanyInput[] | UserUncheckedCreateWithoutCompanyInput[]
     connectOrCreate?: UserCreateOrConnectWithoutCompanyInput | UserCreateOrConnectWithoutCompanyInput[]
@@ -22406,6 +28682,174 @@ export namespace Prisma {
     upsert?: CompanyUpsertWithoutFortnoxSyncLogsInput
     connect?: CompanyWhereUniqueInput
     update?: XOR<XOR<CompanyUpdateToOneWithWhereWithoutFortnoxSyncLogsInput, CompanyUpdateWithoutFortnoxSyncLogsInput>, CompanyUncheckedUpdateWithoutFortnoxSyncLogsInput>
+  }
+
+  export type FortnoxAccountCreateNestedManyWithoutFinancialYearInput = {
+    create?: XOR<FortnoxAccountCreateWithoutFinancialYearInput, FortnoxAccountUncheckedCreateWithoutFinancialYearInput> | FortnoxAccountCreateWithoutFinancialYearInput[] | FortnoxAccountUncheckedCreateWithoutFinancialYearInput[]
+    connectOrCreate?: FortnoxAccountCreateOrConnectWithoutFinancialYearInput | FortnoxAccountCreateOrConnectWithoutFinancialYearInput[]
+    createMany?: FortnoxAccountCreateManyFinancialYearInputEnvelope
+    connect?: FortnoxAccountWhereUniqueInput | FortnoxAccountWhereUniqueInput[]
+  }
+
+  export type FortnoxVoucherCreateNestedManyWithoutFinancialYearInput = {
+    create?: XOR<FortnoxVoucherCreateWithoutFinancialYearInput, FortnoxVoucherUncheckedCreateWithoutFinancialYearInput> | FortnoxVoucherCreateWithoutFinancialYearInput[] | FortnoxVoucherUncheckedCreateWithoutFinancialYearInput[]
+    connectOrCreate?: FortnoxVoucherCreateOrConnectWithoutFinancialYearInput | FortnoxVoucherCreateOrConnectWithoutFinancialYearInput[]
+    createMany?: FortnoxVoucherCreateManyFinancialYearInputEnvelope
+    connect?: FortnoxVoucherWhereUniqueInput | FortnoxVoucherWhereUniqueInput[]
+  }
+
+  export type FortnoxAccountUncheckedCreateNestedManyWithoutFinancialYearInput = {
+    create?: XOR<FortnoxAccountCreateWithoutFinancialYearInput, FortnoxAccountUncheckedCreateWithoutFinancialYearInput> | FortnoxAccountCreateWithoutFinancialYearInput[] | FortnoxAccountUncheckedCreateWithoutFinancialYearInput[]
+    connectOrCreate?: FortnoxAccountCreateOrConnectWithoutFinancialYearInput | FortnoxAccountCreateOrConnectWithoutFinancialYearInput[]
+    createMany?: FortnoxAccountCreateManyFinancialYearInputEnvelope
+    connect?: FortnoxAccountWhereUniqueInput | FortnoxAccountWhereUniqueInput[]
+  }
+
+  export type FortnoxVoucherUncheckedCreateNestedManyWithoutFinancialYearInput = {
+    create?: XOR<FortnoxVoucherCreateWithoutFinancialYearInput, FortnoxVoucherUncheckedCreateWithoutFinancialYearInput> | FortnoxVoucherCreateWithoutFinancialYearInput[] | FortnoxVoucherUncheckedCreateWithoutFinancialYearInput[]
+    connectOrCreate?: FortnoxVoucherCreateOrConnectWithoutFinancialYearInput | FortnoxVoucherCreateOrConnectWithoutFinancialYearInput[]
+    createMany?: FortnoxVoucherCreateManyFinancialYearInputEnvelope
+    connect?: FortnoxVoucherWhereUniqueInput | FortnoxVoucherWhereUniqueInput[]
+  }
+
+  export type FortnoxAccountUpdateManyWithoutFinancialYearNestedInput = {
+    create?: XOR<FortnoxAccountCreateWithoutFinancialYearInput, FortnoxAccountUncheckedCreateWithoutFinancialYearInput> | FortnoxAccountCreateWithoutFinancialYearInput[] | FortnoxAccountUncheckedCreateWithoutFinancialYearInput[]
+    connectOrCreate?: FortnoxAccountCreateOrConnectWithoutFinancialYearInput | FortnoxAccountCreateOrConnectWithoutFinancialYearInput[]
+    upsert?: FortnoxAccountUpsertWithWhereUniqueWithoutFinancialYearInput | FortnoxAccountUpsertWithWhereUniqueWithoutFinancialYearInput[]
+    createMany?: FortnoxAccountCreateManyFinancialYearInputEnvelope
+    set?: FortnoxAccountWhereUniqueInput | FortnoxAccountWhereUniqueInput[]
+    disconnect?: FortnoxAccountWhereUniqueInput | FortnoxAccountWhereUniqueInput[]
+    delete?: FortnoxAccountWhereUniqueInput | FortnoxAccountWhereUniqueInput[]
+    connect?: FortnoxAccountWhereUniqueInput | FortnoxAccountWhereUniqueInput[]
+    update?: FortnoxAccountUpdateWithWhereUniqueWithoutFinancialYearInput | FortnoxAccountUpdateWithWhereUniqueWithoutFinancialYearInput[]
+    updateMany?: FortnoxAccountUpdateManyWithWhereWithoutFinancialYearInput | FortnoxAccountUpdateManyWithWhereWithoutFinancialYearInput[]
+    deleteMany?: FortnoxAccountScalarWhereInput | FortnoxAccountScalarWhereInput[]
+  }
+
+  export type FortnoxVoucherUpdateManyWithoutFinancialYearNestedInput = {
+    create?: XOR<FortnoxVoucherCreateWithoutFinancialYearInput, FortnoxVoucherUncheckedCreateWithoutFinancialYearInput> | FortnoxVoucherCreateWithoutFinancialYearInput[] | FortnoxVoucherUncheckedCreateWithoutFinancialYearInput[]
+    connectOrCreate?: FortnoxVoucherCreateOrConnectWithoutFinancialYearInput | FortnoxVoucherCreateOrConnectWithoutFinancialYearInput[]
+    upsert?: FortnoxVoucherUpsertWithWhereUniqueWithoutFinancialYearInput | FortnoxVoucherUpsertWithWhereUniqueWithoutFinancialYearInput[]
+    createMany?: FortnoxVoucherCreateManyFinancialYearInputEnvelope
+    set?: FortnoxVoucherWhereUniqueInput | FortnoxVoucherWhereUniqueInput[]
+    disconnect?: FortnoxVoucherWhereUniqueInput | FortnoxVoucherWhereUniqueInput[]
+    delete?: FortnoxVoucherWhereUniqueInput | FortnoxVoucherWhereUniqueInput[]
+    connect?: FortnoxVoucherWhereUniqueInput | FortnoxVoucherWhereUniqueInput[]
+    update?: FortnoxVoucherUpdateWithWhereUniqueWithoutFinancialYearInput | FortnoxVoucherUpdateWithWhereUniqueWithoutFinancialYearInput[]
+    updateMany?: FortnoxVoucherUpdateManyWithWhereWithoutFinancialYearInput | FortnoxVoucherUpdateManyWithWhereWithoutFinancialYearInput[]
+    deleteMany?: FortnoxVoucherScalarWhereInput | FortnoxVoucherScalarWhereInput[]
+  }
+
+  export type FortnoxAccountUncheckedUpdateManyWithoutFinancialYearNestedInput = {
+    create?: XOR<FortnoxAccountCreateWithoutFinancialYearInput, FortnoxAccountUncheckedCreateWithoutFinancialYearInput> | FortnoxAccountCreateWithoutFinancialYearInput[] | FortnoxAccountUncheckedCreateWithoutFinancialYearInput[]
+    connectOrCreate?: FortnoxAccountCreateOrConnectWithoutFinancialYearInput | FortnoxAccountCreateOrConnectWithoutFinancialYearInput[]
+    upsert?: FortnoxAccountUpsertWithWhereUniqueWithoutFinancialYearInput | FortnoxAccountUpsertWithWhereUniqueWithoutFinancialYearInput[]
+    createMany?: FortnoxAccountCreateManyFinancialYearInputEnvelope
+    set?: FortnoxAccountWhereUniqueInput | FortnoxAccountWhereUniqueInput[]
+    disconnect?: FortnoxAccountWhereUniqueInput | FortnoxAccountWhereUniqueInput[]
+    delete?: FortnoxAccountWhereUniqueInput | FortnoxAccountWhereUniqueInput[]
+    connect?: FortnoxAccountWhereUniqueInput | FortnoxAccountWhereUniqueInput[]
+    update?: FortnoxAccountUpdateWithWhereUniqueWithoutFinancialYearInput | FortnoxAccountUpdateWithWhereUniqueWithoutFinancialYearInput[]
+    updateMany?: FortnoxAccountUpdateManyWithWhereWithoutFinancialYearInput | FortnoxAccountUpdateManyWithWhereWithoutFinancialYearInput[]
+    deleteMany?: FortnoxAccountScalarWhereInput | FortnoxAccountScalarWhereInput[]
+  }
+
+  export type FortnoxVoucherUncheckedUpdateManyWithoutFinancialYearNestedInput = {
+    create?: XOR<FortnoxVoucherCreateWithoutFinancialYearInput, FortnoxVoucherUncheckedCreateWithoutFinancialYearInput> | FortnoxVoucherCreateWithoutFinancialYearInput[] | FortnoxVoucherUncheckedCreateWithoutFinancialYearInput[]
+    connectOrCreate?: FortnoxVoucherCreateOrConnectWithoutFinancialYearInput | FortnoxVoucherCreateOrConnectWithoutFinancialYearInput[]
+    upsert?: FortnoxVoucherUpsertWithWhereUniqueWithoutFinancialYearInput | FortnoxVoucherUpsertWithWhereUniqueWithoutFinancialYearInput[]
+    createMany?: FortnoxVoucherCreateManyFinancialYearInputEnvelope
+    set?: FortnoxVoucherWhereUniqueInput | FortnoxVoucherWhereUniqueInput[]
+    disconnect?: FortnoxVoucherWhereUniqueInput | FortnoxVoucherWhereUniqueInput[]
+    delete?: FortnoxVoucherWhereUniqueInput | FortnoxVoucherWhereUniqueInput[]
+    connect?: FortnoxVoucherWhereUniqueInput | FortnoxVoucherWhereUniqueInput[]
+    update?: FortnoxVoucherUpdateWithWhereUniqueWithoutFinancialYearInput | FortnoxVoucherUpdateWithWhereUniqueWithoutFinancialYearInput[]
+    updateMany?: FortnoxVoucherUpdateManyWithWhereWithoutFinancialYearInput | FortnoxVoucherUpdateManyWithWhereWithoutFinancialYearInput[]
+    deleteMany?: FortnoxVoucherScalarWhereInput | FortnoxVoucherScalarWhereInput[]
+  }
+
+  export type FortnoxFinancialYearCreateNestedOneWithoutAccountsInput = {
+    create?: XOR<FortnoxFinancialYearCreateWithoutAccountsInput, FortnoxFinancialYearUncheckedCreateWithoutAccountsInput>
+    connectOrCreate?: FortnoxFinancialYearCreateOrConnectWithoutAccountsInput
+    connect?: FortnoxFinancialYearWhereUniqueInput
+  }
+
+  export type FortnoxFinancialYearUpdateOneRequiredWithoutAccountsNestedInput = {
+    create?: XOR<FortnoxFinancialYearCreateWithoutAccountsInput, FortnoxFinancialYearUncheckedCreateWithoutAccountsInput>
+    connectOrCreate?: FortnoxFinancialYearCreateOrConnectWithoutAccountsInput
+    upsert?: FortnoxFinancialYearUpsertWithoutAccountsInput
+    connect?: FortnoxFinancialYearWhereUniqueInput
+    update?: XOR<XOR<FortnoxFinancialYearUpdateToOneWithWhereWithoutAccountsInput, FortnoxFinancialYearUpdateWithoutAccountsInput>, FortnoxFinancialYearUncheckedUpdateWithoutAccountsInput>
+  }
+
+  export type FortnoxFinancialYearCreateNestedOneWithoutVouchersInput = {
+    create?: XOR<FortnoxFinancialYearCreateWithoutVouchersInput, FortnoxFinancialYearUncheckedCreateWithoutVouchersInput>
+    connectOrCreate?: FortnoxFinancialYearCreateOrConnectWithoutVouchersInput
+    connect?: FortnoxFinancialYearWhereUniqueInput
+  }
+
+  export type FortnoxVoucherRowCreateNestedManyWithoutVoucherInput = {
+    create?: XOR<FortnoxVoucherRowCreateWithoutVoucherInput, FortnoxVoucherRowUncheckedCreateWithoutVoucherInput> | FortnoxVoucherRowCreateWithoutVoucherInput[] | FortnoxVoucherRowUncheckedCreateWithoutVoucherInput[]
+    connectOrCreate?: FortnoxVoucherRowCreateOrConnectWithoutVoucherInput | FortnoxVoucherRowCreateOrConnectWithoutVoucherInput[]
+    createMany?: FortnoxVoucherRowCreateManyVoucherInputEnvelope
+    connect?: FortnoxVoucherRowWhereUniqueInput | FortnoxVoucherRowWhereUniqueInput[]
+  }
+
+  export type FortnoxVoucherRowUncheckedCreateNestedManyWithoutVoucherInput = {
+    create?: XOR<FortnoxVoucherRowCreateWithoutVoucherInput, FortnoxVoucherRowUncheckedCreateWithoutVoucherInput> | FortnoxVoucherRowCreateWithoutVoucherInput[] | FortnoxVoucherRowUncheckedCreateWithoutVoucherInput[]
+    connectOrCreate?: FortnoxVoucherRowCreateOrConnectWithoutVoucherInput | FortnoxVoucherRowCreateOrConnectWithoutVoucherInput[]
+    createMany?: FortnoxVoucherRowCreateManyVoucherInputEnvelope
+    connect?: FortnoxVoucherRowWhereUniqueInput | FortnoxVoucherRowWhereUniqueInput[]
+  }
+
+  export type FortnoxFinancialYearUpdateOneRequiredWithoutVouchersNestedInput = {
+    create?: XOR<FortnoxFinancialYearCreateWithoutVouchersInput, FortnoxFinancialYearUncheckedCreateWithoutVouchersInput>
+    connectOrCreate?: FortnoxFinancialYearCreateOrConnectWithoutVouchersInput
+    upsert?: FortnoxFinancialYearUpsertWithoutVouchersInput
+    connect?: FortnoxFinancialYearWhereUniqueInput
+    update?: XOR<XOR<FortnoxFinancialYearUpdateToOneWithWhereWithoutVouchersInput, FortnoxFinancialYearUpdateWithoutVouchersInput>, FortnoxFinancialYearUncheckedUpdateWithoutVouchersInput>
+  }
+
+  export type FortnoxVoucherRowUpdateManyWithoutVoucherNestedInput = {
+    create?: XOR<FortnoxVoucherRowCreateWithoutVoucherInput, FortnoxVoucherRowUncheckedCreateWithoutVoucherInput> | FortnoxVoucherRowCreateWithoutVoucherInput[] | FortnoxVoucherRowUncheckedCreateWithoutVoucherInput[]
+    connectOrCreate?: FortnoxVoucherRowCreateOrConnectWithoutVoucherInput | FortnoxVoucherRowCreateOrConnectWithoutVoucherInput[]
+    upsert?: FortnoxVoucherRowUpsertWithWhereUniqueWithoutVoucherInput | FortnoxVoucherRowUpsertWithWhereUniqueWithoutVoucherInput[]
+    createMany?: FortnoxVoucherRowCreateManyVoucherInputEnvelope
+    set?: FortnoxVoucherRowWhereUniqueInput | FortnoxVoucherRowWhereUniqueInput[]
+    disconnect?: FortnoxVoucherRowWhereUniqueInput | FortnoxVoucherRowWhereUniqueInput[]
+    delete?: FortnoxVoucherRowWhereUniqueInput | FortnoxVoucherRowWhereUniqueInput[]
+    connect?: FortnoxVoucherRowWhereUniqueInput | FortnoxVoucherRowWhereUniqueInput[]
+    update?: FortnoxVoucherRowUpdateWithWhereUniqueWithoutVoucherInput | FortnoxVoucherRowUpdateWithWhereUniqueWithoutVoucherInput[]
+    updateMany?: FortnoxVoucherRowUpdateManyWithWhereWithoutVoucherInput | FortnoxVoucherRowUpdateManyWithWhereWithoutVoucherInput[]
+    deleteMany?: FortnoxVoucherRowScalarWhereInput | FortnoxVoucherRowScalarWhereInput[]
+  }
+
+  export type FortnoxVoucherRowUncheckedUpdateManyWithoutVoucherNestedInput = {
+    create?: XOR<FortnoxVoucherRowCreateWithoutVoucherInput, FortnoxVoucherRowUncheckedCreateWithoutVoucherInput> | FortnoxVoucherRowCreateWithoutVoucherInput[] | FortnoxVoucherRowUncheckedCreateWithoutVoucherInput[]
+    connectOrCreate?: FortnoxVoucherRowCreateOrConnectWithoutVoucherInput | FortnoxVoucherRowCreateOrConnectWithoutVoucherInput[]
+    upsert?: FortnoxVoucherRowUpsertWithWhereUniqueWithoutVoucherInput | FortnoxVoucherRowUpsertWithWhereUniqueWithoutVoucherInput[]
+    createMany?: FortnoxVoucherRowCreateManyVoucherInputEnvelope
+    set?: FortnoxVoucherRowWhereUniqueInput | FortnoxVoucherRowWhereUniqueInput[]
+    disconnect?: FortnoxVoucherRowWhereUniqueInput | FortnoxVoucherRowWhereUniqueInput[]
+    delete?: FortnoxVoucherRowWhereUniqueInput | FortnoxVoucherRowWhereUniqueInput[]
+    connect?: FortnoxVoucherRowWhereUniqueInput | FortnoxVoucherRowWhereUniqueInput[]
+    update?: FortnoxVoucherRowUpdateWithWhereUniqueWithoutVoucherInput | FortnoxVoucherRowUpdateWithWhereUniqueWithoutVoucherInput[]
+    updateMany?: FortnoxVoucherRowUpdateManyWithWhereWithoutVoucherInput | FortnoxVoucherRowUpdateManyWithWhereWithoutVoucherInput[]
+    deleteMany?: FortnoxVoucherRowScalarWhereInput | FortnoxVoucherRowScalarWhereInput[]
+  }
+
+  export type FortnoxVoucherCreateNestedOneWithoutRowsInput = {
+    create?: XOR<FortnoxVoucherCreateWithoutRowsInput, FortnoxVoucherUncheckedCreateWithoutRowsInput>
+    connectOrCreate?: FortnoxVoucherCreateOrConnectWithoutRowsInput
+    connect?: FortnoxVoucherWhereUniqueInput
+  }
+
+  export type FortnoxVoucherUpdateOneRequiredWithoutRowsNestedInput = {
+    create?: XOR<FortnoxVoucherCreateWithoutRowsInput, FortnoxVoucherUncheckedCreateWithoutRowsInput>
+    connectOrCreate?: FortnoxVoucherCreateOrConnectWithoutRowsInput
+    upsert?: FortnoxVoucherUpsertWithoutRowsInput
+    connect?: FortnoxVoucherWhereUniqueInput
+    update?: XOR<XOR<FortnoxVoucherUpdateToOneWithWhereWithoutRowsInput, FortnoxVoucherUpdateWithoutRowsInput>, FortnoxVoucherUncheckedUpdateWithoutRowsInput>
   }
 
   export type NestedUuidFilter<$PrismaModel = never> = {
@@ -25184,6 +31628,438 @@ export namespace Prisma {
     customers?: CustomerUncheckedUpdateManyWithoutCompanyNestedInput
   }
 
+  export type FortnoxAccountCreateWithoutFinancialYearInput = {
+    id?: string
+    accountNumber: number
+    description?: string | null
+    active?: boolean
+    balanceBroughtForward?: Decimal | DecimalJsLike | number | string | null
+    balanceCarriedForward?: Decimal | DecimalJsLike | number | string | null
+    vatCode?: string | null
+    sru?: number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type FortnoxAccountUncheckedCreateWithoutFinancialYearInput = {
+    id?: string
+    accountNumber: number
+    description?: string | null
+    active?: boolean
+    balanceBroughtForward?: Decimal | DecimalJsLike | number | string | null
+    balanceCarriedForward?: Decimal | DecimalJsLike | number | string | null
+    vatCode?: string | null
+    sru?: number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type FortnoxAccountCreateOrConnectWithoutFinancialYearInput = {
+    where: FortnoxAccountWhereUniqueInput
+    create: XOR<FortnoxAccountCreateWithoutFinancialYearInput, FortnoxAccountUncheckedCreateWithoutFinancialYearInput>
+  }
+
+  export type FortnoxAccountCreateManyFinancialYearInputEnvelope = {
+    data: FortnoxAccountCreateManyFinancialYearInput | FortnoxAccountCreateManyFinancialYearInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FortnoxVoucherCreateWithoutFinancialYearInput = {
+    id?: string
+    voucherSeries: string
+    voucherNumber: number
+    transactionDate: Date | string
+    description?: string | null
+    referenceType?: string | null
+    referenceNumber?: string | null
+    costCenter?: string | null
+    project?: string | null
+    approvalState?: number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    rows?: FortnoxVoucherRowCreateNestedManyWithoutVoucherInput
+  }
+
+  export type FortnoxVoucherUncheckedCreateWithoutFinancialYearInput = {
+    id?: string
+    voucherSeries: string
+    voucherNumber: number
+    transactionDate: Date | string
+    description?: string | null
+    referenceType?: string | null
+    referenceNumber?: string | null
+    costCenter?: string | null
+    project?: string | null
+    approvalState?: number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    rows?: FortnoxVoucherRowUncheckedCreateNestedManyWithoutVoucherInput
+  }
+
+  export type FortnoxVoucherCreateOrConnectWithoutFinancialYearInput = {
+    where: FortnoxVoucherWhereUniqueInput
+    create: XOR<FortnoxVoucherCreateWithoutFinancialYearInput, FortnoxVoucherUncheckedCreateWithoutFinancialYearInput>
+  }
+
+  export type FortnoxVoucherCreateManyFinancialYearInputEnvelope = {
+    data: FortnoxVoucherCreateManyFinancialYearInput | FortnoxVoucherCreateManyFinancialYearInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FortnoxAccountUpsertWithWhereUniqueWithoutFinancialYearInput = {
+    where: FortnoxAccountWhereUniqueInput
+    update: XOR<FortnoxAccountUpdateWithoutFinancialYearInput, FortnoxAccountUncheckedUpdateWithoutFinancialYearInput>
+    create: XOR<FortnoxAccountCreateWithoutFinancialYearInput, FortnoxAccountUncheckedCreateWithoutFinancialYearInput>
+  }
+
+  export type FortnoxAccountUpdateWithWhereUniqueWithoutFinancialYearInput = {
+    where: FortnoxAccountWhereUniqueInput
+    data: XOR<FortnoxAccountUpdateWithoutFinancialYearInput, FortnoxAccountUncheckedUpdateWithoutFinancialYearInput>
+  }
+
+  export type FortnoxAccountUpdateManyWithWhereWithoutFinancialYearInput = {
+    where: FortnoxAccountScalarWhereInput
+    data: XOR<FortnoxAccountUpdateManyMutationInput, FortnoxAccountUncheckedUpdateManyWithoutFinancialYearInput>
+  }
+
+  export type FortnoxAccountScalarWhereInput = {
+    AND?: FortnoxAccountScalarWhereInput | FortnoxAccountScalarWhereInput[]
+    OR?: FortnoxAccountScalarWhereInput[]
+    NOT?: FortnoxAccountScalarWhereInput | FortnoxAccountScalarWhereInput[]
+    id?: UuidFilter<"FortnoxAccount"> | string
+    accountNumber?: IntFilter<"FortnoxAccount"> | number
+    financialYearId?: UuidFilter<"FortnoxAccount"> | string
+    description?: StringNullableFilter<"FortnoxAccount"> | string | null
+    active?: BoolFilter<"FortnoxAccount"> | boolean
+    balanceBroughtForward?: DecimalNullableFilter<"FortnoxAccount"> | Decimal | DecimalJsLike | number | string | null
+    balanceCarriedForward?: DecimalNullableFilter<"FortnoxAccount"> | Decimal | DecimalJsLike | number | string | null
+    vatCode?: StringNullableFilter<"FortnoxAccount"> | string | null
+    sru?: IntNullableFilter<"FortnoxAccount"> | number | null
+    rawData?: JsonNullableFilter<"FortnoxAccount">
+    syncedAt?: DateTimeFilter<"FortnoxAccount"> | Date | string
+    createdAt?: DateTimeFilter<"FortnoxAccount"> | Date | string
+  }
+
+  export type FortnoxVoucherUpsertWithWhereUniqueWithoutFinancialYearInput = {
+    where: FortnoxVoucherWhereUniqueInput
+    update: XOR<FortnoxVoucherUpdateWithoutFinancialYearInput, FortnoxVoucherUncheckedUpdateWithoutFinancialYearInput>
+    create: XOR<FortnoxVoucherCreateWithoutFinancialYearInput, FortnoxVoucherUncheckedCreateWithoutFinancialYearInput>
+  }
+
+  export type FortnoxVoucherUpdateWithWhereUniqueWithoutFinancialYearInput = {
+    where: FortnoxVoucherWhereUniqueInput
+    data: XOR<FortnoxVoucherUpdateWithoutFinancialYearInput, FortnoxVoucherUncheckedUpdateWithoutFinancialYearInput>
+  }
+
+  export type FortnoxVoucherUpdateManyWithWhereWithoutFinancialYearInput = {
+    where: FortnoxVoucherScalarWhereInput
+    data: XOR<FortnoxVoucherUpdateManyMutationInput, FortnoxVoucherUncheckedUpdateManyWithoutFinancialYearInput>
+  }
+
+  export type FortnoxVoucherScalarWhereInput = {
+    AND?: FortnoxVoucherScalarWhereInput | FortnoxVoucherScalarWhereInput[]
+    OR?: FortnoxVoucherScalarWhereInput[]
+    NOT?: FortnoxVoucherScalarWhereInput | FortnoxVoucherScalarWhereInput[]
+    id?: UuidFilter<"FortnoxVoucher"> | string
+    voucherSeries?: StringFilter<"FortnoxVoucher"> | string
+    voucherNumber?: IntFilter<"FortnoxVoucher"> | number
+    financialYearId?: UuidFilter<"FortnoxVoucher"> | string
+    transactionDate?: DateTimeFilter<"FortnoxVoucher"> | Date | string
+    description?: StringNullableFilter<"FortnoxVoucher"> | string | null
+    referenceType?: StringNullableFilter<"FortnoxVoucher"> | string | null
+    referenceNumber?: StringNullableFilter<"FortnoxVoucher"> | string | null
+    costCenter?: StringNullableFilter<"FortnoxVoucher"> | string | null
+    project?: StringNullableFilter<"FortnoxVoucher"> | string | null
+    approvalState?: IntNullableFilter<"FortnoxVoucher"> | number | null
+    rawData?: JsonNullableFilter<"FortnoxVoucher">
+    syncedAt?: DateTimeFilter<"FortnoxVoucher"> | Date | string
+    createdAt?: DateTimeFilter<"FortnoxVoucher"> | Date | string
+  }
+
+  export type FortnoxFinancialYearCreateWithoutAccountsInput = {
+    id?: string
+    fortnoxId: number
+    fromDate: Date | string
+    toDate: Date | string
+    accountChartType?: string | null
+    accountingMethod?: string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    vouchers?: FortnoxVoucherCreateNestedManyWithoutFinancialYearInput
+  }
+
+  export type FortnoxFinancialYearUncheckedCreateWithoutAccountsInput = {
+    id?: string
+    fortnoxId: number
+    fromDate: Date | string
+    toDate: Date | string
+    accountChartType?: string | null
+    accountingMethod?: string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    vouchers?: FortnoxVoucherUncheckedCreateNestedManyWithoutFinancialYearInput
+  }
+
+  export type FortnoxFinancialYearCreateOrConnectWithoutAccountsInput = {
+    where: FortnoxFinancialYearWhereUniqueInput
+    create: XOR<FortnoxFinancialYearCreateWithoutAccountsInput, FortnoxFinancialYearUncheckedCreateWithoutAccountsInput>
+  }
+
+  export type FortnoxFinancialYearUpsertWithoutAccountsInput = {
+    update: XOR<FortnoxFinancialYearUpdateWithoutAccountsInput, FortnoxFinancialYearUncheckedUpdateWithoutAccountsInput>
+    create: XOR<FortnoxFinancialYearCreateWithoutAccountsInput, FortnoxFinancialYearUncheckedCreateWithoutAccountsInput>
+    where?: FortnoxFinancialYearWhereInput
+  }
+
+  export type FortnoxFinancialYearUpdateToOneWithWhereWithoutAccountsInput = {
+    where?: FortnoxFinancialYearWhereInput
+    data: XOR<FortnoxFinancialYearUpdateWithoutAccountsInput, FortnoxFinancialYearUncheckedUpdateWithoutAccountsInput>
+  }
+
+  export type FortnoxFinancialYearUpdateWithoutAccountsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fortnoxId?: IntFieldUpdateOperationsInput | number
+    fromDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    toDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountChartType?: NullableStringFieldUpdateOperationsInput | string | null
+    accountingMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    vouchers?: FortnoxVoucherUpdateManyWithoutFinancialYearNestedInput
+  }
+
+  export type FortnoxFinancialYearUncheckedUpdateWithoutAccountsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fortnoxId?: IntFieldUpdateOperationsInput | number
+    fromDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    toDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountChartType?: NullableStringFieldUpdateOperationsInput | string | null
+    accountingMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    vouchers?: FortnoxVoucherUncheckedUpdateManyWithoutFinancialYearNestedInput
+  }
+
+  export type FortnoxFinancialYearCreateWithoutVouchersInput = {
+    id?: string
+    fortnoxId: number
+    fromDate: Date | string
+    toDate: Date | string
+    accountChartType?: string | null
+    accountingMethod?: string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    accounts?: FortnoxAccountCreateNestedManyWithoutFinancialYearInput
+  }
+
+  export type FortnoxFinancialYearUncheckedCreateWithoutVouchersInput = {
+    id?: string
+    fortnoxId: number
+    fromDate: Date | string
+    toDate: Date | string
+    accountChartType?: string | null
+    accountingMethod?: string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    accounts?: FortnoxAccountUncheckedCreateNestedManyWithoutFinancialYearInput
+  }
+
+  export type FortnoxFinancialYearCreateOrConnectWithoutVouchersInput = {
+    where: FortnoxFinancialYearWhereUniqueInput
+    create: XOR<FortnoxFinancialYearCreateWithoutVouchersInput, FortnoxFinancialYearUncheckedCreateWithoutVouchersInput>
+  }
+
+  export type FortnoxVoucherRowCreateWithoutVoucherInput = {
+    id?: string
+    accountNumber: number
+    debit?: Decimal | DecimalJsLike | number | string | null
+    credit?: Decimal | DecimalJsLike | number | string | null
+    description?: string | null
+    costCenter?: string | null
+    project?: string | null
+  }
+
+  export type FortnoxVoucherRowUncheckedCreateWithoutVoucherInput = {
+    id?: string
+    accountNumber: number
+    debit?: Decimal | DecimalJsLike | number | string | null
+    credit?: Decimal | DecimalJsLike | number | string | null
+    description?: string | null
+    costCenter?: string | null
+    project?: string | null
+  }
+
+  export type FortnoxVoucherRowCreateOrConnectWithoutVoucherInput = {
+    where: FortnoxVoucherRowWhereUniqueInput
+    create: XOR<FortnoxVoucherRowCreateWithoutVoucherInput, FortnoxVoucherRowUncheckedCreateWithoutVoucherInput>
+  }
+
+  export type FortnoxVoucherRowCreateManyVoucherInputEnvelope = {
+    data: FortnoxVoucherRowCreateManyVoucherInput | FortnoxVoucherRowCreateManyVoucherInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FortnoxFinancialYearUpsertWithoutVouchersInput = {
+    update: XOR<FortnoxFinancialYearUpdateWithoutVouchersInput, FortnoxFinancialYearUncheckedUpdateWithoutVouchersInput>
+    create: XOR<FortnoxFinancialYearCreateWithoutVouchersInput, FortnoxFinancialYearUncheckedCreateWithoutVouchersInput>
+    where?: FortnoxFinancialYearWhereInput
+  }
+
+  export type FortnoxFinancialYearUpdateToOneWithWhereWithoutVouchersInput = {
+    where?: FortnoxFinancialYearWhereInput
+    data: XOR<FortnoxFinancialYearUpdateWithoutVouchersInput, FortnoxFinancialYearUncheckedUpdateWithoutVouchersInput>
+  }
+
+  export type FortnoxFinancialYearUpdateWithoutVouchersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fortnoxId?: IntFieldUpdateOperationsInput | number
+    fromDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    toDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountChartType?: NullableStringFieldUpdateOperationsInput | string | null
+    accountingMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: FortnoxAccountUpdateManyWithoutFinancialYearNestedInput
+  }
+
+  export type FortnoxFinancialYearUncheckedUpdateWithoutVouchersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fortnoxId?: IntFieldUpdateOperationsInput | number
+    fromDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    toDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountChartType?: NullableStringFieldUpdateOperationsInput | string | null
+    accountingMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: FortnoxAccountUncheckedUpdateManyWithoutFinancialYearNestedInput
+  }
+
+  export type FortnoxVoucherRowUpsertWithWhereUniqueWithoutVoucherInput = {
+    where: FortnoxVoucherRowWhereUniqueInput
+    update: XOR<FortnoxVoucherRowUpdateWithoutVoucherInput, FortnoxVoucherRowUncheckedUpdateWithoutVoucherInput>
+    create: XOR<FortnoxVoucherRowCreateWithoutVoucherInput, FortnoxVoucherRowUncheckedCreateWithoutVoucherInput>
+  }
+
+  export type FortnoxVoucherRowUpdateWithWhereUniqueWithoutVoucherInput = {
+    where: FortnoxVoucherRowWhereUniqueInput
+    data: XOR<FortnoxVoucherRowUpdateWithoutVoucherInput, FortnoxVoucherRowUncheckedUpdateWithoutVoucherInput>
+  }
+
+  export type FortnoxVoucherRowUpdateManyWithWhereWithoutVoucherInput = {
+    where: FortnoxVoucherRowScalarWhereInput
+    data: XOR<FortnoxVoucherRowUpdateManyMutationInput, FortnoxVoucherRowUncheckedUpdateManyWithoutVoucherInput>
+  }
+
+  export type FortnoxVoucherRowScalarWhereInput = {
+    AND?: FortnoxVoucherRowScalarWhereInput | FortnoxVoucherRowScalarWhereInput[]
+    OR?: FortnoxVoucherRowScalarWhereInput[]
+    NOT?: FortnoxVoucherRowScalarWhereInput | FortnoxVoucherRowScalarWhereInput[]
+    id?: UuidFilter<"FortnoxVoucherRow"> | string
+    voucherId?: UuidFilter<"FortnoxVoucherRow"> | string
+    accountNumber?: IntFilter<"FortnoxVoucherRow"> | number
+    debit?: DecimalNullableFilter<"FortnoxVoucherRow"> | Decimal | DecimalJsLike | number | string | null
+    credit?: DecimalNullableFilter<"FortnoxVoucherRow"> | Decimal | DecimalJsLike | number | string | null
+    description?: StringNullableFilter<"FortnoxVoucherRow"> | string | null
+    costCenter?: StringNullableFilter<"FortnoxVoucherRow"> | string | null
+    project?: StringNullableFilter<"FortnoxVoucherRow"> | string | null
+  }
+
+  export type FortnoxVoucherCreateWithoutRowsInput = {
+    id?: string
+    voucherSeries: string
+    voucherNumber: number
+    transactionDate: Date | string
+    description?: string | null
+    referenceType?: string | null
+    referenceNumber?: string | null
+    costCenter?: string | null
+    project?: string | null
+    approvalState?: number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+    financialYear: FortnoxFinancialYearCreateNestedOneWithoutVouchersInput
+  }
+
+  export type FortnoxVoucherUncheckedCreateWithoutRowsInput = {
+    id?: string
+    voucherSeries: string
+    voucherNumber: number
+    financialYearId: string
+    transactionDate: Date | string
+    description?: string | null
+    referenceType?: string | null
+    referenceNumber?: string | null
+    costCenter?: string | null
+    project?: string | null
+    approvalState?: number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type FortnoxVoucherCreateOrConnectWithoutRowsInput = {
+    where: FortnoxVoucherWhereUniqueInput
+    create: XOR<FortnoxVoucherCreateWithoutRowsInput, FortnoxVoucherUncheckedCreateWithoutRowsInput>
+  }
+
+  export type FortnoxVoucherUpsertWithoutRowsInput = {
+    update: XOR<FortnoxVoucherUpdateWithoutRowsInput, FortnoxVoucherUncheckedUpdateWithoutRowsInput>
+    create: XOR<FortnoxVoucherCreateWithoutRowsInput, FortnoxVoucherUncheckedCreateWithoutRowsInput>
+    where?: FortnoxVoucherWhereInput
+  }
+
+  export type FortnoxVoucherUpdateToOneWithWhereWithoutRowsInput = {
+    where?: FortnoxVoucherWhereInput
+    data: XOR<FortnoxVoucherUpdateWithoutRowsInput, FortnoxVoucherUncheckedUpdateWithoutRowsInput>
+  }
+
+  export type FortnoxVoucherUpdateWithoutRowsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    voucherSeries?: StringFieldUpdateOperationsInput | string
+    voucherNumber?: IntFieldUpdateOperationsInput | number
+    transactionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    costCenter?: NullableStringFieldUpdateOperationsInput | string | null
+    project?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalState?: NullableIntFieldUpdateOperationsInput | number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    financialYear?: FortnoxFinancialYearUpdateOneRequiredWithoutVouchersNestedInput
+  }
+
+  export type FortnoxVoucherUncheckedUpdateWithoutRowsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    voucherSeries?: StringFieldUpdateOperationsInput | string
+    voucherNumber?: IntFieldUpdateOperationsInput | number
+    financialYearId?: StringFieldUpdateOperationsInput | string
+    transactionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    costCenter?: NullableStringFieldUpdateOperationsInput | string | null
+    project?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalState?: NullableIntFieldUpdateOperationsInput | number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type UserCreateManyCompanyInput = {
     id?: string
     email: string
@@ -26074,6 +32950,168 @@ export namespace Prisma {
     price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     vatPercent?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     total?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type FortnoxAccountCreateManyFinancialYearInput = {
+    id?: string
+    accountNumber: number
+    description?: string | null
+    active?: boolean
+    balanceBroughtForward?: Decimal | DecimalJsLike | number | string | null
+    balanceCarriedForward?: Decimal | DecimalJsLike | number | string | null
+    vatCode?: string | null
+    sru?: number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type FortnoxVoucherCreateManyFinancialYearInput = {
+    id?: string
+    voucherSeries: string
+    voucherNumber: number
+    transactionDate: Date | string
+    description?: string | null
+    referenceType?: string | null
+    referenceNumber?: string | null
+    costCenter?: string | null
+    project?: string | null
+    approvalState?: number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type FortnoxAccountUpdateWithoutFinancialYearInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountNumber?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    balanceBroughtForward?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    balanceCarriedForward?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vatCode?: NullableStringFieldUpdateOperationsInput | string | null
+    sru?: NullableIntFieldUpdateOperationsInput | number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxAccountUncheckedUpdateWithoutFinancialYearInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountNumber?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    balanceBroughtForward?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    balanceCarriedForward?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vatCode?: NullableStringFieldUpdateOperationsInput | string | null
+    sru?: NullableIntFieldUpdateOperationsInput | number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxAccountUncheckedUpdateManyWithoutFinancialYearInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountNumber?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    balanceBroughtForward?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    balanceCarriedForward?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    vatCode?: NullableStringFieldUpdateOperationsInput | string | null
+    sru?: NullableIntFieldUpdateOperationsInput | number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxVoucherUpdateWithoutFinancialYearInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    voucherSeries?: StringFieldUpdateOperationsInput | string
+    voucherNumber?: IntFieldUpdateOperationsInput | number
+    transactionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    costCenter?: NullableStringFieldUpdateOperationsInput | string | null
+    project?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalState?: NullableIntFieldUpdateOperationsInput | number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    rows?: FortnoxVoucherRowUpdateManyWithoutVoucherNestedInput
+  }
+
+  export type FortnoxVoucherUncheckedUpdateWithoutFinancialYearInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    voucherSeries?: StringFieldUpdateOperationsInput | string
+    voucherNumber?: IntFieldUpdateOperationsInput | number
+    transactionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    costCenter?: NullableStringFieldUpdateOperationsInput | string | null
+    project?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalState?: NullableIntFieldUpdateOperationsInput | number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    rows?: FortnoxVoucherRowUncheckedUpdateManyWithoutVoucherNestedInput
+  }
+
+  export type FortnoxVoucherUncheckedUpdateManyWithoutFinancialYearInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    voucherSeries?: StringFieldUpdateOperationsInput | string
+    voucherNumber?: IntFieldUpdateOperationsInput | number
+    transactionDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
+    referenceNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    costCenter?: NullableStringFieldUpdateOperationsInput | string | null
+    project?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalState?: NullableIntFieldUpdateOperationsInput | number | null
+    rawData?: NullableJsonNullValueInput | InputJsonValue
+    syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FortnoxVoucherRowCreateManyVoucherInput = {
+    id?: string
+    accountNumber: number
+    debit?: Decimal | DecimalJsLike | number | string | null
+    credit?: Decimal | DecimalJsLike | number | string | null
+    description?: string | null
+    costCenter?: string | null
+    project?: string | null
+  }
+
+  export type FortnoxVoucherRowUpdateWithoutVoucherInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountNumber?: IntFieldUpdateOperationsInput | number
+    debit?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    credit?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    costCenter?: NullableStringFieldUpdateOperationsInput | string | null
+    project?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FortnoxVoucherRowUncheckedUpdateWithoutVoucherInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountNumber?: IntFieldUpdateOperationsInput | number
+    debit?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    credit?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    costCenter?: NullableStringFieldUpdateOperationsInput | string | null
+    project?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FortnoxVoucherRowUncheckedUpdateManyWithoutVoucherInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountNumber?: IntFieldUpdateOperationsInput | number
+    debit?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    credit?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    costCenter?: NullableStringFieldUpdateOperationsInput | string | null
+    project?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

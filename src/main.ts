@@ -6,6 +6,7 @@ import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@as-integrations/express5";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
+import { execSync } from "child_process";
 import typeDefs from "./graphql/typeDefs";
 import resolvers from "./graphql/resolvers";
 import masterPool, { masterClient } from "./DATABASE/masterpool";
@@ -78,9 +79,31 @@ async function seedSuperAdmin() {
   console.log(`Super admin "${userName}" created.`);
 }
 
+async function migrateAllCompanyDatabases() {
+  const companies = await masterClient.company.findMany({
+    select: { dbName: true },
+  });
+  const base = process.env.COMPANY_DATABASE_URL!.replace(/\/[^\/]+$/, "");
+  for (const { dbName } of companies) {
+    const dbUrl = `${base}/${dbName}`;
+    try {
+      execSync(
+        `npx prisma migrate deploy --config prisma/company/prisma.config.ts`,
+        {
+          env: { ...process.env, COMPANY_DATABASE_URL: dbUrl },
+          stdio: "inherit",
+        },
+      );
+    } catch (err) {
+      console.error(`Migration failed for ${dbName}:`, err);
+    }
+  }
+}
+
 async function startServer() {
   try {
     await waitForDb();
+    await migrateAllCompanyDatabases();
     await seedSuperAdmin();
     await server.start();
     startScheduler();

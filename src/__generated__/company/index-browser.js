@@ -280,6 +280,61 @@ exports.Prisma.FortnoxSyncLogScalarFieldEnum = {
   lastSyncedAt: 'lastSyncedAt'
 };
 
+exports.Prisma.FortnoxFinancialYearScalarFieldEnum = {
+  id: 'id',
+  fortnoxId: 'fortnoxId',
+  fromDate: 'fromDate',
+  toDate: 'toDate',
+  accountChartType: 'accountChartType',
+  accountingMethod: 'accountingMethod',
+  rawData: 'rawData',
+  syncedAt: 'syncedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.FortnoxAccountScalarFieldEnum = {
+  id: 'id',
+  accountNumber: 'accountNumber',
+  financialYearId: 'financialYearId',
+  description: 'description',
+  active: 'active',
+  balanceBroughtForward: 'balanceBroughtForward',
+  balanceCarriedForward: 'balanceCarriedForward',
+  vatCode: 'vatCode',
+  sru: 'sru',
+  rawData: 'rawData',
+  syncedAt: 'syncedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.FortnoxVoucherScalarFieldEnum = {
+  id: 'id',
+  voucherSeries: 'voucherSeries',
+  voucherNumber: 'voucherNumber',
+  financialYearId: 'financialYearId',
+  transactionDate: 'transactionDate',
+  description: 'description',
+  referenceType: 'referenceType',
+  referenceNumber: 'referenceNumber',
+  costCenter: 'costCenter',
+  project: 'project',
+  approvalState: 'approvalState',
+  rawData: 'rawData',
+  syncedAt: 'syncedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.FortnoxVoucherRowScalarFieldEnum = {
+  id: 'id',
+  voucherId: 'voucherId',
+  accountNumber: 'accountNumber',
+  debit: 'debit',
+  credit: 'credit',
+  description: 'description',
+  costCenter: 'costCenter',
+  project: 'project'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -324,7 +379,11 @@ exports.Prisma.ModelName = {
   FortnoxCustomer: 'FortnoxCustomer',
   FortnoxInvoice: 'FortnoxInvoice',
   FortnoxInvoiceRow: 'FortnoxInvoiceRow',
-  FortnoxSyncLog: 'FortnoxSyncLog'
+  FortnoxSyncLog: 'FortnoxSyncLog',
+  FortnoxFinancialYear: 'FortnoxFinancialYear',
+  FortnoxAccount: 'FortnoxAccount',
+  FortnoxVoucher: 'FortnoxVoucher',
+  FortnoxVoucherRow: 'FortnoxVoucherRow'
 };
 
 /**
