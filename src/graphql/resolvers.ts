@@ -5,6 +5,7 @@ import { Resolvers } from "../__generated__/resolvers-types";
 import { extractUser } from "../DATABASE/USERS/extractUserFunc";
 import { getCompanyClient } from "../DATABASE/connectionManager";
 import { onboardCompany } from "../DATABASE/onboard";
+import { removeCompany } from "../DATABASE/COMPANIES/removeCompany";
 import { createCompanyAdmin as createCompanyAdminUtil } from "../utils/createCompanyAdmin";
 import { getAllUsers } from "../DATABASE/USERS/getAllUsers";
 import { masterClient } from "../DATABASE/masterpool";
@@ -322,6 +323,11 @@ const resolvers: Resolvers = {
         expires_at: expiresAt ?? undefined,
       });
       return "Tokens saved successfully";
+    },
+    removeCompany: async (_parent, { companyId }, { user }) => {
+      requireSuperAdmin(user);
+      await removeCompany(companyId);
+      return "Company removed successfully";
     },
   },
 };
