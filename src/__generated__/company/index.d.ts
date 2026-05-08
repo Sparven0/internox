@@ -23606,10 +23606,10 @@ export namespace Prisma {
 
   export type CustomerWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    fortnoxCustomerNumber?: string
     AND?: CustomerWhereInput | CustomerWhereInput[]
     OR?: CustomerWhereInput[]
     NOT?: CustomerWhereInput | CustomerWhereInput[]
-    fortnoxCustomerNumber?: StringNullableFilter<"Customer"> | string | null
     name?: StringFilter<"Customer"> | string
     email?: StringNullableFilter<"Customer"> | string | null
     domain?: StringNullableFilter<"Customer"> | string | null
@@ -23622,7 +23622,7 @@ export namespace Prisma {
     emails?: EmailListRelationFilter
     fortnoxCustomer?: XOR<FortnoxCustomerNullableScalarRelationFilter, FortnoxCustomerWhereInput> | null
     fortnoxInvoices?: FortnoxInvoiceListRelationFilter
-  }, "id">
+  }, "id" | "fortnoxCustomerNumber">
 
   export type CustomerOrderByWithAggregationInput = {
     id?: SortOrder

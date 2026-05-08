@@ -66,13 +66,19 @@ export async function syncFortnoxData(companyId: string): Promise<{
     const customerNumber = String(c.CustomerNumber ?? '').trim();
     if (!customerNumber) continue;
 
-    // Try to find a matching internal customer row
-    const internalCustomer = await client.customer.findFirst({
-      where: {
-        OR: [
-          { fortnoxCustomerNumber: customerNumber },
-          { name: c.Name },
-        ],
+    // Upsert the internal Customer row so we always have a stable UUID to link to
+    const internalCustomer = await client.customer.upsert({
+      where: { fortnoxCustomerNumber: customerNumber },
+      create: {
+        fortnoxCustomerNumber: customerNumber,
+        name: c.Name ?? '',
+        email: c.Email || null,
+        domain: null,
+        companyId: company.id,
+      },
+      update: {
+        name: c.Name ?? undefined,
+        email: c.Email || null,
       },
       select: { id: true },
     });
@@ -111,14 +117,6 @@ export async function syncFortnoxData(companyId: string): Promise<{
         syncedAt: now,
       },
     });
-
-    // Keep the internal customer's fortnox_customer_number in sync
-    if (internalCustomer) {
-      await client.customer.update({
-        where: { id: internalCustomer.id },
-        data: { fortnoxCustomerNumber: customerNumber },
-      });
-    }
 
     customerCount++;
   }

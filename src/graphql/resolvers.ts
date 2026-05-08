@@ -16,6 +16,7 @@ import { createUser } from "../DATABASE/USERS/insertUserFunc";
 import { createAdmin } from "../DATABASE/USERS/insertAdminFunc";
 import { addImapCredentials } from "../DATABASE/INTEGRATIONS/insertImapCredentials";
 import { insertToken } from "../DATABASE/INTEGRATIONS/insertTokensFunc";
+import { syncFortnoxData } from "../DATABASE/INTEGRATIONS/Fortnox/syncFortnoxData";
 
 function requireAdmin(user: any) {
   if (!user || (user.role !== "admin" && user.role !== "super_admin")) {
@@ -72,7 +73,11 @@ const resolvers: Resolvers = {
       requireAdmin(user);
       return await fetchFortnoxForCompany(companyId, endpoint ?? "/customers");
     },
-    getSentEmails: async (_parent, { companyId, credentialId, password }, { user }) => {
+    getSentEmails: async (
+      _parent,
+      { companyId, credentialId, password },
+      { user },
+    ) => {
       requireAdmin(user);
       const emails = await fetchSentEmailsFromYesterday(
         companyId,
@@ -82,12 +87,19 @@ const resolvers: Resolvers = {
       return emails as any[];
     },
     getFinancialYears: async (_parent, _args, { user }) => {
-      if (!user) throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
+      if (!user)
+        throw new GraphQLError("Unauthorized", {
+          extensions: { code: "UNAUTHORIZED" },
+        });
       const companyId = (user as any).companyId;
-      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      const company = await masterClient.company.findUnique({
+        where: { id: companyId },
+      });
       if (!company) throw new GraphQLError("Company not found");
       const client = getCompanyClient(company.dbName);
-      const rows = await client.fortnoxFinancialYear.findMany({ orderBy: { fromDate: "desc" } });
+      const rows = await client.fortnoxFinancialYear.findMany({
+        orderBy: { fromDate: "desc" },
+      });
       return rows.map((r) => ({
         ...r,
         fromDate: r.fromDate.toISOString(),
@@ -95,9 +107,14 @@ const resolvers: Resolvers = {
       }));
     },
     getAccounts: async (_parent, args, { user }) => {
-      if (!user) throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
+      if (!user)
+        throw new GraphQLError("Unauthorized", {
+          extensions: { code: "UNAUTHORIZED" },
+        });
       const companyId = (user as any).companyId;
-      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      const company = await masterClient.company.findUnique({
+        where: { id: companyId },
+      });
       if (!company) throw new GraphQLError("Company not found");
       const client = getCompanyClient(company.dbName);
       const rows = await client.fortnoxAccount.findMany({
@@ -106,14 +123,25 @@ const resolvers: Resolvers = {
       });
       return rows.map((r) => ({
         ...r,
-        balanceBroughtForward: r.balanceBroughtForward != null ? Number(r.balanceBroughtForward) : null,
-        balanceCarriedForward: r.balanceCarriedForward != null ? Number(r.balanceCarriedForward) : null,
+        balanceBroughtForward:
+          r.balanceBroughtForward != null
+            ? Number(r.balanceBroughtForward)
+            : null,
+        balanceCarriedForward:
+          r.balanceCarriedForward != null
+            ? Number(r.balanceCarriedForward)
+            : null,
       }));
     },
     getVouchers: async (_parent, args, { user }) => {
-      if (!user) throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
+      if (!user)
+        throw new GraphQLError("Unauthorized", {
+          extensions: { code: "UNAUTHORIZED" },
+        });
       const companyId = (user as any).companyId;
-      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      const company = await masterClient.company.findUnique({
+        where: { id: companyId },
+      });
       if (!company) throw new GraphQLError("Company not found");
       const client = getCompanyClient(company.dbName);
       const page = args.page ?? 1;
@@ -124,25 +152,39 @@ const resolvers: Resolvers = {
         skip: (page - 1) * limit,
         take: limit,
       });
-      return rows.map((r) => ({ ...r, transactionDate: r.transactionDate.toISOString() }));
+      return rows.map((r) => ({
+        ...r,
+        transactionDate: r.transactionDate.toISOString(),
+      }));
     },
-    getMyCustomers: async (_parent, _args, { user }) => {
-      if (!user) throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
+    getCustomersByEmployee: async (_parent, { userId }, { user }) => {
+      if (!user)
+        throw new GraphQLError("Unauthorized", {
+          extensions: { code: "UNAUTHORIZED" },
+        });
+      requireAdmin(user);
       const companyId = (user as any).companyId;
-      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      const company = await masterClient.company.findUnique({
+        where: { id: companyId },
+      });
       if (!company) throw new GraphQLError("Company not found");
       const client = getCompanyClient(company.dbName);
       const links = await client.employeeCustomer.findMany({
-        where: { userId: (user as any).id },
+        where: { userId },
         include: { customer: true },
       });
       return links.map((l) => l.customer);
     },
     getEmployeesByCustomer: async (_parent, { customerId }, { user }) => {
-      if (!user) throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
+      if (!user)
+        throw new GraphQLError("Unauthorized", {
+          extensions: { code: "UNAUTHORIZED" },
+        });
       requireAdmin(user);
       const companyId = (user as any).companyId;
-      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      const company = await masterClient.company.findUnique({
+        where: { id: companyId },
+      });
       if (!company) throw new GraphQLError("Company not found");
       const client = getCompanyClient(company.dbName);
       const links = await client.employeeCustomer.findMany({
@@ -151,10 +193,29 @@ const resolvers: Resolvers = {
       });
       return links.map((l) => l.user);
     },
-    getVoucherDetail: async (_parent, args, { user }) => {
-      if (!user) throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
+    getAllCustomers: async (_parent, _args, { user }) => {
+      if (!user)
+        throw new GraphQLError("Unauthorized", {
+          extensions: { code: "UNAUTHORIZED" },
+        });
+      requireAdmin(user);
       const companyId = (user as any).companyId;
-      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      const company = await masterClient.company.findUnique({
+        where: { id: companyId },
+      });
+      if (!company) throw new GraphQLError("Company not found");
+      const client = getCompanyClient(company.dbName);
+      return client.customer.findMany({ orderBy: { name: "asc" } });
+    },
+    getVoucherDetail: async (_parent, args, { user }) => {
+      if (!user)
+        throw new GraphQLError("Unauthorized", {
+          extensions: { code: "UNAUTHORIZED" },
+        });
+      const companyId = (user as any).companyId;
+      const company = await masterClient.company.findUnique({
+        where: { id: companyId },
+      });
       if (!company) throw new GraphQLError("Company not found");
       const client = getCompanyClient(company.dbName);
       const v = await client.fortnoxVoucher.findUnique({
@@ -173,10 +234,15 @@ const resolvers: Resolvers = {
       };
     },
     getOnboardingStatus: async (_parent, _args, { user }) => {
-      if (!user) throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
+      if (!user)
+        throw new GraphQLError("Unauthorized", {
+          extensions: { code: "UNAUTHORIZED" },
+        });
 
       const companyId = (user as any).companyId;
-      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      const company = await masterClient.company.findUnique({
+        where: { id: companyId },
+      });
       if (!company) throw new GraphQLError("Company not found");
 
       const client = getCompanyClient(company.dbName);
@@ -245,8 +311,18 @@ const resolvers: Resolvers = {
 
       let customers: any;
       try {
-        const fdata = await fetchFortnoxForCompany(companyId, "/customers");
+        const [fdata, fortnoxDbCustomers] = await Promise.all([
+          fetchFortnoxForCompany(companyId, "/customers"),
+          companyClient.fortnoxCustomer.findMany({
+            select: { customerNumber: true, customerId: true },
+          }),
+        ]);
+        const dbMap = new Map(
+          fortnoxDbCustomers.map((c) => [c.customerNumber, c.customerId]),
+        );
         customers = (fdata?.Customers || []).map((c: any) => ({
+          id: dbMap.get(String(c.CustomerNumber)) ?? null,
+          customerNumber: c.CustomerNumber,
           name: c.Name,
           email: c.Email,
         }));
@@ -269,7 +345,8 @@ const resolvers: Resolvers = {
             userId: creds[i].userId,
             credentialId: creds[i].id,
             emails: r.status === "fulfilled" ? r.value : [],
-            error: r.status === "rejected" ? (r.reason as Error)?.message : null,
+            error:
+              r.status === "rejected" ? (r.reason as Error)?.message : null,
           }));
         }
       } catch {
@@ -290,7 +367,11 @@ const resolvers: Resolvers = {
       const companyId = await onboardCompany(name, domain);
       return { companyId, message: "Company created successfully!" };
     },
-    createCompanyAdmin: async (_parent, { company, email, password }, { user }) => {
+    createCompanyAdmin: async (
+      _parent,
+      { company, email, password },
+      { user },
+    ) => {
       requireSuperAdmin(user);
       await createCompanyAdminUtil(company, email, password);
       return "Company admin created successfully";
@@ -304,7 +385,9 @@ const resolvers: Resolvers = {
           extensions: { code: "NOT_FOUND" },
         });
       }
-      const companyUser = await getCompanyClient(company.dbName).user.findUnique({
+      const companyUser = await getCompanyClient(
+        company.dbName,
+      ).user.findUnique({
         where: { email },
       });
       if (!companyUser) {
@@ -312,7 +395,10 @@ const resolvers: Resolvers = {
           extensions: { code: "UNAUTHORIZED" },
         });
       }
-      const passwordMatch = await bcrypt.compare(password, companyUser.password);
+      const passwordMatch = await bcrypt.compare(
+        password,
+        companyUser.password,
+      );
       if (!passwordMatch) {
         throw new GraphQLError("Invalid credentials", {
           extensions: { code: "UNAUTHORIZED" },
@@ -369,7 +455,11 @@ const resolvers: Resolvers = {
       );
       return { token, userName: masterUser.userName, role: masterUser.role };
     },
-    createUser: async (_parent, { email, companyDomain, password }, { user }) => {
+    createUser: async (
+      _parent,
+      { email, companyDomain, password },
+      { user },
+    ) => {
       requireAdmin(user);
       if (user!.role !== "super_admin") {
         const targetCompany = await masterClient.company.findUnique({
@@ -391,10 +481,19 @@ const resolvers: Resolvers = {
       await createAdmin(userName, password, token);
       return "Admin created successfully";
     },
-    addImapCredentials: async (_parent, { companyDomain, userEmail, imapHost, imapPort, emailAddress, password }, { user }) => {
+    addImapCredentials: async (
+      _parent,
+      { companyDomain, userEmail, imapHost, imapPort, emailAddress, password },
+      { user },
+    ) => {
       requireAdmin(user);
-      const company = await masterClient.company.findUnique({ where: { domain: companyDomain } });
-      if (!company) throw new GraphQLError(`Company not found for domain: ${companyDomain}`);
+      const company = await masterClient.company.findUnique({
+        where: { domain: companyDomain },
+      });
+      if (!company)
+        throw new GraphQLError(
+          `Company not found for domain: ${companyDomain}`,
+        );
       const result = await addImapCredentials(
         company.name,
         userEmail,
@@ -405,7 +504,11 @@ const resolvers: Resolvers = {
       );
       return { id: result.id };
     },
-    saveFortnoxTokens: async (_parent, { companyName, service, accessToken, refreshToken, expiresAt }, { user }) => {
+    saveFortnoxTokens: async (
+      _parent,
+      { companyName, service, accessToken, refreshToken, expiresAt },
+      { user },
+    ) => {
       requireAdmin(user);
       await insertToken(companyName, {
         service,
@@ -420,29 +523,56 @@ const resolvers: Resolvers = {
       await removeCompany(companyId);
       return "Company removed successfully";
     },
-    assignCustomerToMe: async (_parent, { customerId }, { user }) => {
-      if (!user) throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
+    assignCustomerToEmployee: async (
+      _parent,
+      { customerId, userId },
+      { user },
+    ) => {
+      if (!user)
+        throw new GraphQLError("Unauthorized", {
+          extensions: { code: "UNAUTHORIZED" },
+        });
+      requireAdmin(user);
       const companyId = (user as any).companyId;
-      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      const company = await masterClient.company.findUnique({
+        where: { id: companyId },
+      });
       if (!company) throw new GraphQLError("Company not found");
       const client = getCompanyClient(company.dbName);
       const link = await client.employeeCustomer.create({
         data: {
-          userId: (user as any).id,
+          userId,
           customerId,
           assignedBy: (user as any).id,
         },
       });
       return { ...link, assignedAt: link.assignedAt.toISOString() };
     },
-    unassignCustomerFromMe: async (_parent, { customerId }, { user }) => {
+    syncFortnox: async (_parent, _args, { user }) => {
       if (!user) throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
+      requireAdmin(user);
       const companyId = (user as any).companyId;
-      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      const result = await syncFortnoxData(companyId);
+      return `Synced ${result.customers} customers and ${result.invoices} invoices`;
+    },
+    unassignCustomerFromEmployee: async (
+      _parent,
+      { customerId, userId },
+      { user },
+    ) => {
+      if (!user)
+        throw new GraphQLError("Unauthorized", {
+          extensions: { code: "UNAUTHORIZED" },
+        });
+      requireAdmin(user);
+      const companyId = (user as any).companyId;
+      const company = await masterClient.company.findUnique({
+        where: { id: companyId },
+      });
       if (!company) throw new GraphQLError("Company not found");
       const client = getCompanyClient(company.dbName);
       await client.employeeCustomer.deleteMany({
-        where: { userId: (user as any).id, customerId },
+        where: { userId, customerId },
       });
       return "Unassigned successfully";
     },
