@@ -2,6 +2,7 @@ import cron from "node-cron";
 import { masterClient } from "./DATABASE/masterpool";
 import { getCompanyClient } from "./DATABASE/connectionManager";
 import { syncFortnoxData } from "./DATABASE/INTEGRATIONS/Fortnox/syncFortnoxData";
+import { syncFortnoxBookkeeping } from "./DATABASE/INTEGRATIONS/Fortnox/syncFortnoxBookkeeping";
 import fetchSentEmailsFromYesterday from "./DATABASE/INTEGRATIONS/Email/imapConnect";
 
 async function runFortnoxSync() {
@@ -11,6 +12,10 @@ async function runFortnoxSync() {
       const result = await syncFortnoxData(company.id);
       console.log(
         `[Fortnox sync] ${company.name}: ${result.customers} customers, ${result.invoices} invoices`,
+      );
+      await syncFortnoxBookkeeping(company.id);
+      console.log(
+        `[Fortnox bookkeeping sync] ${company.name}: completed`,
       );
     } catch (err) {
       console.error(`[Fortnox sync] ${company.name} failed:`, err);

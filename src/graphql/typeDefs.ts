@@ -69,6 +69,10 @@ const typeDefs = `
     getInitPageIntegrationData: InitPageIntegrationData!
     getSentEmails(companyId: String!, credentialId: String!, password: String): [SentEmail]
     getOnboardingStatus: OnboardingStatus!
+    getFinancialYears: [FortnoxFinancialYear!]!
+    getAccounts(financialYearId: ID!): [FortnoxAccount!]!
+    getVouchers(financialYearId: ID!, page: Int, limit: Int): [FortnoxVoucher!]!
+    getVoucherDetail(voucherId: ID!): FortnoxVoucherDetail
   }
 
   type AuthPayload {
@@ -95,6 +99,52 @@ const typeDefs = `
   hasEmployees: Boolean!
   isComplete: Boolean!
 }
+
+  type FortnoxFinancialYear {
+    id: ID!
+    fortnoxId: Int!
+    fromDate: String!
+    toDate: String!
+    accountChartType: String
+    accountingMethod: String
+  }
+
+  type FortnoxAccount {
+    accountNumber: Int!
+    description: String
+    active: Boolean!
+    balanceBroughtForward: Float
+    balanceCarriedForward: Float
+    vatCode: String
+  }
+
+  type FortnoxVoucher {
+    id: ID!
+    voucherSeries: String!
+    voucherNumber: Int!
+    transactionDate: String!
+    description: String
+    referenceType: String
+    referenceNumber: String
+  }
+
+  type FortnoxVoucherRow {
+    accountNumber: Int!
+    debit: Float
+    credit: Float
+    description: String
+  }
+
+  type FortnoxVoucherDetail {
+    id: ID!
+    voucherSeries: String!
+    voucherNumber: Int!
+    transactionDate: String!
+    description: String
+    referenceType: String
+    referenceNumber: String
+    rows: [FortnoxVoucherRow!]!
+  }
 
   type Mutation {
     createCompany(name: String!, domain: String!): Company

@@ -257,3 +257,84 @@ model FortnoxSyncLog {
   @@unique([companyId, resource])
   @@map("fortnox_sync_log")
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Fortnox bookkeeping data cache tables
+// ─────────────────────────────────────────────────────────────────────────────
+
+model FortnoxFinancialYear {
+  id               String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  /// The integer ID returned by the Fortnox API (used as query param for accounts/vouchers)
+  fortnoxId        Int      @unique @map("fortnox_id")
+  fromDate         DateTime @map("from_date") @db.Date
+  toDate           DateTime @map("to_date") @db.Date
+  accountChartType String?  @map("account_chart_type")
+  /// 'ACCRUAL' | 'CASH'
+  accountingMethod String?  @map("accounting_method")
+  rawData          Json?    @map("raw_data")
+  syncedAt         DateTime @default(now()) @map("synced_at") @db.Timestamp(6)
+  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+
+  accounts FortnoxAccount[]
+  vouchers FortnoxVoucher[]
+
+  @@map("fortnox_financial_years")
+}
+
+model FortnoxAccount {
+  id                    String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  accountNumber         Int                  @map("account_number")
+  financialYearId       String               @map("financial_year_id") @db.Uuid
+  description           String?
+  active                Boolean              @default(true)
+  balanceBroughtForward Decimal?             @map("balance_brought_forward") @db.Decimal(14, 2)
+  balanceCarriedForward Decimal?             @map("balance_carried_forward") @db.Decimal(14, 2)
+  vatCode               String?              @map("vat_code")
+  sru                   Int?
+  rawData               Json?                @map("raw_data")
+  syncedAt              DateTime             @default(now()) @map("synced_at") @db.Timestamp(6)
+  createdAt             DateTime             @default(now()) @map("created_at") @db.Timestamp(6)
+
+  financialYear FortnoxFinancialYear @relation(fields: [financialYearId], references: [id])
+
+  @@unique([accountNumber, financialYearId])
+  @@map("fortnox_accounts")
+}
+
+model FortnoxVoucher {
+  id              String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  voucherSeries   String               @map("voucher_series")
+  voucherNumber   Int                  @map("voucher_number")
+  financialYearId String               @map("financial_year_id") @db.Uuid
+  transactionDate DateTime             @map("transaction_date") @db.Date
+  description     String?
+  referenceType   String?              @map("reference_type")
+  referenceNumber String?              @map("reference_number")
+  costCenter      String?              @map("cost_center")
+  project         String?
+  approvalState   Int?                 @map("approval_state")
+  rawData         Json?                @map("raw_data")
+  syncedAt        DateTime             @default(now()) @map("synced_at") @db.Timestamp(6)
+  createdAt       DateTime             @default(now()) @map("created_at") @db.Timestamp(6)
+
+  financialYear FortnoxFinancialYear @relation(fields: [financialYearId], references: [id])
+  rows          FortnoxVoucherRow[]
+
+  @@unique([voucherSeries, voucherNumber, financialYearId])
+  @@map("fortnox_vouchers")
+}
+
+model FortnoxVoucherRow {
+  id            String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  voucherId     String         @map("voucher_id") @db.Uuid
+  accountNumber Int            @map("account_number")
+  debit         Decimal?       @db.Decimal(14, 2)
+  credit        Decimal?       @db.Decimal(14, 2)
+  description   String?
+  costCenter    String?        @map("cost_center")
+  project       String?
+
+  voucher FortnoxVoucher @relation(fields: [voucherId], references: [id], onDelete: Cascade)
+
+  @@map("fortnox_voucher_rows")
+}

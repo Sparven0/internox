@@ -1,3 +1,6 @@
+// Master database — stores company registry and super_admin/admin accounts.
+// One PrismaClient instance is used for this DB throughout the app.
+
 generator client {
   provider = "prisma-client-js"
   output   = "../../src/__generated__/master"
