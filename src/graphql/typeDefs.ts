@@ -57,6 +57,20 @@ const typeDefs = `
     id: ID!
   }
 
+  type Customer {
+    id: ID!
+    name: String!
+    email: String
+    domain: String
+    fortnoxCustomerNumber: String
+  }
+
+  type EmployeeCustomer {
+    userId: ID!
+    customerId: ID!
+    assignedAt: String!
+  }
+
   type Query {
     getAllCompanies: [Company]
     getCompanyById(id: ID!): Company
@@ -73,6 +87,8 @@ const typeDefs = `
     getAccounts(financialYearId: ID!): [FortnoxAccount!]!
     getVouchers(financialYearId: ID!, page: Int, limit: Int): [FortnoxVoucher!]!
     getVoucherDetail(voucherId: ID!): FortnoxVoucherDetail
+    getMyCustomers: [Customer!]!
+    getEmployeesByCustomer(customerId: ID!): [User!]!
   }
 
   type AuthPayload {
@@ -157,6 +173,8 @@ const typeDefs = `
     addImapCredentials(companyDomain: String!, userEmail: String!, imapHost: String!, imapPort: Int, emailAddress: String!, password: String!): ImapCredentialResult!
     saveFortnoxTokens(companyName: String!, service: String!, accessToken: String!, refreshToken: String, expiresAt: String): String!
     removeCompany(companyId: ID!): String!
+    assignCustomerToMe(customerId: ID!): EmployeeCustomer!
+    unassignCustomerFromMe(customerId: ID!): String!
   }
 `;
 

@@ -34,6 +34,22 @@ export type Company = {
   name: Scalars['String']['output'];
 };
 
+export type Customer = {
+  __typename?: 'Customer';
+  domain?: Maybe<Scalars['String']['output']>;
+  email?: Maybe<Scalars['String']['output']>;
+  fortnoxCustomerNumber?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+};
+
+export type EmployeeCustomer = {
+  __typename?: 'EmployeeCustomer';
+  assignedAt: Scalars['String']['output'];
+  customerId: Scalars['ID']['output'];
+  userId: Scalars['ID']['output'];
+};
+
 export type FortnoxAccount = {
   __typename?: 'FortnoxAccount';
   accountNumber: Scalars['Int']['output'];
@@ -127,6 +143,7 @@ export type InitUser = {
 export type Mutation = {
   __typename?: 'Mutation';
   addImapCredentials: ImapCredentialResult;
+  assignCustomerToMe: EmployeeCustomer;
   createAdmin: Scalars['String']['output'];
   createCompany?: Maybe<Company>;
   createCompanyAdmin: Scalars['String']['output'];
@@ -136,6 +153,7 @@ export type Mutation = {
   onboardCompany: OnboardResult;
   removeCompany: Scalars['String']['output'];
   saveFortnoxTokens: Scalars['String']['output'];
+  unassignCustomerFromMe: Scalars['String']['output'];
 };
 
 
@@ -146,6 +164,11 @@ export type MutationAddImapCredentialsArgs = {
   imapPort?: InputMaybe<Scalars['Int']['input']>;
   password: Scalars['String']['input'];
   userEmail: Scalars['String']['input'];
+};
+
+
+export type MutationAssignCustomerToMeArgs = {
+  customerId: Scalars['ID']['input'];
 };
 
 
@@ -207,6 +230,11 @@ export type MutationSaveFortnoxTokensArgs = {
   service: Scalars['String']['input'];
 };
 
+
+export type MutationUnassignCustomerFromMeArgs = {
+  customerId: Scalars['ID']['input'];
+};
+
 export type OnboardResult = {
   __typename?: 'OnboardResult';
   companyId: Scalars['ID']['output'];
@@ -226,11 +254,13 @@ export type Query = {
   getAllCompanies?: Maybe<Array<Maybe<Company>>>;
   getCompanyById?: Maybe<Company>;
   getCompanyByName?: Maybe<Company>;
+  getEmployeesByCustomer: Array<User>;
   getFinancialYears: Array<FortnoxFinancialYear>;
   getFortnoxData?: Maybe<Scalars['JSON']['output']>;
   getImapCredentials?: Maybe<Array<Maybe<ImapCredential>>>;
   getInitPageData: InitPageData;
   getInitPageIntegrationData: InitPageIntegrationData;
+  getMyCustomers: Array<Customer>;
   getOnboardingStatus: OnboardingStatus;
   getSentEmails?: Maybe<Array<Maybe<SentEmail>>>;
   getUsers?: Maybe<Array<Maybe<User>>>;
@@ -252,6 +282,11 @@ export type QueryGetCompanyByIdArgs = {
 
 export type QueryGetCompanyByNameArgs = {
   name: Scalars['String']['input'];
+};
+
+
+export type QueryGetEmployeesByCustomerArgs = {
+  customerId: Scalars['ID']['input'];
 };
 
 
@@ -396,6 +431,8 @@ export type ResolversTypes = {
   AuthPayload: ResolverTypeWrapper<AuthPayload>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Company: ResolverTypeWrapper<Company>;
+  Customer: ResolverTypeWrapper<Customer>;
+  EmployeeCustomer: ResolverTypeWrapper<EmployeeCustomer>;
   Float: ResolverTypeWrapper<Scalars['Float']['output']>;
   FortnoxAccount: ResolverTypeWrapper<FortnoxAccount>;
   FortnoxFinancialYear: ResolverTypeWrapper<FortnoxFinancialYear>;
@@ -426,6 +463,8 @@ export type ResolversParentTypes = {
   AuthPayload: AuthPayload;
   Boolean: Scalars['Boolean']['output'];
   Company: Company;
+  Customer: Customer;
+  EmployeeCustomer: EmployeeCustomer;
   Float: Scalars['Float']['output'];
   FortnoxAccount: FortnoxAccount;
   FortnoxFinancialYear: FortnoxFinancialYear;
@@ -463,6 +502,20 @@ export type CompanyResolvers<ContextType = GraphQLContext, ParentType extends Re
   domain?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+};
+
+export type CustomerResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['Customer'] = ResolversParentTypes['Customer']> = {
+  domain?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  fortnoxCustomerNumber?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+};
+
+export type EmployeeCustomerResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['EmployeeCustomer'] = ResolversParentTypes['EmployeeCustomer']> = {
+  assignedAt?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  customerId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  userId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
 };
 
 export type FortnoxAccountResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['FortnoxAccount'] = ResolversParentTypes['FortnoxAccount']> = {
@@ -550,6 +603,7 @@ export interface JsonScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
 
 export type MutationResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   addImapCredentials?: Resolver<ResolversTypes['ImapCredentialResult'], ParentType, ContextType, RequireFields<MutationAddImapCredentialsArgs, 'companyDomain' | 'emailAddress' | 'imapHost' | 'password' | 'userEmail'>>;
+  assignCustomerToMe?: Resolver<ResolversTypes['EmployeeCustomer'], ParentType, ContextType, RequireFields<MutationAssignCustomerToMeArgs, 'customerId'>>;
   createAdmin?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationCreateAdminArgs, 'password' | 'userName'>>;
   createCompany?: Resolver<Maybe<ResolversTypes['Company']>, ParentType, ContextType, RequireFields<MutationCreateCompanyArgs, 'domain' | 'name'>>;
   createCompanyAdmin?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationCreateCompanyAdminArgs, 'company' | 'email' | 'password'>>;
@@ -559,6 +613,7 @@ export type MutationResolvers<ContextType = GraphQLContext, ParentType extends R
   onboardCompany?: Resolver<ResolversTypes['OnboardResult'], ParentType, ContextType, RequireFields<MutationOnboardCompanyArgs, 'domain' | 'name'>>;
   removeCompany?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationRemoveCompanyArgs, 'companyId'>>;
   saveFortnoxTokens?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationSaveFortnoxTokensArgs, 'accessToken' | 'companyName' | 'service'>>;
+  unassignCustomerFromMe?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationUnassignCustomerFromMeArgs, 'customerId'>>;
 };
 
 export type OnboardResultResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['OnboardResult'] = ResolversParentTypes['OnboardResult']> = {
@@ -577,11 +632,13 @@ export type QueryResolvers<ContextType = GraphQLContext, ParentType extends Reso
   getAllCompanies?: Resolver<Maybe<Array<Maybe<ResolversTypes['Company']>>>, ParentType, ContextType>;
   getCompanyById?: Resolver<Maybe<ResolversTypes['Company']>, ParentType, ContextType, RequireFields<QueryGetCompanyByIdArgs, 'id'>>;
   getCompanyByName?: Resolver<Maybe<ResolversTypes['Company']>, ParentType, ContextType, RequireFields<QueryGetCompanyByNameArgs, 'name'>>;
+  getEmployeesByCustomer?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryGetEmployeesByCustomerArgs, 'customerId'>>;
   getFinancialYears?: Resolver<Array<ResolversTypes['FortnoxFinancialYear']>, ParentType, ContextType>;
   getFortnoxData?: Resolver<Maybe<ResolversTypes['JSON']>, ParentType, ContextType, RequireFields<QueryGetFortnoxDataArgs, 'companyId'>>;
   getImapCredentials?: Resolver<Maybe<Array<Maybe<ResolversTypes['ImapCredential']>>>, ParentType, ContextType, RequireFields<QueryGetImapCredentialsArgs, 'company'>>;
   getInitPageData?: Resolver<ResolversTypes['InitPageData'], ParentType, ContextType>;
   getInitPageIntegrationData?: Resolver<ResolversTypes['InitPageIntegrationData'], ParentType, ContextType>;
+  getMyCustomers?: Resolver<Array<ResolversTypes['Customer']>, ParentType, ContextType>;
   getOnboardingStatus?: Resolver<ResolversTypes['OnboardingStatus'], ParentType, ContextType>;
   getSentEmails?: Resolver<Maybe<Array<Maybe<ResolversTypes['SentEmail']>>>, ParentType, ContextType, RequireFields<QueryGetSentEmailsArgs, 'companyId' | 'credentialId'>>;
   getUsers?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType, RequireFields<QueryGetUsersArgs, 'company'>>;
@@ -616,6 +673,8 @@ export type UserResolvers<ContextType = GraphQLContext, ParentType extends Resol
 export type Resolvers<ContextType = GraphQLContext> = {
   AuthPayload?: AuthPayloadResolvers<ContextType>;
   Company?: CompanyResolvers<ContextType>;
+  Customer?: CustomerResolvers<ContextType>;
+  EmployeeCustomer?: EmployeeCustomerResolvers<ContextType>;
   FortnoxAccount?: FortnoxAccountResolvers<ContextType>;
   FortnoxFinancialYear?: FortnoxFinancialYearResolvers<ContextType>;
   FortnoxVoucher?: FortnoxVoucherResolvers<ContextType>;

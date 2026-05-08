@@ -14,9 +14,7 @@ async function runFortnoxSync() {
         `[Fortnox sync] ${company.name}: ${result.customers} customers, ${result.invoices} invoices`,
       );
       await syncFortnoxBookkeeping(company.id);
-      console.log(
-        `[Fortnox bookkeeping sync] ${company.name}: completed`,
-      );
+      console.log(`[Fortnox bookkeeping sync] ${company.name}: completed`);
     } catch (err) {
       console.error(`[Fortnox sync] ${company.name} failed:`, err);
     }
@@ -33,7 +31,10 @@ async function runImapSync() {
         try {
           await fetchSentEmailsFromYesterday(company.id, cred.id);
         } catch (err) {
-          console.error(`[IMAP sync] ${company.name} credential ${cred.id} failed:`, err);
+          console.error(
+            `[IMAP sync] ${company.name} credential ${cred.id} failed:`,
+            err,
+          );
         }
       }
     } catch (err) {
@@ -43,9 +44,19 @@ async function runImapSync() {
 }
 
 export function startScheduler() {
-  // Fortnox: once per hour
+  let fortnoxSyncRunning = false;
+
   cron.schedule("0 * * * *", () => {
-    runFortnoxSync().catch(console.error);
+    if (fortnoxSyncRunning) {
+      console.warn("[Fortnox sync] Previous run still in progress, skipping.");
+      return;
+    }
+    fortnoxSyncRunning = true;
+    runFortnoxSync()
+      .catch(console.error)
+      .finally(() => {
+        fortnoxSyncRunning = false;
+      });
   });
 
   // IMAP: once per day at 02:00

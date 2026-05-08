@@ -126,6 +126,31 @@ const resolvers: Resolvers = {
       });
       return rows.map((r) => ({ ...r, transactionDate: r.transactionDate.toISOString() }));
     },
+    getMyCustomers: async (_parent, _args, { user }) => {
+      if (!user) throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
+      const companyId = (user as any).companyId;
+      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      if (!company) throw new GraphQLError("Company not found");
+      const client = getCompanyClient(company.dbName);
+      const links = await client.employeeCustomer.findMany({
+        where: { userId: (user as any).id },
+        include: { customer: true },
+      });
+      return links.map((l) => l.customer);
+    },
+    getEmployeesByCustomer: async (_parent, { customerId }, { user }) => {
+      if (!user) throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
+      requireAdmin(user);
+      const companyId = (user as any).companyId;
+      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      if (!company) throw new GraphQLError("Company not found");
+      const client = getCompanyClient(company.dbName);
+      const links = await client.employeeCustomer.findMany({
+        where: { customerId },
+        include: { user: true },
+      });
+      return links.map((l) => l.user);
+    },
     getVoucherDetail: async (_parent, args, { user }) => {
       if (!user) throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
       const companyId = (user as any).companyId;
@@ -394,6 +419,32 @@ const resolvers: Resolvers = {
       requireSuperAdmin(user);
       await removeCompany(companyId);
       return "Company removed successfully";
+    },
+    assignCustomerToMe: async (_parent, { customerId }, { user }) => {
+      if (!user) throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
+      const companyId = (user as any).companyId;
+      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      if (!company) throw new GraphQLError("Company not found");
+      const client = getCompanyClient(company.dbName);
+      const link = await client.employeeCustomer.create({
+        data: {
+          userId: (user as any).id,
+          customerId,
+          assignedBy: (user as any).id,
+        },
+      });
+      return { ...link, assignedAt: link.assignedAt.toISOString() };
+    },
+    unassignCustomerFromMe: async (_parent, { customerId }, { user }) => {
+      if (!user) throw new GraphQLError("Unauthorized", { extensions: { code: "UNAUTHORIZED" } });
+      const companyId = (user as any).companyId;
+      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      if (!company) throw new GraphQLError("Company not found");
+      const client = getCompanyClient(company.dbName);
+      await client.employeeCustomer.deleteMany({
+        where: { userId: (user as any).id, customerId },
+      });
+      return "Unassigned successfully";
     },
   },
 };
