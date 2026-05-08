@@ -10,6 +10,7 @@ import { execSync } from "child_process";
 import typeDefs from "./graphql/typeDefs";
 import resolvers from "./graphql/resolvers";
 import masterPool, { masterClient } from "./DATABASE/masterpool";
+import { getCompanyClient } from "./DATABASE/connectionManager";
 import fortnoxOAuth from "./routes/fortnoxCallbackRoute";
 import bcrypt from "bcrypt";
 import { startScheduler } from "./scheduler";
@@ -80,12 +81,16 @@ async function seedSuperAdmin() {
 }
 
 async function migrateAllCompanyDatabases() {
+  if (!process.env.COMPANY_DATABASE_URL) {
+    console.warn("COMPANY_DATABASE_URL not set, skipping company migrations.");
+    return;
+  }
   const companies = await masterClient.company.findMany({
-    select: { dbName: true },
+    select: { id: true, name: true, domain: true, dbName: true },
   });
-  const base = process.env.COMPANY_DATABASE_URL!.replace(/\/[^\/]+$/, "");
-  for (const { dbName } of companies) {
-    const dbUrl = `${base}/${dbName}`;
+  const base = process.env.COMPANY_DATABASE_URL.replace(/\/[^\/]+$/, "");
+  for (const company of companies) {
+    const dbUrl = `${base}/${company.dbName}`;
     try {
       execSync(
         `npx prisma migrate deploy --config prisma/company/prisma.config.ts`,
@@ -95,7 +100,17 @@ async function migrateAllCompanyDatabases() {
         },
       );
     } catch (err) {
-      console.error(`Migration failed for ${dbName}:`, err);
+      console.error(`Migration failed for ${company.dbName}:`, err);
+    }
+    // Ensure the company record exists in the company DB (required for FK constraints)
+    try {
+      await getCompanyClient(company.dbName).company.upsert({
+        where: { id: company.id },
+        update: {},
+        create: { id: company.id, name: company.name, domain: company.domain },
+      });
+    } catch (err) {
+      console.error(`Failed to seed company record for ${company.dbName}:`, err);
     }
   }
 }
