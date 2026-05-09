@@ -110,7 +110,10 @@ async function migrateAllCompanyDatabases() {
         create: { id: company.id, name: company.name, domain: company.domain },
       });
     } catch (err) {
-      console.error(`Failed to seed company record for ${company.dbName}:`, err);
+      console.error(
+        `Failed to seed company record for ${company.dbName}:`,
+        err,
+      );
     }
   }
 }
@@ -123,13 +126,25 @@ async function startServer() {
     await server.start();
     startScheduler();
 
+    const corsOptions = {
+      origin: [
+        "http://localhost:3000",
+        "https://internox.duckdns.org",
+        "http://localhost:5173",
+        "https://studio.apollographql.com",
+      ],
+      credentials: true,
+    };
+
     app.use(
       "/graphql",
-      cors<cors.CorsRequest>(),
+      cors<cors.CorsRequest>(corsOptions),
       bodyParser.json(),
       expressMiddleware(server, {
         context: async ({ req, res }) => {
-          const token = req.headers.authorization?.split(" ")[1];
+          const headerToken = req.headers.authorization?.split(" ")[1];
+          const cookieToken = req.cookies?.token;
+          const token = headerToken || cookieToken;
           let user: JwtPayload | undefined;
           if (token) {
             try {

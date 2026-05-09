@@ -48,6 +48,18 @@ const JSONScalar = new GraphQLScalarType({
 const resolvers: Resolvers = {
   JSON: JSONScalar,
   Query: {
+    me: (_parent, _args, { user }) => {
+      if (!user) return null;
+      return {
+        id: (user as any).id,
+        role: (user as any).role,
+        email: (user as any).email ?? null,
+        userName: (user as any).userName ?? null,
+        companyId: (user as any).companyId ?? null,
+        companyName: (user as any).companyName ?? null,
+        dbName: (user as any).dbName ?? null,
+      };
+    },
     getCompanyById: async (_parent, { id }) => {
       return masterClient.company.findUnique({ where: { id } }) ?? null;
     },
@@ -376,7 +388,7 @@ const resolvers: Resolvers = {
       await createCompanyAdminUtil(company, email, password);
       return "Company admin created successfully";
     },
-    login: async (_parent, { email, password, companyDomain }) => {
+    login: async (_parent, { email, password, companyDomain }, { res }) => {
       const company = await masterClient.company.findUnique({
         where: { domain: companyDomain },
       });
@@ -419,17 +431,22 @@ const resolvers: Resolvers = {
           companyName: company.name,
         },
         process.env.JWT_SECRET!,
-        { expiresIn: "1h" },
+        { expiresIn: "8h" },
       );
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        maxAge: 8 * 60 * 60 * 1000,
+      });
       return {
-        token,
         id: companyUser.id,
         email: companyUser.email,
         role: companyUser.role,
         companyId: companyUser.companyId,
       };
     },
-    loginSuperAdmin: async (_parent, { userName, password }) => {
+    loginSuperAdmin: async (_parent, { userName, password }, { res }) => {
       const masterUser = await masterClient.user.findFirst({
         where: { userName, role: "super_admin" },
       });
@@ -451,9 +468,23 @@ const resolvers: Resolvers = {
           role: masterUser.role,
         },
         process.env.JWT_SECRET!,
-        { expiresIn: "1h" },
+        { expiresIn: "8h" },
       );
-      return { token, userName: masterUser.userName, role: masterUser.role };
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        maxAge: 8 * 60 * 60 * 1000,
+      });
+      return { userName: masterUser.userName, role: masterUser.role };
+    },
+    logout: async (_parent, _args, { res }) => {
+      res.clearCookie("token", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+      });
+      return "Logged out successfully";
     },
     createUser: async (
       _parent,

@@ -90,10 +90,20 @@ const typeDefs = `
     getAllCustomers: [Customer!]!
     getCustomersByEmployee(userId: ID!): [Customer!]!
     getEmployeesByCustomer(customerId: ID!): [User!]!
+    me: Me
+  }
+
+  type Me {
+    id: ID!
+    role: String!
+    email: String
+    userName: String
+    companyId: String
+    companyName: String
+    dbName: String
   }
 
   type AuthPayload {
-    token: String!
     id: ID!
     email: String!
     role: String!
@@ -106,7 +116,6 @@ const typeDefs = `
   }
 
   type SuperAdminAuthPayload {
-    token: String!
     userName: String!
     role: String!
   }
@@ -167,6 +176,7 @@ const typeDefs = `
     createCompany(name: String!, domain: String!): Company
     login(email: String!, password: String!, companyDomain: String!): AuthPayload!
     loginSuperAdmin(userName: String!, password: String!): SuperAdminAuthPayload!
+    logout: String!
     onboardCompany(name: String!, domain: String!): OnboardResult!
     createCompanyAdmin(company: String!, email: String!, password: String!): String!
     createUser(email: String!, companyDomain: String!, password: String!): String!
