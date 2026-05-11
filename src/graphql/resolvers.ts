@@ -99,6 +99,7 @@ const resolvers: Resolvers = {
         credentialId,
         password ?? undefined,
       );
+
       return emails as any[];
     },
     getFinancialYears: async (_parent, _args, { user }) => {
