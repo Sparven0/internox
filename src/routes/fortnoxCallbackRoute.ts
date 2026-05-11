@@ -22,7 +22,7 @@ router.get('/auth', (req: Request, res: Response) => {
   res.redirect(
     `https://apps.fortnox.se/oauth-v1/auth?client_id=UZNsMVYcAGyy&state=${state}` +
     `&redirect_uri=http://localhost:1222/fortnox-callback` +
-    `&response_type=code&scope=companyinformation%20invoice%20customer%20bookkeeping`
+    `&response_type=code&scope=companyinformation%20invoice%20customer%20bookkeeping%20invoicedistribution`
   );
 });
 

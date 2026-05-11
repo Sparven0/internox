@@ -30,7 +30,7 @@ async function fetchAllPages(companyId: string, resource: string): Promise<any[]
   return results;
 }
 
-function deriveInvoiceStatus(inv: any): string {
+export function deriveInvoiceStatus(inv: any): string {
   if (inv.Cancelled) return 'cancelled';
   if (Number(inv.Balance ?? inv.Total) === 0) return 'paid';
   if (inv.DueDate && new Date(inv.DueDate) < new Date()) return 'overdue';

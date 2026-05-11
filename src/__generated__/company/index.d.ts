@@ -14603,6 +14603,7 @@ export namespace Prisma {
     status: string | null
     ourReference: string | null
     yourReference: string | null
+    sentAt: Date | null
     syncedAt: Date | null
     createdAt: Date | null
   }
@@ -14621,6 +14622,7 @@ export namespace Prisma {
     status: string | null
     ourReference: string | null
     yourReference: string | null
+    sentAt: Date | null
     syncedAt: Date | null
     createdAt: Date | null
   }
@@ -14639,6 +14641,7 @@ export namespace Prisma {
     status: number
     ourReference: number
     yourReference: number
+    sentAt: number
     rawData: number
     syncedAt: number
     createdAt: number
@@ -14672,6 +14675,7 @@ export namespace Prisma {
     status?: true
     ourReference?: true
     yourReference?: true
+    sentAt?: true
     syncedAt?: true
     createdAt?: true
   }
@@ -14690,6 +14694,7 @@ export namespace Prisma {
     status?: true
     ourReference?: true
     yourReference?: true
+    sentAt?: true
     syncedAt?: true
     createdAt?: true
   }
@@ -14708,6 +14713,7 @@ export namespace Prisma {
     status?: true
     ourReference?: true
     yourReference?: true
+    sentAt?: true
     rawData?: true
     syncedAt?: true
     createdAt?: true
@@ -14814,6 +14820,7 @@ export namespace Prisma {
     status: string | null
     ourReference: string | null
     yourReference: string | null
+    sentAt: Date | null
     rawData: JsonValue | null
     syncedAt: Date
     createdAt: Date
@@ -14852,6 +14859,7 @@ export namespace Prisma {
     status?: boolean
     ourReference?: boolean
     yourReference?: boolean
+    sentAt?: boolean
     rawData?: boolean
     syncedAt?: boolean
     createdAt?: boolean
@@ -14875,6 +14883,7 @@ export namespace Prisma {
     status?: boolean
     ourReference?: boolean
     yourReference?: boolean
+    sentAt?: boolean
     rawData?: boolean
     syncedAt?: boolean
     createdAt?: boolean
@@ -14896,6 +14905,7 @@ export namespace Prisma {
     status?: boolean
     ourReference?: boolean
     yourReference?: boolean
+    sentAt?: boolean
     rawData?: boolean
     syncedAt?: boolean
     createdAt?: boolean
@@ -14917,12 +14927,13 @@ export namespace Prisma {
     status?: boolean
     ourReference?: boolean
     yourReference?: boolean
+    sentAt?: boolean
     rawData?: boolean
     syncedAt?: boolean
     createdAt?: boolean
   }
 
-  export type FortnoxInvoiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "invoiceNumber" | "customerNumber" | "customerId" | "invoiceDate" | "dueDate" | "totalExclVat" | "totalInclVat" | "vat" | "currency" | "status" | "ourReference" | "yourReference" | "rawData" | "syncedAt" | "createdAt", ExtArgs["result"]["fortnoxInvoice"]>
+  export type FortnoxInvoiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "invoiceNumber" | "customerNumber" | "customerId" | "invoiceDate" | "dueDate" | "totalExclVat" | "totalInclVat" | "vat" | "currency" | "status" | "ourReference" | "yourReference" | "sentAt" | "rawData" | "syncedAt" | "createdAt", ExtArgs["result"]["fortnoxInvoice"]>
   export type FortnoxInvoiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     fortnoxCustomer?: boolean | FortnoxCustomerDefaultArgs<ExtArgs>
     customer?: boolean | FortnoxInvoice$customerArgs<ExtArgs>
@@ -14965,6 +14976,10 @@ export namespace Prisma {
       status: string | null
       ourReference: string | null
       yourReference: string | null
+      /**
+       * Populated via WebSocket invoice-updated-v1 + REST confirmation when Fortnox Sent flag becomes true
+       */
+      sentAt: Date | null
       /**
        * Full Fortnox API response, preserved for forward-compatibility
        */
@@ -15410,6 +15425,7 @@ export namespace Prisma {
     readonly status: FieldRef<"FortnoxInvoice", 'String'>
     readonly ourReference: FieldRef<"FortnoxInvoice", 'String'>
     readonly yourReference: FieldRef<"FortnoxInvoice", 'String'>
+    readonly sentAt: FieldRef<"FortnoxInvoice", 'DateTime'>
     readonly rawData: FieldRef<"FortnoxInvoice", 'Json'>
     readonly syncedAt: FieldRef<"FortnoxInvoice", 'DateTime'>
     readonly createdAt: FieldRef<"FortnoxInvoice", 'DateTime'>
@@ -23045,6 +23061,7 @@ export namespace Prisma {
     status: 'status',
     ourReference: 'ourReference',
     yourReference: 'yourReference',
+    sentAt: 'sentAt',
     rawData: 'rawData',
     syncedAt: 'syncedAt',
     createdAt: 'createdAt'
@@ -24138,6 +24155,7 @@ export namespace Prisma {
     status?: StringNullableFilter<"FortnoxInvoice"> | string | null
     ourReference?: StringNullableFilter<"FortnoxInvoice"> | string | null
     yourReference?: StringNullableFilter<"FortnoxInvoice"> | string | null
+    sentAt?: DateTimeNullableFilter<"FortnoxInvoice"> | Date | string | null
     rawData?: JsonNullableFilter<"FortnoxInvoice">
     syncedAt?: DateTimeFilter<"FortnoxInvoice"> | Date | string
     createdAt?: DateTimeFilter<"FortnoxInvoice"> | Date | string
@@ -24160,6 +24178,7 @@ export namespace Prisma {
     status?: SortOrderInput | SortOrder
     ourReference?: SortOrderInput | SortOrder
     yourReference?: SortOrderInput | SortOrder
+    sentAt?: SortOrderInput | SortOrder
     rawData?: SortOrderInput | SortOrder
     syncedAt?: SortOrder
     createdAt?: SortOrder
@@ -24185,6 +24204,7 @@ export namespace Prisma {
     status?: StringNullableFilter<"FortnoxInvoice"> | string | null
     ourReference?: StringNullableFilter<"FortnoxInvoice"> | string | null
     yourReference?: StringNullableFilter<"FortnoxInvoice"> | string | null
+    sentAt?: DateTimeNullableFilter<"FortnoxInvoice"> | Date | string | null
     rawData?: JsonNullableFilter<"FortnoxInvoice">
     syncedAt?: DateTimeFilter<"FortnoxInvoice"> | Date | string
     createdAt?: DateTimeFilter<"FortnoxInvoice"> | Date | string
@@ -24207,6 +24227,7 @@ export namespace Prisma {
     status?: SortOrderInput | SortOrder
     ourReference?: SortOrderInput | SortOrder
     yourReference?: SortOrderInput | SortOrder
+    sentAt?: SortOrderInput | SortOrder
     rawData?: SortOrderInput | SortOrder
     syncedAt?: SortOrder
     createdAt?: SortOrder
@@ -24234,6 +24255,7 @@ export namespace Prisma {
     status?: StringNullableWithAggregatesFilter<"FortnoxInvoice"> | string | null
     ourReference?: StringNullableWithAggregatesFilter<"FortnoxInvoice"> | string | null
     yourReference?: StringNullableWithAggregatesFilter<"FortnoxInvoice"> | string | null
+    sentAt?: DateTimeNullableWithAggregatesFilter<"FortnoxInvoice"> | Date | string | null
     rawData?: JsonNullableWithAggregatesFilter<"FortnoxInvoice">
     syncedAt?: DateTimeWithAggregatesFilter<"FortnoxInvoice"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"FortnoxInvoice"> | Date | string
@@ -25638,6 +25660,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -25660,6 +25683,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -25678,6 +25702,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25700,6 +25725,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25720,6 +25746,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -25737,6 +25764,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25756,6 +25784,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -27185,6 +27214,7 @@ export namespace Prisma {
     status?: SortOrder
     ourReference?: SortOrder
     yourReference?: SortOrder
+    sentAt?: SortOrder
     rawData?: SortOrder
     syncedAt?: SortOrder
     createdAt?: SortOrder
@@ -27210,6 +27240,7 @@ export namespace Prisma {
     status?: SortOrder
     ourReference?: SortOrder
     yourReference?: SortOrder
+    sentAt?: SortOrder
     syncedAt?: SortOrder
     createdAt?: SortOrder
   }
@@ -27228,6 +27259,7 @@ export namespace Prisma {
     status?: SortOrder
     ourReference?: SortOrder
     yourReference?: SortOrder
+    sentAt?: SortOrder
     syncedAt?: SortOrder
     createdAt?: SortOrder
   }
@@ -30255,6 +30287,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -30275,6 +30308,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -30468,6 +30502,7 @@ export namespace Prisma {
     status?: StringNullableFilter<"FortnoxInvoice"> | string | null
     ourReference?: StringNullableFilter<"FortnoxInvoice"> | string | null
     yourReference?: StringNullableFilter<"FortnoxInvoice"> | string | null
+    sentAt?: DateTimeNullableFilter<"FortnoxInvoice"> | Date | string | null
     rawData?: JsonNullableFilter<"FortnoxInvoice">
     syncedAt?: DateTimeFilter<"FortnoxInvoice"> | Date | string
     createdAt?: DateTimeFilter<"FortnoxInvoice"> | Date | string
@@ -31156,6 +31191,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -31176,6 +31212,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -31492,6 +31529,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -31513,6 +31551,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -31546,6 +31585,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31567,6 +31607,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32617,6 +32658,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -32790,6 +32832,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32810,6 +32853,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32829,6 +32873,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32847,6 +32892,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -32864,6 +32910,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32884,6 +32931,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32903,6 +32951,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

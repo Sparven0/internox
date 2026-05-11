@@ -219,6 +219,8 @@ model FortnoxInvoice {
   status         String?
   ourReference   String?   @map("our_reference")
   yourReference  String?   @map("your_reference")
+  /// Populated via WebSocket invoice-updated-v1 + REST confirmation when Fortnox Sent flag becomes true
+  sentAt         DateTime? @map("sent_at") @db.Timestamptz(6)
   /// Full Fortnox API response, preserved for forward-compatibility
   rawData        Json?     @map("raw_data")
   syncedAt       DateTime  @default(now()) @map("synced_at") @db.Timestamp(6)

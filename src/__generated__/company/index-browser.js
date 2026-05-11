@@ -256,6 +256,7 @@ exports.Prisma.FortnoxInvoiceScalarFieldEnum = {
   status: 'status',
   ourReference: 'ourReference',
   yourReference: 'yourReference',
+  sentAt: 'sentAt',
   rawData: 'rawData',
   syncedAt: 'syncedAt',
   createdAt: 'createdAt'
