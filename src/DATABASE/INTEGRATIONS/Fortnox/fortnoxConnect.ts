@@ -35,7 +35,7 @@ export type FortnoxTokens = {
   expires_at?: string;
 };
 
-async function refreshFortnoxToken(refreshToken: string): Promise<FortnoxTokens> {
+export async function refreshFortnoxToken(refreshToken: string): Promise<FortnoxTokens> {
   const tokenRes = await axios.post(
     'https://apps.fortnox.se/oauth-v1/token',
     new URLSearchParams({

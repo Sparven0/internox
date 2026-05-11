@@ -16,7 +16,10 @@ import { createUser } from "../DATABASE/USERS/insertUserFunc";
 import { createAdmin } from "../DATABASE/USERS/insertAdminFunc";
 import { addImapCredentials } from "../DATABASE/INTEGRATIONS/insertImapCredentials";
 import { insertToken } from "../DATABASE/INTEGRATIONS/insertTokensFunc";
-import { syncFortnoxData } from "../DATABASE/INTEGRATIONS/Fortnox/syncFortnoxData";
+import {
+  syncFortnoxData,
+  syncFortnoxInvoiceRows,
+} from "../DATABASE/INTEGRATIONS/Fortnox/syncFortnoxData";
 
 function requireAdmin(user: any) {
   if (!user || (user.role !== "admin" && user.role !== "super_admin")) {
@@ -219,6 +222,102 @@ const resolvers: Resolvers = {
       const client = getCompanyClient(company.dbName);
       return client.customer.findMany({ orderBy: { name: "asc" } });
     },
+    getInvoices: async (_parent, args, { user }) => {
+      if (!user)
+        throw new GraphQLError("Unauthorized", {
+          extensions: { code: "UNAUTHORIZED" },
+        });
+      const companyId = (user as any).companyId;
+      const company = await masterClient.company.findUnique({
+        where: { id: companyId },
+      });
+      if (!company) throw new GraphQLError("Company not found");
+      const client = getCompanyClient(company.dbName);
+      const page = args.page ?? 1;
+      const limit = args.limit ?? 50;
+      const where: any = {};
+      if (args.status) where.status = args.status;
+      if (args.customerNumber) where.customerNumber = args.customerNumber;
+      const invoices = await client.fortnoxInvoice.findMany({
+        where,
+        orderBy: { invoiceDate: "desc" },
+        skip: (page - 1) * limit,
+        take: limit,
+        include: { rows: { orderBy: { rowNumber: "asc" } } },
+      });
+      return invoices.map((inv) => ({
+        ...inv,
+        invoiceDate: inv.invoiceDate.toISOString(),
+        dueDate: inv.dueDate?.toISOString() ?? null,
+        syncedAt: inv.syncedAt.toISOString(),
+        totalExclVat: inv.totalExclVat != null ? Number(inv.totalExclVat) : null,
+        totalInclVat: inv.totalInclVat != null ? Number(inv.totalInclVat) : null,
+        vat: inv.vat != null ? Number(inv.vat) : null,
+        rows: inv.rows.map((r) => ({
+          ...r,
+          rowNumber: r.rowNumber ?? 0,
+          quantity: r.quantity != null ? Number(r.quantity) : null,
+          price: r.price != null ? Number(r.price) : null,
+          vatPercent: r.vatPercent != null ? Number(r.vatPercent) : null,
+          total: r.total != null ? Number(r.total) : null,
+        })),
+      })) as any[];
+    },
+    getInvoiceDetail: async (_parent, args, { user }) => {
+      if (!user)
+        throw new GraphQLError("Unauthorized", {
+          extensions: { code: "UNAUTHORIZED" },
+        });
+      const companyId = (user as any).companyId;
+      const company = await masterClient.company.findUnique({
+        where: { id: companyId },
+      });
+      if (!company) throw new GraphQLError("Company not found");
+      const client = getCompanyClient(company.dbName);
+      // On-demand fallback: fetch from Fortnox if rows haven't been synced yet
+      const existing = await client.fortnoxInvoiceRow.count({
+        where: { invoiceNumber: args.invoiceNumber },
+      });
+      if (existing === 0) {
+        await syncFortnoxInvoiceRows(companyId, args.invoiceNumber);
+      }
+      const inv = await client.fortnoxInvoice.findUnique({
+        where: { invoiceNumber: args.invoiceNumber },
+        include: { rows: { orderBy: { rowNumber: "asc" } } },
+      });
+      if (!inv) return null;
+      return {
+        ...inv,
+        invoiceDate: inv.invoiceDate.toISOString(),
+        dueDate: inv.dueDate?.toISOString() ?? null,
+        syncedAt: inv.syncedAt.toISOString(),
+        totalExclVat: inv.totalExclVat != null ? Number(inv.totalExclVat) : null,
+        totalInclVat: inv.totalInclVat != null ? Number(inv.totalInclVat) : null,
+        vat: inv.vat != null ? Number(inv.vat) : null,
+        rows: inv.rows.map((r) => ({
+          ...r,
+          rowNumber: r.rowNumber ?? 0,
+          quantity: r.quantity != null ? Number(r.quantity) : null,
+          price: r.price != null ? Number(r.price) : null,
+          vatPercent: r.vatPercent != null ? Number(r.vatPercent) : null,
+          total: r.total != null ? Number(r.total) : null,
+        })),
+      } as any;
+    },
+
+    getFortnoxAuthUrl: async (_parent, _args, { user }) => {
+      if (!user)
+        throw new GraphQLError("Unauthorized", {
+          extensions: { code: "UNAUTHORIZED" },
+        });
+      const companyName = (user as any).companyName;
+      if (!companyName) throw new GraphQLError("Company name missing from token");
+      // Sign a short-lived JWT containing just the company name, same as the /auth route expects
+      const stateToken = jwt.sign({ companyName }, process.env.JWT_SECRET!, { expiresIn: "10m" });
+      const baseUrl = process.env.APP_BASE_URL ?? "http://localhost:1222";
+      return `${baseUrl}/auth?token=${stateToken}`;
+    },
+
     getVoucherDetail: async (_parent, args, { user }) => {
       if (!user)
         throw new GraphQLError("Unauthorized", {
