@@ -304,6 +304,20 @@ const resolvers: Resolvers = {
         })),
       } as any;
     },
+
+    getFortnoxAuthUrl: async (_parent, _args, { user }) => {
+      if (!user)
+        throw new GraphQLError("Unauthorized", {
+          extensions: { code: "UNAUTHORIZED" },
+        });
+      const companyName = (user as any).companyName;
+      if (!companyName) throw new GraphQLError("Company name missing from token");
+      // Sign a short-lived JWT containing just the company name, same as the /auth route expects
+      const stateToken = jwt.sign({ companyName }, process.env.JWT_SECRET!, { expiresIn: "10m" });
+      const baseUrl = process.env.APP_BASE_URL ?? "http://localhost:1222";
+      return `${baseUrl}/auth?token=${stateToken}`;
+    },
+
     getVoucherDetail: async (_parent, args, { user }) => {
       if (!user)
         throw new GraphQLError("Unauthorized", {

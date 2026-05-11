@@ -300,6 +300,7 @@ export type Query = {
   getCustomersByEmployee: Array<Customer>;
   getEmployeesByCustomer: Array<User>;
   getFinancialYears: Array<FortnoxFinancialYear>;
+  getFortnoxAuthUrl: Scalars['String']['output'];
   getFortnoxData?: Maybe<Scalars['JSON']['output']>;
   getImapCredentials?: Maybe<Array<Maybe<ImapCredential>>>;
   getInitPageData: InitPageData;
@@ -742,6 +743,7 @@ export type QueryResolvers<ContextType = GraphQLContext, ParentType extends Reso
   getCustomersByEmployee?: Resolver<Array<ResolversTypes['Customer']>, ParentType, ContextType, RequireFields<QueryGetCustomersByEmployeeArgs, 'userId'>>;
   getEmployeesByCustomer?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryGetEmployeesByCustomerArgs, 'customerId'>>;
   getFinancialYears?: Resolver<Array<ResolversTypes['FortnoxFinancialYear']>, ParentType, ContextType>;
+  getFortnoxAuthUrl?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   getFortnoxData?: Resolver<Maybe<ResolversTypes['JSON']>, ParentType, ContextType, RequireFields<QueryGetFortnoxDataArgs, 'companyId'>>;
   getImapCredentials?: Resolver<Maybe<Array<Maybe<ResolversTypes['ImapCredential']>>>, ParentType, ContextType, RequireFields<QueryGetImapCredentialsArgs, 'company'>>;
   getInitPageData?: Resolver<ResolversTypes['InitPageData'], ParentType, ContextType>;

@@ -2,7 +2,8 @@ import { Request, Response, Router } from 'express';
 import axios from 'axios';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
-import { insertToken } from '../DATABASE/INTEGRATIONS/insertTokensFunc';
+import { masterClient } from '../DATABASE/masterpool';
+import { getCompanyClient } from '../DATABASE/connectionManager';
 
 const router = Router();
 
@@ -76,12 +77,34 @@ router.get('/fortnox-callback', async (req: Request, res: Response): Promise<any
 
     const expires_at = new Date(Date.now() + expires_in * 1000);
 
-    await insertToken(companyName, {
-      service: 'Fortnox',
-      access_token,
-      refresh_token,
-      expires_at: expires_at.toISOString(),
+    const company = await masterClient.company.findFirst({ where: { name: companyName } });
+    if (!company) throw new Error(`Company not found: ${companyName}`);
+
+    const companyClient = getCompanyClient(company.dbName);
+    const existing = await companyClient.companyIntegration.findFirst({
+      where: { companyId: company.id, service: { equals: 'Fortnox', mode: 'insensitive' } },
     });
+
+    if (existing) {
+      await companyClient.companyIntegration.update({
+        where: { id: existing.id },
+        data: {
+          accessToken: access_token,
+          refreshToken: refresh_token,
+          expiresAt: expires_at,
+        },
+      });
+    } else {
+      await companyClient.companyIntegration.create({
+        data: {
+          companyId: company.id,
+          service: 'Fortnox',
+          accessToken: access_token,
+          refreshToken: refresh_token,
+          expiresAt: expires_at,
+        },
+      });
+    }
 
     res.send(`<!DOCTYPE html>
 <html>

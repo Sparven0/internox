@@ -89,6 +89,7 @@ const typeDefs = `
     getVoucherDetail(voucherId: ID!): FortnoxVoucherDetail
     getInvoices(page: Int, limit: Int, status: String, customerNumber: String): [FortnoxInvoice!]!
     getInvoiceDetail(invoiceNumber: String!): FortnoxInvoice
+    getFortnoxAuthUrl: String!
     getAllCustomers: [Customer!]!
     getCustomersByEmployee(userId: ID!): [Customer!]!
     getEmployeesByCustomer(customerId: ID!): [User!]!
