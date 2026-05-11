@@ -3,7 +3,11 @@ import { masterClient } from '../../masterpool';
 import { getCompanyClient } from '../../connectionManager';
 import { connectFortnox, refreshFortnoxToken } from './fortnoxConnect';
 import { updateTokens } from '../insertTokensFunc';
-import { deriveInvoiceStatus } from './syncFortnoxData';
+import {
+  deriveInvoiceStatus,
+  isFortnoxInvoiceBooked,
+  resolveFortnoxBookedAt,
+} from './syncFortnoxData';
 
 const WS_URL = 'wss://ws.fortnox.se/topics-v1';
 const RECONNECT_DELAY_MS = 5_000;
@@ -22,6 +26,20 @@ async function withRefreshLock(companyId: string, fn: () => Promise<void>): Prom
   }
   const p = fn().finally(() => refreshLocks.delete(companyId));
   refreshLocks.set(companyId, p);
+  await p;
+}
+
+// companyId:invoiceNumber → in-flight handleInvoiceUpdated (dedupes invoice-updated + invoice-bookkeep)
+const invoiceUpdateLocks = new Map<string, Promise<void>>();
+
+async function withInvoiceUpdateLock(key: string, fn: () => Promise<void>): Promise<void> {
+  const existing = invoiceUpdateLocks.get(key);
+  if (existing) {
+    await existing.catch(() => {});
+    return;
+  }
+  const p = fn().finally(() => invoiceUpdateLocks.delete(key));
+  invoiceUpdateLocks.set(key, p);
   await p;
 }
 
@@ -262,14 +280,8 @@ function handleMessage(msg: any): void {
       lastOffsets.set(msg.topic, msg.offset);
     }
 
-    // invoice-updated-v1: general update (may include Sent=true)
-    // invoice-bookkeep-v1: fired when invoice is accounted — Fortnox does NOT fire
-    //   invoice-updated-v1 when the Send button is clicked, so we also hook bookkeep
-    //   and let handleInvoiceUpdated's REST call check Invoice.Sent.
-    if (
-      msg.topic === 'invoices' &&
-      (msg.type === 'invoice-updated-v1' || msg.type === 'invoice-bookkeep-v1')
-    ) {
+    // invoice-bookkeep-v1: invoice bokförd — `sent_at` används som bokförings-tidsstämpel.
+    if (msg.topic === 'invoices' && msg.type === 'invoice-bookkeep-v1') {
       const companyId = tenantToCompany.get(String(msg.tenantId));
       if (companyId) {
         handleInvoiceUpdated(companyId, msg as FortnoxWsEvent).catch((err) =>
@@ -281,21 +293,37 @@ function handleMessage(msg: any): void {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Invoice-sent detection
+// Fortnox bookkeep → `sent_at` (kolumnen lagrar bokföringstid)
 // ─────────────────────────────────────────────────────────────────────────────
 
 interface FortnoxWsEvent {
-  entityId: string;   // DocumentNumber
-  timestamp: string;  // ISO 8601 with tz, e.g. "2017-12-28T14:59:16.500+01:00"
+  entityId: string | number; // DocumentNumber (JSON may deliver a number)
+  timestamp?: string; // ISO 8601 with tz when present on the wire
   offset: string;
+  type?: string; // e.g. invoice-updated-v1, invoice-bookkeep-v1
+}
+
+/** Fortnox WS kan komma före GET /invoices/{id} visar Booked=true. */
+const REST_BOOKED_RETRY_DELAYS_MS = [500, 1_200, 2_500] as const;
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 async function handleInvoiceUpdated(
   companyId: string,
   event: FortnoxWsEvent,
 ): Promise<void> {
-  const invoiceNumber = event.entityId;
+  const invoiceNumber = String(event.entityId);
+  const lockKey = `${companyId}:${invoiceNumber}`;
+  await withInvoiceUpdateLock(lockKey, () => handleInvoiceUpdatedDeduped(companyId, event, invoiceNumber));
+}
 
+async function handleInvoiceUpdatedDeduped(
+  companyId: string,
+  event: FortnoxWsEvent,
+  invoiceNumber: string,
+): Promise<void> {
   const company = await masterClient.company.findUnique({
     where: { id: companyId },
   });
@@ -303,18 +331,20 @@ async function handleInvoiceUpdated(
 
   const client = getCompanyClient(company.dbName);
 
-  // Skip if we already recorded a sentAt — avoids a REST call on duplicate events
+  // Skip if vi redan har bokförings-tid — undviker dubbla REST-anrop
   const existing = await client.fortnoxInvoice.findUnique({
     where: { invoiceNumber },
     select: { sentAt: true },
   });
   if (existing?.sentAt) {
-    console.log(`[Fortnox WS] Invoice ${invoiceNumber}: sentAt already set, skipping.`);
+    console.log(`[Fortnox WS] Invoice ${invoiceNumber}: sent_at (booked) already set, skipping.`);
     return;
   }
-  console.log(`[Fortnox WS] Invoice ${invoiceNumber}: fetching from REST to check Sent flag…`);
+  console.log(
+    `[Fortnox WS] Invoice ${invoiceNumber}: invoice-bookkeep-v1 → fetching REST to confirm Booked…`,
+  );
 
-  // Follow-up REST call: the WS event is minimal and doesn't include the Sent flag
+  // Uppföljande REST-anrop: WS-händelsen innehåller inte Booked
   const integration = await client.companyIntegration.findFirst({
     where: { service: { equals: 'fortnox', mode: 'insensitive' } },
     orderBy: { expiresAt: 'desc' },
@@ -324,50 +354,65 @@ async function handleInvoiceUpdated(
     return;
   }
 
-  const data = await connectFortnox(
-    integration.accessToken,
-    integration.refreshToken ?? undefined,
-    `/invoices/${invoiceNumber}`,
-    async (newTokens) => {
-      await withRefreshLock(companyId, async () => {
-        try {
-          await updateTokens(companyId, 'Fortnox', {
-            access_token: newTokens.access_token,
-            refresh_token: newTokens.refresh_token,
-            expires_at: newTokens.expires_at,
-          });
-        } catch (err) {
-          console.warn(
-            '[Fortnox WS] Failed to persist refreshed tokens for company',
-            companyId,
-            err,
-          );
-        }
-      });
-    },
+  const onRefresh = async (newTokens: {
+    access_token: string;
+    refresh_token?: string;
+    expires_at?: string;
+  }) => {
+    await withRefreshLock(companyId, async () => {
+      try {
+        await updateTokens(companyId, 'Fortnox', {
+          access_token: newTokens.access_token,
+          refresh_token: newTokens.refresh_token,
+          expires_at: newTokens.expires_at,
+        });
+      } catch (err) {
+        console.warn(
+          '[Fortnox WS] Failed to persist refreshed tokens for company',
+          companyId,
+          err,
+        );
+      }
+    });
+  };
+
+  const fetchInvoice = () =>
+    connectFortnox(
+      integration.accessToken,
+      integration.refreshToken ?? undefined,
+      `/invoices/${invoiceNumber}`,
+      onRefresh,
+    );
+
+  let data = await fetchInvoice();
+  for (let r = 0; r < REST_BOOKED_RETRY_DELAYS_MS.length && !isFortnoxInvoiceBooked(data?.Invoice); r++) {
+    const wait = REST_BOOKED_RETRY_DELAYS_MS[r];
+    console.log(
+      `[Fortnox WS] Invoice ${invoiceNumber}: Booked still false, retry ${r + 1}/${REST_BOOKED_RETRY_DELAYS_MS.length} in ${wait}ms…`,
+      `(wsTimestamp=${event.timestamp ?? '—'})`,
+    );
+    await sleep(wait);
+    data = await fetchInvoice();
+  }
+
+  const inv = data?.Invoice;
+  if (!inv) {
+    console.warn(`[Fortnox WS] Invoice ${invoiceNumber}: no Invoice object in REST response`);
+    return;
+  }
+
+  const inv0 = inv;
+  console.log(
+    `[Fortnox WS] Invoice ${invoiceNumber}: REST Booked=${inv0.Booked ?? inv0.booked} Sent=${inv0.Sent} wsTimestamp=${event.timestamp ?? '—'}`,
   );
+  if (!isFortnoxInvoiceBooked(inv)) {
+    console.log(
+      `[Fortnox WS] Invoice ${invoiceNumber}: REST still Booked=false after ${1 + REST_BOOKED_RETRY_DELAYS_MS.length} attempt(s).`,
+    );
+    return;
+  }
 
-  const inv0 = data?.Invoice ?? {};
-  console.log(`[Fortnox WS] Invoice ${invoiceNumber} full REST fields:`, JSON.stringify({
-    Sent: inv0.Sent,
-    EmailSentDate: inv0.EmailSentDate,
-    SentDate: inv0.SentDate,
-    DeliveryDate: inv0.DeliveryDate,
-    ExternalInvoiceReference1: inv0.ExternalInvoiceReference1,
-    NoxFinans: inv0.NoxFinans,
-    PaymentWay: inv0.PaymentWay,
-    Cancelled: inv0.Cancelled,
-    Credit: inv0.Credit,
-    FinalPayDate: inv0.FinalPayDate,
-    InvoiceDate: inv0.InvoiceDate,
-    DocumentNumber: inv0.DocumentNumber,
-    Status: inv0.Status,
-  }));
-  if (!data?.Invoice?.Sent) return; // update was something else (amount, due date, …)
-
-  // Use the WebSocket event's timestamp — not Date.now()
-  const sentAt = new Date(event.timestamp);
-  const inv = data.Invoice;
+  const bookedAt = resolveFortnoxBookedAt(inv, event.timestamp, new Date());
   const customerNumber = String(inv.CustomerNumber ?? '').trim();
   const now = new Date();
 
@@ -397,17 +442,17 @@ async function handleInvoiceUpdated(
       yourReference: inv.YourReference || null,
       rawData: inv,
       syncedAt: now,
-      sentAt,
+      sentAt: bookedAt,
     },
     update: {
       status: deriveInvoiceStatus(inv),
       rawData: inv,
       syncedAt: now,
-      sentAt,
+      sentAt: bookedAt,
     },
   });
 
   console.log(
-    `[Fortnox WS] Invoice ${invoiceNumber} (company ${companyId}) marked sent at ${sentAt.toISOString()}`,
+    `[Fortnox WS] Invoice ${invoiceNumber} (company ${companyId}) booked_at → sent_at=${bookedAt.toISOString()}`,
   );
 }

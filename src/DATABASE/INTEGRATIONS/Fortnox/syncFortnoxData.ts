@@ -40,6 +40,60 @@ export function deriveInvoiceStatus(inv: any): string {
   return 'unpaid';
 }
 
+/** Fortnox may return `Sent` as boolean or string (e.g. XML-backed integrations). */
+function truthyFortnoxFlag(v: unknown): boolean | null {
+  if (v === true || v === 1) return true;
+  if (v === false || v === 0 || v == null) return false;
+  if (typeof v === 'string') {
+    const t = v.trim().toLowerCase();
+    if (t === 'false' || t === '0' || t === 'no' || t === '') return false;
+    if (t === 'true' || t === '1' || t === 'yes') return true;
+    return null;
+  }
+  return Boolean(v);
+}
+
+export function isFortnoxInvoiceSent(inv: any): boolean {
+  const s = truthyFortnoxFlag(inv?.Sent);
+  return s === true;
+}
+
+/** Bookkept / accounted in Fortnox (`Booked` in API; separate from customer `Sent`). */
+export function isFortnoxInvoiceBooked(inv: any): boolean {
+  const b = truthyFortnoxFlag(inv?.Booked ?? inv?.booked);
+  return b === true;
+}
+
+/** First parseable value from Fortnox date/datetime strings. */
+export function firstFortnoxDate(...raw: unknown[]): Date | null {
+  for (const v of raw) {
+    if (v == null || v === '') continue;
+    const d = new Date(String(v));
+    if (!Number.isNaN(d.getTime())) return d;
+  }
+  return null;
+}
+
+/**
+ * When the invoice is bookkept, store that instant in `fortnox_invoices.sent_at`.
+ * Fortnox often returns only Booked=true without a dedicated datetime field.
+ */
+export function resolveFortnoxBookedAt(
+  inv: any,
+  wsTimestamp?: string | null,
+  fallback: Date = new Date(),
+): Date {
+  return (
+    firstFortnoxDate(
+      wsTimestamp,
+      inv?.BookedDate,
+      inv?.BookingDate,
+      inv?.AccountingDate,
+      inv?.InvoiceDate,
+    ) ?? fallback
+  );
+}
+
 /**
  * Sync Fortnox customers and invoice headers for a given company.
  *
@@ -143,6 +197,8 @@ export async function syncFortnoxData(companyId: string): Promise<{
     if (!fnCustomer) continue;
 
     const status = deriveInvoiceStatus(inv);
+    const booked = isFortnoxInvoiceBooked(inv);
+    const sentAt = booked ? resolveFortnoxBookedAt(inv, undefined, now) : null;
 
     await client.fortnoxInvoice.upsert({
       where: { invoiceNumber },
@@ -161,6 +217,7 @@ export async function syncFortnoxData(companyId: string): Promise<{
         yourReference: inv.YourReference || null,
         rawData: inv,
         syncedAt: now,
+        sentAt,
       },
       update: {
         customerId: fnCustomer.customerId ?? undefined,
@@ -173,6 +230,7 @@ export async function syncFortnoxData(companyId: string): Promise<{
         yourReference: inv.YourReference || null,
         rawData: inv,
         syncedAt: now,
+        ...(booked && sentAt ? { sentAt } : {}),
       },
     });
 
@@ -221,6 +279,20 @@ export async function syncFortnoxInvoiceRows(
   const rows: any[] = inv?.InvoiceRows ?? [];
 
   const client = getCompanyClient(company.dbName);
+  const headerNow = new Date();
+
+  // Single-invoice GET is authoritative for `Booked` when the list omits it.
+  if (isFortnoxInvoiceBooked(inv)) {
+    const sentAt = resolveFortnoxBookedAt(inv, undefined, headerNow);
+    await client.fortnoxInvoice.updateMany({
+      where: { invoiceNumber },
+      data: {
+        sentAt,
+        rawData: inv,
+        syncedAt: headerNow,
+      },
+    });
+  }
 
   // Delete stale rows first so re-sync is always clean
   await client.fortnoxInvoiceRow.deleteMany({ where: { invoiceNumber } });
