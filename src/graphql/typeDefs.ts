@@ -87,6 +87,8 @@ const typeDefs = `
     getAccounts(financialYearId: ID!): [FortnoxAccount!]!
     getVouchers(financialYearId: ID!, page: Int, limit: Int): [FortnoxVoucher!]!
     getVoucherDetail(voucherId: ID!): FortnoxVoucherDetail
+    getInvoices(page: Int, limit: Int, status: String, customerNumber: String): [FortnoxInvoice!]!
+    getInvoiceDetail(invoiceNumber: String!): FortnoxInvoice
     getAllCustomers: [Customer!]!
     getCustomersByEmployee(userId: ID!): [Customer!]!
     getEmployeesByCustomer(customerId: ID!): [User!]!
@@ -152,6 +154,32 @@ const typeDefs = `
     description: String
     referenceType: String
     referenceNumber: String
+  }
+
+  type FortnoxInvoiceRow {
+    rowNumber: Int!
+    articleNumber: String
+    description: String
+    quantity: Float
+    price: Float
+    vatPercent: Float
+    total: Float
+  }
+
+  type FortnoxInvoice {
+    invoiceNumber: String!
+    customerNumber: String!
+    invoiceDate: String!
+    dueDate: String
+    totalExclVat: Float
+    totalInclVat: Float
+    vat: Float
+    currency: String!
+    status: String!
+    ourReference: String
+    yourReference: String
+    syncedAt: String!
+    rows: [FortnoxInvoiceRow!]!
   }
 
   type FortnoxVoucherRow {
