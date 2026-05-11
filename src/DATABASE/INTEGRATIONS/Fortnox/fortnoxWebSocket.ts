@@ -8,6 +8,23 @@ import { deriveInvoiceStatus } from './syncFortnoxData';
 const WS_URL = 'wss://ws.fortnox.se/topics-v1';
 const RECONNECT_DELAY_MS = 5_000;
 
+// Per-company refresh lock: companyId → in-flight refresh promise
+// Ensures only one refresh runs at a time per company, preventing invalid_grant
+// when both addTenants() and connectFortnox() try to refresh the same token.
+const refreshLocks = new Map<string, Promise<void>>();
+
+async function withRefreshLock(companyId: string, fn: () => Promise<void>): Promise<void> {
+  const existing = refreshLocks.get(companyId);
+  if (existing) {
+    // Another refresh is already in flight — wait for it, then re-read fresh tokens from DB
+    await existing.catch(() => {});
+    return;
+  }
+  const p = fn().finally(() => refreshLocks.delete(companyId));
+  refreshLocks.set(companyId, p);
+  await p;
+}
+
 // tenantId → companyId, rebuilt on every add-tenants-v1 response
 const tenantToCompany = new Map<string, string>();
 
@@ -119,19 +136,33 @@ async function addTenants(): Promise<void> {
 
     // Proactively refresh if token is expired or about to expire
     if (integration.refreshToken && (!integration.expiresAt || integration.expiresAt <= refreshThreshold)) {
-      try {
-        const newTokens = await refreshFortnoxToken(integration.refreshToken);
-        await updateTokens(company.id, 'Fortnox', {
-          access_token: newTokens.access_token,
-          refresh_token: newTokens.refresh_token,
-          expires_at: newTokens.expires_at,
+      await withRefreshLock(company.id, async () => {
+        // Re-read after acquiring lock — another caller may have already refreshed
+        const fresh = await getCompanyClient(company.dbName).companyIntegration.findFirst({
+          where: { service: { equals: 'fortnox', mode: 'insensitive' } },
+          orderBy: { expiresAt: 'desc' },
         });
-        integration = { ...integration, accessToken: newTokens.access_token };
-        console.log(`[Fortnox WS] Refreshed token for company ${company.name}`);
-      } catch (err) {
-        console.error(`[Fortnox WS] Failed to refresh token for company ${company.name}:`, err);
-        continue; // skip this company rather than send an invalid token
-      }
+        if (!fresh?.refreshToken) return;
+        // If fresh token is now valid, skip refresh
+        if (fresh.expiresAt && fresh.expiresAt > refreshThreshold) {
+          integration = fresh;
+          return;
+        }
+        try {
+          const newTokens = await refreshFortnoxToken(fresh.refreshToken);
+          await updateTokens(company.id, 'Fortnox', {
+            access_token: newTokens.access_token,
+            refresh_token: newTokens.refresh_token,
+            expires_at: newTokens.expires_at,
+          });
+          integration = { ...fresh, accessToken: newTokens.access_token };
+          console.log(`[Fortnox WS] Refreshed token for company ${company.name}`);
+        } catch (err) {
+          console.error(`[Fortnox WS] Failed to refresh token for company ${company.name}:`, err);
+          integration = null as any; // mark as unusable
+        }
+      });
+      if (!integration?.accessToken) continue;
     }
 
     accessTokens.push(`Bearer ${integration.accessToken}`);
@@ -231,7 +262,14 @@ function handleMessage(msg: any): void {
       lastOffsets.set(msg.topic, msg.offset);
     }
 
-    if (msg.topic === 'invoices' && msg.type === 'invoice-updated-v1') {
+    // invoice-updated-v1: general update (may include Sent=true)
+    // invoice-bookkeep-v1: fired when invoice is accounted — Fortnox does NOT fire
+    //   invoice-updated-v1 when the Send button is clicked, so we also hook bookkeep
+    //   and let handleInvoiceUpdated's REST call check Invoice.Sent.
+    if (
+      msg.topic === 'invoices' &&
+      (msg.type === 'invoice-updated-v1' || msg.type === 'invoice-bookkeep-v1')
+    ) {
       const companyId = tenantToCompany.get(String(msg.tenantId));
       if (companyId) {
         handleInvoiceUpdated(companyId, msg as FortnoxWsEvent).catch((err) =>
@@ -284,19 +322,21 @@ async function handleInvoiceUpdated(
     integration.refreshToken ?? undefined,
     `/invoices/${invoiceNumber}`,
     async (newTokens) => {
-      try {
-        await updateTokens(companyId, 'Fortnox', {
-          access_token: newTokens.access_token,
-          refresh_token: newTokens.refresh_token,
-          expires_at: newTokens.expires_at,
-        });
-      } catch (err) {
-        console.warn(
-          '[Fortnox WS] Failed to persist refreshed tokens for company',
-          companyId,
-          err,
-        );
-      }
+      await withRefreshLock(companyId, async () => {
+        try {
+          await updateTokens(companyId, 'Fortnox', {
+            access_token: newTokens.access_token,
+            refresh_token: newTokens.refresh_token,
+            expires_at: newTokens.expires_at,
+          });
+        } catch (err) {
+          console.warn(
+            '[Fortnox WS] Failed to persist refreshed tokens for company',
+            companyId,
+            err,
+          );
+        }
+      });
     },
   );
 
