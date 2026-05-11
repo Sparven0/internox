@@ -12,6 +12,7 @@ import resolvers from "./graphql/resolvers";
 import masterPool, { masterClient } from "./DATABASE/masterpool";
 import { getCompanyClient } from "./DATABASE/connectionManager";
 import fortnoxOAuth from "./routes/fortnoxCallbackRoute";
+import chatApi from "./ai/chatRoute";
 import bcrypt from "bcrypt";
 import { startScheduler } from "./scheduler";
 import { startFortnoxWebSocket } from "./DATABASE/INTEGRATIONS/Fortnox/fortnoxWebSocket";
@@ -56,6 +57,8 @@ app.use(
 
 app.use(express.json());
 app.use(cookieParser());
+
+app.use("/api", chatApi);
 
 // OAuth routes must stay as REST (browser redirects + cookies)
 app.use("/", fortnoxOAuth);
