@@ -308,14 +308,21 @@ async function handleInvoiceUpdated(
     where: { invoiceNumber },
     select: { sentAt: true },
   });
-  if (existing?.sentAt) return;
+  if (existing?.sentAt) {
+    console.log(`[Fortnox WS] Invoice ${invoiceNumber}: sentAt already set, skipping.`);
+    return;
+  }
+  console.log(`[Fortnox WS] Invoice ${invoiceNumber}: fetching from REST to check Sent flag…`);
 
   // Follow-up REST call: the WS event is minimal and doesn't include the Sent flag
   const integration = await client.companyIntegration.findFirst({
     where: { service: { equals: 'fortnox', mode: 'insensitive' } },
     orderBy: { expiresAt: 'desc' },
   });
-  if (!integration) return;
+  if (!integration) {
+    console.error(`[Fortnox WS] Invoice ${invoiceNumber}: no integration found for company ${companyId}`);
+    return;
+  }
 
   const data = await connectFortnox(
     integration.accessToken,
@@ -340,6 +347,7 @@ async function handleInvoiceUpdated(
     },
   );
 
+  console.log(`[Fortnox WS] Invoice ${invoiceNumber}: REST response Sent=${data?.Invoice?.Sent}, EmailSentDate=${data?.Invoice?.EmailSentDate}`);
   if (!data?.Invoice?.Sent) return; // update was something else (amount, due date, …)
 
   // Use the WebSocket event's timestamp — not Date.now()
