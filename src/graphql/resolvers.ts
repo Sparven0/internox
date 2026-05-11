@@ -251,6 +251,7 @@ const resolvers: Resolvers = {
         invoiceDate: inv.invoiceDate.toISOString(),
         dueDate: inv.dueDate?.toISOString() ?? null,
         syncedAt: inv.syncedAt.toISOString(),
+        bookedAt: inv.sentAt?.toISOString() ?? null,
         totalExclVat: inv.totalExclVat != null ? Number(inv.totalExclVat) : null,
         totalInclVat: inv.totalInclVat != null ? Number(inv.totalInclVat) : null,
         vat: inv.vat != null ? Number(inv.vat) : null,
@@ -292,6 +293,7 @@ const resolvers: Resolvers = {
         invoiceDate: inv.invoiceDate.toISOString(),
         dueDate: inv.dueDate?.toISOString() ?? null,
         syncedAt: inv.syncedAt.toISOString(),
+        bookedAt: inv.sentAt?.toISOString() ?? null,
         totalExclVat: inv.totalExclVat != null ? Number(inv.totalExclVat) : null,
         totalInclVat: inv.totalInclVat != null ? Number(inv.totalInclVat) : null,
         vat: inv.vat != null ? Number(inv.vat) : null,
@@ -466,6 +468,18 @@ const resolvers: Resolvers = {
       }
 
       return { customers, emails };
+    },
+    invoiceRecipientAliases: async (_parent, _args, { user }) => {
+      requireAdmin(user);
+      const companyId = (user as any).companyId;
+      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      if (!company) throw new GraphQLError("Company not found");
+      const client = getCompanyClient(company.dbName);
+      const aliases = await client.invoiceRecipientAlias.findMany({
+        include: { customer: true },
+        orderBy: { createdAt: "desc" },
+      });
+      return aliases.map((a) => ({ ...a, createdAt: a.createdAt.toISOString() }));
     },
   },
   Mutation: {
@@ -706,6 +720,27 @@ const resolvers: Resolvers = {
         where: { userId, customerId },
       });
       return "Unassigned successfully";
+    },
+    createInvoiceRecipientAlias: async (_parent, { alias, customerId }, { user }) => {
+      requireAdmin(user);
+      const companyId = (user as any).companyId;
+      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      if (!company) throw new GraphQLError("Company not found");
+      const client = getCompanyClient(company.dbName);
+      const created = await client.invoiceRecipientAlias.create({
+        data: { alias, customerId },
+        include: { customer: true },
+      });
+      return { ...created, createdAt: created.createdAt.toISOString() };
+    },
+    deleteInvoiceRecipientAlias: async (_parent, { id }, { user }) => {
+      requireAdmin(user);
+      const companyId = (user as any).companyId;
+      const company = await masterClient.company.findUnique({ where: { id: companyId } });
+      if (!company) throw new GraphQLError("Company not found");
+      const client = getCompanyClient(company.dbName);
+      await client.invoiceRecipientAlias.delete({ where: { id } });
+      return true;
     },
   },
 };

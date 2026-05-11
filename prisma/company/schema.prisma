@@ -79,13 +79,14 @@ model Customer {
   domain                String?
   companyId             String             @map("company_id") @db.Uuid
   createdAt             DateTime           @default(now()) @map("created_at") @db.Timestamp(6)
-  company               Company            @relation(fields: [companyId], references: [id], onDelete: Cascade)
-  employeeCustomers     EmployeeCustomer[]
-  timeEntries           TimeEntry[]
-  emailActivities       EmailActivity[]
-  emails                Email[]
-  fortnoxCustomer       FortnoxCustomer?
-  fortnoxInvoices       FortnoxInvoice[]
+  company                  Company                  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  employeeCustomers        EmployeeCustomer[]
+  timeEntries              TimeEntry[]
+  emailActivities          EmailActivity[]
+  emails                   Email[]
+  fortnoxCustomer          FortnoxCustomer?
+  fortnoxInvoices          FortnoxInvoice[]
+  invoiceRecipientAliases  InvoiceRecipientAlias[]
 
   @@map("customers")
 }
@@ -247,6 +248,22 @@ model FortnoxInvoiceRow {
   invoice       FortnoxInvoice @relation(fields: [invoiceNumber], references: [invoiceNumber], onDelete: Cascade)
 
   @@map("fortnox_invoice_rows")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Manual mapping: Fortnox invoice recipient alias → Customer
+// Fortnox can send invoices to address-book aliases (not raw email addresses),
+// so automatic matching is impossible. This table is populated manually by users.
+// ─────────────────────────────────────────────────────────────────────────────
+model InvoiceRecipientAlias {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  /// The alias name exactly as it appears in Fortnox (e.g. "Kundens Fakturamejl")
+  alias      String   @unique
+  customerId String   @map("customer_id") @db.Uuid
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@map("invoice_recipient_aliases")
 }
 
 model FortnoxSyncLog {

@@ -65,6 +65,14 @@ const typeDefs = `
     fortnoxCustomerNumber: String
   }
 
+  type InvoiceRecipientAlias {
+    id: ID!
+    alias: String!
+    customerId: ID!
+    customer: Customer!
+    createdAt: String!
+  }
+
   type EmployeeCustomer {
     userId: ID!
     customerId: ID!
@@ -93,6 +101,7 @@ const typeDefs = `
     getAllCustomers: [Customer!]!
     getCustomersByEmployee(userId: ID!): [Customer!]!
     getEmployeesByCustomer(customerId: ID!): [User!]!
+    invoiceRecipientAliases: [InvoiceRecipientAlias!]!
     me: Me
   }
 
@@ -180,6 +189,7 @@ const typeDefs = `
     ourReference: String
     yourReference: String
     syncedAt: String!
+    bookedAt: String
     rows: [FortnoxInvoiceRow!]!
   }
 
@@ -216,6 +226,8 @@ const typeDefs = `
     assignCustomerToEmployee(customerId: ID!, userId: ID!): EmployeeCustomer!
     unassignCustomerFromEmployee(customerId: ID!, userId: ID!): String!
     syncFortnox: String!
+    createInvoiceRecipientAlias(alias: String!, customerId: ID!): InvoiceRecipientAlias!
+    deleteInvoiceRecipientAlias(id: ID!): Boolean!
   }
 `;
 
