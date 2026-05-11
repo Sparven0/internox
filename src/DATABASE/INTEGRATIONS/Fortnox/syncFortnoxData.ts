@@ -1,6 +1,6 @@
-import { masterClient } from '../../masterpool';
-import { getCompanyClient } from '../../connectionManager';
-import fetchFortnoxForCompany from './fortnoxData';
+import { masterClient } from "../../masterpool";
+import { getCompanyClient } from "../../connectionManager";
+import fetchFortnoxForCompany from "./fortnoxData";
 
 const PAGE_SIZE = 500; // Fortnox max page size
 
@@ -8,21 +8,24 @@ const PAGE_SIZE = 500; // Fortnox max page size
  * Fetch all pages of a paginated Fortnox list endpoint.
  * Fortnox returns MetaInformation['@TotalPages'] to signal how many pages exist.
  */
-async function fetchAllPages(companyId: string, resource: string): Promise<any[]> {
+async function fetchAllPages(
+  companyId: string,
+  resource: string,
+): Promise<any[]> {
   const results: any[] = [];
   let page = 1;
 
   while (true) {
     const data = await fetchFortnoxForCompany(
       companyId,
-      `/${resource}?page=${page}&limit=${PAGE_SIZE}`
+      `/${resource}?page=${page}&limit=${PAGE_SIZE}`,
     );
     // The array is always under the PascalCase resource key, e.g. "Customers" or "Invoices"
     const rootKey = Object.keys(data).find((k) => Array.isArray(data[k]));
     const items: any[] = rootKey ? data[rootKey] : [];
     results.push(...items);
 
-    const totalPages: number = data?.MetaInformation?.['@TotalPages'] ?? 1;
+    const totalPages: number = data?.MetaInformation?.["@TotalPages"] ?? 1;
     if (page >= totalPages) break;
     page++;
   }
@@ -52,18 +55,20 @@ export async function syncFortnoxData(companyId: string): Promise<{
   customers: number;
   invoices: number;
 }> {
-  const company = await masterClient.company.findUnique({ where: { id: companyId } });
+  const company = await masterClient.company.findUnique({
+    where: { id: companyId },
+  });
   if (!company) throw new Error(`Company not found: ${companyId}`);
 
   const client = getCompanyClient(company.dbName);
   const now = new Date();
 
   // ── Customers ─────────────────────────────────────────────────────────────
-  const rawCustomers = await fetchAllPages(companyId, 'customers');
+  const rawCustomers = await fetchAllPages(companyId, "customers");
   let customerCount = 0;
 
   for (const c of rawCustomers) {
-    const customerNumber = String(c.CustomerNumber ?? '').trim();
+    const customerNumber = String(c.CustomerNumber ?? "").trim();
     if (!customerNumber) continue;
 
     // Upsert the internal Customer row so we always have a stable UUID to link to
@@ -71,7 +76,7 @@ export async function syncFortnoxData(companyId: string): Promise<{
       where: { fortnoxCustomerNumber: customerNumber },
       create: {
         fortnoxCustomerNumber: customerNumber,
-        name: c.Name ?? '',
+        name: c.Name ?? "",
         email: c.Email || null,
         domain: null,
         companyId: company.id,
@@ -88,7 +93,7 @@ export async function syncFortnoxData(companyId: string): Promise<{
       create: {
         customerNumber,
         customerId: internalCustomer?.id ?? null,
-        name: c.Name ?? '',
+        name: c.Name ?? "",
         organisationNumber: c.OrganisationNumber || null,
         email: c.Email || null,
         phone: c.Phone || null,
@@ -122,12 +127,12 @@ export async function syncFortnoxData(companyId: string): Promise<{
   }
 
   // ── Invoices (headers only) ────────────────────────────────────────────────
-  const rawInvoices = await fetchAllPages(companyId, 'invoices');
+  const rawInvoices = await fetchAllPages(companyId, "invoices");
   let invoiceCount = 0;
 
   for (const inv of rawInvoices) {
-    const invoiceNumber = String(inv.DocumentNumber ?? '').trim();
-    const customerNumber = String(inv.CustomerNumber ?? '').trim();
+    const invoiceNumber = String(inv.DocumentNumber ?? "").trim();
+    const customerNumber = String(inv.CustomerNumber ?? "").trim();
     if (!invoiceNumber || !customerNumber) continue;
 
     // Ensure the fortnox_customer row exists before inserting the invoice FK
@@ -150,7 +155,7 @@ export async function syncFortnoxData(companyId: string): Promise<{
         totalExclVat: inv.Net != null ? parseFloat(inv.Net) : null,
         totalInclVat: inv.Total != null ? parseFloat(inv.Total) : null,
         vat: inv.TotalVAT != null ? parseFloat(inv.TotalVAT) : null,
-        currency: inv.Currency || 'SEK',
+        currency: inv.Currency || "SEK",
         status,
         ourReference: inv.OurReference || null,
         yourReference: inv.YourReference || null,
@@ -179,7 +184,7 @@ export async function syncFortnoxData(companyId: string): Promise<{
   // per-company DB (same UUID as the master company id).
   const companyRow = await client.company.findFirst({ select: { id: true } });
   if (companyRow) {
-    for (const resource of ['customers', 'invoices'] as const) {
+    for (const resource of ["customers", "invoices"] as const) {
       await client.fortnoxSyncLog.upsert({
         where: { companyId_resource: { companyId: companyRow.id, resource } },
         create: { companyId: companyRow.id, resource, lastSyncedAt: now },
@@ -188,7 +193,9 @@ export async function syncFortnoxData(companyId: string): Promise<{
     }
   }
 
-  console.log(`[syncFortnoxData] Company ${companyId}: ${customerCount} customers, ${invoiceCount} invoices synced.`);
+  console.log(
+    `[syncFortnoxData] Company ${companyId}: ${customerCount} customers, ${invoiceCount} invoices synced.`,
+  );
   return { customers: customerCount, invoices: invoiceCount };
 }
 
@@ -199,12 +206,17 @@ export async function syncFortnoxData(companyId: string): Promise<{
  */
 export async function syncFortnoxInvoiceRows(
   companyId: string,
-  invoiceNumber: string
+  invoiceNumber: string,
 ): Promise<number> {
-  const company = await masterClient.company.findUnique({ where: { id: companyId } });
+  const company = await masterClient.company.findUnique({
+    where: { id: companyId },
+  });
   if (!company) throw new Error(`Company not found: ${companyId}`);
 
-  const data = await fetchFortnoxForCompany(companyId, `/invoices/${invoiceNumber}`);
+  const data = await fetchFortnoxForCompany(
+    companyId,
+    `/invoices/${invoiceNumber}`,
+  );
   const inv = data?.Invoice ?? data;
   const rows: any[] = inv?.InvoiceRows ?? [];
 
@@ -221,7 +233,10 @@ export async function syncFortnoxInvoiceRows(
         rowNumber: row.RowId ?? i + 1,
         articleNumber: row.ArticleNumber || null,
         description: row.Description || null,
-        quantity: row.DeliveredQuantity != null ? parseFloat(row.DeliveredQuantity) : null,
+        quantity:
+          row.DeliveredQuantity != null
+            ? parseFloat(row.DeliveredQuantity)
+            : null,
         price: row.Price != null ? parseFloat(row.Price) : null,
         vatPercent: row.VAT != null ? parseFloat(row.VAT) : null,
         total: row.Total != null ? parseFloat(row.Total) : null,
@@ -230,4 +245,55 @@ export async function syncFortnoxInvoiceRows(
   }
 
   return rows.length;
+}
+
+const DETAIL_CONCURRENCY = 5;
+/**
+ * Incrementally sync invoice rows for all invoices that have no rows yet.
+ * Designed to run after syncFortnoxData() in the scheduler.
+ */
+export async function syncAllInvoiceDetails(
+  companyId: string,
+): Promise<number> {
+  const company = await masterClient.company.findUnique({
+    where: { id: companyId },
+  });
+  if (!company) throw new Error(`Company not found: ${companyId}`);
+
+  const client = getCompanyClient(company.dbName);
+
+  // Only fetch invoices that have zero rows — skips already-synced ones
+  const pending = await client.fortnoxInvoice.findMany({
+    where: { rows: { none: {} } },
+    select: { invoiceNumber: true },
+    orderBy: { invoiceDate: "desc" }, // newest first — most likely to be viewed
+  });
+
+  if (pending.length === 0) return 0;
+
+  console.log(
+    `[syncAllInvoiceDetails] ${pending.length} invoices need detail sync for company ${companyId}`,
+  );
+
+  let synced = 0;
+  const numbers = pending.map((i) => i.invoiceNumber);
+
+  for (let i = 0; i < numbers.length; i += DETAIL_CONCURRENCY) {
+    const chunk = numbers.slice(i, i + DETAIL_CONCURRENCY);
+    await Promise.all(
+      chunk.map(async (num) => {
+        try {
+          await syncFortnoxInvoiceRows(companyId, num);
+          synced++;
+        } catch (err) {
+          console.error(
+            `[syncAllInvoiceDetails] Failed for invoice ${num}:`,
+            err,
+          );
+          // Continue — don't abort the whole batch on one failure
+        }
+      }),
+    );
+  }
+  return synced;
 }
