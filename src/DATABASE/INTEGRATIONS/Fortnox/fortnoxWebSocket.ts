@@ -347,7 +347,22 @@ async function handleInvoiceUpdated(
     },
   );
 
-  console.log(`[Fortnox WS] Invoice ${invoiceNumber}: REST response Sent=${data?.Invoice?.Sent}, EmailSentDate=${data?.Invoice?.EmailSentDate}`);
+  const inv0 = data?.Invoice ?? {};
+  console.log(`[Fortnox WS] Invoice ${invoiceNumber} full REST fields:`, JSON.stringify({
+    Sent: inv0.Sent,
+    EmailSentDate: inv0.EmailSentDate,
+    SentDate: inv0.SentDate,
+    DeliveryDate: inv0.DeliveryDate,
+    ExternalInvoiceReference1: inv0.ExternalInvoiceReference1,
+    NoxFinans: inv0.NoxFinans,
+    PaymentWay: inv0.PaymentWay,
+    Cancelled: inv0.Cancelled,
+    Credit: inv0.Credit,
+    FinalPayDate: inv0.FinalPayDate,
+    InvoiceDate: inv0.InvoiceDate,
+    DocumentNumber: inv0.DocumentNumber,
+    Status: inv0.Status,
+  }));
   if (!data?.Invoice?.Sent) return; // update was something else (amount, due date, …)
 
   // Use the WebSocket event's timestamp — not Date.now()
