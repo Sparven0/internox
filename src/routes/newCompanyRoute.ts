@@ -1,4 +1,4 @@
-import { insertCompany } from "../DATABASE/COMPANIES/insertCompanyFunc";
+import { onboardCompany } from "../DATABASE/onboard";
 import express from "express";
 import authMiddleware from "../MIDDLEWARES/authMiddleware";
 import { checkAdmin } from "../MIDDLEWARES/requireSuperAdmin";
@@ -7,7 +7,7 @@ const router = express.Router();
 router.post("/", authMiddleware, checkAdmin, async (req, res) => {
     const { name, domain } = req.body;
     try {
-        const companyId = await insertCompany(name, domain);
+        const companyId = await onboardCompany(name, domain);
         res.status(201).json({ message: "Company created successfully", companyId });
     } catch (error) {
         console.error("Error creating company:", error);

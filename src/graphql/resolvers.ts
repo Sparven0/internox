@@ -20,6 +20,7 @@ import {
   syncFortnoxData,
   syncFortnoxInvoiceRows,
 } from "../DATABASE/INTEGRATIONS/Fortnox/syncFortnoxData";
+import { getUserCompanyTimeline } from "../DATABASE/timeline/getUserCompanyTimeline";
 
 function requireAdmin(user: any) {
   if (!user || (user.role !== "admin" && user.role !== "super_admin")) {
@@ -480,6 +481,51 @@ const resolvers: Resolvers = {
         orderBy: { createdAt: "desc" },
       });
       return aliases.map((a) => ({ ...a, createdAt: a.createdAt.toISOString() }));
+    },
+    getUserActivityTimeline: async (
+      _parent,
+      { userId, fromDate, toDate, limit },
+      { user },
+    ) => {
+      if (!user)
+        throw new GraphQLError("Unauthorized", {
+          extensions: { code: "UNAUTHORIZED" },
+        });
+      const companyId = (user as any).companyId;
+      const company = await masterClient.company.findUnique({
+        where: { id: companyId },
+      });
+      if (!company) throw new GraphQLError("Company not found");
+      const client = getCompanyClient(company.dbName);
+      const targetUser = await client.user.findUnique({
+        where: { id: userId },
+        select: { id: true },
+      });
+      if (!targetUser) {
+        throw new GraphQLError("User not found", {
+          extensions: { code: "NOT_FOUND" },
+        });
+      }
+      try {
+        return await getUserCompanyTimeline(company.dbName, {
+          userId,
+          fromDate,
+          toDate,
+          limit: limit ?? undefined,
+        });
+      } catch (err: unknown) {
+        const msg = err instanceof Error ? err.message : String(err);
+        if (
+          msg.includes("Invalid date format") ||
+          msg.includes("Invalid calendar date") ||
+          msg.includes("fromDate must be on or before")
+        ) {
+          throw new GraphQLError(msg, {
+            extensions: { code: "BAD_USER_INPUT" },
+          });
+        }
+        throw err;
+      }
     },
   },
   Mutation: {

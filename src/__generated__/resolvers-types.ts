@@ -332,6 +332,7 @@ export type Query = {
   getInvoices: Array<FortnoxInvoice>;
   getOnboardingStatus: OnboardingStatus;
   getSentEmails?: Maybe<Array<Maybe<SentEmail>>>;
+  getUserActivityTimeline: Array<TimelineEvent>;
   getUsers?: Maybe<Array<Maybe<User>>>;
   getUsersByCompanyId?: Maybe<Array<Maybe<User>>>;
   getVoucherDetail?: Maybe<FortnoxVoucherDetail>;
@@ -397,6 +398,14 @@ export type QueryGetSentEmailsArgs = {
 };
 
 
+export type QueryGetUserActivityTimelineArgs = {
+  fromDate: Scalars['String']['input'];
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  toDate: Scalars['String']['input'];
+  userId: Scalars['ID']['input'];
+};
+
+
 export type QueryGetUsersArgs = {
   company: Scalars['String']['input'];
 };
@@ -433,6 +442,47 @@ export type SuperAdminAuthPayload = {
   __typename?: 'SuperAdminAuthPayload';
   role: Scalars['String']['output'];
   userName: Scalars['String']['output'];
+};
+
+export type TimelineEmailActivity = {
+  __typename?: 'TimelineEmailActivity';
+  id: Scalars['ID']['output'];
+  messageId?: Maybe<Scalars['String']['output']>;
+  recipientEmail: Scalars['String']['output'];
+  subject?: Maybe<Scalars['String']['output']>;
+};
+
+export type TimelineEvent = {
+  __typename?: 'TimelineEvent';
+  emailActivity?: Maybe<TimelineEmailActivity>;
+  fortnoxVoucher?: Maybe<TimelineFortnoxVoucherBrief>;
+  kind: TimelineEventKind;
+  mailSent?: Maybe<TimelineMailSent>;
+  occurredAt: Scalars['String']['output'];
+};
+
+export enum TimelineEventKind {
+  EmailActivity = 'EMAIL_ACTIVITY',
+  FortnoxVoucher = 'FORTNOX_VOUCHER',
+  Mail = 'MAIL'
+}
+
+export type TimelineFortnoxVoucherBrief = {
+  __typename?: 'TimelineFortnoxVoucherBrief';
+  description?: Maybe<Scalars['String']['output']>;
+  financialYearId: Scalars['ID']['output'];
+  id: Scalars['ID']['output'];
+  transactionDate: Scalars['String']['output'];
+  voucherNumber: Scalars['Int']['output'];
+  voucherSeries: Scalars['String']['output'];
+};
+
+export type TimelineMailSent = {
+  __typename?: 'TimelineMailSent';
+  fromAddress: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  messageId: Scalars['String']['output'];
+  subject?: Maybe<Scalars['String']['output']>;
 };
 
 export type User = {
@@ -547,6 +597,11 @@ export type ResolversTypes = {
   SentEmail: ResolverTypeWrapper<SentEmail>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
   SuperAdminAuthPayload: ResolverTypeWrapper<SuperAdminAuthPayload>;
+  TimelineEmailActivity: ResolverTypeWrapper<TimelineEmailActivity>;
+  TimelineEvent: ResolverTypeWrapper<TimelineEvent>;
+  TimelineEventKind: TimelineEventKind;
+  TimelineFortnoxVoucherBrief: ResolverTypeWrapper<TimelineFortnoxVoucherBrief>;
+  TimelineMailSent: ResolverTypeWrapper<TimelineMailSent>;
   User: ResolverTypeWrapper<User>;
 };
 
@@ -583,6 +638,10 @@ export type ResolversParentTypes = {
   SentEmail: SentEmail;
   String: Scalars['String']['output'];
   SuperAdminAuthPayload: SuperAdminAuthPayload;
+  TimelineEmailActivity: TimelineEmailActivity;
+  TimelineEvent: TimelineEvent;
+  TimelineFortnoxVoucherBrief: TimelineFortnoxVoucherBrief;
+  TimelineMailSent: TimelineMailSent;
   User: User;
 };
 
@@ -789,6 +848,7 @@ export type QueryResolvers<ContextType = GraphQLContext, ParentType extends Reso
   getInvoices?: Resolver<Array<ResolversTypes['FortnoxInvoice']>, ParentType, ContextType, Partial<QueryGetInvoicesArgs>>;
   getOnboardingStatus?: Resolver<ResolversTypes['OnboardingStatus'], ParentType, ContextType>;
   getSentEmails?: Resolver<Maybe<Array<Maybe<ResolversTypes['SentEmail']>>>, ParentType, ContextType, RequireFields<QueryGetSentEmailsArgs, 'companyId' | 'credentialId'>>;
+  getUserActivityTimeline?: Resolver<Array<ResolversTypes['TimelineEvent']>, ParentType, ContextType, RequireFields<QueryGetUserActivityTimelineArgs, 'fromDate' | 'toDate' | 'userId'>>;
   getUsers?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType, RequireFields<QueryGetUsersArgs, 'company'>>;
   getUsersByCompanyId?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType, RequireFields<QueryGetUsersByCompanyIdArgs, 'companyId'>>;
   getVoucherDetail?: Resolver<Maybe<ResolversTypes['FortnoxVoucherDetail']>, ParentType, ContextType, RequireFields<QueryGetVoucherDetailArgs, 'voucherId'>>;
@@ -810,6 +870,37 @@ export type SentEmailResolvers<ContextType = GraphQLContext, ParentType extends 
 export type SuperAdminAuthPayloadResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['SuperAdminAuthPayload'] = ResolversParentTypes['SuperAdminAuthPayload']> = {
   role?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   userName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+};
+
+export type TimelineEmailActivityResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['TimelineEmailActivity'] = ResolversParentTypes['TimelineEmailActivity']> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  messageId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  recipientEmail?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  subject?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+};
+
+export type TimelineEventResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['TimelineEvent'] = ResolversParentTypes['TimelineEvent']> = {
+  emailActivity?: Resolver<Maybe<ResolversTypes['TimelineEmailActivity']>, ParentType, ContextType>;
+  fortnoxVoucher?: Resolver<Maybe<ResolversTypes['TimelineFortnoxVoucherBrief']>, ParentType, ContextType>;
+  kind?: Resolver<ResolversTypes['TimelineEventKind'], ParentType, ContextType>;
+  mailSent?: Resolver<Maybe<ResolversTypes['TimelineMailSent']>, ParentType, ContextType>;
+  occurredAt?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+};
+
+export type TimelineFortnoxVoucherBriefResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['TimelineFortnoxVoucherBrief'] = ResolversParentTypes['TimelineFortnoxVoucherBrief']> = {
+  description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  financialYearId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  transactionDate?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  voucherNumber?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  voucherSeries?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+};
+
+export type TimelineMailSentResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['TimelineMailSent'] = ResolversParentTypes['TimelineMailSent']> = {
+  fromAddress?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  messageId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  subject?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
 };
 
 export type UserResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
@@ -846,6 +937,10 @@ export type Resolvers<ContextType = GraphQLContext> = {
   Query?: QueryResolvers<ContextType>;
   SentEmail?: SentEmailResolvers<ContextType>;
   SuperAdminAuthPayload?: SuperAdminAuthPayloadResolvers<ContextType>;
+  TimelineEmailActivity?: TimelineEmailActivityResolvers<ContextType>;
+  TimelineEvent?: TimelineEventResolvers<ContextType>;
+  TimelineFortnoxVoucherBrief?: TimelineFortnoxVoucherBriefResolvers<ContextType>;
+  TimelineMailSent?: TimelineMailSentResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
 };
 

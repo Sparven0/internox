@@ -1,12 +1,12 @@
 import express from "express";
 import { authCompanyAdmin } from "../MIDDLEWARES/authCompanyAdmin";
-import { extractUser } from "../DATABASE/USERS/extractUserFunc";
+import { extractUserByEmail } from "../DATABASE/USERS/extractUserByEmailFunc";
 const router = express.Router();
 
 router.get("/", authCompanyAdmin, async (req, res) => {
     const {company, email} = req.query;
     try {
-        const userData = await extractUser(company as string, email as string);
+        const userData = await extractUserByEmail(company as string, email as string);
         res.status(200).json({ message: "User extracted successfully", user: userData });
     } catch (error) {
         console.error("Error extracting user:", error);

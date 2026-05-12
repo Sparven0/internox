@@ -79,6 +79,43 @@ const typeDefs = `
     assignedAt: String!
   }
 
+  enum TimelineEventKind {
+    MAIL
+    EMAIL_ACTIVITY
+    FORTNOX_VOUCHER
+  }
+
+  type TimelineMailSent {
+    id: ID!
+    subject: String
+    messageId: String!
+    fromAddress: String!
+  }
+
+  type TimelineEmailActivity {
+    id: ID!
+    subject: String
+    recipientEmail: String!
+    messageId: String
+  }
+
+  type TimelineFortnoxVoucherBrief {
+    id: ID!
+    voucherSeries: String!
+    voucherNumber: Int!
+    transactionDate: String!
+    description: String
+    financialYearId: ID!
+  }
+
+  type TimelineEvent {
+    kind: TimelineEventKind!
+    occurredAt: String!
+    mailSent: TimelineMailSent
+    emailActivity: TimelineEmailActivity
+    fortnoxVoucher: TimelineFortnoxVoucherBrief
+  }
+
   type Query {
     getAllCompanies: [Company]
     getCompanyById(id: ID!): Company
@@ -102,6 +139,7 @@ const typeDefs = `
     getCustomersByEmployee(userId: ID!): [Customer!]!
     getEmployeesByCustomer(customerId: ID!): [User!]!
     invoiceRecipientAliases: [InvoiceRecipientAlias!]!
+    getUserActivityTimeline(userId: ID!, fromDate: String!, toDate: String!, limit: Int): [TimelineEvent!]!
     me: Me
   }
 
