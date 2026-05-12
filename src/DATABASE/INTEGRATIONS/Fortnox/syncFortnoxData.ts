@@ -83,15 +83,10 @@ export function resolveFortnoxBookedAt(
   wsTimestamp?: string | null,
   fallback: Date = new Date(),
 ): Date {
-  return (
-    firstFortnoxDate(
-      wsTimestamp,
-      inv?.BookedDate,
-      inv?.BookingDate,
-      inv?.AccountingDate,
-      inv?.InvoiceDate,
-    ) ?? fallback
-  );
+  // Only wsTimestamp carries an actual datetime — the Fortnox REST fields
+  // (BookedDate, InvoiceDate, etc.) are date-only strings ("YYYY-MM-DD") that
+  // JS parses as midnight UTC, producing 00:00:00+00 in the DB.
+  return firstFortnoxDate(wsTimestamp) ?? fallback;
 }
 
 /**
