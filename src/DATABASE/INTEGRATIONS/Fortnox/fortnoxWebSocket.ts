@@ -299,8 +299,30 @@ function handleMessage(msg: any): void {
 interface FortnoxWsEvent {
   entityId: string | number; // DocumentNumber (JSON may deliver a number)
   timestamp?: string; // ISO 8601 with tz when present on the wire
+  Timestamp?: string;
   offset: string;
   type?: string; // e.g. invoice-updated-v1, invoice-bookkeep-v1
+  [key: string]: unknown;
+}
+
+/** Collect datetime strings Fortnox may attach to WS events (casing varies). */
+function collectWsTimestampCandidates(evt: FortnoxWsEvent): string[] {
+  const keys = [
+    'timestamp',
+    'Timestamp',
+    'eventTime',
+    'EventTime',
+    'created',
+    'Created',
+    'time',
+    'Time',
+  ];
+  const out: string[] = [];
+  for (const k of keys) {
+    const v = evt[k];
+    if (typeof v === 'string' && v.trim()) out.push(v.trim());
+  }
+  return out;
 }
 
 /** Fortnox WS kan komma före GET /invoices/{id} visar Booked=true. */
@@ -324,6 +346,10 @@ async function handleInvoiceUpdatedDeduped(
   event: FortnoxWsEvent,
   invoiceNumber: string,
 ): Promise<void> {
+  /** Log correlation only — booked timestamps use `persistedAt` after REST confirms Booked. */
+  const wsReceivedAt = new Date();
+  const wsTimeCandidates = collectWsTimestampCandidates(event);
+
   const company = await masterClient.company.findUnique({
     where: { id: companyId },
   });
@@ -389,7 +415,7 @@ async function handleInvoiceUpdatedDeduped(
     const wait = REST_BOOKED_RETRY_DELAYS_MS[r];
     console.log(
       `[Fortnox WS] Invoice ${invoiceNumber}: Booked still false, retry ${r + 1}/${REST_BOOKED_RETRY_DELAYS_MS.length} in ${wait}ms…`,
-      `(wsTimestamp=${event.timestamp ?? '—'})`,
+      `(wsCandidates=${JSON.stringify(wsTimeCandidates)} wsReceivedAt=${wsReceivedAt.toISOString()})`,
     );
     await sleep(wait);
     data = await fetchInvoice();
@@ -403,7 +429,7 @@ async function handleInvoiceUpdatedDeduped(
 
   const inv0 = inv;
   console.log(
-    `[Fortnox WS] Invoice ${invoiceNumber}: REST Booked=${inv0.Booked ?? inv0.booked} Sent=${inv0.Sent} wsTimestamp=${event.timestamp ?? '—'}`,
+    `[Fortnox WS] Invoice ${invoiceNumber}: REST Booked=${inv0.Booked ?? inv0.booked} Sent=${inv0.Sent} wsCandidates=${JSON.stringify(wsTimeCandidates)} wsReceivedAt=${wsReceivedAt.toISOString()}`,
   );
   if (!isFortnoxInvoiceBooked(inv)) {
     console.log(
@@ -412,9 +438,14 @@ async function handleInvoiceUpdatedDeduped(
     return;
   }
 
-  const bookedAt = resolveFortnoxBookedAt(inv, event.timestamp, new Date());
+  /** Single clock anchor for DB writes — avoids sent_at trailing synced_at/created_at by hundreds of ms. */
+  const persistedAt = new Date();
+  const bookedAt = resolveFortnoxBookedAt(
+    inv,
+    wsTimeCandidates.length > 0 ? wsTimeCandidates : null,
+    persistedAt,
+  );
   const customerNumber = String(inv.CustomerNumber ?? '').trim();
-  const now = new Date();
 
   // Ensure the fortnox_customer row exists so the FK is satisfiable
   const fnCustomer = customerNumber
@@ -431,7 +462,7 @@ async function handleInvoiceUpdatedDeduped(
       invoiceNumber,
       customerNumber,
       customerId: fnCustomer?.customerId ?? null,
-      invoiceDate: inv.InvoiceDate ? new Date(inv.InvoiceDate) : now,
+      invoiceDate: inv.InvoiceDate ? new Date(inv.InvoiceDate) : persistedAt,
       dueDate: inv.DueDate ? new Date(inv.DueDate) : null,
       totalExclVat: inv.Net != null ? parseFloat(inv.Net) : null,
       totalInclVat: inv.Total != null ? parseFloat(inv.Total) : null,
@@ -441,13 +472,14 @@ async function handleInvoiceUpdatedDeduped(
       ourReference: inv.OurReference || null,
       yourReference: inv.YourReference || null,
       rawData: inv,
-      syncedAt: now,
+      createdAt: persistedAt,
+      syncedAt: persistedAt,
       sentAt: bookedAt,
     },
     update: {
       status: deriveInvoiceStatus(inv),
       rawData: inv,
-      syncedAt: now,
+      syncedAt: persistedAt,
       sentAt: bookedAt,
     },
   });

@@ -75,18 +75,43 @@ export function firstFortnoxDate(...raw: unknown[]): Date | null {
 }
 
 /**
+ * Like {@link firstFortnoxDate}, but ignores calendar-date-only strings (`YYYY-MM-DD`)
+ * so we do not treat them as instants at UTC midnight.
+ */
+export function firstFortnoxInstant(...raw: unknown[]): Date | null {
+  for (const v of raw) {
+    if (v == null || v === '') continue;
+    const s = String(v).trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) continue;
+    const d = new Date(s);
+    if (!Number.isNaN(d.getTime())) return d;
+  }
+  return null;
+}
+
+/**
  * When the invoice is bookkept, store that instant in `fortnox_invoices.sent_at`.
- * Fortnox often returns only Booked=true without a dedicated datetime field.
+ * Prefer Fortnox WebSocket timestamp(s) when present (full datetimes only — bare
+ * `YYYY-MM-DD` strings are ignored). Otherwise use `fallback`.
+ *
+ * Fortnox REST fields such as InvoiceDate / BookedDate are often date-only
+ * ("YYYY-MM-DD") and parse as midnight UTC — avoid using those as booked time.
  */
 export function resolveFortnoxBookedAt(
-  inv: any,
-  wsTimestamp?: string | null,
+  _inv: any,
+  wsTimestamp?: string | string[] | null,
   fallback: Date = new Date(),
 ): Date {
-  // Only wsTimestamp carries an actual datetime — the Fortnox REST fields
-  // (BookedDate, InvoiceDate, etc.) are date-only strings ("YYYY-MM-DD") that
-  // JS parses as midnight UTC, producing 00:00:00+00 in the DB.
-  return firstFortnoxDate(wsTimestamp) ?? fallback;
+  const candidates = wsTimestamp == null
+    ? []
+    : Array.isArray(wsTimestamp)
+      ? wsTimestamp
+      : [wsTimestamp];
+  for (const raw of candidates) {
+    const d = firstFortnoxInstant(raw);
+    if (d) return d;
+  }
+  return fallback;
 }
 
 /**

@@ -224,8 +224,8 @@ model FortnoxInvoice {
   sentAt          DateTime?           @map("sent_at") @db.Timestamptz(6)
   /// Full Fortnox API response, preserved for forward-compatibility
   rawData         Json?               @map("raw_data")
-  syncedAt        DateTime            @default(now()) @map("synced_at") @db.Timestamp(6)
-  createdAt       DateTime            @default(now()) @map("created_at") @db.Timestamp(6)
+  syncedAt        DateTime            @default(now()) @map("synced_at") @db.Timestamptz(6)
+  createdAt       DateTime            @default(now()) @map("created_at") @db.Timestamptz(6)
 
   fortnoxCustomer FortnoxCustomer     @relation(fields: [customerNumber], references: [customerNumber])
   customer        Customer?           @relation(fields: [customerId], references: [id], onDelete: SetNull)
