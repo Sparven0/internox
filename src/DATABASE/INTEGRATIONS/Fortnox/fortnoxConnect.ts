@@ -1,6 +1,5 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
-import nock from 'nock';
 import { getFortnoxTokens } from './fortnoxHub';
 
 dotenv.config();
@@ -89,11 +88,36 @@ export async function connectFortnox(
     return res.data;
   };
 
+  const isFortnoxAuthError = (err: any): boolean => {
+    const status = err?.response?.status;
+    if (status === 401) return true;
+    // Fortnox sometimes returns 400 with auth error codes instead of 401
+    if (status === 400) {
+      const code = err?.response?.data?.ErrorInformation?.Code
+             ?? err?.response?.data?.ErrorInformation?.code;
+      const msg: string = err?.response?.data?.ErrorInformation?.Message
+             ?? err?.response?.data?.ErrorInformation?.message ?? '';
+      // 2001830 = "Du saknar behörighet" (expired/invalid token presented as permission error)
+      // 2000436, 2000474 = other Fortnox auth failures
+      return code === 2001830 || code === 2000436 || code === 2000474
+        || msg.toLowerCase().includes('unauthorized')
+        || msg.toLowerCase().includes('access_token')
+        || msg.toLowerCase().includes('access-token');
+    }
+    return false;
+  };
+
   try {
     return await makeRequest(accessToken);
   } catch (err: any) {
-    // If unauthorized and we have a refresh token, try to refresh once
-    if (err?.response?.status === 401 && refreshToken) {
+    const status = err?.response?.status;
+    const body = err?.response?.data;
+    if (status >= 400) {
+      console.error(`[Fortnox API] ${status} error on ${url}:`, JSON.stringify(body ?? err?.message));
+    }
+
+    // If it looks like an auth error and we have a refresh token, try to refresh once
+    if (isFortnoxAuthError(err) && refreshToken) {
       try {
         const newTokens = await refreshFortnoxToken(refreshToken);
         // Persist refreshed tokens if caller provided a callback
@@ -108,13 +132,13 @@ export async function connectFortnox(
 
         // Retry original request with new access token
         return await makeRequest(newTokens.access_token);
-      } catch (refreshErr) {
-        // Refresh failed, surface the original or refresh error
+      } catch (refreshErr: any) {
+        console.error('[Fortnox API] Refresh failed:', refreshErr?.response?.data ?? refreshErr?.message);
         throw refreshErr;
       }
     }
 
-    // not a 401 or no refresh token; rethrow
+    // not an auth error or no refresh token; rethrow
     throw err;
   }
 }

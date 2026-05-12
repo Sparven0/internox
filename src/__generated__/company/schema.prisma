@@ -72,20 +72,21 @@ model ImapCredential {
 }
 
 model Customer {
-  id                    String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  fortnoxCustomerNumber String?            @unique @map("fortnox_customer_number")
-  name                  String
-  email                 String?
-  domain                String?
-  companyId             String             @map("company_id") @db.Uuid
-  createdAt             DateTime           @default(now()) @map("created_at") @db.Timestamp(6)
-  company               Company            @relation(fields: [companyId], references: [id], onDelete: Cascade)
-  employeeCustomers     EmployeeCustomer[]
-  timeEntries           TimeEntry[]
-  emailActivities       EmailActivity[]
-  emails                Email[]
-  fortnoxCustomer       FortnoxCustomer?
-  fortnoxInvoices       FortnoxInvoice[]
+  id                      String                  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  fortnoxCustomerNumber   String?                 @unique @map("fortnox_customer_number")
+  name                    String
+  email                   String?
+  domain                  String?
+  companyId               String                  @map("company_id") @db.Uuid
+  createdAt               DateTime                @default(now()) @map("created_at") @db.Timestamp(6)
+  company                 Company                 @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  employeeCustomers       EmployeeCustomer[]
+  timeEntries             TimeEntry[]
+  emailActivities         EmailActivity[]
+  emails                  Email[]
+  fortnoxCustomer         FortnoxCustomer?
+  fortnoxInvoices         FortnoxInvoice[]
+  invoiceRecipientAliases InvoiceRecipientAlias[]
 
   @@map("customers")
 }
@@ -219,6 +220,8 @@ model FortnoxInvoice {
   status         String?
   ourReference   String?   @map("our_reference")
   yourReference  String?   @map("your_reference")
+  /// Bokförings-tid (Fortnox `Booked`); DB-kolumnen heter `sent_at` av historiska skäl
+  sentAt         DateTime? @map("sent_at") @db.Timestamptz(6)
   /// Full Fortnox API response, preserved for forward-compatibility
   rawData        Json?     @map("raw_data")
   syncedAt       DateTime  @default(now()) @map("synced_at") @db.Timestamp(6)
@@ -245,6 +248,22 @@ model FortnoxInvoiceRow {
   invoice FortnoxInvoice @relation(fields: [invoiceNumber], references: [invoiceNumber], onDelete: Cascade)
 
   @@map("fortnox_invoice_rows")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Manual mapping: Fortnox invoice recipient alias → Customer
+// Fortnox can send invoices to address-book aliases (not raw email addresses),
+// so automatic matching is impossible. This table is populated manually by users.
+// ─────────────────────────────────────────────────────────────────────────────
+model InvoiceRecipientAlias {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  /// The alias name exactly as it appears in Fortnox (e.g. "Kundens Fakturamejl")
+  alias      String   @unique
+  customerId String   @map("customer_id") @db.Uuid
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@map("invoice_recipient_aliases")
 }
 
 model FortnoxSyncLog {

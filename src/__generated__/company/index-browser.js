@@ -256,6 +256,7 @@ exports.Prisma.FortnoxInvoiceScalarFieldEnum = {
   status: 'status',
   ourReference: 'ourReference',
   yourReference: 'yourReference',
+  sentAt: 'sentAt',
   rawData: 'rawData',
   syncedAt: 'syncedAt',
   createdAt: 'createdAt'
@@ -271,6 +272,13 @@ exports.Prisma.FortnoxInvoiceRowScalarFieldEnum = {
   price: 'price',
   vatPercent: 'vatPercent',
   total: 'total'
+};
+
+exports.Prisma.InvoiceRecipientAliasScalarFieldEnum = {
+  id: 'id',
+  alias: 'alias',
+  customerId: 'customerId',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.FortnoxSyncLogScalarFieldEnum = {
@@ -379,6 +387,7 @@ exports.Prisma.ModelName = {
   FortnoxCustomer: 'FortnoxCustomer',
   FortnoxInvoice: 'FortnoxInvoice',
   FortnoxInvoiceRow: 'FortnoxInvoiceRow',
+  InvoiceRecipientAlias: 'InvoiceRecipientAlias',
   FortnoxSyncLog: 'FortnoxSyncLog',
   FortnoxFinancialYear: 'FortnoxFinancialYear',
   FortnoxAccount: 'FortnoxAccount',

@@ -14,6 +14,7 @@ import { getCompanyClient } from "./DATABASE/connectionManager";
 import fortnoxOAuth from "./routes/fortnoxCallbackRoute";
 import bcrypt from "bcrypt";
 import { startScheduler } from "./scheduler";
+import { startFortnoxWebSocket } from "./DATABASE/INTEGRATIONS/Fortnox/fortnoxWebSocket";
 
 dotenv.config();
 
@@ -125,6 +126,9 @@ async function startServer() {
     await seedSuperAdmin();
     await server.start();
     startScheduler();
+    startFortnoxWebSocket().catch((err) =>
+      console.error('[Fortnox WS] Failed to start:', err),
+    );
 
     const corsOptions = {
       origin: [

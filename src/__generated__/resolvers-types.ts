@@ -71,6 +71,7 @@ export type FortnoxFinancialYear = {
 
 export type FortnoxInvoice = {
   __typename?: 'FortnoxInvoice';
+  bookedAt?: Maybe<Scalars['String']['output']>;
   currency: Scalars['String']['output'];
   customerNumber: Scalars['String']['output'];
   dueDate?: Maybe<Scalars['String']['output']>;
@@ -167,6 +168,15 @@ export type InitUser = {
   role: Scalars['String']['output'];
 };
 
+export type InvoiceRecipientAlias = {
+  __typename?: 'InvoiceRecipientAlias';
+  alias: Scalars['String']['output'];
+  createdAt: Scalars['String']['output'];
+  customer: Customer;
+  customerId: Scalars['ID']['output'];
+  id: Scalars['ID']['output'];
+};
+
 export type Me = {
   __typename?: 'Me';
   companyId?: Maybe<Scalars['String']['output']>;
@@ -185,7 +195,9 @@ export type Mutation = {
   createAdmin: Scalars['String']['output'];
   createCompany?: Maybe<Company>;
   createCompanyAdmin: Scalars['String']['output'];
+  createInvoiceRecipientAlias: InvoiceRecipientAlias;
   createUser: Scalars['String']['output'];
+  deleteInvoiceRecipientAlias: Scalars['Boolean']['output'];
   login: AuthPayload;
   loginSuperAdmin: SuperAdminAuthPayload;
   logout: Scalars['String']['output'];
@@ -232,10 +244,21 @@ export type MutationCreateCompanyAdminArgs = {
 };
 
 
+export type MutationCreateInvoiceRecipientAliasArgs = {
+  alias: Scalars['String']['input'];
+  customerId: Scalars['ID']['input'];
+};
+
+
 export type MutationCreateUserArgs = {
   companyDomain: Scalars['String']['input'];
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
+};
+
+
+export type MutationDeleteInvoiceRecipientAliasArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
@@ -313,6 +336,7 @@ export type Query = {
   getUsersByCompanyId?: Maybe<Array<Maybe<User>>>;
   getVoucherDetail?: Maybe<FortnoxVoucherDetail>;
   getVouchers: Array<FortnoxVoucher>;
+  invoiceRecipientAliases: Array<InvoiceRecipientAlias>;
   me?: Maybe<Me>;
 };
 
@@ -513,6 +537,7 @@ export type ResolversTypes = {
   InitPageIntegrationData: ResolverTypeWrapper<InitPageIntegrationData>;
   InitUser: ResolverTypeWrapper<InitUser>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
+  InvoiceRecipientAlias: ResolverTypeWrapper<InvoiceRecipientAlias>;
   JSON: ResolverTypeWrapper<Scalars['JSON']['output']>;
   Me: ResolverTypeWrapper<Me>;
   Mutation: ResolverTypeWrapper<Record<PropertyKey, never>>;
@@ -548,6 +573,7 @@ export type ResolversParentTypes = {
   InitPageIntegrationData: InitPageIntegrationData;
   InitUser: InitUser;
   Int: Scalars['Int']['output'];
+  InvoiceRecipientAlias: InvoiceRecipientAlias;
   JSON: Scalars['JSON']['output'];
   Me: Me;
   Mutation: Record<PropertyKey, never>;
@@ -606,6 +632,7 @@ export type FortnoxFinancialYearResolvers<ContextType = GraphQLContext, ParentTy
 };
 
 export type FortnoxInvoiceResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['FortnoxInvoice'] = ResolversParentTypes['FortnoxInvoice']> = {
+  bookedAt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   currency?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   customerNumber?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   dueDate?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -692,6 +719,14 @@ export type InitUserResolvers<ContextType = GraphQLContext, ParentType extends R
   role?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
 };
 
+export type InvoiceRecipientAliasResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['InvoiceRecipientAlias'] = ResolversParentTypes['InvoiceRecipientAlias']> = {
+  alias?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  customer?: Resolver<ResolversTypes['Customer'], ParentType, ContextType>;
+  customerId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+};
+
 export interface JsonScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['JSON'], any> {
   name: 'JSON';
 }
@@ -712,7 +747,9 @@ export type MutationResolvers<ContextType = GraphQLContext, ParentType extends R
   createAdmin?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationCreateAdminArgs, 'password' | 'userName'>>;
   createCompany?: Resolver<Maybe<ResolversTypes['Company']>, ParentType, ContextType, RequireFields<MutationCreateCompanyArgs, 'domain' | 'name'>>;
   createCompanyAdmin?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationCreateCompanyAdminArgs, 'company' | 'email' | 'password'>>;
+  createInvoiceRecipientAlias?: Resolver<ResolversTypes['InvoiceRecipientAlias'], ParentType, ContextType, RequireFields<MutationCreateInvoiceRecipientAliasArgs, 'alias' | 'customerId'>>;
   createUser?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'companyDomain' | 'email' | 'password'>>;
+  deleteInvoiceRecipientAlias?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationDeleteInvoiceRecipientAliasArgs, 'id'>>;
   login?: Resolver<ResolversTypes['AuthPayload'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'companyDomain' | 'email' | 'password'>>;
   loginSuperAdmin?: Resolver<ResolversTypes['SuperAdminAuthPayload'], ParentType, ContextType, RequireFields<MutationLoginSuperAdminArgs, 'password' | 'userName'>>;
   logout?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -756,6 +793,7 @@ export type QueryResolvers<ContextType = GraphQLContext, ParentType extends Reso
   getUsersByCompanyId?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType, RequireFields<QueryGetUsersByCompanyIdArgs, 'companyId'>>;
   getVoucherDetail?: Resolver<Maybe<ResolversTypes['FortnoxVoucherDetail']>, ParentType, ContextType, RequireFields<QueryGetVoucherDetailArgs, 'voucherId'>>;
   getVouchers?: Resolver<Array<ResolversTypes['FortnoxVoucher']>, ParentType, ContextType, RequireFields<QueryGetVouchersArgs, 'financialYearId'>>;
+  invoiceRecipientAliases?: Resolver<Array<ResolversTypes['InvoiceRecipientAlias']>, ParentType, ContextType>;
   me?: Resolver<Maybe<ResolversTypes['Me']>, ParentType, ContextType>;
 };
 
@@ -799,6 +837,7 @@ export type Resolvers<ContextType = GraphQLContext> = {
   InitPageData?: InitPageDataResolvers<ContextType>;
   InitPageIntegrationData?: InitPageIntegrationDataResolvers<ContextType>;
   InitUser?: InitUserResolvers<ContextType>;
+  InvoiceRecipientAlias?: InvoiceRecipientAliasResolvers<ContextType>;
   JSON?: GraphQLScalarType;
   Me?: MeResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;

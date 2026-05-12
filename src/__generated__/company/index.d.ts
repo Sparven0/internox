@@ -74,6 +74,11 @@ export type FortnoxInvoice = $Result.DefaultSelection<Prisma.$FortnoxInvoicePayl
  */
 export type FortnoxInvoiceRow = $Result.DefaultSelection<Prisma.$FortnoxInvoiceRowPayload>
 /**
+ * Model InvoiceRecipientAlias
+ * 
+ */
+export type InvoiceRecipientAlias = $Result.DefaultSelection<Prisma.$InvoiceRecipientAliasPayload>
+/**
  * Model FortnoxSyncLog
  * 
  */
@@ -339,6 +344,16 @@ export class PrismaClient<
     * ```
     */
   get fortnoxInvoiceRow(): Prisma.FortnoxInvoiceRowDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.invoiceRecipientAlias`: Exposes CRUD operations for the **InvoiceRecipientAlias** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more InvoiceRecipientAliases
+    * const invoiceRecipientAliases = await prisma.invoiceRecipientAlias.findMany()
+    * ```
+    */
+  get invoiceRecipientAlias(): Prisma.InvoiceRecipientAliasDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.fortnoxSyncLog`: Exposes CRUD operations for the **FortnoxSyncLog** model.
@@ -835,6 +850,7 @@ export namespace Prisma {
     FortnoxCustomer: 'FortnoxCustomer',
     FortnoxInvoice: 'FortnoxInvoice',
     FortnoxInvoiceRow: 'FortnoxInvoiceRow',
+    InvoiceRecipientAlias: 'InvoiceRecipientAlias',
     FortnoxSyncLog: 'FortnoxSyncLog',
     FortnoxFinancialYear: 'FortnoxFinancialYear',
     FortnoxAccount: 'FortnoxAccount',
@@ -855,7 +871,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "company" | "user" | "companyIntegration" | "imapCredential" | "customer" | "employeeCustomer" | "timeEntry" | "emailActivity" | "email" | "fortnoxCustomer" | "fortnoxInvoice" | "fortnoxInvoiceRow" | "fortnoxSyncLog" | "fortnoxFinancialYear" | "fortnoxAccount" | "fortnoxVoucher" | "fortnoxVoucherRow"
+      modelProps: "company" | "user" | "companyIntegration" | "imapCredential" | "customer" | "employeeCustomer" | "timeEntry" | "emailActivity" | "email" | "fortnoxCustomer" | "fortnoxInvoice" | "fortnoxInvoiceRow" | "invoiceRecipientAlias" | "fortnoxSyncLog" | "fortnoxFinancialYear" | "fortnoxAccount" | "fortnoxVoucher" | "fortnoxVoucherRow"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1747,6 +1763,80 @@ export namespace Prisma {
           }
         }
       }
+      InvoiceRecipientAlias: {
+        payload: Prisma.$InvoiceRecipientAliasPayload<ExtArgs>
+        fields: Prisma.InvoiceRecipientAliasFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.InvoiceRecipientAliasFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvoiceRecipientAliasPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.InvoiceRecipientAliasFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvoiceRecipientAliasPayload>
+          }
+          findFirst: {
+            args: Prisma.InvoiceRecipientAliasFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvoiceRecipientAliasPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.InvoiceRecipientAliasFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvoiceRecipientAliasPayload>
+          }
+          findMany: {
+            args: Prisma.InvoiceRecipientAliasFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvoiceRecipientAliasPayload>[]
+          }
+          create: {
+            args: Prisma.InvoiceRecipientAliasCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvoiceRecipientAliasPayload>
+          }
+          createMany: {
+            args: Prisma.InvoiceRecipientAliasCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.InvoiceRecipientAliasCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvoiceRecipientAliasPayload>[]
+          }
+          delete: {
+            args: Prisma.InvoiceRecipientAliasDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvoiceRecipientAliasPayload>
+          }
+          update: {
+            args: Prisma.InvoiceRecipientAliasUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvoiceRecipientAliasPayload>
+          }
+          deleteMany: {
+            args: Prisma.InvoiceRecipientAliasDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.InvoiceRecipientAliasUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.InvoiceRecipientAliasUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvoiceRecipientAliasPayload>[]
+          }
+          upsert: {
+            args: Prisma.InvoiceRecipientAliasUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvoiceRecipientAliasPayload>
+          }
+          aggregate: {
+            args: Prisma.InvoiceRecipientAliasAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateInvoiceRecipientAlias>
+          }
+          groupBy: {
+            args: Prisma.InvoiceRecipientAliasGroupByArgs<ExtArgs>
+            result: $Utils.Optional<InvoiceRecipientAliasGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.InvoiceRecipientAliasCountArgs<ExtArgs>
+            result: $Utils.Optional<InvoiceRecipientAliasCountAggregateOutputType> | number
+          }
+        }
+      }
       FortnoxSyncLog: {
         payload: Prisma.$FortnoxSyncLogPayload<ExtArgs>
         fields: Prisma.FortnoxSyncLogFieldRefs
@@ -2237,6 +2327,7 @@ export namespace Prisma {
     fortnoxCustomer?: FortnoxCustomerOmit
     fortnoxInvoice?: FortnoxInvoiceOmit
     fortnoxInvoiceRow?: FortnoxInvoiceRowOmit
+    invoiceRecipientAlias?: InvoiceRecipientAliasOmit
     fortnoxSyncLog?: FortnoxSyncLogOmit
     fortnoxFinancialYear?: FortnoxFinancialYearOmit
     fortnoxAccount?: FortnoxAccountOmit
@@ -2483,6 +2574,7 @@ export namespace Prisma {
     emailActivities: number
     emails: number
     fortnoxInvoices: number
+    invoiceRecipientAliases: number
   }
 
   export type CustomerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2491,6 +2583,7 @@ export namespace Prisma {
     emailActivities?: boolean | CustomerCountOutputTypeCountEmailActivitiesArgs
     emails?: boolean | CustomerCountOutputTypeCountEmailsArgs
     fortnoxInvoices?: boolean | CustomerCountOutputTypeCountFortnoxInvoicesArgs
+    invoiceRecipientAliases?: boolean | CustomerCountOutputTypeCountInvoiceRecipientAliasesArgs
   }
 
   // Custom InputTypes
@@ -2537,6 +2630,13 @@ export namespace Prisma {
    */
   export type CustomerCountOutputTypeCountFortnoxInvoicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FortnoxInvoiceWhereInput
+  }
+
+  /**
+   * CustomerCountOutputType without action
+   */
+  export type CustomerCountOutputTypeCountInvoiceRecipientAliasesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvoiceRecipientAliasWhereInput
   }
 
 
@@ -7502,6 +7602,7 @@ export namespace Prisma {
     emails?: boolean | Customer$emailsArgs<ExtArgs>
     fortnoxCustomer?: boolean | Customer$fortnoxCustomerArgs<ExtArgs>
     fortnoxInvoices?: boolean | Customer$fortnoxInvoicesArgs<ExtArgs>
+    invoiceRecipientAliases?: boolean | Customer$invoiceRecipientAliasesArgs<ExtArgs>
     _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["customer"]>
 
@@ -7546,6 +7647,7 @@ export namespace Prisma {
     emails?: boolean | Customer$emailsArgs<ExtArgs>
     fortnoxCustomer?: boolean | Customer$fortnoxCustomerArgs<ExtArgs>
     fortnoxInvoices?: boolean | Customer$fortnoxInvoicesArgs<ExtArgs>
+    invoiceRecipientAliases?: boolean | Customer$invoiceRecipientAliasesArgs<ExtArgs>
     _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CustomerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7565,6 +7667,7 @@ export namespace Prisma {
       emails: Prisma.$EmailPayload<ExtArgs>[]
       fortnoxCustomer: Prisma.$FortnoxCustomerPayload<ExtArgs> | null
       fortnoxInvoices: Prisma.$FortnoxInvoicePayload<ExtArgs>[]
+      invoiceRecipientAliases: Prisma.$InvoiceRecipientAliasPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7975,6 +8078,7 @@ export namespace Prisma {
     emails<T extends Customer$emailsArgs<ExtArgs> = {}>(args?: Subset<T, Customer$emailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     fortnoxCustomer<T extends Customer$fortnoxCustomerArgs<ExtArgs> = {}>(args?: Subset<T, Customer$fortnoxCustomerArgs<ExtArgs>>): Prisma__FortnoxCustomerClient<$Result.GetResult<Prisma.$FortnoxCustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     fortnoxInvoices<T extends Customer$fortnoxInvoicesArgs<ExtArgs> = {}>(args?: Subset<T, Customer$fortnoxInvoicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FortnoxInvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    invoiceRecipientAliases<T extends Customer$invoiceRecipientAliasesArgs<ExtArgs> = {}>(args?: Subset<T, Customer$invoiceRecipientAliasesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvoiceRecipientAliasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8548,6 +8652,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: FortnoxInvoiceScalarFieldEnum | FortnoxInvoiceScalarFieldEnum[]
+  }
+
+  /**
+   * Customer.invoiceRecipientAliases
+   */
+  export type Customer$invoiceRecipientAliasesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvoiceRecipientAlias
+     */
+    select?: InvoiceRecipientAliasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvoiceRecipientAlias
+     */
+    omit?: InvoiceRecipientAliasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvoiceRecipientAliasInclude<ExtArgs> | null
+    where?: InvoiceRecipientAliasWhereInput
+    orderBy?: InvoiceRecipientAliasOrderByWithRelationInput | InvoiceRecipientAliasOrderByWithRelationInput[]
+    cursor?: InvoiceRecipientAliasWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InvoiceRecipientAliasScalarFieldEnum | InvoiceRecipientAliasScalarFieldEnum[]
   }
 
   /**
@@ -14603,6 +14731,7 @@ export namespace Prisma {
     status: string | null
     ourReference: string | null
     yourReference: string | null
+    sentAt: Date | null
     syncedAt: Date | null
     createdAt: Date | null
   }
@@ -14621,6 +14750,7 @@ export namespace Prisma {
     status: string | null
     ourReference: string | null
     yourReference: string | null
+    sentAt: Date | null
     syncedAt: Date | null
     createdAt: Date | null
   }
@@ -14639,6 +14769,7 @@ export namespace Prisma {
     status: number
     ourReference: number
     yourReference: number
+    sentAt: number
     rawData: number
     syncedAt: number
     createdAt: number
@@ -14672,6 +14803,7 @@ export namespace Prisma {
     status?: true
     ourReference?: true
     yourReference?: true
+    sentAt?: true
     syncedAt?: true
     createdAt?: true
   }
@@ -14690,6 +14822,7 @@ export namespace Prisma {
     status?: true
     ourReference?: true
     yourReference?: true
+    sentAt?: true
     syncedAt?: true
     createdAt?: true
   }
@@ -14708,6 +14841,7 @@ export namespace Prisma {
     status?: true
     ourReference?: true
     yourReference?: true
+    sentAt?: true
     rawData?: true
     syncedAt?: true
     createdAt?: true
@@ -14814,6 +14948,7 @@ export namespace Prisma {
     status: string | null
     ourReference: string | null
     yourReference: string | null
+    sentAt: Date | null
     rawData: JsonValue | null
     syncedAt: Date
     createdAt: Date
@@ -14852,6 +14987,7 @@ export namespace Prisma {
     status?: boolean
     ourReference?: boolean
     yourReference?: boolean
+    sentAt?: boolean
     rawData?: boolean
     syncedAt?: boolean
     createdAt?: boolean
@@ -14875,6 +15011,7 @@ export namespace Prisma {
     status?: boolean
     ourReference?: boolean
     yourReference?: boolean
+    sentAt?: boolean
     rawData?: boolean
     syncedAt?: boolean
     createdAt?: boolean
@@ -14896,6 +15033,7 @@ export namespace Prisma {
     status?: boolean
     ourReference?: boolean
     yourReference?: boolean
+    sentAt?: boolean
     rawData?: boolean
     syncedAt?: boolean
     createdAt?: boolean
@@ -14917,12 +15055,13 @@ export namespace Prisma {
     status?: boolean
     ourReference?: boolean
     yourReference?: boolean
+    sentAt?: boolean
     rawData?: boolean
     syncedAt?: boolean
     createdAt?: boolean
   }
 
-  export type FortnoxInvoiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "invoiceNumber" | "customerNumber" | "customerId" | "invoiceDate" | "dueDate" | "totalExclVat" | "totalInclVat" | "vat" | "currency" | "status" | "ourReference" | "yourReference" | "rawData" | "syncedAt" | "createdAt", ExtArgs["result"]["fortnoxInvoice"]>
+  export type FortnoxInvoiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "invoiceNumber" | "customerNumber" | "customerId" | "invoiceDate" | "dueDate" | "totalExclVat" | "totalInclVat" | "vat" | "currency" | "status" | "ourReference" | "yourReference" | "sentAt" | "rawData" | "syncedAt" | "createdAt", ExtArgs["result"]["fortnoxInvoice"]>
   export type FortnoxInvoiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     fortnoxCustomer?: boolean | FortnoxCustomerDefaultArgs<ExtArgs>
     customer?: boolean | FortnoxInvoice$customerArgs<ExtArgs>
@@ -14965,6 +15104,10 @@ export namespace Prisma {
       status: string | null
       ourReference: string | null
       yourReference: string | null
+      /**
+       * Bokförings-tid (Fortnox `Booked`); DB-kolumnen heter `sent_at` av historiska skäl
+       */
+      sentAt: Date | null
       /**
        * Full Fortnox API response, preserved for forward-compatibility
        */
@@ -15410,6 +15553,7 @@ export namespace Prisma {
     readonly status: FieldRef<"FortnoxInvoice", 'String'>
     readonly ourReference: FieldRef<"FortnoxInvoice", 'String'>
     readonly yourReference: FieldRef<"FortnoxInvoice", 'String'>
+    readonly sentAt: FieldRef<"FortnoxInvoice", 'DateTime'>
     readonly rawData: FieldRef<"FortnoxInvoice", 'Json'>
     readonly syncedAt: FieldRef<"FortnoxInvoice", 'DateTime'>
     readonly createdAt: FieldRef<"FortnoxInvoice", 'DateTime'>
@@ -17037,6 +17181,1059 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: FortnoxInvoiceRowInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model InvoiceRecipientAlias
+   */
+
+  export type AggregateInvoiceRecipientAlias = {
+    _count: InvoiceRecipientAliasCountAggregateOutputType | null
+    _min: InvoiceRecipientAliasMinAggregateOutputType | null
+    _max: InvoiceRecipientAliasMaxAggregateOutputType | null
+  }
+
+  export type InvoiceRecipientAliasMinAggregateOutputType = {
+    id: string | null
+    alias: string | null
+    customerId: string | null
+    createdAt: Date | null
+  }
+
+  export type InvoiceRecipientAliasMaxAggregateOutputType = {
+    id: string | null
+    alias: string | null
+    customerId: string | null
+    createdAt: Date | null
+  }
+
+  export type InvoiceRecipientAliasCountAggregateOutputType = {
+    id: number
+    alias: number
+    customerId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type InvoiceRecipientAliasMinAggregateInputType = {
+    id?: true
+    alias?: true
+    customerId?: true
+    createdAt?: true
+  }
+
+  export type InvoiceRecipientAliasMaxAggregateInputType = {
+    id?: true
+    alias?: true
+    customerId?: true
+    createdAt?: true
+  }
+
+  export type InvoiceRecipientAliasCountAggregateInputType = {
+    id?: true
+    alias?: true
+    customerId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type InvoiceRecipientAliasAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InvoiceRecipientAlias to aggregate.
+     */
+    where?: InvoiceRecipientAliasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvoiceRecipientAliases to fetch.
+     */
+    orderBy?: InvoiceRecipientAliasOrderByWithRelationInput | InvoiceRecipientAliasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: InvoiceRecipientAliasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvoiceRecipientAliases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvoiceRecipientAliases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned InvoiceRecipientAliases
+    **/
+    _count?: true | InvoiceRecipientAliasCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: InvoiceRecipientAliasMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: InvoiceRecipientAliasMaxAggregateInputType
+  }
+
+  export type GetInvoiceRecipientAliasAggregateType<T extends InvoiceRecipientAliasAggregateArgs> = {
+        [P in keyof T & keyof AggregateInvoiceRecipientAlias]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateInvoiceRecipientAlias[P]>
+      : GetScalarType<T[P], AggregateInvoiceRecipientAlias[P]>
+  }
+
+
+
+
+  export type InvoiceRecipientAliasGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvoiceRecipientAliasWhereInput
+    orderBy?: InvoiceRecipientAliasOrderByWithAggregationInput | InvoiceRecipientAliasOrderByWithAggregationInput[]
+    by: InvoiceRecipientAliasScalarFieldEnum[] | InvoiceRecipientAliasScalarFieldEnum
+    having?: InvoiceRecipientAliasScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: InvoiceRecipientAliasCountAggregateInputType | true
+    _min?: InvoiceRecipientAliasMinAggregateInputType
+    _max?: InvoiceRecipientAliasMaxAggregateInputType
+  }
+
+  export type InvoiceRecipientAliasGroupByOutputType = {
+    id: string
+    alias: string
+    customerId: string
+    createdAt: Date
+    _count: InvoiceRecipientAliasCountAggregateOutputType | null
+    _min: InvoiceRecipientAliasMinAggregateOutputType | null
+    _max: InvoiceRecipientAliasMaxAggregateOutputType | null
+  }
+
+  type GetInvoiceRecipientAliasGroupByPayload<T extends InvoiceRecipientAliasGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<InvoiceRecipientAliasGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof InvoiceRecipientAliasGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], InvoiceRecipientAliasGroupByOutputType[P]>
+            : GetScalarType<T[P], InvoiceRecipientAliasGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type InvoiceRecipientAliasSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    alias?: boolean
+    customerId?: boolean
+    createdAt?: boolean
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["invoiceRecipientAlias"]>
+
+  export type InvoiceRecipientAliasSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    alias?: boolean
+    customerId?: boolean
+    createdAt?: boolean
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["invoiceRecipientAlias"]>
+
+  export type InvoiceRecipientAliasSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    alias?: boolean
+    customerId?: boolean
+    createdAt?: boolean
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["invoiceRecipientAlias"]>
+
+  export type InvoiceRecipientAliasSelectScalar = {
+    id?: boolean
+    alias?: boolean
+    customerId?: boolean
+    createdAt?: boolean
+  }
+
+  export type InvoiceRecipientAliasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "alias" | "customerId" | "createdAt", ExtArgs["result"]["invoiceRecipientAlias"]>
+  export type InvoiceRecipientAliasInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+  }
+  export type InvoiceRecipientAliasIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+  }
+  export type InvoiceRecipientAliasIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    customer?: boolean | CustomerDefaultArgs<ExtArgs>
+  }
+
+  export type $InvoiceRecipientAliasPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "InvoiceRecipientAlias"
+    objects: {
+      customer: Prisma.$CustomerPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      /**
+       * The alias name exactly as it appears in Fortnox (e.g. "Kundens Fakturamejl")
+       */
+      alias: string
+      customerId: string
+      createdAt: Date
+    }, ExtArgs["result"]["invoiceRecipientAlias"]>
+    composites: {}
+  }
+
+  type InvoiceRecipientAliasGetPayload<S extends boolean | null | undefined | InvoiceRecipientAliasDefaultArgs> = $Result.GetResult<Prisma.$InvoiceRecipientAliasPayload, S>
+
+  type InvoiceRecipientAliasCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<InvoiceRecipientAliasFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: InvoiceRecipientAliasCountAggregateInputType | true
+    }
+
+  export interface InvoiceRecipientAliasDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['InvoiceRecipientAlias'], meta: { name: 'InvoiceRecipientAlias' } }
+    /**
+     * Find zero or one InvoiceRecipientAlias that matches the filter.
+     * @param {InvoiceRecipientAliasFindUniqueArgs} args - Arguments to find a InvoiceRecipientAlias
+     * @example
+     * // Get one InvoiceRecipientAlias
+     * const invoiceRecipientAlias = await prisma.invoiceRecipientAlias.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends InvoiceRecipientAliasFindUniqueArgs>(args: SelectSubset<T, InvoiceRecipientAliasFindUniqueArgs<ExtArgs>>): Prisma__InvoiceRecipientAliasClient<$Result.GetResult<Prisma.$InvoiceRecipientAliasPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one InvoiceRecipientAlias that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {InvoiceRecipientAliasFindUniqueOrThrowArgs} args - Arguments to find a InvoiceRecipientAlias
+     * @example
+     * // Get one InvoiceRecipientAlias
+     * const invoiceRecipientAlias = await prisma.invoiceRecipientAlias.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends InvoiceRecipientAliasFindUniqueOrThrowArgs>(args: SelectSubset<T, InvoiceRecipientAliasFindUniqueOrThrowArgs<ExtArgs>>): Prisma__InvoiceRecipientAliasClient<$Result.GetResult<Prisma.$InvoiceRecipientAliasPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InvoiceRecipientAlias that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvoiceRecipientAliasFindFirstArgs} args - Arguments to find a InvoiceRecipientAlias
+     * @example
+     * // Get one InvoiceRecipientAlias
+     * const invoiceRecipientAlias = await prisma.invoiceRecipientAlias.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends InvoiceRecipientAliasFindFirstArgs>(args?: SelectSubset<T, InvoiceRecipientAliasFindFirstArgs<ExtArgs>>): Prisma__InvoiceRecipientAliasClient<$Result.GetResult<Prisma.$InvoiceRecipientAliasPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InvoiceRecipientAlias that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvoiceRecipientAliasFindFirstOrThrowArgs} args - Arguments to find a InvoiceRecipientAlias
+     * @example
+     * // Get one InvoiceRecipientAlias
+     * const invoiceRecipientAlias = await prisma.invoiceRecipientAlias.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends InvoiceRecipientAliasFindFirstOrThrowArgs>(args?: SelectSubset<T, InvoiceRecipientAliasFindFirstOrThrowArgs<ExtArgs>>): Prisma__InvoiceRecipientAliasClient<$Result.GetResult<Prisma.$InvoiceRecipientAliasPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more InvoiceRecipientAliases that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvoiceRecipientAliasFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all InvoiceRecipientAliases
+     * const invoiceRecipientAliases = await prisma.invoiceRecipientAlias.findMany()
+     * 
+     * // Get first 10 InvoiceRecipientAliases
+     * const invoiceRecipientAliases = await prisma.invoiceRecipientAlias.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const invoiceRecipientAliasWithIdOnly = await prisma.invoiceRecipientAlias.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends InvoiceRecipientAliasFindManyArgs>(args?: SelectSubset<T, InvoiceRecipientAliasFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvoiceRecipientAliasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a InvoiceRecipientAlias.
+     * @param {InvoiceRecipientAliasCreateArgs} args - Arguments to create a InvoiceRecipientAlias.
+     * @example
+     * // Create one InvoiceRecipientAlias
+     * const InvoiceRecipientAlias = await prisma.invoiceRecipientAlias.create({
+     *   data: {
+     *     // ... data to create a InvoiceRecipientAlias
+     *   }
+     * })
+     * 
+     */
+    create<T extends InvoiceRecipientAliasCreateArgs>(args: SelectSubset<T, InvoiceRecipientAliasCreateArgs<ExtArgs>>): Prisma__InvoiceRecipientAliasClient<$Result.GetResult<Prisma.$InvoiceRecipientAliasPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many InvoiceRecipientAliases.
+     * @param {InvoiceRecipientAliasCreateManyArgs} args - Arguments to create many InvoiceRecipientAliases.
+     * @example
+     * // Create many InvoiceRecipientAliases
+     * const invoiceRecipientAlias = await prisma.invoiceRecipientAlias.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends InvoiceRecipientAliasCreateManyArgs>(args?: SelectSubset<T, InvoiceRecipientAliasCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many InvoiceRecipientAliases and returns the data saved in the database.
+     * @param {InvoiceRecipientAliasCreateManyAndReturnArgs} args - Arguments to create many InvoiceRecipientAliases.
+     * @example
+     * // Create many InvoiceRecipientAliases
+     * const invoiceRecipientAlias = await prisma.invoiceRecipientAlias.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many InvoiceRecipientAliases and only return the `id`
+     * const invoiceRecipientAliasWithIdOnly = await prisma.invoiceRecipientAlias.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends InvoiceRecipientAliasCreateManyAndReturnArgs>(args?: SelectSubset<T, InvoiceRecipientAliasCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvoiceRecipientAliasPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a InvoiceRecipientAlias.
+     * @param {InvoiceRecipientAliasDeleteArgs} args - Arguments to delete one InvoiceRecipientAlias.
+     * @example
+     * // Delete one InvoiceRecipientAlias
+     * const InvoiceRecipientAlias = await prisma.invoiceRecipientAlias.delete({
+     *   where: {
+     *     // ... filter to delete one InvoiceRecipientAlias
+     *   }
+     * })
+     * 
+     */
+    delete<T extends InvoiceRecipientAliasDeleteArgs>(args: SelectSubset<T, InvoiceRecipientAliasDeleteArgs<ExtArgs>>): Prisma__InvoiceRecipientAliasClient<$Result.GetResult<Prisma.$InvoiceRecipientAliasPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one InvoiceRecipientAlias.
+     * @param {InvoiceRecipientAliasUpdateArgs} args - Arguments to update one InvoiceRecipientAlias.
+     * @example
+     * // Update one InvoiceRecipientAlias
+     * const invoiceRecipientAlias = await prisma.invoiceRecipientAlias.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends InvoiceRecipientAliasUpdateArgs>(args: SelectSubset<T, InvoiceRecipientAliasUpdateArgs<ExtArgs>>): Prisma__InvoiceRecipientAliasClient<$Result.GetResult<Prisma.$InvoiceRecipientAliasPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more InvoiceRecipientAliases.
+     * @param {InvoiceRecipientAliasDeleteManyArgs} args - Arguments to filter InvoiceRecipientAliases to delete.
+     * @example
+     * // Delete a few InvoiceRecipientAliases
+     * const { count } = await prisma.invoiceRecipientAlias.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends InvoiceRecipientAliasDeleteManyArgs>(args?: SelectSubset<T, InvoiceRecipientAliasDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more InvoiceRecipientAliases.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvoiceRecipientAliasUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many InvoiceRecipientAliases
+     * const invoiceRecipientAlias = await prisma.invoiceRecipientAlias.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends InvoiceRecipientAliasUpdateManyArgs>(args: SelectSubset<T, InvoiceRecipientAliasUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more InvoiceRecipientAliases and returns the data updated in the database.
+     * @param {InvoiceRecipientAliasUpdateManyAndReturnArgs} args - Arguments to update many InvoiceRecipientAliases.
+     * @example
+     * // Update many InvoiceRecipientAliases
+     * const invoiceRecipientAlias = await prisma.invoiceRecipientAlias.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more InvoiceRecipientAliases and only return the `id`
+     * const invoiceRecipientAliasWithIdOnly = await prisma.invoiceRecipientAlias.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends InvoiceRecipientAliasUpdateManyAndReturnArgs>(args: SelectSubset<T, InvoiceRecipientAliasUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvoiceRecipientAliasPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one InvoiceRecipientAlias.
+     * @param {InvoiceRecipientAliasUpsertArgs} args - Arguments to update or create a InvoiceRecipientAlias.
+     * @example
+     * // Update or create a InvoiceRecipientAlias
+     * const invoiceRecipientAlias = await prisma.invoiceRecipientAlias.upsert({
+     *   create: {
+     *     // ... data to create a InvoiceRecipientAlias
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the InvoiceRecipientAlias we want to update
+     *   }
+     * })
+     */
+    upsert<T extends InvoiceRecipientAliasUpsertArgs>(args: SelectSubset<T, InvoiceRecipientAliasUpsertArgs<ExtArgs>>): Prisma__InvoiceRecipientAliasClient<$Result.GetResult<Prisma.$InvoiceRecipientAliasPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of InvoiceRecipientAliases.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvoiceRecipientAliasCountArgs} args - Arguments to filter InvoiceRecipientAliases to count.
+     * @example
+     * // Count the number of InvoiceRecipientAliases
+     * const count = await prisma.invoiceRecipientAlias.count({
+     *   where: {
+     *     // ... the filter for the InvoiceRecipientAliases we want to count
+     *   }
+     * })
+    **/
+    count<T extends InvoiceRecipientAliasCountArgs>(
+      args?: Subset<T, InvoiceRecipientAliasCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], InvoiceRecipientAliasCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a InvoiceRecipientAlias.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvoiceRecipientAliasAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends InvoiceRecipientAliasAggregateArgs>(args: Subset<T, InvoiceRecipientAliasAggregateArgs>): Prisma.PrismaPromise<GetInvoiceRecipientAliasAggregateType<T>>
+
+    /**
+     * Group by InvoiceRecipientAlias.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvoiceRecipientAliasGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends InvoiceRecipientAliasGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: InvoiceRecipientAliasGroupByArgs['orderBy'] }
+        : { orderBy?: InvoiceRecipientAliasGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, InvoiceRecipientAliasGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInvoiceRecipientAliasGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the InvoiceRecipientAlias model
+   */
+  readonly fields: InvoiceRecipientAliasFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for InvoiceRecipientAlias.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__InvoiceRecipientAliasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    customer<T extends CustomerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CustomerDefaultArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the InvoiceRecipientAlias model
+   */
+  interface InvoiceRecipientAliasFieldRefs {
+    readonly id: FieldRef<"InvoiceRecipientAlias", 'String'>
+    readonly alias: FieldRef<"InvoiceRecipientAlias", 'String'>
+    readonly customerId: FieldRef<"InvoiceRecipientAlias", 'String'>
+    readonly createdAt: FieldRef<"InvoiceRecipientAlias", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * InvoiceRecipientAlias findUnique
+   */
+  export type InvoiceRecipientAliasFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvoiceRecipientAlias
+     */
+    select?: InvoiceRecipientAliasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvoiceRecipientAlias
+     */
+    omit?: InvoiceRecipientAliasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvoiceRecipientAliasInclude<ExtArgs> | null
+    /**
+     * Filter, which InvoiceRecipientAlias to fetch.
+     */
+    where: InvoiceRecipientAliasWhereUniqueInput
+  }
+
+  /**
+   * InvoiceRecipientAlias findUniqueOrThrow
+   */
+  export type InvoiceRecipientAliasFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvoiceRecipientAlias
+     */
+    select?: InvoiceRecipientAliasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvoiceRecipientAlias
+     */
+    omit?: InvoiceRecipientAliasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvoiceRecipientAliasInclude<ExtArgs> | null
+    /**
+     * Filter, which InvoiceRecipientAlias to fetch.
+     */
+    where: InvoiceRecipientAliasWhereUniqueInput
+  }
+
+  /**
+   * InvoiceRecipientAlias findFirst
+   */
+  export type InvoiceRecipientAliasFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvoiceRecipientAlias
+     */
+    select?: InvoiceRecipientAliasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvoiceRecipientAlias
+     */
+    omit?: InvoiceRecipientAliasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvoiceRecipientAliasInclude<ExtArgs> | null
+    /**
+     * Filter, which InvoiceRecipientAlias to fetch.
+     */
+    where?: InvoiceRecipientAliasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvoiceRecipientAliases to fetch.
+     */
+    orderBy?: InvoiceRecipientAliasOrderByWithRelationInput | InvoiceRecipientAliasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InvoiceRecipientAliases.
+     */
+    cursor?: InvoiceRecipientAliasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvoiceRecipientAliases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvoiceRecipientAliases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvoiceRecipientAliases.
+     */
+    distinct?: InvoiceRecipientAliasScalarFieldEnum | InvoiceRecipientAliasScalarFieldEnum[]
+  }
+
+  /**
+   * InvoiceRecipientAlias findFirstOrThrow
+   */
+  export type InvoiceRecipientAliasFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvoiceRecipientAlias
+     */
+    select?: InvoiceRecipientAliasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvoiceRecipientAlias
+     */
+    omit?: InvoiceRecipientAliasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvoiceRecipientAliasInclude<ExtArgs> | null
+    /**
+     * Filter, which InvoiceRecipientAlias to fetch.
+     */
+    where?: InvoiceRecipientAliasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvoiceRecipientAliases to fetch.
+     */
+    orderBy?: InvoiceRecipientAliasOrderByWithRelationInput | InvoiceRecipientAliasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InvoiceRecipientAliases.
+     */
+    cursor?: InvoiceRecipientAliasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvoiceRecipientAliases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvoiceRecipientAliases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvoiceRecipientAliases.
+     */
+    distinct?: InvoiceRecipientAliasScalarFieldEnum | InvoiceRecipientAliasScalarFieldEnum[]
+  }
+
+  /**
+   * InvoiceRecipientAlias findMany
+   */
+  export type InvoiceRecipientAliasFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvoiceRecipientAlias
+     */
+    select?: InvoiceRecipientAliasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvoiceRecipientAlias
+     */
+    omit?: InvoiceRecipientAliasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvoiceRecipientAliasInclude<ExtArgs> | null
+    /**
+     * Filter, which InvoiceRecipientAliases to fetch.
+     */
+    where?: InvoiceRecipientAliasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvoiceRecipientAliases to fetch.
+     */
+    orderBy?: InvoiceRecipientAliasOrderByWithRelationInput | InvoiceRecipientAliasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing InvoiceRecipientAliases.
+     */
+    cursor?: InvoiceRecipientAliasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvoiceRecipientAliases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvoiceRecipientAliases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvoiceRecipientAliases.
+     */
+    distinct?: InvoiceRecipientAliasScalarFieldEnum | InvoiceRecipientAliasScalarFieldEnum[]
+  }
+
+  /**
+   * InvoiceRecipientAlias create
+   */
+  export type InvoiceRecipientAliasCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvoiceRecipientAlias
+     */
+    select?: InvoiceRecipientAliasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvoiceRecipientAlias
+     */
+    omit?: InvoiceRecipientAliasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvoiceRecipientAliasInclude<ExtArgs> | null
+    /**
+     * The data needed to create a InvoiceRecipientAlias.
+     */
+    data: XOR<InvoiceRecipientAliasCreateInput, InvoiceRecipientAliasUncheckedCreateInput>
+  }
+
+  /**
+   * InvoiceRecipientAlias createMany
+   */
+  export type InvoiceRecipientAliasCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many InvoiceRecipientAliases.
+     */
+    data: InvoiceRecipientAliasCreateManyInput | InvoiceRecipientAliasCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * InvoiceRecipientAlias createManyAndReturn
+   */
+  export type InvoiceRecipientAliasCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvoiceRecipientAlias
+     */
+    select?: InvoiceRecipientAliasSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvoiceRecipientAlias
+     */
+    omit?: InvoiceRecipientAliasOmit<ExtArgs> | null
+    /**
+     * The data used to create many InvoiceRecipientAliases.
+     */
+    data: InvoiceRecipientAliasCreateManyInput | InvoiceRecipientAliasCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvoiceRecipientAliasIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * InvoiceRecipientAlias update
+   */
+  export type InvoiceRecipientAliasUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvoiceRecipientAlias
+     */
+    select?: InvoiceRecipientAliasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvoiceRecipientAlias
+     */
+    omit?: InvoiceRecipientAliasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvoiceRecipientAliasInclude<ExtArgs> | null
+    /**
+     * The data needed to update a InvoiceRecipientAlias.
+     */
+    data: XOR<InvoiceRecipientAliasUpdateInput, InvoiceRecipientAliasUncheckedUpdateInput>
+    /**
+     * Choose, which InvoiceRecipientAlias to update.
+     */
+    where: InvoiceRecipientAliasWhereUniqueInput
+  }
+
+  /**
+   * InvoiceRecipientAlias updateMany
+   */
+  export type InvoiceRecipientAliasUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update InvoiceRecipientAliases.
+     */
+    data: XOR<InvoiceRecipientAliasUpdateManyMutationInput, InvoiceRecipientAliasUncheckedUpdateManyInput>
+    /**
+     * Filter which InvoiceRecipientAliases to update
+     */
+    where?: InvoiceRecipientAliasWhereInput
+    /**
+     * Limit how many InvoiceRecipientAliases to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * InvoiceRecipientAlias updateManyAndReturn
+   */
+  export type InvoiceRecipientAliasUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvoiceRecipientAlias
+     */
+    select?: InvoiceRecipientAliasSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvoiceRecipientAlias
+     */
+    omit?: InvoiceRecipientAliasOmit<ExtArgs> | null
+    /**
+     * The data used to update InvoiceRecipientAliases.
+     */
+    data: XOR<InvoiceRecipientAliasUpdateManyMutationInput, InvoiceRecipientAliasUncheckedUpdateManyInput>
+    /**
+     * Filter which InvoiceRecipientAliases to update
+     */
+    where?: InvoiceRecipientAliasWhereInput
+    /**
+     * Limit how many InvoiceRecipientAliases to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvoiceRecipientAliasIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * InvoiceRecipientAlias upsert
+   */
+  export type InvoiceRecipientAliasUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvoiceRecipientAlias
+     */
+    select?: InvoiceRecipientAliasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvoiceRecipientAlias
+     */
+    omit?: InvoiceRecipientAliasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvoiceRecipientAliasInclude<ExtArgs> | null
+    /**
+     * The filter to search for the InvoiceRecipientAlias to update in case it exists.
+     */
+    where: InvoiceRecipientAliasWhereUniqueInput
+    /**
+     * In case the InvoiceRecipientAlias found by the `where` argument doesn't exist, create a new InvoiceRecipientAlias with this data.
+     */
+    create: XOR<InvoiceRecipientAliasCreateInput, InvoiceRecipientAliasUncheckedCreateInput>
+    /**
+     * In case the InvoiceRecipientAlias was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<InvoiceRecipientAliasUpdateInput, InvoiceRecipientAliasUncheckedUpdateInput>
+  }
+
+  /**
+   * InvoiceRecipientAlias delete
+   */
+  export type InvoiceRecipientAliasDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvoiceRecipientAlias
+     */
+    select?: InvoiceRecipientAliasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvoiceRecipientAlias
+     */
+    omit?: InvoiceRecipientAliasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvoiceRecipientAliasInclude<ExtArgs> | null
+    /**
+     * Filter which InvoiceRecipientAlias to delete.
+     */
+    where: InvoiceRecipientAliasWhereUniqueInput
+  }
+
+  /**
+   * InvoiceRecipientAlias deleteMany
+   */
+  export type InvoiceRecipientAliasDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InvoiceRecipientAliases to delete
+     */
+    where?: InvoiceRecipientAliasWhereInput
+    /**
+     * Limit how many InvoiceRecipientAliases to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * InvoiceRecipientAlias without action
+   */
+  export type InvoiceRecipientAliasDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvoiceRecipientAlias
+     */
+    select?: InvoiceRecipientAliasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvoiceRecipientAlias
+     */
+    omit?: InvoiceRecipientAliasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvoiceRecipientAliasInclude<ExtArgs> | null
   }
 
 
@@ -23045,6 +24242,7 @@ export namespace Prisma {
     status: 'status',
     ourReference: 'ourReference',
     yourReference: 'yourReference',
+    sentAt: 'sentAt',
     rawData: 'rawData',
     syncedAt: 'syncedAt',
     createdAt: 'createdAt'
@@ -23066,6 +24264,16 @@ export namespace Prisma {
   };
 
   export type FortnoxInvoiceRowScalarFieldEnum = (typeof FortnoxInvoiceRowScalarFieldEnum)[keyof typeof FortnoxInvoiceRowScalarFieldEnum]
+
+
+  export const InvoiceRecipientAliasScalarFieldEnum: {
+    id: 'id',
+    alias: 'alias',
+    customerId: 'customerId',
+    createdAt: 'createdAt'
+  };
+
+  export type InvoiceRecipientAliasScalarFieldEnum = (typeof InvoiceRecipientAliasScalarFieldEnum)[keyof typeof InvoiceRecipientAliasScalarFieldEnum]
 
 
   export const FortnoxSyncLogScalarFieldEnum: {
@@ -23585,6 +24793,7 @@ export namespace Prisma {
     emails?: EmailListRelationFilter
     fortnoxCustomer?: XOR<FortnoxCustomerNullableScalarRelationFilter, FortnoxCustomerWhereInput> | null
     fortnoxInvoices?: FortnoxInvoiceListRelationFilter
+    invoiceRecipientAliases?: InvoiceRecipientAliasListRelationFilter
   }
 
   export type CustomerOrderByWithRelationInput = {
@@ -23602,6 +24811,7 @@ export namespace Prisma {
     emails?: EmailOrderByRelationAggregateInput
     fortnoxCustomer?: FortnoxCustomerOrderByWithRelationInput
     fortnoxInvoices?: FortnoxInvoiceOrderByRelationAggregateInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasOrderByRelationAggregateInput
   }
 
   export type CustomerWhereUniqueInput = Prisma.AtLeast<{
@@ -23622,6 +24832,7 @@ export namespace Prisma {
     emails?: EmailListRelationFilter
     fortnoxCustomer?: XOR<FortnoxCustomerNullableScalarRelationFilter, FortnoxCustomerWhereInput> | null
     fortnoxInvoices?: FortnoxInvoiceListRelationFilter
+    invoiceRecipientAliases?: InvoiceRecipientAliasListRelationFilter
   }, "id" | "fortnoxCustomerNumber">
 
   export type CustomerOrderByWithAggregationInput = {
@@ -24138,6 +25349,7 @@ export namespace Prisma {
     status?: StringNullableFilter<"FortnoxInvoice"> | string | null
     ourReference?: StringNullableFilter<"FortnoxInvoice"> | string | null
     yourReference?: StringNullableFilter<"FortnoxInvoice"> | string | null
+    sentAt?: DateTimeNullableFilter<"FortnoxInvoice"> | Date | string | null
     rawData?: JsonNullableFilter<"FortnoxInvoice">
     syncedAt?: DateTimeFilter<"FortnoxInvoice"> | Date | string
     createdAt?: DateTimeFilter<"FortnoxInvoice"> | Date | string
@@ -24160,6 +25372,7 @@ export namespace Prisma {
     status?: SortOrderInput | SortOrder
     ourReference?: SortOrderInput | SortOrder
     yourReference?: SortOrderInput | SortOrder
+    sentAt?: SortOrderInput | SortOrder
     rawData?: SortOrderInput | SortOrder
     syncedAt?: SortOrder
     createdAt?: SortOrder
@@ -24185,6 +25398,7 @@ export namespace Prisma {
     status?: StringNullableFilter<"FortnoxInvoice"> | string | null
     ourReference?: StringNullableFilter<"FortnoxInvoice"> | string | null
     yourReference?: StringNullableFilter<"FortnoxInvoice"> | string | null
+    sentAt?: DateTimeNullableFilter<"FortnoxInvoice"> | Date | string | null
     rawData?: JsonNullableFilter<"FortnoxInvoice">
     syncedAt?: DateTimeFilter<"FortnoxInvoice"> | Date | string
     createdAt?: DateTimeFilter<"FortnoxInvoice"> | Date | string
@@ -24207,6 +25421,7 @@ export namespace Prisma {
     status?: SortOrderInput | SortOrder
     ourReference?: SortOrderInput | SortOrder
     yourReference?: SortOrderInput | SortOrder
+    sentAt?: SortOrderInput | SortOrder
     rawData?: SortOrderInput | SortOrder
     syncedAt?: SortOrder
     createdAt?: SortOrder
@@ -24234,6 +25449,7 @@ export namespace Prisma {
     status?: StringNullableWithAggregatesFilter<"FortnoxInvoice"> | string | null
     ourReference?: StringNullableWithAggregatesFilter<"FortnoxInvoice"> | string | null
     yourReference?: StringNullableWithAggregatesFilter<"FortnoxInvoice"> | string | null
+    sentAt?: DateTimeNullableWithAggregatesFilter<"FortnoxInvoice"> | Date | string | null
     rawData?: JsonNullableWithAggregatesFilter<"FortnoxInvoice">
     syncedAt?: DateTimeWithAggregatesFilter<"FortnoxInvoice"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"FortnoxInvoice"> | Date | string
@@ -24314,6 +25530,56 @@ export namespace Prisma {
     price?: DecimalNullableWithAggregatesFilter<"FortnoxInvoiceRow"> | Decimal | DecimalJsLike | number | string | null
     vatPercent?: DecimalNullableWithAggregatesFilter<"FortnoxInvoiceRow"> | Decimal | DecimalJsLike | number | string | null
     total?: DecimalNullableWithAggregatesFilter<"FortnoxInvoiceRow"> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type InvoiceRecipientAliasWhereInput = {
+    AND?: InvoiceRecipientAliasWhereInput | InvoiceRecipientAliasWhereInput[]
+    OR?: InvoiceRecipientAliasWhereInput[]
+    NOT?: InvoiceRecipientAliasWhereInput | InvoiceRecipientAliasWhereInput[]
+    id?: UuidFilter<"InvoiceRecipientAlias"> | string
+    alias?: StringFilter<"InvoiceRecipientAlias"> | string
+    customerId?: UuidFilter<"InvoiceRecipientAlias"> | string
+    createdAt?: DateTimeFilter<"InvoiceRecipientAlias"> | Date | string
+    customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
+  }
+
+  export type InvoiceRecipientAliasOrderByWithRelationInput = {
+    id?: SortOrder
+    alias?: SortOrder
+    customerId?: SortOrder
+    createdAt?: SortOrder
+    customer?: CustomerOrderByWithRelationInput
+  }
+
+  export type InvoiceRecipientAliasWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    alias?: string
+    AND?: InvoiceRecipientAliasWhereInput | InvoiceRecipientAliasWhereInput[]
+    OR?: InvoiceRecipientAliasWhereInput[]
+    NOT?: InvoiceRecipientAliasWhereInput | InvoiceRecipientAliasWhereInput[]
+    customerId?: UuidFilter<"InvoiceRecipientAlias"> | string
+    createdAt?: DateTimeFilter<"InvoiceRecipientAlias"> | Date | string
+    customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
+  }, "id" | "alias">
+
+  export type InvoiceRecipientAliasOrderByWithAggregationInput = {
+    id?: SortOrder
+    alias?: SortOrder
+    customerId?: SortOrder
+    createdAt?: SortOrder
+    _count?: InvoiceRecipientAliasCountOrderByAggregateInput
+    _max?: InvoiceRecipientAliasMaxOrderByAggregateInput
+    _min?: InvoiceRecipientAliasMinOrderByAggregateInput
+  }
+
+  export type InvoiceRecipientAliasScalarWhereWithAggregatesInput = {
+    AND?: InvoiceRecipientAliasScalarWhereWithAggregatesInput | InvoiceRecipientAliasScalarWhereWithAggregatesInput[]
+    OR?: InvoiceRecipientAliasScalarWhereWithAggregatesInput[]
+    NOT?: InvoiceRecipientAliasScalarWhereWithAggregatesInput | InvoiceRecipientAliasScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"InvoiceRecipientAlias"> | string
+    alias?: StringWithAggregatesFilter<"InvoiceRecipientAlias"> | string
+    customerId?: UuidWithAggregatesFilter<"InvoiceRecipientAlias"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"InvoiceRecipientAlias"> | Date | string
   }
 
   export type FortnoxSyncLogWhereInput = {
@@ -25028,6 +26294,7 @@ export namespace Prisma {
     emails?: EmailCreateNestedManyWithoutCustomerInput
     fortnoxCustomer?: FortnoxCustomerCreateNestedOneWithoutCustomerInput
     fortnoxInvoices?: FortnoxInvoiceCreateNestedManyWithoutCustomerInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateInput = {
@@ -25044,6 +26311,7 @@ export namespace Prisma {
     emails?: EmailUncheckedCreateNestedManyWithoutCustomerInput
     fortnoxCustomer?: FortnoxCustomerUncheckedCreateNestedOneWithoutCustomerInput
     fortnoxInvoices?: FortnoxInvoiceUncheckedCreateNestedManyWithoutCustomerInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUpdateInput = {
@@ -25060,6 +26328,7 @@ export namespace Prisma {
     emails?: EmailUpdateManyWithoutCustomerNestedInput
     fortnoxCustomer?: FortnoxCustomerUpdateOneWithoutCustomerNestedInput
     fortnoxInvoices?: FortnoxInvoiceUpdateManyWithoutCustomerNestedInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateInput = {
@@ -25076,6 +26345,7 @@ export namespace Prisma {
     emails?: EmailUncheckedUpdateManyWithoutCustomerNestedInput
     fortnoxCustomer?: FortnoxCustomerUncheckedUpdateOneWithoutCustomerNestedInput
     fortnoxInvoices?: FortnoxInvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerCreateManyInput = {
@@ -25638,6 +26908,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -25660,6 +26931,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -25678,6 +26950,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25700,6 +26973,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25720,6 +26994,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -25737,6 +27012,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25756,6 +27032,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25842,6 +27119,54 @@ export namespace Prisma {
     price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     vatPercent?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     total?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type InvoiceRecipientAliasCreateInput = {
+    id?: string
+    alias: string
+    createdAt?: Date | string
+    customer: CustomerCreateNestedOneWithoutInvoiceRecipientAliasesInput
+  }
+
+  export type InvoiceRecipientAliasUncheckedCreateInput = {
+    id?: string
+    alias: string
+    customerId: string
+    createdAt?: Date | string
+  }
+
+  export type InvoiceRecipientAliasUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    alias?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customer?: CustomerUpdateOneRequiredWithoutInvoiceRecipientAliasesNestedInput
+  }
+
+  export type InvoiceRecipientAliasUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    alias?: StringFieldUpdateOperationsInput | string
+    customerId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvoiceRecipientAliasCreateManyInput = {
+    id?: string
+    alias: string
+    customerId: string
+    createdAt?: Date | string
+  }
+
+  export type InvoiceRecipientAliasUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    alias?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvoiceRecipientAliasUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    alias?: StringFieldUpdateOperationsInput | string
+    customerId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FortnoxSyncLogCreateInput = {
@@ -26736,7 +28061,17 @@ export namespace Prisma {
     none?: FortnoxInvoiceWhereInput
   }
 
+  export type InvoiceRecipientAliasListRelationFilter = {
+    every?: InvoiceRecipientAliasWhereInput
+    some?: InvoiceRecipientAliasWhereInput
+    none?: InvoiceRecipientAliasWhereInput
+  }
+
   export type FortnoxInvoiceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type InvoiceRecipientAliasOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -27185,6 +28520,7 @@ export namespace Prisma {
     status?: SortOrder
     ourReference?: SortOrder
     yourReference?: SortOrder
+    sentAt?: SortOrder
     rawData?: SortOrder
     syncedAt?: SortOrder
     createdAt?: SortOrder
@@ -27210,6 +28546,7 @@ export namespace Prisma {
     status?: SortOrder
     ourReference?: SortOrder
     yourReference?: SortOrder
+    sentAt?: SortOrder
     syncedAt?: SortOrder
     createdAt?: SortOrder
   }
@@ -27228,6 +28565,7 @@ export namespace Prisma {
     status?: SortOrder
     ourReference?: SortOrder
     yourReference?: SortOrder
+    sentAt?: SortOrder
     syncedAt?: SortOrder
     createdAt?: SortOrder
   }
@@ -27336,6 +28674,27 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type InvoiceRecipientAliasCountOrderByAggregateInput = {
+    id?: SortOrder
+    alias?: SortOrder
+    customerId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type InvoiceRecipientAliasMaxOrderByAggregateInput = {
+    id?: SortOrder
+    alias?: SortOrder
+    customerId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type InvoiceRecipientAliasMinOrderByAggregateInput = {
+    id?: SortOrder
+    alias?: SortOrder
+    customerId?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type FortnoxSyncLogCompanyIdResourceCompoundUniqueInput = {
@@ -28157,6 +29516,13 @@ export namespace Prisma {
     connect?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
   }
 
+  export type InvoiceRecipientAliasCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<InvoiceRecipientAliasCreateWithoutCustomerInput, InvoiceRecipientAliasUncheckedCreateWithoutCustomerInput> | InvoiceRecipientAliasCreateWithoutCustomerInput[] | InvoiceRecipientAliasUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: InvoiceRecipientAliasCreateOrConnectWithoutCustomerInput | InvoiceRecipientAliasCreateOrConnectWithoutCustomerInput[]
+    createMany?: InvoiceRecipientAliasCreateManyCustomerInputEnvelope
+    connect?: InvoiceRecipientAliasWhereUniqueInput | InvoiceRecipientAliasWhereUniqueInput[]
+  }
+
   export type EmployeeCustomerUncheckedCreateNestedManyWithoutCustomerInput = {
     create?: XOR<EmployeeCustomerCreateWithoutCustomerInput, EmployeeCustomerUncheckedCreateWithoutCustomerInput> | EmployeeCustomerCreateWithoutCustomerInput[] | EmployeeCustomerUncheckedCreateWithoutCustomerInput[]
     connectOrCreate?: EmployeeCustomerCreateOrConnectWithoutCustomerInput | EmployeeCustomerCreateOrConnectWithoutCustomerInput[]
@@ -28196,6 +29562,13 @@ export namespace Prisma {
     connectOrCreate?: FortnoxInvoiceCreateOrConnectWithoutCustomerInput | FortnoxInvoiceCreateOrConnectWithoutCustomerInput[]
     createMany?: FortnoxInvoiceCreateManyCustomerInputEnvelope
     connect?: FortnoxInvoiceWhereUniqueInput | FortnoxInvoiceWhereUniqueInput[]
+  }
+
+  export type InvoiceRecipientAliasUncheckedCreateNestedManyWithoutCustomerInput = {
+    create?: XOR<InvoiceRecipientAliasCreateWithoutCustomerInput, InvoiceRecipientAliasUncheckedCreateWithoutCustomerInput> | InvoiceRecipientAliasCreateWithoutCustomerInput[] | InvoiceRecipientAliasUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: InvoiceRecipientAliasCreateOrConnectWithoutCustomerInput | InvoiceRecipientAliasCreateOrConnectWithoutCustomerInput[]
+    createMany?: InvoiceRecipientAliasCreateManyCustomerInputEnvelope
+    connect?: InvoiceRecipientAliasWhereUniqueInput | InvoiceRecipientAliasWhereUniqueInput[]
   }
 
   export type CompanyUpdateOneRequiredWithoutCustomersNestedInput = {
@@ -28286,6 +29659,20 @@ export namespace Prisma {
     deleteMany?: FortnoxInvoiceScalarWhereInput | FortnoxInvoiceScalarWhereInput[]
   }
 
+  export type InvoiceRecipientAliasUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<InvoiceRecipientAliasCreateWithoutCustomerInput, InvoiceRecipientAliasUncheckedCreateWithoutCustomerInput> | InvoiceRecipientAliasCreateWithoutCustomerInput[] | InvoiceRecipientAliasUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: InvoiceRecipientAliasCreateOrConnectWithoutCustomerInput | InvoiceRecipientAliasCreateOrConnectWithoutCustomerInput[]
+    upsert?: InvoiceRecipientAliasUpsertWithWhereUniqueWithoutCustomerInput | InvoiceRecipientAliasUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: InvoiceRecipientAliasCreateManyCustomerInputEnvelope
+    set?: InvoiceRecipientAliasWhereUniqueInput | InvoiceRecipientAliasWhereUniqueInput[]
+    disconnect?: InvoiceRecipientAliasWhereUniqueInput | InvoiceRecipientAliasWhereUniqueInput[]
+    delete?: InvoiceRecipientAliasWhereUniqueInput | InvoiceRecipientAliasWhereUniqueInput[]
+    connect?: InvoiceRecipientAliasWhereUniqueInput | InvoiceRecipientAliasWhereUniqueInput[]
+    update?: InvoiceRecipientAliasUpdateWithWhereUniqueWithoutCustomerInput | InvoiceRecipientAliasUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: InvoiceRecipientAliasUpdateManyWithWhereWithoutCustomerInput | InvoiceRecipientAliasUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: InvoiceRecipientAliasScalarWhereInput | InvoiceRecipientAliasScalarWhereInput[]
+  }
+
   export type EmployeeCustomerUncheckedUpdateManyWithoutCustomerNestedInput = {
     create?: XOR<EmployeeCustomerCreateWithoutCustomerInput, EmployeeCustomerUncheckedCreateWithoutCustomerInput> | EmployeeCustomerCreateWithoutCustomerInput[] | EmployeeCustomerUncheckedCreateWithoutCustomerInput[]
     connectOrCreate?: EmployeeCustomerCreateOrConnectWithoutCustomerInput | EmployeeCustomerCreateOrConnectWithoutCustomerInput[]
@@ -28364,6 +29751,20 @@ export namespace Prisma {
     update?: FortnoxInvoiceUpdateWithWhereUniqueWithoutCustomerInput | FortnoxInvoiceUpdateWithWhereUniqueWithoutCustomerInput[]
     updateMany?: FortnoxInvoiceUpdateManyWithWhereWithoutCustomerInput | FortnoxInvoiceUpdateManyWithWhereWithoutCustomerInput[]
     deleteMany?: FortnoxInvoiceScalarWhereInput | FortnoxInvoiceScalarWhereInput[]
+  }
+
+  export type InvoiceRecipientAliasUncheckedUpdateManyWithoutCustomerNestedInput = {
+    create?: XOR<InvoiceRecipientAliasCreateWithoutCustomerInput, InvoiceRecipientAliasUncheckedCreateWithoutCustomerInput> | InvoiceRecipientAliasCreateWithoutCustomerInput[] | InvoiceRecipientAliasUncheckedCreateWithoutCustomerInput[]
+    connectOrCreate?: InvoiceRecipientAliasCreateOrConnectWithoutCustomerInput | InvoiceRecipientAliasCreateOrConnectWithoutCustomerInput[]
+    upsert?: InvoiceRecipientAliasUpsertWithWhereUniqueWithoutCustomerInput | InvoiceRecipientAliasUpsertWithWhereUniqueWithoutCustomerInput[]
+    createMany?: InvoiceRecipientAliasCreateManyCustomerInputEnvelope
+    set?: InvoiceRecipientAliasWhereUniqueInput | InvoiceRecipientAliasWhereUniqueInput[]
+    disconnect?: InvoiceRecipientAliasWhereUniqueInput | InvoiceRecipientAliasWhereUniqueInput[]
+    delete?: InvoiceRecipientAliasWhereUniqueInput | InvoiceRecipientAliasWhereUniqueInput[]
+    connect?: InvoiceRecipientAliasWhereUniqueInput | InvoiceRecipientAliasWhereUniqueInput[]
+    update?: InvoiceRecipientAliasUpdateWithWhereUniqueWithoutCustomerInput | InvoiceRecipientAliasUpdateWithWhereUniqueWithoutCustomerInput[]
+    updateMany?: InvoiceRecipientAliasUpdateManyWithWhereWithoutCustomerInput | InvoiceRecipientAliasUpdateManyWithWhereWithoutCustomerInput[]
+    deleteMany?: InvoiceRecipientAliasScalarWhereInput | InvoiceRecipientAliasScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutEmployeeCustomersInput = {
@@ -28668,6 +30069,20 @@ export namespace Prisma {
     upsert?: FortnoxInvoiceUpsertWithoutRowsInput
     connect?: FortnoxInvoiceWhereUniqueInput
     update?: XOR<XOR<FortnoxInvoiceUpdateToOneWithWhereWithoutRowsInput, FortnoxInvoiceUpdateWithoutRowsInput>, FortnoxInvoiceUncheckedUpdateWithoutRowsInput>
+  }
+
+  export type CustomerCreateNestedOneWithoutInvoiceRecipientAliasesInput = {
+    create?: XOR<CustomerCreateWithoutInvoiceRecipientAliasesInput, CustomerUncheckedCreateWithoutInvoiceRecipientAliasesInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutInvoiceRecipientAliasesInput
+    connect?: CustomerWhereUniqueInput
+  }
+
+  export type CustomerUpdateOneRequiredWithoutInvoiceRecipientAliasesNestedInput = {
+    create?: XOR<CustomerCreateWithoutInvoiceRecipientAliasesInput, CustomerUncheckedCreateWithoutInvoiceRecipientAliasesInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutInvoiceRecipientAliasesInput
+    upsert?: CustomerUpsertWithoutInvoiceRecipientAliasesInput
+    connect?: CustomerWhereUniqueInput
+    update?: XOR<XOR<CustomerUpdateToOneWithWhereWithoutInvoiceRecipientAliasesInput, CustomerUpdateWithoutInvoiceRecipientAliasesInput>, CustomerUncheckedUpdateWithoutInvoiceRecipientAliasesInput>
   }
 
   export type CompanyCreateNestedOneWithoutFortnoxSyncLogsInput = {
@@ -29280,6 +30695,7 @@ export namespace Prisma {
     emails?: EmailCreateNestedManyWithoutCustomerInput
     fortnoxCustomer?: FortnoxCustomerCreateNestedOneWithoutCustomerInput
     fortnoxInvoices?: FortnoxInvoiceCreateNestedManyWithoutCustomerInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutCompanyInput = {
@@ -29295,6 +30711,7 @@ export namespace Prisma {
     emails?: EmailUncheckedCreateNestedManyWithoutCustomerInput
     fortnoxCustomer?: FortnoxCustomerUncheckedCreateNestedOneWithoutCustomerInput
     fortnoxInvoices?: FortnoxInvoiceUncheckedCreateNestedManyWithoutCustomerInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutCompanyInput = {
@@ -30255,6 +31672,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -30275,6 +31693,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -30288,6 +31707,28 @@ export namespace Prisma {
 
   export type FortnoxInvoiceCreateManyCustomerInputEnvelope = {
     data: FortnoxInvoiceCreateManyCustomerInput | FortnoxInvoiceCreateManyCustomerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type InvoiceRecipientAliasCreateWithoutCustomerInput = {
+    id?: string
+    alias: string
+    createdAt?: Date | string
+  }
+
+  export type InvoiceRecipientAliasUncheckedCreateWithoutCustomerInput = {
+    id?: string
+    alias: string
+    createdAt?: Date | string
+  }
+
+  export type InvoiceRecipientAliasCreateOrConnectWithoutCustomerInput = {
+    where: InvoiceRecipientAliasWhereUniqueInput
+    create: XOR<InvoiceRecipientAliasCreateWithoutCustomerInput, InvoiceRecipientAliasUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type InvoiceRecipientAliasCreateManyCustomerInputEnvelope = {
+    data: InvoiceRecipientAliasCreateManyCustomerInput | InvoiceRecipientAliasCreateManyCustomerInput[]
     skipDuplicates?: boolean
   }
 
@@ -30468,9 +31909,36 @@ export namespace Prisma {
     status?: StringNullableFilter<"FortnoxInvoice"> | string | null
     ourReference?: StringNullableFilter<"FortnoxInvoice"> | string | null
     yourReference?: StringNullableFilter<"FortnoxInvoice"> | string | null
+    sentAt?: DateTimeNullableFilter<"FortnoxInvoice"> | Date | string | null
     rawData?: JsonNullableFilter<"FortnoxInvoice">
     syncedAt?: DateTimeFilter<"FortnoxInvoice"> | Date | string
     createdAt?: DateTimeFilter<"FortnoxInvoice"> | Date | string
+  }
+
+  export type InvoiceRecipientAliasUpsertWithWhereUniqueWithoutCustomerInput = {
+    where: InvoiceRecipientAliasWhereUniqueInput
+    update: XOR<InvoiceRecipientAliasUpdateWithoutCustomerInput, InvoiceRecipientAliasUncheckedUpdateWithoutCustomerInput>
+    create: XOR<InvoiceRecipientAliasCreateWithoutCustomerInput, InvoiceRecipientAliasUncheckedCreateWithoutCustomerInput>
+  }
+
+  export type InvoiceRecipientAliasUpdateWithWhereUniqueWithoutCustomerInput = {
+    where: InvoiceRecipientAliasWhereUniqueInput
+    data: XOR<InvoiceRecipientAliasUpdateWithoutCustomerInput, InvoiceRecipientAliasUncheckedUpdateWithoutCustomerInput>
+  }
+
+  export type InvoiceRecipientAliasUpdateManyWithWhereWithoutCustomerInput = {
+    where: InvoiceRecipientAliasScalarWhereInput
+    data: XOR<InvoiceRecipientAliasUpdateManyMutationInput, InvoiceRecipientAliasUncheckedUpdateManyWithoutCustomerInput>
+  }
+
+  export type InvoiceRecipientAliasScalarWhereInput = {
+    AND?: InvoiceRecipientAliasScalarWhereInput | InvoiceRecipientAliasScalarWhereInput[]
+    OR?: InvoiceRecipientAliasScalarWhereInput[]
+    NOT?: InvoiceRecipientAliasScalarWhereInput | InvoiceRecipientAliasScalarWhereInput[]
+    id?: UuidFilter<"InvoiceRecipientAlias"> | string
+    alias?: StringFilter<"InvoiceRecipientAlias"> | string
+    customerId?: UuidFilter<"InvoiceRecipientAlias"> | string
+    createdAt?: DateTimeFilter<"InvoiceRecipientAlias"> | Date | string
   }
 
   export type UserCreateWithoutEmployeeCustomersInput = {
@@ -30517,6 +31985,7 @@ export namespace Prisma {
     emails?: EmailCreateNestedManyWithoutCustomerInput
     fortnoxCustomer?: FortnoxCustomerCreateNestedOneWithoutCustomerInput
     fortnoxInvoices?: FortnoxInvoiceCreateNestedManyWithoutCustomerInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutEmployeeCustomersInput = {
@@ -30532,6 +32001,7 @@ export namespace Prisma {
     emails?: EmailUncheckedCreateNestedManyWithoutCustomerInput
     fortnoxCustomer?: FortnoxCustomerUncheckedCreateNestedOneWithoutCustomerInput
     fortnoxInvoices?: FortnoxInvoiceUncheckedCreateNestedManyWithoutCustomerInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutEmployeeCustomersInput = {
@@ -30600,6 +32070,7 @@ export namespace Prisma {
     emails?: EmailUpdateManyWithoutCustomerNestedInput
     fortnoxCustomer?: FortnoxCustomerUpdateOneWithoutCustomerNestedInput
     fortnoxInvoices?: FortnoxInvoiceUpdateManyWithoutCustomerNestedInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutEmployeeCustomersInput = {
@@ -30615,6 +32086,7 @@ export namespace Prisma {
     emails?: EmailUncheckedUpdateManyWithoutCustomerNestedInput
     fortnoxCustomer?: FortnoxCustomerUncheckedUpdateOneWithoutCustomerNestedInput
     fortnoxInvoices?: FortnoxInvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type UserCreateWithoutTimeEntriesInput = {
@@ -30661,6 +32133,7 @@ export namespace Prisma {
     emails?: EmailCreateNestedManyWithoutCustomerInput
     fortnoxCustomer?: FortnoxCustomerCreateNestedOneWithoutCustomerInput
     fortnoxInvoices?: FortnoxInvoiceCreateNestedManyWithoutCustomerInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutTimeEntriesInput = {
@@ -30676,6 +32149,7 @@ export namespace Prisma {
     emails?: EmailUncheckedCreateNestedManyWithoutCustomerInput
     fortnoxCustomer?: FortnoxCustomerUncheckedCreateNestedOneWithoutCustomerInput
     fortnoxInvoices?: FortnoxInvoiceUncheckedCreateNestedManyWithoutCustomerInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutTimeEntriesInput = {
@@ -30744,6 +32218,7 @@ export namespace Prisma {
     emails?: EmailUpdateManyWithoutCustomerNestedInput
     fortnoxCustomer?: FortnoxCustomerUpdateOneWithoutCustomerNestedInput
     fortnoxInvoices?: FortnoxInvoiceUpdateManyWithoutCustomerNestedInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutTimeEntriesInput = {
@@ -30759,6 +32234,7 @@ export namespace Prisma {
     emails?: EmailUncheckedUpdateManyWithoutCustomerNestedInput
     fortnoxCustomer?: FortnoxCustomerUncheckedUpdateOneWithoutCustomerNestedInput
     fortnoxInvoices?: FortnoxInvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type UserCreateWithoutEmailActivitiesInput = {
@@ -30805,6 +32281,7 @@ export namespace Prisma {
     emails?: EmailCreateNestedManyWithoutCustomerInput
     fortnoxCustomer?: FortnoxCustomerCreateNestedOneWithoutCustomerInput
     fortnoxInvoices?: FortnoxInvoiceCreateNestedManyWithoutCustomerInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutEmailActivitiesInput = {
@@ -30820,6 +32297,7 @@ export namespace Prisma {
     emails?: EmailUncheckedCreateNestedManyWithoutCustomerInput
     fortnoxCustomer?: FortnoxCustomerUncheckedCreateNestedOneWithoutCustomerInput
     fortnoxInvoices?: FortnoxInvoiceUncheckedCreateNestedManyWithoutCustomerInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutEmailActivitiesInput = {
@@ -30888,6 +32366,7 @@ export namespace Prisma {
     emails?: EmailUpdateManyWithoutCustomerNestedInput
     fortnoxCustomer?: FortnoxCustomerUpdateOneWithoutCustomerNestedInput
     fortnoxInvoices?: FortnoxInvoiceUpdateManyWithoutCustomerNestedInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutEmailActivitiesInput = {
@@ -30903,6 +32382,7 @@ export namespace Prisma {
     emails?: EmailUncheckedUpdateManyWithoutCustomerNestedInput
     fortnoxCustomer?: FortnoxCustomerUncheckedUpdateOneWithoutCustomerNestedInput
     fortnoxInvoices?: FortnoxInvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type ImapCredentialCreateWithoutEmailsInput = {
@@ -30976,6 +32456,7 @@ export namespace Prisma {
     emailActivities?: EmailActivityCreateNestedManyWithoutCustomerInput
     fortnoxCustomer?: FortnoxCustomerCreateNestedOneWithoutCustomerInput
     fortnoxInvoices?: FortnoxInvoiceCreateNestedManyWithoutCustomerInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutEmailsInput = {
@@ -30991,6 +32472,7 @@ export namespace Prisma {
     emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutCustomerInput
     fortnoxCustomer?: FortnoxCustomerUncheckedCreateNestedOneWithoutCustomerInput
     fortnoxInvoices?: FortnoxInvoiceUncheckedCreateNestedManyWithoutCustomerInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutEmailsInput = {
@@ -31092,6 +32574,7 @@ export namespace Prisma {
     emailActivities?: EmailActivityUpdateManyWithoutCustomerNestedInput
     fortnoxCustomer?: FortnoxCustomerUpdateOneWithoutCustomerNestedInput
     fortnoxInvoices?: FortnoxInvoiceUpdateManyWithoutCustomerNestedInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutEmailsInput = {
@@ -31107,6 +32590,7 @@ export namespace Prisma {
     emailActivities?: EmailActivityUncheckedUpdateManyWithoutCustomerNestedInput
     fortnoxCustomer?: FortnoxCustomerUncheckedUpdateOneWithoutCustomerNestedInput
     fortnoxInvoices?: FortnoxInvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerCreateWithoutFortnoxCustomerInput = {
@@ -31122,6 +32606,7 @@ export namespace Prisma {
     emailActivities?: EmailActivityCreateNestedManyWithoutCustomerInput
     emails?: EmailCreateNestedManyWithoutCustomerInput
     fortnoxInvoices?: FortnoxInvoiceCreateNestedManyWithoutCustomerInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutFortnoxCustomerInput = {
@@ -31137,6 +32622,7 @@ export namespace Prisma {
     emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutCustomerInput
     emails?: EmailUncheckedCreateNestedManyWithoutCustomerInput
     fortnoxInvoices?: FortnoxInvoiceUncheckedCreateNestedManyWithoutCustomerInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutFortnoxCustomerInput = {
@@ -31156,6 +32642,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -31176,6 +32663,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -31216,6 +32704,7 @@ export namespace Prisma {
     emailActivities?: EmailActivityUpdateManyWithoutCustomerNestedInput
     emails?: EmailUpdateManyWithoutCustomerNestedInput
     fortnoxInvoices?: FortnoxInvoiceUpdateManyWithoutCustomerNestedInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutFortnoxCustomerInput = {
@@ -31231,6 +32720,7 @@ export namespace Prisma {
     emailActivities?: EmailActivityUncheckedUpdateManyWithoutCustomerNestedInput
     emails?: EmailUncheckedUpdateManyWithoutCustomerNestedInput
     fortnoxInvoices?: FortnoxInvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type FortnoxInvoiceUpsertWithWhereUniqueWithoutFortnoxCustomerInput = {
@@ -31305,6 +32795,7 @@ export namespace Prisma {
     emailActivities?: EmailActivityCreateNestedManyWithoutCustomerInput
     emails?: EmailCreateNestedManyWithoutCustomerInput
     fortnoxCustomer?: FortnoxCustomerCreateNestedOneWithoutCustomerInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerUncheckedCreateWithoutFortnoxInvoicesInput = {
@@ -31320,6 +32811,7 @@ export namespace Prisma {
     emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutCustomerInput
     emails?: EmailUncheckedCreateNestedManyWithoutCustomerInput
     fortnoxCustomer?: FortnoxCustomerUncheckedCreateNestedOneWithoutCustomerInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUncheckedCreateNestedManyWithoutCustomerInput
   }
 
   export type CustomerCreateOrConnectWithoutFortnoxInvoicesInput = {
@@ -31432,6 +32924,7 @@ export namespace Prisma {
     emailActivities?: EmailActivityUpdateManyWithoutCustomerNestedInput
     emails?: EmailUpdateManyWithoutCustomerNestedInput
     fortnoxCustomer?: FortnoxCustomerUpdateOneWithoutCustomerNestedInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutFortnoxInvoicesInput = {
@@ -31447,6 +32940,7 @@ export namespace Prisma {
     emailActivities?: EmailActivityUncheckedUpdateManyWithoutCustomerNestedInput
     emails?: EmailUncheckedUpdateManyWithoutCustomerNestedInput
     fortnoxCustomer?: FortnoxCustomerUncheckedUpdateOneWithoutCustomerNestedInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type FortnoxInvoiceRowUpsertWithWhereUniqueWithoutInvoiceInput = {
@@ -31492,6 +32986,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -31513,6 +33008,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -31546,6 +33042,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31567,9 +33064,90 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CustomerCreateWithoutInvoiceRecipientAliasesInput = {
+    id?: string
+    fortnoxCustomerNumber?: string | null
+    name: string
+    email?: string | null
+    domain?: string | null
+    createdAt?: Date | string
+    company: CompanyCreateNestedOneWithoutCustomersInput
+    employeeCustomers?: EmployeeCustomerCreateNestedManyWithoutCustomerInput
+    timeEntries?: TimeEntryCreateNestedManyWithoutCustomerInput
+    emailActivities?: EmailActivityCreateNestedManyWithoutCustomerInput
+    emails?: EmailCreateNestedManyWithoutCustomerInput
+    fortnoxCustomer?: FortnoxCustomerCreateNestedOneWithoutCustomerInput
+    fortnoxInvoices?: FortnoxInvoiceCreateNestedManyWithoutCustomerInput
+  }
+
+  export type CustomerUncheckedCreateWithoutInvoiceRecipientAliasesInput = {
+    id?: string
+    fortnoxCustomerNumber?: string | null
+    name: string
+    email?: string | null
+    domain?: string | null
+    companyId: string
+    createdAt?: Date | string
+    employeeCustomers?: EmployeeCustomerUncheckedCreateNestedManyWithoutCustomerInput
+    timeEntries?: TimeEntryUncheckedCreateNestedManyWithoutCustomerInput
+    emailActivities?: EmailActivityUncheckedCreateNestedManyWithoutCustomerInput
+    emails?: EmailUncheckedCreateNestedManyWithoutCustomerInput
+    fortnoxCustomer?: FortnoxCustomerUncheckedCreateNestedOneWithoutCustomerInput
+    fortnoxInvoices?: FortnoxInvoiceUncheckedCreateNestedManyWithoutCustomerInput
+  }
+
+  export type CustomerCreateOrConnectWithoutInvoiceRecipientAliasesInput = {
+    where: CustomerWhereUniqueInput
+    create: XOR<CustomerCreateWithoutInvoiceRecipientAliasesInput, CustomerUncheckedCreateWithoutInvoiceRecipientAliasesInput>
+  }
+
+  export type CustomerUpsertWithoutInvoiceRecipientAliasesInput = {
+    update: XOR<CustomerUpdateWithoutInvoiceRecipientAliasesInput, CustomerUncheckedUpdateWithoutInvoiceRecipientAliasesInput>
+    create: XOR<CustomerCreateWithoutInvoiceRecipientAliasesInput, CustomerUncheckedCreateWithoutInvoiceRecipientAliasesInput>
+    where?: CustomerWhereInput
+  }
+
+  export type CustomerUpdateToOneWithWhereWithoutInvoiceRecipientAliasesInput = {
+    where?: CustomerWhereInput
+    data: XOR<CustomerUpdateWithoutInvoiceRecipientAliasesInput, CustomerUncheckedUpdateWithoutInvoiceRecipientAliasesInput>
+  }
+
+  export type CustomerUpdateWithoutInvoiceRecipientAliasesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    company?: CompanyUpdateOneRequiredWithoutCustomersNestedInput
+    employeeCustomers?: EmployeeCustomerUpdateManyWithoutCustomerNestedInput
+    timeEntries?: TimeEntryUpdateManyWithoutCustomerNestedInput
+    emailActivities?: EmailActivityUpdateManyWithoutCustomerNestedInput
+    emails?: EmailUpdateManyWithoutCustomerNestedInput
+    fortnoxCustomer?: FortnoxCustomerUpdateOneWithoutCustomerNestedInput
+    fortnoxInvoices?: FortnoxInvoiceUpdateManyWithoutCustomerNestedInput
+  }
+
+  export type CustomerUncheckedUpdateWithoutInvoiceRecipientAliasesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fortnoxCustomerNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    companyId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeeCustomers?: EmployeeCustomerUncheckedUpdateManyWithoutCustomerNestedInput
+    timeEntries?: TimeEntryUncheckedUpdateManyWithoutCustomerNestedInput
+    emailActivities?: EmailActivityUncheckedUpdateManyWithoutCustomerNestedInput
+    emails?: EmailUncheckedUpdateManyWithoutCustomerNestedInput
+    fortnoxCustomer?: FortnoxCustomerUncheckedUpdateOneWithoutCustomerNestedInput
+    fortnoxInvoices?: FortnoxInvoiceUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type CompanyCreateWithoutFortnoxSyncLogsInput = {
@@ -32166,6 +33744,7 @@ export namespace Prisma {
     emails?: EmailUpdateManyWithoutCustomerNestedInput
     fortnoxCustomer?: FortnoxCustomerUpdateOneWithoutCustomerNestedInput
     fortnoxInvoices?: FortnoxInvoiceUpdateManyWithoutCustomerNestedInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutCompanyInput = {
@@ -32181,6 +33760,7 @@ export namespace Prisma {
     emails?: EmailUncheckedUpdateManyWithoutCustomerNestedInput
     fortnoxCustomer?: FortnoxCustomerUncheckedUpdateOneWithoutCustomerNestedInput
     fortnoxInvoices?: FortnoxInvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+    invoiceRecipientAliases?: InvoiceRecipientAliasUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
   export type CustomerUncheckedUpdateManyWithoutCompanyInput = {
@@ -32617,8 +34197,15 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type InvoiceRecipientAliasCreateManyCustomerInput = {
+    id?: string
+    alias: string
     createdAt?: Date | string
   }
 
@@ -32790,6 +34377,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32810,6 +34398,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32829,8 +34418,27 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvoiceRecipientAliasUpdateWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    alias?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvoiceRecipientAliasUncheckedUpdateWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    alias?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvoiceRecipientAliasUncheckedUpdateManyWithoutCustomerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    alias?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -32847,6 +34455,7 @@ export namespace Prisma {
     status?: string | null
     ourReference?: string | null
     yourReference?: string | null
+    sentAt?: Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: Date | string
     createdAt?: Date | string
@@ -32864,6 +34473,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32884,6 +34494,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32903,6 +34514,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     ourReference?: NullableStringFieldUpdateOperationsInput | string | null
     yourReference?: NullableStringFieldUpdateOperationsInput | string | null
+    sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rawData?: NullableJsonNullValueInput | InputJsonValue
     syncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
