@@ -83,6 +83,7 @@ const typeDefs = `
     MAIL
     EMAIL_ACTIVITY
     FORTNOX_VOUCHER
+    FORTNOX_INVOICE
   }
 
   type TimelineMailSent {
@@ -108,12 +109,22 @@ const typeDefs = `
     financialYearId: ID!
   }
 
+  type TimelineFortnoxInvoiceBrief {
+    id: ID!
+    invoiceNumber: String!
+    customerNumber: String!
+    totalInclVat: Float
+    currency: String!
+    status: String!
+  }
+
   type TimelineEvent {
     kind: TimelineEventKind!
     occurredAt: String!
     mailSent: TimelineMailSent
     emailActivity: TimelineEmailActivity
     fortnoxVoucher: TimelineFortnoxVoucherBrief
+    fortnoxInvoice: TimelineFortnoxInvoiceBrief
   }
 
   type Email {

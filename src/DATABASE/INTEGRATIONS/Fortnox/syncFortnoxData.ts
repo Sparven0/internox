@@ -24,6 +24,7 @@ async function fetchAllPages(
     const rootKey = Object.keys(data).find((k) => Array.isArray(data[k]));
     const items: any[] = rootKey ? data[rootKey] : [];
     results.push(...items);
+    console.log(`Fetched page ${page} of ${resource} for company ${companyId}, got ${items.length} items.`);
 
     const totalPages: number = data?.MetaInformation?.["@TotalPages"] ?? 1;
     if (page >= totalPages) break;
@@ -218,7 +219,12 @@ export async function syncFortnoxData(companyId: string): Promise<{
 
     const status = deriveInvoiceStatus(inv);
     const booked = isFortnoxInvoiceBooked(inv);
-    const sentAt = booked ? resolveFortnoxBookedAt(inv, undefined, now) : null;
+    // Use the actual invoice date as fallback — never `now` — so existing booked
+    // invoices get a meaningful sentAt on first insert without overwriting a more
+    // precise timestamp set later by the WebSocket bookkeep event.
+    const sentAt = booked
+      ? resolveFortnoxBookedAt(inv, undefined, firstFortnoxDate(inv.InvoiceDate) ?? now)
+      : null;
 
     await client.fortnoxInvoice.upsert({
       where: { invoiceNumber },
@@ -250,7 +256,8 @@ export async function syncFortnoxData(companyId: string): Promise<{
         yourReference: inv.YourReference || null,
         rawData: inv,
         syncedAt: now,
-        ...(booked && sentAt ? { sentAt } : {}),
+        // sentAt is intentionally omitted — only the WebSocket bookkeep event
+        // (fortnoxWebSocket.ts) may update this field on existing rows.
       },
     });
 
@@ -302,15 +309,31 @@ export async function syncFortnoxInvoiceRows(
   const headerNow = new Date();
 
   // Single-invoice GET is authoritative for `Booked` when the list omits it.
+  // Only set sentAt when it is not already populated — the WebSocket bookkeep
+  // event owns that field and may have stored a more precise timestamp.
   if (isFortnoxInvoiceBooked(inv)) {
-    const sentAt = resolveFortnoxBookedAt(inv, undefined, headerNow);
+    const sentAt = resolveFortnoxBookedAt(
+      inv,
+      undefined,
+      firstFortnoxDate(inv.InvoiceDate) ?? headerNow,
+    );
     await client.fortnoxInvoice.updateMany({
-      where: { invoiceNumber },
+      where: { invoiceNumber, sentAt: null },
       data: {
         sentAt,
         rawData: inv,
         syncedAt: headerNow,
       },
+    });
+    // Always update rawData/syncedAt even when sentAt is already set
+    await client.fortnoxInvoice.updateMany({
+      where: { invoiceNumber },
+      data: { rawData: inv, syncedAt: headerNow },
+    });
+  } else {
+    await client.fortnoxInvoice.updateMany({
+      where: { invoiceNumber },
+      data: { rawData: inv, syncedAt: headerNow },
     });
   }
 

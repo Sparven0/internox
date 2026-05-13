@@ -45,7 +45,7 @@ export async function getUserCompanyTimeline(
   );
   const client = getCompanyClient(dbName);
 
-  const [emailRows, activityRows, voucherRows] = await Promise.all([
+  const [emailRows, activityRows, invoiceRows] = await Promise.all([
     client.email.findMany({
       where: {
         userId: args.userId,
@@ -77,19 +77,20 @@ export async function getUserCompanyTimeline(
         sentAt: true,
       },
     }),
-    client.fortnoxVoucher.findMany({
+    client.fortnoxInvoice.findMany({
       where: {
-        transactionDate: { gte: start, lt: endExclusive },
+        sentAt: { gte: start, lt: endExclusive },
       },
-      orderBy: [{ transactionDate: "desc" }, { voucherSeries: "asc" }, { voucherNumber: "asc" }],
+      orderBy: { sentAt: "desc" },
       take: cap,
       select: {
         id: true,
-        voucherSeries: true,
-        voucherNumber: true,
-        transactionDate: true,
-        description: true,
-        financialYearId: true,
+        invoiceNumber: true,
+        customerNumber: true,
+        totalInclVat: true,
+        currency: true,
+        status: true,
+        sentAt: true,
       },
     }),
   ]);
@@ -111,6 +112,7 @@ export async function getUserCompanyTimeline(
       },
       emailActivity: null,
       fortnoxVoucher: null,
+      fortnoxInvoice: null,
     });
   }
 
@@ -127,22 +129,25 @@ export async function getUserCompanyTimeline(
         messageId: a.messageId,
       },
       fortnoxVoucher: null,
+      fortnoxInvoice: null,
     });
   }
 
-  for (const v of voucherRows) {
+  for (const inv of invoiceRows) {
+    if (!inv.sentAt) continue;
     merged.push({
-      kind: TimelineEventKind.FortnoxVoucher,
-      occurredAt: v.transactionDate.toISOString(),
+      kind: TimelineEventKind.FortnoxInvoice,
+      occurredAt: inv.sentAt.toISOString(),
       mailSent: null,
       emailActivity: null,
-      fortnoxVoucher: {
-        id: v.id,
-        voucherSeries: v.voucherSeries,
-        voucherNumber: v.voucherNumber,
-        transactionDate: v.transactionDate.toISOString(),
-        description: v.description,
-        financialYearId: v.financialYearId,
+      fortnoxVoucher: null,
+      fortnoxInvoice: {
+        id: inv.id,
+        invoiceNumber: inv.invoiceNumber,
+        customerNumber: inv.customerNumber,
+        totalInclVat: inv.totalInclVat != null ? parseFloat(inv.totalInclVat.toString()) : null,
+        currency: inv.currency,
+        status: inv.status ?? "unknown",
       },
     });
   }

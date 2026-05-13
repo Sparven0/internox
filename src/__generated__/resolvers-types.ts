@@ -486,6 +486,7 @@ export type TimelineEvent = {
   __typename?: 'TimelineEvent';
   emailActivity?: Maybe<TimelineEmailActivity>;
   fortnoxVoucher?: Maybe<TimelineFortnoxVoucherBrief>;
+  fortnoxInvoice?: Maybe<TimelineFortnoxInvoiceBrief>;
   kind: TimelineEventKind;
   mailSent?: Maybe<TimelineMailSent>;
   occurredAt: Scalars['String']['output'];
@@ -494,8 +495,19 @@ export type TimelineEvent = {
 export enum TimelineEventKind {
   EmailActivity = 'EMAIL_ACTIVITY',
   FortnoxVoucher = 'FORTNOX_VOUCHER',
+  FortnoxInvoice = 'FORTNOX_INVOICE',
   Mail = 'MAIL'
 }
+
+export type TimelineFortnoxInvoiceBrief = {
+  __typename?: 'TimelineFortnoxInvoiceBrief';
+  id: Scalars['ID']['output'];
+  invoiceNumber: Scalars['String']['output'];
+  customerNumber: Scalars['String']['output'];
+  totalInclVat?: Maybe<Scalars['Float']['output']>;
+  currency: Scalars['String']['output'];
+  status: Scalars['String']['output'];
+};
 
 export type TimelineFortnoxVoucherBrief = {
   __typename?: 'TimelineFortnoxVoucherBrief';
@@ -632,6 +644,7 @@ export type ResolversTypes = {
   TimelineEvent: ResolverTypeWrapper<TimelineEvent>;
   TimelineEventKind: TimelineEventKind;
   TimelineFortnoxVoucherBrief: ResolverTypeWrapper<TimelineFortnoxVoucherBrief>;
+  TimelineFortnoxInvoiceBrief: ResolverTypeWrapper<TimelineFortnoxInvoiceBrief>;
   TimelineMailSent: ResolverTypeWrapper<TimelineMailSent>;
   User: ResolverTypeWrapper<User>;
 };
@@ -673,6 +686,7 @@ export type ResolversParentTypes = {
   TimelineEmailActivity: TimelineEmailActivity;
   TimelineEvent: TimelineEvent;
   TimelineFortnoxVoucherBrief: TimelineFortnoxVoucherBrief;
+  TimelineFortnoxInvoiceBrief: TimelineFortnoxInvoiceBrief;
   TimelineMailSent: TimelineMailSent;
   User: User;
 };
@@ -938,9 +952,19 @@ export type TimelineEmailActivityResolvers<ContextType = GraphQLContext, ParentT
 export type TimelineEventResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['TimelineEvent'] = ResolversParentTypes['TimelineEvent']> = {
   emailActivity?: Resolver<Maybe<ResolversTypes['TimelineEmailActivity']>, ParentType, ContextType>;
   fortnoxVoucher?: Resolver<Maybe<ResolversTypes['TimelineFortnoxVoucherBrief']>, ParentType, ContextType>;
+  fortnoxInvoice?: Resolver<Maybe<ResolversTypes['TimelineFortnoxInvoiceBrief']>, ParentType, ContextType>;
   kind?: Resolver<ResolversTypes['TimelineEventKind'], ParentType, ContextType>;
   mailSent?: Resolver<Maybe<ResolversTypes['TimelineMailSent']>, ParentType, ContextType>;
   occurredAt?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+};
+
+export type TimelineFortnoxInvoiceBriefResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['TimelineFortnoxInvoiceBrief'] = ResolversParentTypes['TimelineFortnoxInvoiceBrief']> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  invoiceNumber?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  customerNumber?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  totalInclVat?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  currency?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  status?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
 };
 
 export type TimelineFortnoxVoucherBriefResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['TimelineFortnoxVoucherBrief'] = ResolversParentTypes['TimelineFortnoxVoucherBrief']> = {
@@ -997,6 +1021,7 @@ export type Resolvers<ContextType = GraphQLContext> = {
   TimelineEmailActivity?: TimelineEmailActivityResolvers<ContextType>;
   TimelineEvent?: TimelineEventResolvers<ContextType>;
   TimelineFortnoxVoucherBrief?: TimelineFortnoxVoucherBriefResolvers<ContextType>;
+  TimelineFortnoxInvoiceBrief?: TimelineFortnoxInvoiceBriefResolvers<ContextType>;
   TimelineMailSent?: TimelineMailSentResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
 };
