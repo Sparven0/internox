@@ -618,7 +618,7 @@ const resolvers: Resolvers = {
       res.cookie("token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+        sameSite: "lax",
         maxAge: 8 * 60 * 60 * 1000,
       });
       return {
@@ -655,7 +655,7 @@ const resolvers: Resolvers = {
       res.cookie("token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+        sameSite: "lax",
         maxAge: 8 * 60 * 60 * 1000,
       });
       return { userName: masterUser.userName, role: masterUser.role };
@@ -664,7 +664,7 @@ const resolvers: Resolvers = {
       res.clearCookie("token", {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+        sameSite: "lax",
       });
       return "Logged out successfully";
     },
