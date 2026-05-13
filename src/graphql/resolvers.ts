@@ -482,6 +482,28 @@ const resolvers: Resolvers = {
       });
       return aliases.map((a) => ({ ...a, createdAt: a.createdAt.toISOString() }));
     },
+    getEmailsByUser: async (_parent, { userId }, { user }) => {
+      if (!user)
+        throw new GraphQLError("Unauthorized", {
+          extensions: { code: "UNAUTHORIZED" },
+        });
+      requireAdmin(user);
+      const companyId = (user as any).companyId;
+      const company = await masterClient.company.findUnique({
+        where: { id: companyId },
+      });
+      if (!company) throw new GraphQLError("Company not found");
+      const client = getCompanyClient(company.dbName);
+      const emails = await client.email.findMany({
+        where: { userId },
+        orderBy: { sentAt: "desc" },
+      });
+      return emails.map((e) => ({
+        ...e,
+        sentAt: e.sentAt?.toISOString() ?? null,
+        createdAt: e.createdAt.toISOString(),
+      })) as any[];
+    },
     getUserActivityTimeline: async (
       _parent,
       { userId, fromDate, toDate, limit },

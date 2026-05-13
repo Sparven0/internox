@@ -116,6 +116,29 @@ const typeDefs = `
     fortnoxVoucher: TimelineFortnoxVoucherBrief
   }
 
+  type Email {
+    id: ID!
+    messageId: String!
+    source: String!
+    userId: ID
+    customerId: ID
+    direction: String!
+    subject: String
+    fromAddress: String!
+    fromName: String
+    toAddresses: JSON!
+    ccAddresses: JSON!
+    bccAddresses: JSON!
+    replyTo: String
+    sentAt: String
+    bodyText: String
+    bodyHtml: String
+    inReplyTo: String
+    threadId: String
+    mailbox: String
+    createdAt: String!
+  }
+
   type Query {
     getAllCompanies: [Company]
     getCompanyById(id: ID!): Company
@@ -140,6 +163,7 @@ const typeDefs = `
     getEmployeesByCustomer(customerId: ID!): [User!]!
     invoiceRecipientAliases: [InvoiceRecipientAlias!]!
     getUserActivityTimeline(userId: ID!, fromDate: String!, toDate: String!, limit: Int): [TimelineEvent!]!
+    getEmailsByUser(userId: ID!): [Email!]!
     me: Me
   }
 
