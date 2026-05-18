@@ -115,6 +115,62 @@ export function resolveFortnoxBookedAt(
   return fallback;
 }
 
+function asObject(v: unknown): Record<string, unknown> | null {
+  if (v && typeof v === "object" && !Array.isArray(v)) return v as Record<string, unknown>;
+  return null;
+}
+
+/**
+ * Keep richer invoice rawData produced by detail/websocket paths.
+ * The bulk invoice list endpoint usually returns a smaller payload.
+ */
+function shouldReplaceInvoiceRawData(existingRaw: unknown, incomingRaw: unknown): boolean {
+  const existing = asObject(existingRaw);
+  const incoming = asObject(incomingRaw);
+
+  if (!incoming) return false;
+  if (!existing) return true;
+
+  const existingRows = Array.isArray((existing as any).InvoiceRows)
+    ? ((existing as any).InvoiceRows as unknown[]).length
+    : 0;
+  const incomingRows = Array.isArray((incoming as any).InvoiceRows)
+    ? ((incoming as any).InvoiceRows as unknown[]).length
+    : 0;
+
+  if (existingRows > 0 && incomingRows === 0) return false;
+
+  const existingKeys = Object.keys(existing).length;
+  const incomingKeys = Object.keys(incoming).length;
+  if (existingKeys > incomingKeys + 3) return false;
+
+  return true;
+}
+
+function resolveBookedAtFromRest(inv: any): Date | null {
+  return firstFortnoxInstant(
+    inv?.BookedAt,
+    inv?.BookedDate,
+    inv?.BookkeepDate,
+    inv?.AccountingDate,
+    inv?.InvoiceDate,
+  );
+}
+
+function isLikelyDateOnlyFallback(sentAt: Date, inv: any): boolean {
+  const isMidnightUtc =
+    sentAt.getUTCHours() === 0 &&
+    sentAt.getUTCMinutes() === 0 &&
+    sentAt.getUTCSeconds() === 0 &&
+    sentAt.getUTCMilliseconds() === 0;
+  if (!isMidnightUtc) return false;
+
+  const invoiceDate = firstFortnoxDate(inv?.InvoiceDate);
+  if (!invoiceDate) return false;
+
+  return sentAt.toISOString().slice(0, 10) === invoiceDate.toISOString().slice(0, 10);
+}
+
 /**
  * Sync Fortnox customers and invoice headers for a given company.
  *
@@ -210,6 +266,11 @@ export async function syncFortnoxData(companyId: string): Promise<{
     const customerNumber = String(inv.CustomerNumber ?? "").trim();
     if (!invoiceNumber || !customerNumber) continue;
 
+    const existingInvoice = await client.fortnoxInvoice.findUnique({
+      where: { invoiceNumber },
+      select: { rawData: true },
+    });
+
     // Ensure the fortnox_customer row exists before inserting the invoice FK
     const fnCustomer = await client.fortnoxCustomer.findUnique({
       where: { customerNumber },
@@ -219,12 +280,10 @@ export async function syncFortnoxData(companyId: string): Promise<{
 
     const status = deriveInvoiceStatus(inv);
     const booked = isFortnoxInvoiceBooked(inv);
-    // Use the actual invoice date as fallback — never `now` — so existing booked
-    // invoices get a meaningful sentAt on first insert without overwriting a more
-    // precise timestamp set later by the WebSocket bookkeep event.
-    const sentAt = booked
-      ? resolveFortnoxBookedAt(inv, undefined, firstFortnoxDate(inv.InvoiceDate) ?? now)
-      : null;
+    const sentAt = booked ? resolveBookedAtFromRest(inv) : null;
+    const nextRawData = shouldReplaceInvoiceRawData(existingInvoice?.rawData, inv)
+      ? inv
+      : existingInvoice?.rawData;
 
     await client.fortnoxInvoice.upsert({
       where: { invoiceNumber },
@@ -254,7 +313,7 @@ export async function syncFortnoxData(companyId: string): Promise<{
         status,
         ourReference: inv.OurReference || null,
         yourReference: inv.YourReference || null,
-        rawData: inv,
+        rawData: nextRawData,
         syncedAt: now,
         // sentAt is intentionally omitted — only the WebSocket bookkeep event
         // (fortnoxWebSocket.ts) may update this field on existing rows.
@@ -307,28 +366,27 @@ export async function syncFortnoxInvoiceRows(
 
   const client = getCompanyClient(company.dbName);
   const headerNow = new Date();
+  const existingHeader = await client.fortnoxInvoice.findUnique({
+    where: { invoiceNumber },
+    select: { sentAt: true },
+  });
 
   // Single-invoice GET is authoritative for `Booked` when the list omits it.
-  // Only set sentAt when it is not already populated — the WebSocket bookkeep
-  // event owns that field and may have stored a more precise timestamp.
+  // Prefer precision over placeholders: replace sentAt if it's missing or
+  // looks like a date-only fallback (00:00:00 on invoice date).
   if (isFortnoxInvoiceBooked(inv)) {
-    const sentAt = resolveFortnoxBookedAt(
-      inv,
-      undefined,
-      firstFortnoxDate(inv.InvoiceDate) ?? headerNow,
-    );
-    await client.fortnoxInvoice.updateMany({
-      where: { invoiceNumber, sentAt: null },
-      data: {
-        sentAt,
-        rawData: inv,
-        syncedAt: headerNow,
-      },
-    });
-    // Always update rawData/syncedAt even when sentAt is already set
+    const sentAt = resolveBookedAtFromRest(inv);
+    const canImproveSentAt =
+      sentAt &&
+      (!existingHeader?.sentAt || isLikelyDateOnlyFallback(existingHeader.sentAt, inv));
+
     await client.fortnoxInvoice.updateMany({
       where: { invoiceNumber },
-      data: { rawData: inv, syncedAt: headerNow },
+      data: {
+        rawData: inv,
+        syncedAt: headerNow,
+        ...(canImproveSentAt ? { sentAt } : {}),
+      },
     });
   } else {
     await client.fortnoxInvoice.updateMany({
